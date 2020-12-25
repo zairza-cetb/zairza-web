@@ -49,4 +49,8 @@ html,body{
     border-radius: 100%;
     left: calc(50% - 8px);
     }
-  
+  button{
+      background-color: rgb(57, 115, 241);
+      color: white;
+      width: 10rem;
+  }
