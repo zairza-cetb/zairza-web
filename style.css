@@ -1,0 +1,52 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.no-js #mobile-menu__toggler {
+    display: none;
+  }
+  .no-js .aw-header__nav {
+    display: block;
+  }
+  .no-js .aw-header__logo {
+    margin-left: unset;
+  }
+  .transition {
+    transition: all 0.2s ease-in-out;
+  }
+  .order-1 {
+    order: 1;
+  }
+  .order-2 {
+    order: 2;
+  }
+  .order-3 {
+    order: 3;
+  }
+  /* use '@screen lg {...}' with npm version */
+  @media (min-width: 1024px) {
+    .lg\:order-1 {
+      order: 1;
+    }
+    .lg\:order-2 {
+      order: 2;
+    }
+    .lg\:order-3 {
+      order: 3;
+    }
+  }
+  ol li {
+    position: relative;
+    }
+  ol li:hover:before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    background: red;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    left: calc(50% - 8px);
+    }
+  
