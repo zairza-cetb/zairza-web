@@ -18,4 +18,25 @@ function toogleMenu() {
     },
     false
   );
+(function () {
+  var controller = new ScrollMagic.Controller({
+    globalSceneOptions: {
+      triggerHook: 'onEnter',
+      duration: "100%"
+    }
+  });
+
+  var slides = document.querySelectorAll("section.parallax");
+
+  new ScrollMagic.Scene({
+    triggerElement: slides[1]
+  })
+    .setPin(slides[0], { pushFollowers: false })
+    .addTo(controller)
+    .on("progress", function(e) {
+      slides[0].style.opacity =  1 - (e.progress)/(0.4);
+      console.log(e.progress);
+    });
+
+})();
   
