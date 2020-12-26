@@ -2,6 +2,7 @@ html,body{
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
 }
 .no-js #mobile-menu__toggler {
     display: none;
@@ -116,20 +117,20 @@ ol li:hover:before {
 }
 @-webkit-keyframes up-down {
   0% {
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
 
   100% {
-    transform: translateY(-10px);
+    transform: translateY(0px);
   }
 }
 
 @keyframes up-down {
   0% {
-    transform: translateY(10px);
+    transform: translateY(20px);
   }
 
   100% {
-    transform: translateY(-10px);
+    transform: translateY(0px);
   }
 }
