@@ -1,23 +1,22 @@
-function toogleMenu() {
-    document.getElementById("mobile-menu__open").classList.toggle("hidden");
-    document.getElementById("mobile-menu__close").classList.toggle("hidden");
-    document.getElementById("mobile-menu__items").classList.toggle("hidden");
+function toggleMenu() {
+  let menu = document.getElementById('mob-menu');
+  let cross = document.getElementById('cross');
+  let hamburger = document.getElementById('hamburger');
+  if(menu.classList.contains('hidden')){
+    menu.classList.remove('hidden');
+    menu.classList.add('block');
+    cross.classList.remove('hidden');
+    cross.classList.add('block');
+    hamburger.classList.add('hidden');
   }
-  
-  document.getElementById("mobile-menu__open").addEventListener(
-    "click",
-    () => {
-      toogleMenu();
-    },
-    false
-  );
-  document.getElementById("mobile-menu__close").addEventListener(
-    "click",
-    () => {
-      toogleMenu();
-    },
-    false
-  );
+  else{
+    menu.classList.remove('block');
+    menu.classList.add('hidden');
+    cross.classList.remove('block');
+    cross.classList.add('hidden');
+    hamburger.classList.remove('hidden');
+  }
+}
 (function () {
   var controller = new ScrollMagic.Controller({
     globalSceneOptions: {

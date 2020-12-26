@@ -11,46 +11,31 @@
 </head>
 <body>
   <!--js xor no-js -->
-<main class="js container mx-auto">
+<main class="js">
 
-  <section class="aw-header bg-white border-b border-gray-200 shadow-md">
-    <header class="container mx-auto flex items-center justify-between flex-wrap px-2 py-4 lg:p-6 ">
-      <div id="mobile-menu__toggler" class="block lg:hidden">
-        <button id="mobile-menu__open" class="px-3 py-1 w-20 border rounded text-white bg-purple-700 border-transparent hover:bg-purple-900 transition">
-                Menu
-            </button>
-        <button id="mobile-menu__close" class="hidden px-3 py-1 w-20 border rounded text-white bg-purple-700 border-transparent hover:bg-purple-900 transition">
-                Close
-            </button>
-      </div>
-
-      <div class="aw-header__logo flex items-center flex-shrink-0 text-purple-700 hover:text-purple-900 mx-2 lg:mr-6 order-1 transition">
-        <span class="uppercase font-bold text-lg tracking-widest">Zairza</span>
-      </div>
-
-      <nav id="mobile-menu__items" class="lg:mr-24 aw-header__nav hidden w-full block  lg:flex flex-grow lg:w-auto order-3 lg:order-2">
-        <ol class="text-base lg:flex lg:justify-end w-full">
-          <li class="block mb-4 mt-3 lg:inline-block lg:mb-0 lg:mt-0 lg:mr-14">
-            <a href="#" class="text-gray-700 hover:text-red-500 transition">Home</a>
-          </li>
-
-          <li class="block mb-4 lg:inline-block lg:mb-0 lg:mr-14">
-            <a href="#" class="text-gray-700 hover:text-red-500 transition">Projects</a>
-          </li>
-
-          <li class="block mb-4 lg:inline-block lg:mb-0 lg:mr-14">
-            <a href="#" class="text-gray-700 hover:text-red-500 transition">Blogs</a>
-          </li>
-
-          <li class="block mb-4 lg:inline-block lg:mb-0 lg:mr-14">
-            <a href="#" class="text-gray-700 hover:text-red-500 transition">Our Team</a>
-          </li>
-
-          <li class="block mb-4 lg:inline-block lg:mb-0 lg:mr-14">
-            <a href="#" class="text-gray-700 hover:text-red-500 transition">Contact</a>
-          </li>
-        </ol>
-      </nav>
+  <section>
+    <header class="sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">
+    <div class="flex justify-between items-center px-4 py-3 sm:p-0">
+       <div>
+        <img class="h-8" src="/assets/images/Zairzalogo.png" alt="Zairza Logo">
+       </div>
+       <div class="sm:hidden">
+        <button onclick="toggleMenu()" type="button" class="text-gray-500 hover:text-black focus:outline-none">
+          <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+            <path id="cross" class="hidden" fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
+            <path id="hamburger" fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+          </svg>
+          </svg>
+        </button>
+       </div>
+    </div>
+     <div id="mob-menu" class=" sm:flex px-2 pt-2 pb-4 hidden">
+       <a href="#" class="block hover:text-white px-2 py-1 font-semibold hover:bg-gray-800 rounded">Home</a>
+       <a href="#" class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-semibold hover:bg-gray-800 rounded">Projects</a>
+       <a href="#" class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-semibold hover:bg-gray-800 rounded">Blog</a>
+       <a href="#" class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-semibold hover:bg-gray-800 rounded">Our Team</a>
+       <a href="#" class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-semibold hover:bg-gray-800 rounded">Contact</a>
+     </div>
     </header>
   </section>
   <section>
