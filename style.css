@@ -5,74 +5,119 @@ html,body{
 }
 .no-js #mobile-menu__toggler {
     display: none;
-  }
-  .no-js .aw-header__nav {
-    display: block;
-  }
-  .no-js .aw-header__logo {
-    margin-left: unset;
-  }
-  .transition {
-    transition: all 0.2s ease-in-out;
-  }
-  .order-1 {
+}
+.no-js .aw-header__nav {
+  display: block;
+}
+.no-js .aw-header__logo {
+  margin-left: unset;
+}
+.transition {
+  transition: all 0.2s ease-in-out;
+}
+.order-1 {
+  order: 1;
+}
+.order-2 {
+  order: 2;
+}
+.order-3 {
+  order: 3;
+}
+
+/* for hamburger */
+.menu {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  padding: 0;
+}
+.line {
+  fill: none;
+  stroke: black;
+  stroke-width: 6;
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.line1 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+.line2 {
+  stroke-dasharray: 60 60;
+  stroke-width: 6;
+}
+.line3 {
+  stroke-dasharray: 60 207;
+  stroke-width: 6;
+}
+.opened .line1 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+.opened .line2 {
+  stroke-dasharray: 1 60;
+  stroke-dashoffset: -30;
+  stroke-width: 6;
+}
+.opened .line3 {
+  stroke-dasharray: 90 207;
+  stroke-dashoffset: -134;
+  stroke-width: 6;
+}
+
+
+/* use '@screen lg {...}' with npm version */
+@media (min-width: 1024px) {
+  .lg\:order-1 {
     order: 1;
   }
-  .order-2 {
+  .lg\:order-2 {
     order: 2;
   }
-  .order-3 {
+  .lg\:order-3 {
     order: 3;
   }
-  /* use '@screen lg {...}' with npm version */
-  @media (min-width: 1024px) {
-    .lg\:order-1 {
-      order: 1;
-    }
-    .lg\:order-2 {
-      order: 2;
-    }
-    .lg\:order-3 {
-      order: 3;
-    }
+}
+ol li {
+  position: relative;
   }
-  ol li {
-    position: relative;
-    }
-  ol li:hover:before {
-    content: "";
-    position: absolute;
-    top: 30px;
-    background: red;
-    width: 6px;
-    height: 6px;
-    border-radius: 100%;
-    left: calc(50% - 8px);
-    }
-  .grid button{
-      background-color: rgb(57, 115, 241);
-      color: white;
-      width: 10rem;
+ol li:hover:before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  background: red;
+  width: 6px;
+  height: 6px;
+  border-radius: 100%;
+  left: calc(50% - 8px);
   }
-  .animated {
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
+.grid button{
+    background-color: rgb(57, 115, 241);
+    color: white;
+    width: 10rem;
+}
+.animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+@-webkit-keyframes up-down {
+  0% {
+    transform: translateY(10px);
   }
-  @-webkit-keyframes up-down {
-    0% {
-      transform: translateY(10px);
-    }
-  
-    100% {
-      transform: translateY(-10px);
-    }
+
+  100% {
+    transform: translateY(-10px);
   }
-  
-  @keyframes up-down {
-    0% {
-      transform: translateY(10px);
-    }
-  
-    100% {
-      transform: translateY(-10px);
-    }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
   }
+
+  100% {
+    transform: translateY(-10px);
+  }
+}

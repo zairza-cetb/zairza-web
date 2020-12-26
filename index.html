@@ -16,16 +16,16 @@
   <section>
     <header class="sm:flex sm:justify-between sm:items-center sm:px-16 sm:py-6">
     <div class="flex justify-between items-center px-4 py-3 sm:p-0">
-       <div>
-        <img class="h-8" src="/assets/images/Zairzalogo.png" alt="Zairza Logo">
-       </div>
-       <div class="sm:hidden">
-        <button onclick="toggleMenu()" type="button" class="text-gray-500 hover:text-black focus:outline-none">
-          <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-            <path id="cross" class="hidden" fill-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
-            <path id="hamburger" fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
-          </svg>
-          </svg>
+        <div>
+            <img class="h-8" src="/assets/images/Zairzalogo.png" alt="Zairza Logo">
+        </div>
+        <div class="sm:hidden">
+        <button class="menu text-gray-500 hover:text-black focus:outline-none" onclick="toggleMenu(); this.classList.toggle('opened');" aria-label="Menu">
+        <svg class="h-8 w-8 fill-current" viewBox="0 0 100 100">
+            <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+            <path class="line line2" d="M 20,50 H 80" />
+            <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+        </svg>
         </button>
        </div>
     </div>
