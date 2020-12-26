@@ -24,7 +24,19 @@ html,body{
 .order-3 {
   order: 3;
 }
-
+.navbar {
+  top: 0;
+  z-index: 100;
+  position: fixed;
+  height: 6rem;
+  will-change: height;
+  width: 100%;
+  transition: all 300ms ease;
+}
+.navbar-fixed{
+  height: 5rem;
+  box-shadow: 2px 5px 5px rgb(184, 172, 172);
+}
 /* for hamburger */
 .menu {
   background-color: transparent;
