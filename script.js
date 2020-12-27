@@ -34,8 +34,10 @@ $(document).ready(function() {
   $('#mob-menu a').on('click', function() {
     if($('#mob-menu').hasClass('hidden')){
       $('#mob-menu').removeClass('hidden').addClass('block');
+      $('.menu').toggleClass('opened');
     }else{
       $('#mob-menu').removeClass('block').addClass('hidden');
+      $('.menu').toggleClass('opened');
     }
   })
   
