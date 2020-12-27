@@ -25,6 +25,9 @@ html,body{
   display: flex;
   padding: 0;
 }
+.bg-blue:hover{
+  background-color:#1071FF;
+}
 .line {
   fill: none;
   stroke: black;

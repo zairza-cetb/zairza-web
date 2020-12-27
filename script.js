@@ -31,6 +31,13 @@ function toggleMenu() {
 
 })();
 $(document).ready(function() {
+  $('#mob-menu a').on('click', function() {
+    if($('#mob-menu').hasClass('hidden')){
+      $('#mob-menu').removeClass('hidden').addClass('block');
+    }else{
+      $('#mob-menu').removeClass('block').addClass('hidden');
+    }
+  })
   
   $(window).scroll(function () {
     if ($(window).scrollTop() > 0) {
