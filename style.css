@@ -4,27 +4,6 @@ html,body{
     font-family: 'Montserrat', sans-serif;
     scroll-behavior: smooth;
 }
-.no-js #mobile-menu__toggler {
-    display: none;
-}
-.no-js .aw-header__nav {
-  display: block;
-}
-.no-js .aw-header__logo {
-  margin-left: unset;
-}
-.transition {
-  transition: all 0.2s ease-in-out;
-}
-.order-1 {
-  order: 1;
-}
-.order-2 {
-  order: 2;
-}
-.order-3 {
-  order: 3;
-}
 .navbar {
   top: 0;
   z-index: 100;
@@ -94,21 +73,8 @@ html,body{
     order: 3;
   }
 }
-ol li {
-  position: relative;
-  }
-ol li:hover:before {
-  content: "";
-  position: absolute;
-  top: 30px;
-  background: red;
-  width: 6px;
-  height: 6px;
-  border-radius: 100%;
-  left: calc(50% - 8px);
-  }
 .grid button{
-    background-color: rgb(57, 115, 241);
+    background-color:#1471FF;
     color: white;
     width: 10rem;
 }
