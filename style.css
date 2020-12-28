@@ -129,3 +129,8 @@ body {
     transform: translateY(-20px);
   }
 }
+@media(max-width:800px){
+  .bx-md{
+    font-size:1.55rem !important;
+  }
+}
