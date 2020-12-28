@@ -10,24 +10,25 @@ function toggleMenu() {
   }
 }
 (function () {
-  var controller = new ScrollMagic.Controller({
+  let controller = new ScrollMagic.Controller({
     globalSceneOptions: {
       triggerHook: 'onEnter',
       duration: "100%"
     }
   });
 
-  var slides = document.querySelectorAll("section.parallax");
+  let pins = document.querySelectorAll("section.parallax-1");
+  let slides = document.querySelectorAll("section.parallax-2");
 
-  new ScrollMagic.Scene({
-    triggerElement: slides[1]
-  })
-    .setPin(slides[0], { pushFollowers: false })
-    .addTo(controller)
-    .on("progress", function(e) {
-      slides[0].style.opacity =  1 - (e.progress)/(0.4);
-      console.log(e.progress);
-    });
+  let n = Math.min(pins.length, slides.length);
+
+  for (let i = 0; i < n; i++) {
+    new ScrollMagic.Scene({
+      triggerElement: slides[i]
+    })
+      .setPin(pins[i], { pushFollowers: false })
+      .addTo(controller);
+  }
 
 })();
 $(document).ready(function() {
