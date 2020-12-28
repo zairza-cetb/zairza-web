@@ -28,6 +28,10 @@ html,body{
 .bg-blue:hover{
   background-color:#1071FF;
 }
+.icon:hover{
+  color: #1071FF;
+  cursor: pointer;
+}
 .line {
   fill: none;
   stroke: black;
