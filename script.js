@@ -10,14 +10,14 @@ function toggleMenu() {
   }
 }
 
-function scrollTo(element) {
-  $("body,html").animate(
-    {
-      scrollTop: $(element).offset().top
-    },
-    800
-  );
-}
+// function scrollTo(element) {
+//   $("body,html").animate(
+//     {
+//       scrollTop: $(element).offset().top
+//     },
+//     800
+//   );
+// }
 
 $(document).ready(function() {
   $('#mob-menu a').on('click', function() {
@@ -39,14 +39,14 @@ $(document).ready(function() {
     }
   });
 
-  let controller = new ScrollMagic.Controller({
-    globalSceneOptions: {
-      triggerHook: 'onEnter',
-      duration: "90%"
-    }
-  });
+  // let controller = new ScrollMagic.Controller({
+  //   globalSceneOptions: {
+  //     triggerHook: 'onEnter',
+  //     duration: "90%"
+  //   }
+  // });
 
-  let sections = document.querySelectorAll("#sections section");
+  // let sections = document.querySelectorAll("#sections section");
 
   $('#pagepiling').pagepiling({
     anchors: ['page1', 'page2', 'page3', 'page4'],

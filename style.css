@@ -112,6 +112,9 @@ body {
 .animated {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
+/* .sally-11{
+  height:25% !important;
+} */
 
 @-webkit-keyframes up-down {
   0% {
