@@ -10,18 +10,6 @@ function toggleMenu() {
   }
 }
 
-// function scrollTo(element) {
-//   $("body,html").animate(
-//     {
-//       scrollTop: $(element).offset().top
-//     },
-//     800
-//   );
-// }
-new fullpage('#fullpage', {
-  sectionsColor: ['white', 'white', 'white', 'white'],
-  scrollOverflow:true
-});
 $(document).ready(function() {
   $('#mob-menu a').on('click', function() {
     if($('#mob-menu').hasClass('hidden')){
@@ -40,29 +28,10 @@ $(document).ready(function() {
     if ($(window).scrollTop() < 1) {
       $('header').removeClass('navbar-fixed');
     }
+
+    new fullpage('#fullpage', {
+      sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
+      scrollOverflow: true
+    });
   });
-
-  // $(".owl-carousel").owlCarousel({
-  //   loop: true,
-  //   margin:10
-  // });
-
-  // let controller = new ScrollMagic.Controller({
-  //   globalSceneOptions: {
-  //     triggerHook: 'onEnter',
-  //     duration: "90%"
-  //   }
-  // });
-
-  // let sections = document.querySelectorAll("#sections section");
-
-//   $('#pagepiling').pagepiling({
-//     anchors: [],
-//     sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
-//     navigation: {
-//       'position': 'right',
-//        'tooltips': ['Page 1', 'Page 2', 'Page 3', 'Page 4']
-//      },
-//      navigation: false
-// });
 })
