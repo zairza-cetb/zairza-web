@@ -9,28 +9,16 @@ function toggleMenu() {
     menu.classList.add('hidden');
   }
 }
-(function () {
-  let controller = new ScrollMagic.Controller({
-    globalSceneOptions: {
-      triggerHook: 'onEnter',
-      duration: "100%"
-    }
-  });
 
-  let pins = document.querySelectorAll("section.parallax-1");
-  let slides = document.querySelectorAll("section.parallax-2");
+function scrollTo(element) {
+  $("body,html").animate(
+    {
+      scrollTop: $(element).offset().top
+    },
+    800
+  );
+}
 
-  let n = Math.min(pins.length, slides.length);
-
-  for (let i = 0; i < n; i++) {
-    new ScrollMagic.Scene({
-      triggerElement: slides[i]
-    })
-      .setPin(pins[i], { pushFollowers: false })
-      .addTo(controller);
-  }
-
-})();
 $(document).ready(function() {
   $('#mob-menu a').on('click', function() {
     if($('#mob-menu').hasClass('hidden')){
@@ -50,4 +38,23 @@ $(document).ready(function() {
       $('header').removeClass('navbar-fixed');
     }
   });
+
+  let controller = new ScrollMagic.Controller({
+    globalSceneOptions: {
+      triggerHook: 'onEnter',
+      duration: "90%"
+    }
+  });
+
+  let sections = document.querySelectorAll("#sections section");
+
+  $('#pagepiling').pagepiling({
+    anchors: ['page1', 'page2', 'page3', 'page4'],
+    sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
+    navigation: {
+      'position': 'right',
+       'tooltips': ['Page 1', 'Page 2', 'Page 3', 'Page 4']
+     },
+     navigation: false
+});
 })
