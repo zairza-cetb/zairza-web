@@ -18,7 +18,10 @@ function toggleMenu() {
 //     800
 //   );
 // }
-
+new fullpage('#fullpage', {
+  sectionsColor: ['white', 'white', 'white', 'white'],
+  scrollOverflow:true
+});
 $(document).ready(function() {
   $('#mob-menu a').on('click', function() {
     if($('#mob-menu').hasClass('hidden')){
@@ -38,10 +41,11 @@ $(document).ready(function() {
       $('header').removeClass('navbar-fixed');
     }
   });
-  $(".owl-carousel").owlCarousel({
-    loop: true,
-    margin:10
-  });
+
+  // $(".owl-carousel").owlCarousel({
+  //   loop: true,
+  //   margin:10
+  // });
 
   // let controller = new ScrollMagic.Controller({
   //   globalSceneOptions: {
@@ -52,13 +56,13 @@ $(document).ready(function() {
 
   // let sections = document.querySelectorAll("#sections section");
 
-  $('#pagepiling').pagepiling({
-    anchors: [],
-    sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
-    navigation: {
-      'position': 'right',
-       'tooltips': ['Page 1', 'Page 2', 'Page 3', 'Page 4']
-     },
-     navigation: false
-});
+//   $('#pagepiling').pagepiling({
+//     anchors: [],
+//     sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
+//     navigation: {
+//       'position': 'right',
+//        'tooltips': ['Page 1', 'Page 2', 'Page 3', 'Page 4']
+//      },
+//      navigation: false
+// });
 })
