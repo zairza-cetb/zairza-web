@@ -38,6 +38,10 @@ $(document).ready(function() {
       $('header').removeClass('navbar-fixed');
     }
   });
+  $(".owl-carousel").owlCarousel({
+    loop: true,
+    margin:10
+  });
 
   // let controller = new ScrollMagic.Controller({
   //   globalSceneOptions: {
@@ -49,7 +53,7 @@ $(document).ready(function() {
   // let sections = document.querySelectorAll("#sections section");
 
   $('#pagepiling').pagepiling({
-    anchors: ['page1', 'page2', 'page3', 'page4'],
+    anchors: [],
     sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
     navigation: {
       'position': 'right',
