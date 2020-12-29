@@ -33,6 +33,9 @@ body {
 .bg-blue:hover {
   background-color: #1071FF;
 }
+.leading-tight{
+  line-height:1.25 !important;
+}
 
 .icon:hover {
   color: #1071FF;
