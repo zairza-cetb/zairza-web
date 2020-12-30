@@ -294,8 +294,8 @@ body {
 #grid0 .effect {
 	position: relative;
 	overflow: hidden;
-	max-height: 240px;
-	max-width: 350px;
+	/* max-height: 240px;
+	max-width: 350px; */
 	background: #3085a3;
 	text-align: center;
 	cursor: pointer
@@ -326,7 +326,7 @@ body {
 	font-size: 1rem
 }
 #grid0 .effect.effect-one {
-	background: #18a367;
+	/* background: #18a367; */
 	position: relative
 }
 
@@ -416,7 +416,7 @@ body {
 }
 
 #grid0 .effect-one .pt-1 {
-	padding-top: 10%!important
+	padding-top: 10%!important;
 }
 
 #grid0 .effect.effect-one p {
