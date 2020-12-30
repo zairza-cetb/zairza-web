@@ -107,7 +107,7 @@ body {
   color: white;
   width:280px;
 }
-#show-more{
+.showHide{
   background-color: #1471FF;
   color: white;
   width:280px;
