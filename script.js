@@ -20,7 +20,9 @@ $(document).ready(function() {
       $('.menu').toggleClass('opened');
     }
   })
-  
+  $('#show-more').on('click',function(){
+    $('#hidden-grid').removeClass('hidden').addClass('block');
+  })
   $(window).scroll(function () {
     if ($(window).scrollTop() > 0) {
       $('header').addClass('navbar-fixed');
