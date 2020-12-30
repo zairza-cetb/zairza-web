@@ -10,21 +10,7 @@ function toggleMenu() {
   }
 }
 
-function showHide(index) {
-  const cards = $(`#grid${index} .card`);
-  
-  const numHidden = cards.length - 3;
-
-  cards.slice(-numHidden)
-   .toggleClass("hidden");
-  console.log(cards);
-
-  $(`.showHide`).eq(index).text((_, s) => {
-    return s.toLowerCase() === "show more" ? "Show less" : "Show More";
-  });
-
-   fullpage_api.reBuild();
-}
+const isHidden = [true, true, true]
 
 $(document).ready(function() {
   $('#mob-menu a').on('click', function() {
@@ -53,6 +39,22 @@ $(document).ready(function() {
   });
 
   $(".showHide").each((index, element) => {
-    $(element).click(() => showHide(index));
+    const cards = $(`#grid${index} .card`);
+  
+    const numHidden = cards.length - 3;
+    const hiddenCards = cards.slice(-numHidden);
+    hiddenCards.hide();
+    $(element).click(() => {
+      if (isHidden[index]) {
+        hiddenCards.show();
+        $(element).text("Show less");
+      } else {
+        hiddenCards.hide();
+        $(element).text("Show More");
+      }
+      isHidden[index] = !isHidden[index];
+
+      fullpage_api.reBuild();
+    });
   })
 });
