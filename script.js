@@ -23,19 +23,16 @@ $(document).ready(function() {
     }
   })
   new fullpage('#fullpage', {
+    onLeave : function(origin, destination, direction) {
+      if(origin.index == 0 && direction == 'down') {
+        $('header').addClass('navbar-fixed');
+      }
+      else if(origin.index == 1 && direction == 'up'){
+        $('header').removeClass('navbar-fixed');
+      }
+    },
     sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
     scrollOverflow: true
-  });
-  
-  $(window).scroll(function () {
-    if ($(window).scrollTop() > 0) {
-      $('header').addClass('navbar-fixed');
-    }
-    if ($(window).scrollTop() < 1) {
-      $('header').removeClass('navbar-fixed');
-    }
-
-    
   });
 
   $(".showHide").each((index, element) => {
