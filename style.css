@@ -117,10 +117,10 @@ body {
   width:280px;
 }
 @media (max-width:800px){
-  .grid button {
+  /* .grid button {
     width:180px;
     padding:.4rem 0;
-  }
+  } */
   .navbar{
     height: 4rem;
   }
