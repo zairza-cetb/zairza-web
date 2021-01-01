@@ -9,28 +9,10 @@ function toggleMenu() {
     menu.classList.add('hidden');
   }
 }
-(function () {
-  let controller = new ScrollMagic.Controller({
-    globalSceneOptions: {
-      triggerHook: 'onEnter',
-      duration: "100%"
-    }
-  });
 
-  let pins = document.querySelectorAll("section.parallax-1");
-  let slides = document.querySelectorAll("section.parallax-2");
+const isHidden = [true, true, true]
+const sections = [0,1,1,2,2,3,3,4,4]
 
-  let n = Math.min(pins.length, slides.length);
-
-  for (let i = 0; i < n; i++) {
-    new ScrollMagic.Scene({
-      triggerElement: slides[i]
-    })
-      .setPin(pins[i], { pushFollowers: false })
-      .addTo(controller);
-  }
-
-})();
 $(document).ready(function() {
   $('#mob-menu a').on('click', function() {
     if($('#mob-menu').hasClass('hidden')){
@@ -41,13 +23,59 @@ $(document).ready(function() {
       $('.menu').toggleClass('opened');
     }
   })
-  
-  $(window).scroll(function () {
-    if ($(window).scrollTop() > 0) {
-      $('header').addClass('navbar-fixed');
-    }
-    if ($(window).scrollTop() < 1) {
-      $('header').removeClass('navbar-fixed');
-    }
+  new fullpage('#fullpage', {
+    afterLoad: function(origin, destination, direction){
+        navs = $('ul#mob-menu > li');
+        navs.eq(sections[origin.index]).removeClass("bg-focus");
+        navs.eq(sections[destination.index]).addClass("bg-focus");
+    },
+    onLeave : function(origin, destination, direction) {
+      if([2,4,6].includes(origin.index)){
+        var index = Math.floor(origin.index/2) - 1;
+        if(isHidden[index]==false){
+          isHidden[index] = true;
+          const cards = $(`#grid${index} .card`);
+          const numHidden = cards.length - 4;
+          const hiddenCards = cards.slice(-numHidden);
+          hiddenCards.hide();
+          $(".showHide").eq(index).text("Show More");
+          fullpage_api.reBuild();
+        }
+      }
+
+      if(origin.index == 0 && direction == 'down') {
+        $('header').addClass('navbar-fixed');
+      }
+      else if(destination.index == 0 && direction == 'up'){
+        $('header').removeClass('navbar-fixed');
+      }
+    },
+    sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
+    scrollOverflow: true
   });
-})
+
+  $(".showHide").each((index, element) => {
+    const cards = $(`#grid${index} .card`);
+    
+    const numHidden = cards.length - 4;
+    const hiddenCards = cards.slice(-numHidden);
+    hiddenCards.hide();
+    $(element).click(() => {
+      if (isHidden[index]) {
+        hiddenCards.show();
+        $(element).text("Show less");
+      } else {
+        hiddenCards.hide();
+        $(element).text("Show More");
+      }
+      isHidden[index] = !isHidden[index];
+
+      fullpage_api.reBuild();
+    });
+  });
+
+  const navSectionMap = [1, 2, 4, 6, 8];
+  $("#mob-menu li").each((index, element) => {
+    $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
+  });
+});

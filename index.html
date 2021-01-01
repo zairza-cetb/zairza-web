@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://rawgit.com/alvarotrigo/fullPage.js/dev/src/fullpage.css">
   <link rel="stylesheet" href="style.css">
   <title>Zairza</title>
 </head>
@@ -34,18 +35,18 @@
         </button>
        </div>
     </div>
-     <div id="mob-menu" class="sm:flex sm:w-6/12 sm:justify-between px-2 pt-2 pb-4 hidden bg-white">
-       <a href="#home" class="block hover:text-white px-2 py-1 font-normal bg-blue rounded">Home</a>
-       <a href="#projects" class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Projects</a>
-       <a href="#blogs" class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Blog</a>
-       <a href="#our_team" class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Our Team</a>
-       <a href="#contact" class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Contact</a>
-     </div>
+      <ul id="mob-menu" class="sm:flex sm:w-6/12 sm:justify-between px-2 pt-2 pb-4 hidden bg-white">
+        <li class="block hover:text-white px-2 py-1 font-normal bg-blue rounded bg-focus">Home</li>
+        <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Projects</li>
+        <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Blog</li>
+        <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Our Team</li>
+        <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Contact</li>
+      </ul>
     </header>
   </section>
-  <div class="container px-12 mx-auto xl:max-w-none">
-  <section id="home" class="pt-20 sm:pt-0">
-      <div class="grid flex grid-cols-1 sm:grid-cols-2 h-screen">
+  <div class="container px-12 mx-auto xl:max-w-none" id="fullpage">
+  <section id="home" class="pt-20 sm:pt-0 h-screen section">
+      <div class="grid flex grid-cols-1 sm:grid-cols-2">
           <div class="flex flex-col justify-center mx-7 sm:pt-40 sm:order-1 order-last">
               <h1 class="sm:text-7xl text-2xl leading-tight sm:text-left text-center">Innovation<br> starts here</h1>
               <h3 class="text-lg mt-7 sm:text-left text-center"><span style="color:#FF7610">Wonder. </span><span style="color:#1A1A1A">Think. </span><span style="color:#1071FF">Create.</span></h3>
@@ -53,187 +54,589 @@
                 of seasoned developers and designers. Founded in
                 the year 2005, the club has ever since witnessed a
                 synapse of creativity and evolution.</p>
-                <button class="rounded-full py-4 mt-10 text-lg mx-auto sm:mx-0" style="width:280px">Take a tour</button>
+                <button class="rounded-full py-4 text-lg mt-10 mx-auto sm:mx-0">Take a tour</button>
           </div>
-          <div class="sm:order-last order-1 sm:mt-0 sm:mt-5 sm:pt-2">
+          <div class="sm:order-last order-1">
               <img class="animated" src="/assets/images/png/Saly-19.png" alt="">
           </div>
       </div>
-  </section>
-<div id="projects"></div>
-    <section class="parallax-1">
-        <div class="grid flex grid-cols-1 sm:grid-cols-2 h-screen">
+    </section>
+    <!-- <div id="projects"></div> -->
+    <section class="section h-screen" id="projects">
+        <div class="grid flex grid-cols-1 sm:grid-cols-2">
             <div class="flex flex-col justify-center mx-7 sm:order-1 order-last">
                 <h1 class="sm:text-7xl text-2xl leading-tight sm:text-left text-center">Retrospect a<br> tech adventure</h1>
                 <p class="mt-7 sm:w-2/3 text-gray-500 w-full sm:text-left text-center">To facilitate this rendezvous we have three wings
                     each one of them being adroit at their respective
                     fields with an excellent work ethic.</p>
-                  <button class="rounded-full py-4 text-lg mt-7 mx-auto sm:mx-0" style="width:280px">Look Inside</button>
+                  <button class="rounded-full py-4 text-lg mt-7 mx-auto sm:mx-0" onclick="fullpage_api.moveSectionDown()">Look Inside</button>
             </div>
             <div class="sm:order-last order-1 sm:mt-0 mt-5">
                 <img class="animated" src="/assets/images/png/Saly-12.png" alt="">
             </div>
         </div>
     </section>
-    <section class="sm:mt-0 mt-24 parallax-2 bg-white relative z-10" >
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-           <div class="mx-auto">
-               <img src="https://picsum.photos/400" alt="">
+    <section class="sm:mt-0 mt-24 bg-white section h-screen">
+           <div class="grid grid-cols-1 sm:grid-cols-4 gap-4" id="grid0">
+            <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
+             <div class="card effect effect-one">
+                <img src="https://picsum.photos/400">
+                <div class="tab-text">
+                  <h2 class="pt-1">grid column 8</h2>
+                  <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                  <div class="icons-block"> <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="#" class="social-icon-2"><i class="bx bxl-github"></i></a></div>
+                </div>
+              </div>
            </div>
-           <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        </div>
+        <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
     </section>
-    <section class="parallax-1 sm:mt-10 mt-0" id="blogs">
-        <div class="grid flex grid-cols-1 sm:grid-cols-2 h-screen">
+    <section class="sm:mt-10 mt-0 section h-screen" id="blogs">
+        <div class="grid flex grid-cols-1 sm:grid-cols-2">
             <div class="flex flex-col justify-center mx-7 sm:order-1 order-last">
                 <h1 class="sm:text-7xl text-2xl sm:text-left leading-tight text-center">Pssttt! Wanna<br> sneak peak
                     </h1>
                 <p class="mt-7 sm:w-2/3 w-full sm:text-left text-gray-500 text-center">Whilst their tech-explorations our excavators have jotted down their unique tech findings. And we have revealed it here for you.</p>
-                  <button class="rounded-full py-4 mt-7 mx-auto sm:mx-0" style="width:280px">Give it a read</button>
+                  <button class="rounded-full py-4 mt-7 mx-auto sm:mx-0" onclick="fullpage_api.moveSectionDown()" >Give it a read</button>
             </div>
             <div class="sm:order-last order-1 sm:mt-0 mt-5">
                 <img class="animated" src="/assets/images/png/Saly-16.png" alt="">
             </div>
         </div>
     </section>
-    <section class="sm:mt-0 mt-24 parallax-2 bg-white relative z-10" >
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-           <div class="mx-auto">
-               <img src="https://picsum.photos/400" alt="">
+    <section class="sm:mt-0 mt-24 bg-white section h-screen" >
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4" id="grid1">
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
+            <div class="card">
+                <div class="card_image"><img src="https://picsum.photos/500/300/?image=10"></div>
+                <div class="card_content">
+                  <h2 class="card_title">Card Grid Layout</h2>
+                  <p class="card_text">Demo of pixel perfect pure CSS simple responsive card grid layout</p>
+                  <button class="btn card_btn">Read More</button>
+                </div>
+              </div>
            </div>
-           <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        </div>
+        <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
     </section>
-    <section class="parallax-1 sm:mt-10 mt-0" id="our_team">
-        <div class="grid flex grid-cols-1 sm:grid-cols-2 h-screen">
+    <section class="sm:mt-10 mt-0 section h-screen" id="our_team">
+        <div class="grid flex grid-cols-1 sm:grid-cols-2">
             <div class="flex flex-col justify-center mx-7 sm:order-1 order-last">
                 <h1 class="sm:text-7xl text-2xl leading-tight sm:text-left text-center">Our tech<br> excavators</h1>
                 <p class="mt-7 sm:w-2/3 w-full sm:text-left text-gray-500 text-center">Meet our tech excavators at Zairza, who have
                     succeeded in proliferating a technical hegemony in
                     the institution through numerous endeavours.</p>
-                  <button class="rounded-full py-4 mt-7 mx-auto sm:mx-0" style="width:280px">Know them</button>
+                  <button class="rounded-full py-4 mt-7 mx-auto sm:mx-0" onclick="fullpage_api.moveSectionDown()">Know them</button>
             </div>
             <div class="sm:order-last order-1 sm:mt-0 mt-5">
-                <img class="animated" src="/assets/images/png/Saly-11.png" alt="">
+                <img class="animated sally-11" src="/assets/images/png/Saly-11.png" alt="">
             </div>
         </div>
     </section>
-    <section class="sm:mt-0 mt-24 parallax-2 bg-white relative z-10" >
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-           <div class="mx-auto">
-               <img src="https://picsum.photos/400" alt="">
+    <section class="sm:mt-0 mt-24 bg-white section h-screen" >
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4" id="grid2">
+            <div class="card">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="card hidden">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <div class="card hidden">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <div class="card hidden">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <div class="card hidden">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <div class="card hidden">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <div class="card hidden">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <div class="card hidden">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <div class="card hidden">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            <div class="card hidden">
+                <div class="imgBx">
+                  <img
+                    src="https://images.pexels.com/photos/3379933/pexels-photo-3379933.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
+                    alt=""
+                  />
+                </div>
+                <div class="content">
+                  <div class="contentBx">
+                    <h3>John <br /><span>Web Developer</span></h3>
+                  </div>
+                  <ul class="sci">
+                    <li style="--i: 1">
+                      <a href="#"><i class="bx bxl-instagram" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 2">
+                      <a href="#"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                    </li>
+                    <li style="--i: 3">
+                      <a href="#"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
            </div>
-           <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        <div class="mx-auto">
-            <img src="https://picsum.photos/400" alt="">
-        </div>
-        </div>
+        <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
     </section>
-    <section id="contact">
-        <div class="grid flex grid-cols-1 sm:grid-cols-2 h-screen">
+    <section class="section bg-white h-screen" id="contact">
+        <div class="grid flex grid-cols-1 sm:grid-cols-2 ">
             <div class="flex flex-col justify-center mx-7 sm:pt-40 sm:order-1 order-last">
                 <h1 class="sm:text-7xl text-2xl leading-tight sm:text-left sm:mt-0 mt-3 text-center">Gotta query?<br>
                     We are here</h1>
                 <p class="mt-7 sm:w-2/3 w-full text-gray-500 sm:text-left text-center">We are on our way for the next tech-exploration. Connect with us to ride along!!</p>
-                  <button class="rounded-full py-4 mt-7 mx-auto sm:mx-0" style="width:250px">Drop a mail</button>
-                  <a href="#" class="text-gray-500 mt-24 mx-auto sm:mx-0">Reach us<i class='bx bx-right-arrow-alt'></i></a>
+                <a href="mailto:cet.sac.zairza@gmail.com"><button class="rounded-full py-4 mt-7 mx-auto sm:mx-0">Drop a mail</button></a>
+                  <a href="mailto:cet.sac.zairza@gmail.com" class="text-gray-500 mt-24 mx-auto sm:mx-0">Reach us<i class='bx bx-right-arrow-alt'></i></a>
             </div>
-            <div class="sm:order-last order-1 sm:mt-0">
+            <div class="sm:order-last order-1 sm:-mt-40">
                 <img class="animated" src="/assets/images/png/Saly-10.png" alt="">
             </div>
         </div>
     </section>
-    <section id="footer">
-        <div class="grid flex grid-cols-1 sm:grid-cols-2 h-screen">
+    <section class="section bg-white h-screen" id="footer">
+        <div class="grid flex grid-cols-1 sm:grid-cols-2">
             <div class="flex flex-col justify-center mx-7 sm:order-1 order-last">
                 <h1 class="sm:text-7xl text-2xl sm:text-left text-center">Google us</h1>
                 <p class="mt-7 sm:w-2/3 w-full sm:text-left text-center">7QGG+7G Bhubaneswar, Odisha<br>
                     +91 9337654321</p>
                     <div class="flex justify-between w-full sm:w-3/6 mt-12 sm:mt-32 mx-auto sm:mx-0">
-                        <i class="bx bxl-facebook-circle bx-md icon bx-tada-hover"></i>
-                        <i class="bx bxl-github bx-md icon bx-tada-hover"></i>
-                        <i class="bx bxl-linkedin bx-md icon bx-tada-hover"></i>
-                        <i class="bx bxl-instagram bx-md icon bx-tada-hover"></i>
+                        <a target="_blank" href="https://www.facebook.com/zairza.cetb"><i class="bx bxl-facebook-circle bx-md icon bx-tada-hover"></i></a>
+                        <a target="_blank" href="https://github.com/zairza-cetb"><i class="bx bxl-github bx-md icon bx-tada-hover"></i></a>
+                        <a target="_blank" href="https://www.linkedin.com/company/zairza"><i class="bx bxl-linkedin bx-md icon bx-tada-hover"></i></a>
+                       <a target="_blank" href="https://instagram.com/zairza.cetb"><i class="bx bxl-instagram bx-md icon bx-tada-hover"></i></a>
                         <!-- <i class="bx"><img src="https://img.icons8.com/plumpy/50/000000/medium-logo.png"/></i> -->
-                        <i class="bx bxl-medium bx-md icon bx-tada-hover"></i>
-                        <i class="bx bxl-twitter bx-md icon bx-tada-hover"></i>
+                        <a target="_blank" href="https://blog.zairza.in/"><i class="bx bxl-medium bx-md icon bx-tada-hover"></i></a>
+                        <a target="_blank" href="https://twitter.com/zairza_cetb"><i class="bx bxl-twitter bx-md icon bx-tada-hover"></i></a>
                     </div>
             </div>
             <div class="sm:order-last order-1 sm:mt-0 mt-5">
-                <img class="animated sm:h-screen ml-0 sm:ml-20 mb-10" src="/assets/images/png/Saly-15.png" alt="">
+                <img class="animated sm:h-screen ml-0 sm:ml-20" src="/assets/images/png/Saly-15.png" alt="">
             </div>
         </div>
     </section>
-</div>
 </main>
-<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/vendors/scrolloverflow.min.js" integrity="sha512-pYyQWhzi2lV+RM4GmaUA56VPL48oLVvsHmP9tuQ8MaZMDHomVEDjXXnfSVKXayy+wLclKPte0KbsuVoFImtE7w==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js" integrity="sha512-Gx/C4x1qubng2MWpJIxTPuWch9O88dhFFfpIl3WlqH0jPHtCiNdYsmJBFX0q5gIzFHmwkPzzYTlZC/Q7zgbwCw==" crossorigin="anonymous"></script>
 <script src="/script.js"></script>
 </body>
 </html>
