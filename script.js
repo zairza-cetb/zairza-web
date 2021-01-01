@@ -56,5 +56,10 @@ $(document).ready(function() {
 
       fullpage_api.reBuild();
     });
-  })
+  });
+
+  const navSectionMap = [1, 2, 4, 6, 8];
+  $("#mob-menu li").each((index, element) => {
+    $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
+  });
 });
