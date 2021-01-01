@@ -35,6 +35,7 @@ body {
 
 .bg-blue:hover {
   background-color: #1071FF;
+  cursor: pointer;
 }
 .leading-tight{
   line-height:1.25 !important;
