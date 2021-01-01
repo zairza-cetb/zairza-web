@@ -37,6 +37,14 @@ body {
   background-color: #1071FF;
   cursor: pointer;
 }
+
+.bg-focus {
+  background-color: #1071FF;
+  color:#ffffff;
+  cursor: pointer;
+  transition: all 500ms ease-in-out;
+}
+
 .leading-tight{
   line-height:1.25 !important;
 }

@@ -11,6 +11,7 @@ function toggleMenu() {
 }
 
 const isHidden = [true, true, true]
+const sections = [0,1,1,2,2,3,3,4,4]
 
 $(document).ready(function() {
   $('#mob-menu a').on('click', function() {
@@ -23,6 +24,11 @@ $(document).ready(function() {
     }
   })
   new fullpage('#fullpage', {
+    afterLoad: function(origin, destination, direction){
+        navs = $('ul#mob-menu > li');
+        navs.eq(sections[origin.index]).removeClass("bg-focus");
+        navs.eq(sections[destination.index]).addClass("bg-focus");
+    },
     onLeave : function(origin, destination, direction) {
       if([2,4,6].includes(origin.index)){
         var index = Math.floor(origin.index/2) - 1;
