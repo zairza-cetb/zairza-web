@@ -24,6 +24,19 @@ $(document).ready(function() {
   })
   new fullpage('#fullpage', {
     onLeave : function(origin, destination, direction) {
+      if([2,4,6].includes(origin.index)){
+        var index = Math.floor(origin.index/2) - 1;
+        if(isHidden[index]==false){
+          isHidden[index] = true;
+          const cards = $(`#grid${index} .card`);
+          const numHidden = cards.length - 4;
+          const hiddenCards = cards.slice(-numHidden);
+          hiddenCards.hide();
+          $(".showHide").eq(index).text("Show More");
+          fullpage_api.reBuild();
+        }
+      }
+
       if(origin.index == 0 && direction == 'down') {
         $('header').addClass('navbar-fixed');
       }
