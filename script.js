@@ -14,7 +14,7 @@ const isHidden = [true, true, true]
 const sections = [0,1,1,2,2,3,3,4,4]
 
 $(document).ready(function() {
-  $('#mob-menu a').on('click', function() {
+  $('#mob-menu li').on('click', function() {
     if($('#mob-menu').hasClass('hidden')){
       $('#mob-menu').removeClass('hidden').addClass('block');
       $('.menu').toggleClass('opened');

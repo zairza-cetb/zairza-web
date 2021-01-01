@@ -116,6 +116,15 @@ body {
   color: white;
   width:280px;
 }
+@media (max-width:800px){
+  .grid button {
+    width:180px;
+    padding:.4rem 0;
+  }
+  .navbar{
+    height: 4rem;
+  }
+}
 .showHide{
   background-color: #1471FF;
   color: white;
@@ -137,6 +146,11 @@ body {
 }
 .sally-11{
   height:85vh !important;
+}
+@media (max-width:800px){
+  .sally-11{
+    height: auto !important;
+  }
 }
 
 @-webkit-keyframes up-down {
