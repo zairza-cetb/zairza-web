@@ -282,6 +282,10 @@ body {
   margin-bottom: 1.25rem;    
   font-weight: 400;
 }
+
+div.card_image > img {
+  width:100%
+} 
 /* Projects Section */
 #grid0 .effect {
 	margin: auto;
