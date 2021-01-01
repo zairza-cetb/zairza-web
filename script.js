@@ -51,7 +51,10 @@ $(document).ready(function() {
       }
     },
     sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
-    scrollOverflow: true
+    scrollOverflow: true,
+    scrollOverflowOptions: {
+      scrollbars: false
+    }
   });
 
   $(".showHide").each((index, element) => {
