@@ -293,7 +293,8 @@ body {
 	position: relative;
 	display: block;
 	min-height: 100%;
-	opacity: .8
+  opacity: .8;
+  object-fit: cover;
 }
 #grid0 .effect {
 	position: relative;
@@ -437,7 +438,7 @@ body {
 #grid0 .effect.effect-one h2,
 #grid0 .effect.effect-one img {
 	-webkit-transform: translate3d(0, -30px, 0);
-	transform: translate3d(0, -30px, 0)
+	transform: translate3d(0, 0px, 0)
 }
 
 #grid0 .effect.effect-one .tab-text::after,
