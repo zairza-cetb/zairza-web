@@ -27,7 +27,7 @@ $(document).ready(function() {
       if(origin.index == 0 && direction == 'down') {
         $('header').addClass('navbar-fixed');
       }
-      else if(origin.index == 1 && direction == 'up'){
+      else if(destination.index == 0 && direction == 'up'){
         $('header').removeClass('navbar-fixed');
       }
     },
@@ -37,8 +37,8 @@ $(document).ready(function() {
 
   $(".showHide").each((index, element) => {
     const cards = $(`#grid${index} .card`);
-  
-    const numHidden = cards.length - 3;
+    
+    const numHidden = cards.length - 4;
     const hiddenCards = cards.slice(-numHidden);
     hiddenCards.hide();
     $(element).click(() => {
