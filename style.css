@@ -11,6 +11,8 @@ body {
   display: none;
 }
 
+
+
 .navbar {
   top: 0;
   z-index: 100;
@@ -188,6 +190,25 @@ body {
 }
 
 /* Our team cards */
+
+
+.fill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden
+}
+.fill img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top:0px;
+  left:0px;
+  object-fit:cover;
+}
+
+
 #grid2 .card {
   position: relative;
   width: 300px;
@@ -212,6 +233,7 @@ body {
   z-index: 10;
   flex-direction: column;
   backdrop-filter: blur(15px);
+  background-color: #1472ff93;
   box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
@@ -332,6 +354,23 @@ body {
 }
 
 /* Projects Section */
+#grid0 .card {
+  height:400px;
+  width:400px;
+}
+
+#grid0 .card:hover{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color:rgba(0, 0, 0, 0.85);
+  background: url(data:;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAABl0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjUuNUmK/OAAAAATSURBVBhXY2RgYNgHxGAAYuwDAA78AjwwRoQYAAAAAElFTkSuQmCC) repeat scroll transparent\9; /* ie fallback png background image */
+  z-index:9999;
+  color:white;
+}
+
 #grid0 .effect {
   margin: auto;
   box-shadow: 0 0 15px 5px rgba(0, 0, 0, .07);
@@ -400,29 +439,26 @@ body {
 }
 
 #grid0 .effect.effect-one .tab-text::before {
-  top: 50px;
-  right: 30px;
-  bottom: 50px;
-  left: 30px;
-  border-top: 2px solid rgba(255, 255, 255, .3);
-  border-bottom: 2px solid rgba(255, 255, 255, .3);
-  -webkit-transform: scale(0, 1);
-  transform: scale(0, 1);
-  -webkit-transform-origin: 0 0;
-  transform-origin: 0 0
+	top: 50px;
+	right: 30px;
+	bottom: 50px;
+	left: 30px;
+	border-bottom: 2px solid rgba(255, 255, 255, .3);
+	-webkit-transform: scale(0, 1);
+	transform: scale(0, 1);
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0
 }
 
 #grid0 .effect.effect-one .tab-text::after {
-  top: 30px;
-  right: 50px;
-  bottom: 30px;
-  left: 50px;
-  border-right: 1px solid #fff;
-  border-left: 1px solid #fff;
-  -webkit-transform: scale(1, 0);
-  transform: scale(1, 0);
-  -webkit-transform-origin: 100% 0;
-  transform-origin: 100% 0
+	top: 30px;
+	right: 50px;
+	bottom: 30px;
+	left: 50px;
+	-webkit-transform: scale(1, 0);
+	transform: scale(1, 0);
+	-webkit-transform-origin: 100% 0;
+	transform-origin: 100% 0
 }
 
 #grid0 .effect.effect-one .icons-block {
@@ -503,7 +539,7 @@ body {
 }
 
 #grid0 .effect.effect-one:hover img {
-  opacity: .7;
+  opacity: .4;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0) scale(1.1, 1.1)
 }
