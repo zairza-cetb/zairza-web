@@ -1,673 +1,759 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#FF7610" />
-  <link rel="icon" type="image/png" href="/assets/images/Visual.png"/>
+  <link rel="icon" type="image/png" href="/assets/images/Visual.png" />
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://rawgit.com/alvarotrigo/fullPage.js/dev/src/fullpage.css">
   <link rel="stylesheet" href="style.css">
   <title>Zairza</title>
 </head>
+
 <body>
   <!--js xor no-js -->
-<main class="js mb-20 sm:mb-0">
+  <main class="js mb-20 sm:mb-0">
 
-  <section>
-    <header class="navbar bg-white sm:flex sm:justify-between sm:items-center sm:px-16 sm:py-6">
-    <div class="flex justify-between items-center px-4 py-3 sm:p-0">
-        <div class="pt-3 sm:pt-0">
-            <img class="h-6 cursor-pointer" src="/assets/images/Zairzalogo.png" alt="Zairza Logo" onclick="fullpage_api.moveTo(1);">
+    <section>
+      <header class="navbar bg-white sm:flex sm:justify-between sm:items-center sm:px-16 sm:py-6">
+        <div class="flex justify-between items-center px-4 py-3 sm:p-0">
+          <div class="pt-3 sm:pt-0">
+            <img class="h-6 cursor-pointer" src="/assets/images/Zairzalogo.png" alt="Zairza Logo"
+              onclick="fullpage_api.moveTo(1);">
+          </div>
+          <div class="sm:hidden">
+            <button class="menu text-gray-500 hover:text-black focus:outline-none"
+              onclick="toggleMenu(); this.classList.toggle('opened');" aria-label="Menu">
+              <svg class="h-8 w-8 fill-current" viewBox="0 0 100 100">
+                <path class="line line1"
+                  d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                <path class="line line2" d="M 20,50 H 80" />
+                <path class="line line3"
+                  d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="sm:hidden">
-        <button class="menu text-gray-500 hover:text-black focus:outline-none" onclick="toggleMenu(); this.classList.toggle('opened');" aria-label="Menu">
-        <svg class="h-8 w-8 fill-current" viewBox="0 0 100 100">
-            <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
-            <path class="line line2" d="M 20,50 H 80" />
-            <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
-        </svg>
-        </button>
-       </div>
-    </div>
-      <ul id="mob-menu" class="sm:flex sm:w-6/12 sm:justify-between px-2 pt-2 pb-4 hidden bg-white">
-        <li class="block hover:text-white px-2 py-1 font-normal bg-blue rounded bg-focus">Home</li>
-        <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Projects</li>
-        <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Blog</li>
-        <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Our Team</li>
-        <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Contact</li>
-      </ul>
-    </header>
-  </section>
-  <div class="container px-12 mx-auto xl:max-w-none" id="fullpage">
-  <section id="home" class="pt-6 sm:pt-0 h-screen section">
-      <div class="grid flex grid-cols-1 sm:grid-cols-2">
+        <ul id="mob-menu" class="sm:flex sm:w-6/12 sm:justify-between px-2 pt-2 pb-4 hidden bg-white">
+          <li class="block hover:text-white px-2 py-1 font-normal bg-blue rounded bg-focus">Home</li>
+          <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Projects</li>
+          <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Blog</li>
+          <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Our Team</li>
+          <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Contact</li>
+        </ul>
+      </header>
+    </section>
+    <div class="container px-12 mx-auto xl:max-w-none" id="fullpage">
+      <section id="home" class="pt-6 sm:pt-0 h-screen section">
+        <div class="grid flex grid-cols-1 sm:grid-cols-2">
           <div class="flex flex-col mt-8 sm:mt-0 justify-center mx-7 sm:pt-40 sm:order-1 order-last">
-              <h1 class="sm:text-7xl text-3xl leading-tight sm:text-left text-center">Innovation<br> starts here</h1>
-              <h3 class="text-sm sm:text-lg mt-7 sm:text-left text-center"><span style="color:#FF7610">Wonder. </span><span style="color:#1A1A1A">Think. </span><span style="color:#1071FF">Create.</span></h3>
-              <p class="mt-4 sm:mt-7 sm:w-2/3 text-sm sm:text-base text-gray-500 w-full sm:text-left text-center">ZAIRZA, the robo-sof club of CET, a conglomeration
-                of seasoned developers and designers. Founded in
-                the year 2005, the club has ever since witnessed a
-                synapse of creativity and evolution.</p>
-                <button class="rounded-full py-4 text-lg mt-6 sm:mt-10 mx-auto sm:mx-0">Take a tour</button>
+            <h1 class="sm:text-7xl text-3xl leading-tight sm:text-left text-center">Innovation<br> starts here</h1>
+            <h3 class="text-sm sm:text-lg mt-7 sm:text-left text-center"><span style="color:#FF7610">Wonder.
+              </span><span style="color:#1A1A1A">Think. </span><span style="color:#1071FF">Create.</span></h3>
+            <p class="mt-4 sm:mt-7 sm:w-2/3 text-sm sm:text-base text-gray-500 w-full sm:text-left text-center">ZAIRZA,
+              the robo-sof club of CET, a conglomeration
+              of seasoned developers and designers. Founded in
+              the year 2005, the club has ever since witnessed a
+              synapse of creativity and evolution.</p>
+            <button class="rounded-full py-4 text-lg mt-6 sm:mt-10 mx-auto sm:mx-0">Take a tour</button>
           </div>
           <div class="sm:order-last order-1">
-              <img class="animated" src="/assets/images/png/Saly-19.png" alt="">
+            <img class="animated" src="/assets/images/png/Saly-19.png" alt="">
           </div>
-      </div>
-    </section>
-    <section class="section h-screen" id="projects">
-        <div class="grid flex grid-cols-1 sm:grid-cols-2">
-            <div class="flex flex-col justify-center mx-7 sm:order-1 order-last">
-                <h1 class="sm:text-7xl text-3xl leading-tight sm:text-left text-center">Retrospect a<br> tech adventure</h1>
-                <p class="mt-7 sm:w-2/3 text-sm sm:text-base text-gray-500 w-full sm:text-left text-center">To facilitate this rendezvous we have three wings
-                    each one of them being adroit at their respective
-                    fields with an excellent work ethic.</p>
-                  <button class="rounded-full py-4 text-lg mt-7 mx-auto sm:mx-0" onclick="fullpage_api.moveSectionDown()">Look Inside</button>
-            </div>
-            <div class="sm:order-last order-1 sm:mt-0 mt-5">
-                <img class="animated" src="/assets/images/png/Saly-12.png" alt="">
-            </div>
         </div>
-    </section>
-    <section class="bg-white section h-screen">
-           <div class="mt-40 grid grid-cols-1 sm:grid-cols-4 gap-4" id="grid0">
-           <div class="card effect effect-one">
-      <img src="/assets/images/Projects/6.jpg">
-      <div class="tab-text">
-          <h2 class="pt-1">Avengers game (Python space shooter)</h2>
-          <p>It consists of iron man(controlled character ) which can move side ways using cursor keys and fire bullets on a Thanos fleet. Every time it collides with Thanos it loses one life. After 3 lives are over the player can know their high score and restart the game. ...</p>
-          <div class="icons-block">
-              <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a>
+      </section>
+      <section class="section h-screen" id="projects">
+        <div class="grid flex grid-cols-1 sm:grid-cols-2">
+          <div class="flex flex-col justify-center mx-7 sm:order-1 order-last">
+            <h1 class="sm:text-7xl text-3xl leading-tight sm:text-left text-center">Retrospect a<br> tech adventure</h1>
+            <p class="mt-7 sm:w-2/3 text-sm sm:text-base text-gray-500 w-full sm:text-left text-center">To facilitate
+              this rendezvous we have three wings
+              each one of them being adroit at their respective
+              fields with an excellent work ethic.</p>
+            <button class="rounded-full py-4 text-lg mt-7 mx-auto sm:mx-0" onclick="fullpage_api.moveSectionDown()">Look
+              Inside</button>
           </div>
-      </div>
-  </div><div class="card effect effect-one">
-      <img src="/assets/images/Projects/1.jpg">
-      <div class="tab-text">
-          <h2 class="pt-1">RC-RoboCar</h2>
-          <p>A wired RC robocar prototype powered by a battery/AC adapter. the most basic (the 1st level)of the things one encounters on his quest of reaching the everest of tech and hardware. ...</p>
-          <div class="icons-block">
-              <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a>
+          <div class="sm:order-last order-1 sm:mt-0 mt-5">
+            <img class="animated" src="/assets/images/png/Saly-12.png" alt="">
           </div>
-      </div>
-  </div><div class="card effect effect-one">
-      <img src="/assets/images/Projects/8.jpeg">
-      <div class="tab-text">
-          <h2 class="pt-1">Disease Reporting System</h2>
-          <p>This project deals with real-time prediction of diseases (zoonotic), alerts people of the preferable location of potential outbreaks by smart Real-time notifications. The solution includes epidemiology models inspired by SIR model to give a rough calculation of the possible infections in a time fram ...</p>
-          <div class="icons-block">
-              <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a>
+        </div>
+      </section>
+      <section class="bg-white section h-screen">
+        <div class="mt-40 grid grid-cols-1 sm:grid-cols-4 gap-4" id="grid0">
+          <div class="card effect effect-one">
+            <img src="/assets/images/Projects/2.jpeg">
+            <div class="tab-text">
+              <h2 class="pt-1">Bench-routes</h2>
+              <div class="icons-block">
+                <a href="https://github.com/zairza-cetb/bench-routes" class="social-icon-2"><i class="bx bxl-github"></i></a>
+              </div>
+            </div>
           </div>
-      </div>
-  </div><div class="card effect effect-one">
-      <img src="/assets/images/Projects/3.jpg">
-      <div class="tab-text">
-          <h2 class="pt-1">Insure+</h2>
-          <p>Insure+ is a mobile app which acts 
-as an engagement tool that helps 
-us to manage our health better. 
-This app also acts as a source for 
-insurance sales based on the data 
-provided by the customer. It takes 
-a gamified approach to convert the 
-existing processes into exciting 
-activities. ...</p>
-          <div class="icons-block">
-              <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a>
+          <div class="card effect effect-one">
+            <img src="/assets/images/Projects/lit.jpg">
+            <div class="tab-text">
+              <h2 class="pt-1">Literature</h2>
+              <div class="icons-block">
+                <a href="https://github.com/zairza-cetb/literature" class="social-icon-2"><i class="bx bxl-github"></i></a>
+              </div>
+            </div>
           </div>
-      </div>
-  </div><div class="card effect effect-one">
-      <img src="/assets/images/Projects/4.png">
-      <div class="tab-text">
-          <h2 class="pt-1">Hand Gesture Recognition using TOF camera</h2>
-          <p>A gesture recognition system using Picozense TOF camera and its SDK. This will allow drivers to use simple hand gestures to perform various actions in the vehicle with 3D technology - turn the volume up or down, accept or decline a phone call, change the rear-view camera angle or select navigation. ...</p>
-          <div class="icons-block">
-              <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a>
+          <div class="card effect effect-one">
+            <img src="/assets/images/Projects/3.jpg">
+            <div class="tab-text">
+              <h2 class="pt-1">Insure+</h2>
+              <div class="icons-block">
+                <!-- <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a> -->
+              </div>
+            </div>
           </div>
-      </div>
-  </div><div class="card effect effect-one">
-      <img src="/assets/images/Projects/5.png">
-      <div class="tab-text">
-          <h2 class="pt-1">Amazon Warehouse Challenge</h2>
-          <p>Integrating a Complete Robotic System i.e Pick and Place of an object for a Factory Environment using State Machines. 
-
-Basically it represents How a block or any substance from one part of the conveyor can be taken and kept in an another point or Junction safely using Robots.
-Here Cameras are fitte ...</p>
-          <div class="icons-block">
-              <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a>
+          <div class="card effect effect-one">
+            <img src="/assets/images/Projects/4.png">
+            <div class="tab-text">
+              <h2 class="pt-1">Hand Gesture Recognition using TOF camera</h2>
+              <div class="icons-block">
+                <a href="https://github.com/DB11051998/RGBGesture-control" class="social-icon-2"><i class="bx bxl-github"></i></a>
+              </div>
+            </div>
           </div>
-      </div>
-  </div><div class="card effect effect-one">
-      <img src="/assets/images/Projects/7.png">
-      <div class="tab-text">
-          <h2 class="pt-1">Wilderness Experience</h2>
-          <p>Wilderness Experience is a camping website, where we can view and add campgrounds in and around India. We can add reviews and comments on individual campground pages and also spot the campgrounds on a map. ...</p>
-          <div class="icons-block">
-              <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a>
+          <div class="card effect effect-one">
+            <img src="/assets/images/Projects/8.jpeg">
+            <div class="tab-text">
+              <h2 class="pt-1">Disease Reporting System</h2>
+              <div class="icons-block">
+                <a href="https://disease-reporting-system.herokuapp.com/" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="https://github.com/biswajitpatra/Disease-Reporting-System" class="social-icon-2"><i
+                    class="bx bxl-github"></i></a>
+              </div>
+            </div>
           </div>
-      </div>
-  </div><div class="card effect effect-one">
-      <img src="/assets/images/Projects/2.jpeg">
-      <div class="tab-text">
-          <h2 class="pt-1">Bench-routes</h2>
-          <p>Reliable monitoring is tough and with the increase in sophistication in modern platforms, the performance of a system tends to affect on a serious note. The applications that run on these systems have the probability of a complete request-response cycle without any throws nowhere close to 1. The exi ...</p>
-          <div class="icons-block">
-              <a href="#" class="social-icon-1"><i class="bx bxl-chrome"></i></a> <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a>
+          <div class="card effect effect-one">
+            <img src="/assets/images/Projects/1.jpg">
+            <div class="tab-text">
+              <h2 class="pt-1">RC-RoboCar</h2>
+              <div class="icons-block">
+                <!-- <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a> -->
+              </div>
+            </div>
           </div>
-      </div>
-  </div></div>
+          <div class="card effect effect-one">
+            <img src="/assets/images/Projects/5.png">
+            <div class="tab-text">
+              <h2 class="pt-1">Amazon Warehouse Challenge</h2>
+              <div class="icons-block">
+                <!-- <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a> -->
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img src="/assets/images/Projects/7.png">
+            <div class="tab-text">
+              <h2 class="pt-1">Wilderness Experience</h2>
+              <div class="icons-block">
+                <!-- <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a> -->
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img src="/assets/images/Projects/6.jpg">
+            <div class="tab-text">
+              <h2 class="pt-1">Avengers game</h2>
+              <div class="icons-block">
+                <a href="https://github.com/RisabhKedai/Avenger-Assemble" class="social-icon-2"><i class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
         <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
-    </section>
-    <section class="sm:mt-10 mt-0 section h-screen" id="blogs">
+      </section>
+      <section class="sm:mt-10 mt-0 section h-screen" id="blogs">
         <div class="grid flex grid-cols-1 sm:grid-cols-2">
-            <div class="flex flex-col justify-center mt-16 sm:mt-0 mx-7 sm:order-1 order-last">
-                <h1 class="sm:text-7xl text-3xl sm:text-left leading-tight text-center">Pssttt! Wanna<br> sneak peak
-                    </h1>
-                <p class="mt-7 sm:w-2/3 text-sm sm:text-base w-full sm:text-left text-gray-500 text-center">Whilst their tech-explorations our excavators have jotted down their unique tech findings. And we have revealed it here for you.</p>
-                  <button class="rounded-full py-4 mt-7 mx-auto sm:mx-0" onclick="fullpage_api.moveSectionDown()" >Give it a read</button>
-            </div>
-            <div class="sm:order-last order-1 sm:mt-0 mt-5">
+          <div class="flex flex-col justify-center mt-16 sm:mt-0 mx-7 sm:order-1 order-last">
+            <h1 class="sm:text-7xl text-3xl sm:text-left leading-tight text-center">Pssttt! Wanna<br> sneak peak
+            </h1>
+            <p class="mt-7 sm:w-2/3 text-sm sm:text-base w-full sm:text-left text-gray-500 text-center">Whilst their
+              tech-explorations our excavators have jotted down their unique tech findings. And we have revealed it here
+              for you.</p>
+              <button class="rounded-full py-4 mt-7 mx-auto sm:mx-0" onclick="fullpage_api.moveSectionDown()">Give it a
+                read</button>
+              </div>
+              <div class="sm:order-last order-1 sm:mt-0 mt-5">
                 <img class="animated" src="/assets/images/png/Saly-16.png" alt="">
+              </div>
             </div>
-        </div>
-    </section>
-    <section class="bg-white section h-screen" >
+          </section>
+      <section class="bg-white section h-screen">
         <div class="mt-40 grid grid-cols-1 sm:grid-cols-4 gap-4" id="grid1">
           <div class="card">
             <div class="card_image"><img src="/assets/images/blogs/5.jpeg"></div>
             <div class="card_content">
               <h2 class="card_title">Overfitting and Underfitting of a ML model</h2>
               <p class="card_text">Have you ever given a thought behind the poor performance of your ML model?</p>
-              <a target="_blank" href="https://blog.zairza.in/overfitting-and-underfitting-of-a-machine-learning-model-2e797622c3b5"><button class="btn card_btn">Read More</button></a>
+              <a target="_blank"
+                href="https://blog.zairza.in/overfitting-and-underfitting-of-a-machine-learning-model-2e797622c3b5"><button
+                  class="btn card_btn">Read More</button></a>
             </div>
           </div>
-        <div class="card">
+          <div class="card">
             <div class="card_image"><img src="/assets/images/blogs/6.jpeg"></div>
             <div class="card_content">
               <h2 class="card_title">Frequently asked Interview Questions in react-redux</h2>
               <p class="card_text">If you guys are about to face a react-redux interview, this article is for you.</p>
-              <a target="_blank" href="https://blog.zairza.in/frequently-asked-interview-questions-in-react-redux-bc774733b449"><button class="btn card_btn">Read More</button></a>
+              <a target="_blank"
+                href="https://blog.zairza.in/frequently-asked-interview-questions-in-react-redux-bc774733b449"><button
+                  class="btn card_btn">Read More</button></a>
             </div>
           </div>
-            <div class="card">
-                <div class="card_image"><img src="/assets/images/blogs/3.jpeg"></div>
-                <div class="card_content">
-                  <h2 class="card_title">Sentiment analysis of restaurant reviews</h2>
-                  <p class="card_text">Hello everyone! I hope you all are doing good. In this blog...</p>
-                  <a target="_blank" href="https://blog.zairza.in/sentiment-analysis-of-restaurant-reviews-dab25c69fa8"><button class="btn card_btn">Read More</button></a>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card_image"><img src="/assets/images/blogs/4.png"></div>
-                <div class="card_content">
-                  <h2 class="card_title">How ReactJS works behind the scene?</h2>
-                  <p class="card_text">Hello guys! Learning react is simple. Here, in this article...</p>
-                  <a target="_blank" href="https://blog.zairza.in/how-reactjs-works-behind-the-scene-e25689f4b2c5"><button class="btn card_btn">Read More</button></a>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card_image"><img src="/assets/images/blogs/1.jpeg"></div>
-                <div class="card_content">
-                  <h2 class="card_title">CNN</h2>
-                  <p class="card_text">Ever wondered, how Facebook can recognize the faces. What it uses for that. Let’s reveal it.</p>
-                  <a target="_blank" href="https://blog.zairza.in/covolutional-neural-networks-7e2397c49536"><button class="btn card_btn">Read More</button></a>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card_image"><img src="/assets/images/blogs/2.jpeg"></div>
-                <div class="card_content">
-                  <h2 class="card_title">Artificial Neural Networks</h2>
-                  <p class="card_text">Hello!! Are you excited about Artificial Neural Networks? Are you excited about exploring a bit about the human brain?</p>
-                  <a target="_blank" href="https://blog.zairza.in/artificial-neural-networks-51ed8ca49217"><button class="btn card_btn">Read More</button></a>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card_image"><img src="/assets/images/blogs/7.png"></div>
-                <div class="card_content">
-                  <h2 class="card_title">OAuth using MEVN Stack</h2>
-                  <p class="card_text">If you use nodejs and you need to implement Oauth or just looking forward to learning something new in the server side...</p>
-                  <a target="_blank" href="https://blog.zairza.in/oauth-using-mevn-stack-4b4a383dae08"><button class="btn card_btn">Read More</button></a>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card_image"><img src="/assets/images/blogs/8.jpeg"></div>
-                <div class="card_content">
-                  <h2 class="card_title">A Guide to Dual Booting</h2>
-                  <p class="card_text">Today, dual booting has become a go-to procedure that a lot of developers opt for, be it due to having complete access over...</p>
-                  <a target="_blank" href="https://blog.zairza.in/a-guide-to-dual-booting-d9dffe042ee6"><button class="btn card_btn">Read More</button></a>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card_image"><img src="/assets/images/blogs/9.jpeg"></div>
-                <div class="card_content">
-                  <h2 class="card_title">Home Automation : Making Our Lives Easier</h2>
-                  <p class="card_text">The Home Automation is a wireless home automation system that is supposed</p>
-                  <a target="_blank" href="https://blog.zairza.in/home-automation-making-our-lives-easier-a782ee067ea8"><button class="btn card_btn">Read More</button></a>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card_image"><img src="/assets/images/blogs/10.jpeg"></div>
-                <div class="card_content">
-                  <h2 class="card_title">What is “BITCOIN” and How its Mining Process Works ...</h2>
-                  <p class="card_text">Before going through this article you must know about the basics of blockchain.</p>
-                  <a target="_blank" href="https://blog.zairza.in/https-medium-com-pruthwirajnayak-what-is-bitcoin-and-how-its-mining-process-works-8cf5aa51d87f"><button class="btn card_btn">Read More</button></a>
-                </div>
-              </div>
-            <div class="card">
-                <div class="card_image"><img src="/assets/images/blogs/11.jpeg"></div>
-                <div class="card_content">
-                  <h2 class="card_title">Modern Radios: Miles of Range and Years of ...</h2>
-                  <p class="card_text">Age old definition of radios relates to ‘radios drain battery’.</p>
-                  <a target="_blank" href="https://blog.zairza.in/modern-radios-miles-of-range-and-years-of-battery-life-6ca1a690c4d9"><button class="btn card_btn">Read More</button></a>
-                </div>
-              </div>
-           </div>
-        <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
-    </section>
-    <section class="sm:mt-10 mt-0 section h-screen" id="our_team">
-        <div class="grid flex grid-cols-1 sm:grid-cols-2">
-            <div class="flex flex-col justify-center mt-16 sm:mt-0 mx-7 sm:order-1 order-last">
-                <h1 class="sm:text-7xl text-3xl leading-tight sm:text-left text-center">Our tech<br> excavators</h1>
-                <p class="mt-7 sm:w-2/3 w-full text-sm sm:text-base sm:text-left text-gray-500 text-center">Meet our tech excavators at Zairza, who have
-                    succeeded in proliferating a technical hegemony in
-                    the institution through numerous endeavours.</p>
-                  <button class="rounded-full py-4 mt-7 mx-auto sm:mx-0" onclick="fullpage_api.moveSectionDown()">Know them</button>
+          <div class="card">
+            <div class="card_image"><img src="/assets/images/blogs/3.jpeg"></div>
+            <div class="card_content">
+              <h2 class="card_title">Sentiment analysis of restaurant reviews</h2>
+              <p class="card_text">Hello everyone! I hope you all are doing good. In this blog...</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/sentiment-analysis-of-restaurant-reviews-dab25c69fa8"><button
+                  class="btn card_btn">Read More</button></a>
             </div>
-            <div class="sm:order-last order-1 sm:mt-0 mt-5 ml-6 sm:ml-0">
-                <img class="animated sally-11" src="/assets/images/png/Saly-11.png" alt="">
+          </div>
+          <div class="card">
+            <div class="card_image"><img src="/assets/images/blogs/4.png"></div>
+            <div class="card_content">
+              <h2 class="card_title">How ReactJS works behind the scene?</h2>
+              <p class="card_text">Hello guys! Learning react is simple. Here, in this article...</p>
+              <a target="_blank" href="https://blog.zairza.in/how-reactjs-works-behind-the-scene-e25689f4b2c5"><button
+                  class="btn card_btn">Read More</button></a>
             </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img src="/assets/images/blogs/1.jpeg"></div>
+            <div class="card_content">
+              <h2 class="card_title">CNN</h2>
+              <p class="card_text">Ever wondered, how Facebook can recognize the faces. What it uses for that. Let’s
+                reveal it.</p>
+              <a target="_blank" href="https://blog.zairza.in/covolutional-neural-networks-7e2397c49536"><button
+                  class="btn card_btn">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img src="/assets/images/blogs/2.jpeg"></div>
+            <div class="card_content">
+              <h2 class="card_title">Artificial Neural Networks</h2>
+              <p class="card_text">Hello!! Are you excited about Artificial Neural Networks? Are you excited about
+                exploring a bit about the human brain?</p>
+              <a target="_blank" href="https://blog.zairza.in/artificial-neural-networks-51ed8ca49217"><button
+                  class="btn card_btn">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img src="/assets/images/blogs/7.png"></div>
+            <div class="card_content">
+              <h2 class="card_title">OAuth using MEVN Stack</h2>
+              <p class="card_text">If you use nodejs and you need to implement Oauth or just looking forward to learning
+                something new in the server side...</p>
+              <a target="_blank" href="https://blog.zairza.in/oauth-using-mevn-stack-4b4a383dae08"><button
+                  class="btn card_btn">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img src="/assets/images/blogs/8.jpeg"></div>
+            <div class="card_content">
+              <h2 class="card_title">A Guide to Dual Booting</h2>
+              <p class="card_text">Today, dual booting has become a go-to procedure that a lot of developers opt for, be
+                it due to having complete access over...</p>
+              <a target="_blank" href="https://blog.zairza.in/a-guide-to-dual-booting-d9dffe042ee6"><button
+                  class="btn card_btn">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img src="/assets/images/blogs/9.jpeg"></div>
+            <div class="card_content">
+              <h2 class="card_title">Home Automation : Making Our Lives Easier</h2>
+              <p class="card_text">The Home Automation is a wireless home automation system that is supposed</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/home-automation-making-our-lives-easier-a782ee067ea8"><button
+                  class="btn card_btn">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img src="/assets/images/blogs/10.jpeg"></div>
+            <div class="card_content">
+              <h2 class="card_title">What is “BITCOIN” and How its Mining Process Works ...</h2>
+              <p class="card_text">Before going through this article you must know about the basics of blockchain.</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/https-medium-com-pruthwirajnayak-what-is-bitcoin-and-how-its-mining-process-works-8cf5aa51d87f"><button
+                  class="btn card_btn">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img src="/assets/images/blogs/11.jpeg"></div>
+            <div class="card_content">
+              <h2 class="card_title">Modern Radios: Miles of Range and Years of ...</h2>
+              <p class="card_text">Age old definition of radios relates to ‘radios drain battery’.</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/modern-radios-miles-of-range-and-years-of-battery-life-6ca1a690c4d9"><button
+                  class="btn card_btn">Read More</button></a>
+            </div>
+          </div>
         </div>
-    </section>
-    <section class="bg-white section h-screen" >
+        <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
+      </section>
+      <section class="sm:mt-10 mt-0 section h-screen" id="our_team">
+        <div class="grid flex grid-cols-1 sm:grid-cols-2">
+          <div class="flex flex-col justify-center mt-16 sm:mt-0 mx-7 sm:order-1 order-last">
+            <h1 class="sm:text-7xl text-3xl leading-tight sm:text-left text-center">Our tech<br> excavators</h1>
+            <p class="mt-7 sm:w-2/3 w-full text-sm sm:text-base sm:text-left text-gray-500 text-center">Meet our tech
+              excavators at Zairza, who have
+              succeeded in proliferating a technical hegemony in
+              the institution through numerous endeavours.</p>
+            <button class="rounded-full py-4 mt-7 mx-auto sm:mx-0" onclick="fullpage_api.moveSectionDown()">Know
+              them</button>
+          </div>
+          <div class="sm:order-last order-1 sm:mt-0 mt-5 ml-6 sm:ml-0">
+            <img class="animated sally-11" src="/assets/images/png/Saly-11.png" alt="">
+          </div>
+        </div>
+      </section>
+      <section class="bg-white section h-screen">
         <div class="mt-40 grid grid-cols-1 sm:grid-cols-4 gap-4" id="grid2">
-      <div class="card">
-      <div class="imgBx fill"> 
-        <img src="/assets/images/Team/IMG_20201230_223747 - Bhabani Shankar Mohapatra.jpg" alt="" >
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Bhabani Shankar Mohapatra <br><span></span></h3>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="/assets/images/Team/IMG_20201230_223747 - Bhabani Shankar Mohapatra.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Bhabani Shankar Mohapatra <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/bhabani-shankar-mohapatra-021650148"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="/assets/images/Team/IMG_20201230_215615 - Jiban Panda.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Jiban Jyoti Panda <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/jiban04"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="/assets/images/Team/IMG_20201230_163646-01 - Mahes Dwivedi.jpeg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Mahes Dwivedi <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://in.linkedin.com/in/mahes-dwivedi-79a1b890"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href="@mahes_dwivedi"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="github.com/mahesdwivedi"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="/assets/images/Team/_AKP1370 - Maitri Swarup (1).jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Maitri Swarup Tripathy <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/maitri-swarup-tripathy-63370a161"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="github.com/MaitriSwarup98"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/E31B268E-EF38-42F4-88B0-5F3FDB54F767 - Prateek Mishra.jpeg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Prateek Mishra <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href=""><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/IMG_20201231_110308 - Jyoti Ranjan Satapathy.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Jyoti Ranjan Satapathy <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/jyoti-ranjan-satapathy-51247916b"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/IMG_20201231_130237 - Binayak Behera.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Binayak Behera <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/binayak-behera-39a731165"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href="https://twitter.com/be_binayak?s=09"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="https://github.com/binayakbehera999"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/SquareFit_20200513_111615 - debasish behera.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Debasish Behera <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/debasish-behera/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="https://github.com/DB11051998"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/1609415202728__DSC0303 - Pruthwiraj Nayak.JPG" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Pruthwiraj Nayak <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/pruthwiraj-nayak-726393169/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href="https://mobile.twitter.com/PruthwirajNaya2"><i class="bx bxl-twitter"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="https://github.com/Raj2367"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/Aditya_Bisoi_Photo - ADITYA BISOI.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Aditya Bisoi <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/adityabisoi/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="https://github.com/adityabisoi"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/IMG_20210101_183502 - Haris Umaid.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Haris Umaid <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/haris-umaid-99b520173/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="https://github.com/harisumaid"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/harkishen_singh - Harkishen Singh.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Harkishen Singh <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/harkishen-singh"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href="https://twitter.com/harkishen_singh"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="https://github.com/Harkishen-Singh"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/WhatsApp Image 2021-01-01 at 6.51.57 PM - Muskan Khedia.jpeg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Muskan Khedia <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/muskan-khedia-b5b97015a/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href="https://twitter.com/khediamuskan"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="https://github.com/muskankhedia"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/download (1) - Pushpendra A.png" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>A. Pushpendra <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/a-pushpendra/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href="APushpendra08"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="APushpendra08"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/photo - Nitish Choudhary.png" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Nitish Choudhary <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/nitishchoudhary/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href="https://twitter.com/nitish_nkc"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="https://github.com/initishh/"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/IMG-20210101-WA0033 - Jayashree Panda.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Jayashree Panda <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/jayashree-panda"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href="JAYASHREEPanda9"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="github.com/Jayashree-panda"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img src="assets/images/Team/IMG_20201231_200338 - Ashish Mohapatra.jpg" alt="">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>ASHISH MOHAPATRA <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a href="https://www.linkedin.com/in/ashish-mohapatra-82685961/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a href="https://twitter.com/amgugu111"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a href="https://github.com/amgugu111"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/bhabani-shankar-mohapatra-021650148"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="/assets/images/Team/IMG_20201230_215615 - Jiban Panda.jpg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Jiban Jyoti Panda <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/jiban04"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="/assets/images/Team/IMG_20201230_163646-01 - Mahes Dwivedi.jpeg" alt="" >
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Mahes Dwivedi <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://in.linkedin.com/in/mahes-dwivedi-79a1b890"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href="@mahes_dwivedi"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="github.com/mahesdwivedi"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="/assets/images/Team/_AKP1370 - Maitri Swarup (1).jpg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Maitri Swarup Tripathy <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/maitri-swarup-tripathy-63370a161"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="github.com/MaitriSwarup98"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/E31B268E-EF38-42F4-88B0-5F3FDB54F767 - Prateek Mishra.jpeg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Prateek Mishra <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href=""><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/IMG_20201231_110308 - Jyoti Ranjan Satapathy.jpg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Jyoti Ranjan Satapathy <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/jyoti-ranjan-satapathy-51247916b"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/IMG_20201231_130237 - Binayak Behera.jpg" alt="" >
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Binayak Behera <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/binayak-behera-39a731165"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href="https://twitter.com/be_binayak?s=09"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="https://github.com/binayakbehera999"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/SquareFit_20200513_111615 - debasish behera.jpg" alt="" >
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Debasish Behera <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/debasish-behera/"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="https://github.com/DB11051998"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/1609415202728__DSC0303 - Pruthwiraj Nayak.JPG" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Pruthwiraj Nayak <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/pruthwiraj-nayak-726393169/"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href="https://mobile.twitter.com/PruthwirajNaya2"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="https://github.com/Raj2367"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/Aditya_Bisoi_Photo - ADITYA BISOI.jpg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Aditya Bisoi <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/adityabisoi/"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="https://github.com/adityabisoi"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/IMG_20210101_183502 - Haris Umaid.jpg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Haris Umaid <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/haris-umaid-99b520173/"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="https://github.com/harisumaid"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/harkishen_singh - Harkishen Singh.jpg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Harkishen Singh <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/harkishen-singh"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href="https://twitter.com/harkishen_singh"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="https://github.com/Harkishen-Singh"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/WhatsApp Image 2021-01-01 at 6.51.57 PM - Muskan Khedia.jpeg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Muskan Khedia <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/muskan-khedia-b5b97015a/"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href="https://twitter.com/khediamuskan"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="https://github.com/muskankhedia"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/download (1) - Pushpendra A.png" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>A. Pushpendra <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/a-pushpendra/"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href="APushpendra08"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="APushpendra08"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/photo - Nitish Choudhary.png" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Nitish Choudhary <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/nitishchoudhary/"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href="https://twitter.com/nitish_nkc"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="https://github.com/initishh/"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/IMG-20210101-WA0033 - Jayashree Panda.jpg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>Jayashree Panda <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/jayashree-panda"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href="JAYASHREEPanda9"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="github.com/Jayashree-panda"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div><div class="card"> 
-      <div class="imgBx fill"> 
-        <img src="assets/images/Team/IMG_20201231_200338 - Ashish Mohapatra.jpg" alt="">
-      </div>
-      <div class="content">
-        <div class="contentBx">
-          <h3>ASHISH MOHAPATRA <br><span></span></h3>
-        </div>
-        <ul class="sci">
-          <li style="--i: 1">
-            <a href="https://www.linkedin.com/in/ashish-mohapatra-82685961/"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 2">
-            <a href="https://twitter.com/amgugu111"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
-          </li>
-          <li style="--i: 3">
-            <a href="https://github.com/amgugu111"><i class="bx bxl-github" aria-hidden="true"></i></a>
-          </li>
-        </ul>
-      </div>
-    </div></div>
         <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
-    </section>
-    <section class="section bg-white h-screen" id="contact">
+      </section>
+      <section class="section bg-white h-screen" id="contact">
         <div class="grid flex grid-cols-1 sm:grid-cols-2 ">
-            <div class="flex flex-col justify-center mt-8 sm:mt-0 mx-7 sm:pt-40 sm:order-1 order-last">
-                <h1 class="sm:text-7xl text-3xl leading-tight sm:text-left sm:mt-0 mt-3 text-center">Gotta query?<br>
-                    We are here</h1>
-                <p class="mt-7 sm:w-2/3 w-full text-sm sm:text-base text-gray-500 sm:text-left text-center">We are on our way for the next tech-exploration. Connect with us to ride along!!</p>
-                <button class="rounded-full py-4 mt-7" onclick="sendEmail()">Drop a mail</button>
-                  <div class="flex items-center cursor-pointer w-max text-gray-500 mt-10 sm:mt-20 mx-auto sm:mx-0" onclick="sendEmail()"><div>Reach us</div><div class="long-arrow-right"></div></div>
+          <div class="flex flex-col justify-center mt-8 sm:mt-0 mx-7 sm:pt-40 sm:order-1 order-last">
+            <h1 class="sm:text-7xl text-3xl leading-tight sm:text-left sm:mt-0 mt-3 text-center">Gotta query?<br>
+              We are here</h1>
+            <p class="mt-7 sm:w-2/3 w-full text-sm sm:text-base text-gray-500 sm:text-left text-center">We are on our
+              way for the next tech-exploration. Connect with us to ride along!!</p>
+            <button class="rounded-full py-4 mt-7" onclick="sendEmail()">Drop a mail</button>
+            <div class="flex items-center cursor-pointer w-max text-gray-500 mt-10 sm:mt-20 mx-auto sm:mx-0"
+              onclick="sendEmail()">
+              <div>Reach us</div>
+              <div class="long-arrow-right"></div>
             </div>
-            <div class="sm:order-last order-1 sm:-mt-40">
-                <img class="animated" src="/assets/images/png/Saly-10.png" alt="">
-            </div>
+          </div>
+          <div class="sm:order-last order-1 sm:-mt-40">
+            <img class="animated" src="/assets/images/png/Saly-10.png" alt="">
+          </div>
         </div>
-    </section>
-    <section class="section bg-white h-screen" id="footer">
+      </section>
+      <section class="section bg-white h-screen" id="footer">
         <div class="grid flex grid-cols-1 sm:grid-cols-2">
-            <div class="flex flex-col justify-center mt-12 sm:mt-0 mx-7 sm:order-1 order-last">
-                <h1 class="sm:text-7xl text-3xl sm:text-left text-center">Google us</h1>
-                <p class="mt-7 sm:w-2/3 w-full sm:text-left text-center">7QGG+7G Bhubaneswar, Odisha<br>
-                    +91 9337654321</p>
-                    <div class="flex justify-between w-full sm:w-3/6 mt-12 sm:mt-32 mx-auto sm:mx-0">
-                        <a target="_blank" href="https://www.facebook.com/zairza.cetb"><i class="bx bxl-facebook-circle bx-md icon bx-tada-hover"></i></a>
-                        <a target="_blank" href="https://github.com/zairza-cetb"><i class="bx bxl-github bx-md icon bx-tada-hover"></i></a>
-                        <a target="_blank" href="https://www.linkedin.com/company/zairza"><i class="bx bxl-linkedin bx-md icon bx-tada-hover"></i></a>
-                       <a target="_blank" href="https://instagram.com/zairza.cetb"><i class="bx bxl-instagram bx-md icon bx-tada-hover"></i></a>
-                        <!-- <i class="bx"><img src="https://img.icons8.com/plumpy/50/000000/medium-logo.png"/></i> -->
-                        <a target="_blank" href="https://blog.zairza.in/"><i class="bx bxl-medium bx-md icon bx-tada-hover"></i></a>
-                        <a target="_blank" href="https://twitter.com/zairza_cetb"><i class="bx bxl-twitter bx-md icon bx-tada-hover"></i></a>
-                    </div>
+          <div class="flex flex-col justify-center mt-12 sm:mt-0 mx-7 sm:order-1 order-last">
+            <h1 class="sm:text-7xl text-3xl sm:text-left text-center">Google us</h1>
+            <p class="mt-7 sm:w-2/3 w-full sm:text-left text-center">7QGG+7G Bhubaneswar, Odisha<br>
+              +91 9337654321</p>
+            <div class="flex justify-between w-full sm:w-3/6 mt-12 sm:mt-32 mx-auto sm:mx-0">
+              <a target="_blank" href="https://www.facebook.com/zairza.cetb"><i
+                  class="bx bxl-facebook-circle bx-md icon bx-tada-hover"></i></a>
+              <a target="_blank" href="https://github.com/zairza-cetb"><i
+                  class="bx bxl-github bx-md icon bx-tada-hover"></i></a>
+              <a target="_blank" href="https://www.linkedin.com/company/zairza"><i
+                  class="bx bxl-linkedin bx-md icon bx-tada-hover"></i></a>
+              <a target="_blank" href="https://instagram.com/zairza.cetb"><i
+                  class="bx bxl-instagram bx-md icon bx-tada-hover"></i></a>
+              <!-- <i class="bx"><img src="https://img.icons8.com/plumpy/50/000000/medium-logo.png"/></i> -->
+              <a target="_blank" href="https://blog.zairza.in/"><i
+                  class="bx bxl-medium bx-md icon bx-tada-hover"></i></a>
+              <a target="_blank" href="https://twitter.com/zairza_cetb"><i
+                  class="bx bxl-twitter bx-md icon bx-tada-hover"></i></a>
             </div>
-            <div class="sm:order-last order-1 sm:mt-0 mt-5">
-                <img class="animated sm:h-screen ml-0 sm:ml-20" src="/assets/images/png/Saly-15.png" alt="">
-            </div>
+          </div>
+          <div class="sm:order-last order-1 sm:mt-0 mt-5">
+            <img class="animated sm:h-screen ml-0 sm:ml-20" src="/assets/images/png/Saly-15.png" alt="">
+          </div>
         </div>
-    </section>
-</main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/vendors/scrolloverflow.min.js" integrity="sha512-pYyQWhzi2lV+RM4GmaUA56VPL48oLVvsHmP9tuQ8MaZMDHomVEDjXXnfSVKXayy+wLclKPte0KbsuVoFImtE7w==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js" integrity="sha512-Gx/C4x1qubng2MWpJIxTPuWch9O88dhFFfpIl3WlqH0jPHtCiNdYsmJBFX0q5gIzFHmwkPzzYTlZC/Q7zgbwCw==" crossorigin="anonymous"></script>
-<script src="/script.js"></script>
+      </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/vendors/scrolloverflow.min.js"
+    integrity="sha512-pYyQWhzi2lV+RM4GmaUA56VPL48oLVvsHmP9tuQ8MaZMDHomVEDjXXnfSVKXayy+wLclKPte0KbsuVoFImtE7w=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"
+    integrity="sha512-Gx/C4x1qubng2MWpJIxTPuWch9O88dhFFfpIl3WlqH0jPHtCiNdYsmJBFX0q5gIzFHmwkPzzYTlZC/Q7zgbwCw=="
+    crossorigin="anonymous"></script>
+  <script src="/script.js"></script>
 </body>
+
 </html>
