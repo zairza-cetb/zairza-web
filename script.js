@@ -51,7 +51,7 @@ $(document).ready(function() {
 
   $(".showHide").each((index, element) => {
     const cards = $(`#grid${index} .card`);
-    var numHidden;
+    let numHidden;
     if (index == 0) {
       numHidden = cards.length - 3;  
 
