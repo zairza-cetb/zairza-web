@@ -233,7 +233,7 @@ body {
   z-index: 10;
   flex-direction: column;
   backdrop-filter: blur(15px);
-  background-color: #1472ff93;
+  background-color: rgba(0, 0, 0, .5);
   box-shadow: 0 -10px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 15px;
@@ -355,8 +355,8 @@ body {
 
 /* Projects Section */
 #grid0 .card {
-  height:400px;
-  width:400px;
+  height:300px;
+  width:300px;
 }
 
 #grid0 .effect {
