@@ -375,8 +375,8 @@ body {
 
 /* Projects Section */
 #grid0 .card {
-  height:450px;
-  width:450px;
+  height:300px;
+  width:300px;
 }
 
 #grid0 .effect {
@@ -594,3 +594,4 @@ body {
   left: 0;
   top: 0;
 }
+/* FAQ */
