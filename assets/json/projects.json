@@ -21,7 +21,7 @@
     },
     {
         "Timestamp": "2020/12/30 7:20:12 PM GMT+5:30",
-        "Name": "Biswajit Patra",
+        "Name": "Sai prasad Nayak",
         "Project name": "Disease Reporting System",
         "Project description ( 3-4 lines)": "This project deals with real-time prediction of diseases (zoonotic), alerts people of the preferable location of potential outbreaks by smart Real-time notifications. The solution includes epidemiology models inspired by SIR model to give a rough calculation of the possible infections in a time frame.",
         "Screenshot of project": "https://drive.google.com/u/0/open?usp=forms_web&id=1JVzL5YOYr5jTQgINCnkvUJvs_7wNISx4",
@@ -36,7 +36,7 @@
         "Project description ( 3-4 lines)": "Insure+ is a mobile app which acts \nas an engagement tool that helps \nus to manage our health better. \nThis app also acts as a source for \ninsurance sales based on the data \nprovided by the customer. It takes \na gamified approach to convert the \nexisting processes into exciting \nactivities.",
         "Screenshot of project": "https://drive.google.com/u/0/open?usp=forms_web&id=1fYf4quZn72eSVc9XQFHIU8RuInByunCo",
         "github": "",
-        "desc": "Insure+ is a mobile app which acts \nas an engagement tool that helps \nus to manage our health better. \nThis app also acts as a source for \ninsurance sales based on the data \nprovided by the customer. It takes \na gamified approach to convert the \nexisting processes into exciting \nactivities.",
+        "desc": "Insure+ is a mobile app which acts as an engagement tool that helps us to manage our health better. This app also acts as a source for insurance sales based on the data provided by the customer. It takes \na gamified approach to convert the \nexisting processes into exciting \nactivities.",
         "img": "3.jpg"
     },
     {
