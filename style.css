@@ -116,36 +116,56 @@ body {
 }
 
 .grid button {
-  background-color: #1471FF;
-  color: white;
+  /* background-color: #1471FF; */
+  color:#1471FF;
   width: 280px;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  transition: 0.5s;
+  border: 2px solid #1471FF;
+}
+.grid button:hover{
+  border: none;
+  color: white;
+  font-size: 18px;
+  transform: scale(1.1);
+  background-color: #1471FF;
+  transition: all 0.3s ease-in-out;
+}
+
+.grid button:focus {
+  outline: none;
 }
 
 @media (max-width:800px) {
-
-  /* .grid button {
-    width:180px;
-    padding:.4rem 0;
-  } */
   .navbar {
     height: 4rem;
   }
 }
 
 .showHide {
-  background-color: #1471FF;
-  color: white;
+  /* background-color: #1471FF; */
+  color: #1471FF;
   width: 280px;
   margin-top: 2rem;
   margin-bottom: 10rem;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  transition: 0.5s;
+  border: 2px solid #1471FF;
+}
+.showHide:hover {
+  border: none;
+  color: white;
+  font-size: 18px;
+  transform: scale(1.1);
+  background-color: #1471FF;
+  transition: all 0.3s ease-in-out;
 }
 
 .showHide:focus {
-  outline: none;
-}
-
-
-.grid button:focus {
   outline: none;
 }
 
