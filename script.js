@@ -14,7 +14,7 @@ function sendEmail()
     window.location = "mailto:cet.sac.zairza@gmail.com";
 }
 const isHidden = [true, true, true]
-const sections = [0,1,1,2,2,3,3,4,4]
+const sections = [0,1,1,2,2,3,3,4,5,5]
 
 $(document).ready(function() {
   $('#mob-menu li').on('click', function() {
@@ -29,7 +29,9 @@ $(document).ready(function() {
   new fullpage('#fullpage', {
     afterLoad: function(origin, destination, direction){
         navs = $('ul#mob-menu > li');
-        navs.eq(sections[origin.index]).removeClass("bg-focus");
+        if(origin.index != 9)
+          navs.eq(sections[origin.index]).removeClass("bg-focus");
+        if(destination.index != 9)
         navs.eq(sections[destination.index]).addClass("bg-focus");
     },
     onLeave : function(origin, destination, direction) {
@@ -75,7 +77,7 @@ $(document).ready(function() {
     });
   });
 
-  const navSectionMap = [1, 2, 4, 6, 8];
+  const navSectionMap = [1, 2, 4, 6, 8, 9];
   $("#mob-menu li").each((index, element) => {
     $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
   });
