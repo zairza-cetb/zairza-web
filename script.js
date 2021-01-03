@@ -51,8 +51,14 @@ $(document).ready(function() {
 
   $(".showHide").each((index, element) => {
     const cards = $(`#grid${index} .card`);
+    var numHidden;
+    if (index == 0) {
+      numHidden = cards.length - 3;  
+
+    } else {
+       numHidden = cards.length - 4;  
+    }
     
-    const numHidden = cards.length - 4;
     const hiddenCards = cards.slice(-numHidden);
     hiddenCards.hide();
     $(element).click(() => {
