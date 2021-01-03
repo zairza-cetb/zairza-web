@@ -573,3 +573,24 @@ body {
   -webkit-transition-delay: .15s;
   transition-delay: .15s
 }
+/* Arrow */
+.long-arrow-right {
+  display: block;
+  /* margin: 0 3.25rem; */
+  margin-left: 3.25rem;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid rgb(100, 97, 97);
+  border-left: 2px solid rgb(100, 97, 97);
+  transform: rotate(135deg);
+}
+.long-arrow-right::after {
+  content: "";
+  display: block;
+  width: 1.8px;
+  height: 45px;
+  background-color: rgb(100, 97, 97);
+  transform: rotate(-45deg) translate(15px, 4px);
+  left: 0;
+  top: 0;
+}

@@ -9,7 +9,10 @@ function toggleMenu() {
     menu.classList.add('hidden');
   }
 }
-
+function sendEmail() 
+{
+    window.location = "mailto:cet.sac.zairza@gmail.com";
+}
 const isHidden = [true, true, true]
 const sections = [0,1,1,2,2,3,3,4,4]
 
