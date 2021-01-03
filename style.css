@@ -233,7 +233,7 @@ body {
   position: relative;
   width: 300px;
   height: 400px;
-  margin: 20px;
+  margin: 20px auto;
   overflow: hidden;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
