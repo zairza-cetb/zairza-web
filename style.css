@@ -142,6 +142,9 @@ body {
   .navbar {
     height: 4rem;
   }
+  .cta-btn{
+    width: 220px;
+  }
 }
 
 .showHide {
