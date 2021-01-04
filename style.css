@@ -353,7 +353,7 @@ body {
   width: 80%;
   margin: 0 auto;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* border: 1px solid rgba(255, 255, 255, 0.2); */
   background-color: #5a3b7b;
 }
 
