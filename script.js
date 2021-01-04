@@ -14,7 +14,7 @@ function sendEmail()
     window.location = "mailto:cet.sac.zairza@gmail.com";
 }
 const isHidden = [true, true, true]
-const sections = [0,1,1,2,2,3,3,4,5,5]
+const sections = [0,1,1, 2,3,3,4,4,5,6]
 
 $(document).ready(function() {
   $('#mob-menu li').on('click', function() {
@@ -29,10 +29,10 @@ $(document).ready(function() {
   new fullpage('#fullpage', {
     afterLoad: function(origin, destination, direction){
         navs = $('ul#mob-menu > li');
-        if(origin.index != 9)
+        if(origin.index != 11)
           navs.eq(sections[origin.index]).removeClass("bg-focus");
-        if(destination.index != 9)
-        navs.eq(sections[destination.index]).addClass("bg-focus");
+        if(destination.index != 11)
+          navs.eq(sections[destination.index]).addClass("bg-focus");
     },
     onLeave : function(origin, destination, direction) {
       if(origin.index == 0 && direction == 'down') {
@@ -42,13 +42,14 @@ $(document).ready(function() {
         $('header').removeClass('navbar-fixed');
       }
     },
-    sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
+    sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
     scrollOverflow: true,
     scrollOverflowOptions: {
       scrollbars: false
     },
     bigSectionsDestination: "top",
-    fixedElements: 'navbar'
+    fixedElements: 'navbar',
+    easingcss3:"ease-in-out"
   });
 
   $(".showHide").each((index, element) => {
@@ -77,7 +78,7 @@ $(document).ready(function() {
     });
   });
 
-  const navSectionMap = [1, 2, 4, 6, 8, 9];
+  const navSectionMap = [1, 2, 4, 5, 7, 9, 10];
   $("#mob-menu li").each((index, element) => {
     $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
   });

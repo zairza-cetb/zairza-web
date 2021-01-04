@@ -353,7 +353,7 @@ body {
   width: 80%;
   margin: 0 auto;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* border: 1px solid rgba(255, 255, 255, 0.2); */
   background-color: #5a3b7b;
 }
 
@@ -378,6 +378,11 @@ body {
 #grid0 .card {
   height:350px;
   width:350px;
+}
+@media (max-width:800px){
+  #grid0 .card {
+    width:auto;
+  }
 }
 
 #grid0 .effect {
@@ -416,7 +421,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%
+  height: 100%;
 }
 
 #grid0 .tab-text h2 {
@@ -521,6 +526,14 @@ body {
 #grid0 .effect-one .pt-1 {
   padding-top: 10% !important;
 }
+#grid0 .effect-one .pt{
+  padding-top: 10% !important;
+}
+@media (max-width:800px) {
+  #grid0 .effect-one .pt{
+    padding-top: 0% !important;
+  }
+}
 
 #grid0 .effect.effect-one p {
   padding: .5em 2.7em;
@@ -595,4 +608,9 @@ body {
   left: 0;
   top: 0;
 }
-/* FAQ */
+/* Achievements */
+#achievements img {
+  height: 25vh;
+  width:auto;
+  margin: 0 auto;
+}
