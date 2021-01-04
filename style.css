@@ -612,4 +612,5 @@ body {
 #achievements img {
   height: 25vh;
   width:auto;
+  margin: 0 auto;
 }
