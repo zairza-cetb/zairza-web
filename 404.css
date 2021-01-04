@@ -46,7 +46,7 @@ body {
     letter-spacing: 1px;
     color: #1d1d1d;
     font-weight: bold;
-    font-size: 3em;
+    font-size: 1.3em;
     line-height: 1.2em;
   }
   .subtitle {
@@ -71,7 +71,7 @@ body {
       flex-direction: column;
     }
     .animated{
-      height: 40vh !important;
+      /* height: 40vh !important; */
       margin-top: 2rem;
     }
     .navbar-brand{
@@ -79,7 +79,7 @@ body {
       margin-left: 0;
     }
     .title {
-      font-size: 2em;
+      font-size: 1.2em;
       margin-top: 5rem;
     }
     .subtitle {
