@@ -595,4 +595,8 @@ body {
   left: 0;
   top: 0;
 }
-/* FAQ */
+/* Achievements */
+#achievements img {
+  height: 25vh;
+  width:auto;
+}
