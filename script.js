@@ -33,6 +33,8 @@ $(document).ready(function() {
           navs.eq(sections[origin.index]).removeClass("bg-focus");
         if(destination.index != 11)
           navs.eq(sections[destination.index]).addClass("bg-focus");
+
+          jQuery('.section.active [data-aos]').addClass("aos-animate");
     },
     onLeave : function(origin, destination, direction) {
       if(origin.index == 0 && direction == 'down') {
@@ -41,6 +43,7 @@ $(document).ready(function() {
       else if(destination.index == 0 && direction == 'up'){
         $('header').removeClass('navbar-fixed');
       }
+      jQuery('.section [data-aos]').removeClass("aos-animate");
     },
     sectionsColor: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white'],
     scrollOverflow: true,

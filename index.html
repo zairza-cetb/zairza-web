@@ -34,6 +34,7 @@
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.css" integrity="sha512-8M8By+q+SldLyFJbybaHoAPD6g07xyOcscIOQEypDzBS+sTde5d6mlK2ANIZPnSyxZUqJfCNuaIvjBUi8/RS0w==" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <title>Zairza</title>
 </head>
@@ -386,7 +387,7 @@
         </div>
       </section>
       <section class="bg-white section h-screen">
-        <div class="mt-40 grid grid-cols-1 sm:grid-cols-4 gap-4" id="grid2">
+        <div class="mt-40 grid grid-cols-1 sm:grid-cols-4 gap-4" id="grid2" data-aos="fade-up" data-aos-duration="1000">
           <div class="card">
             <div class="imgBx fill">
               <img data-src="assets/images/Team/ashish.webp">
@@ -924,7 +925,7 @@
 
                   <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
                     @click="selected !== 1 ? selected = 1 : selected = null">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between font-bold">
                       <span>
                         Why Zairza? </span>
                       <span class="ico-plus"></span>
@@ -949,7 +950,7 @@
 
                   <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
                     @click="selected !== 2 ? selected = 2 : selected = null">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between font-bold">
                       <span>
                         How can I join? </span>
                       <span class="ico-plus"></span>
@@ -973,7 +974,7 @@
 
                   <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
                     @click="selected !== 3 ? selected = 3 : selected = null">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between font-bold">
                       <span>
                         What is the scope of Zairza? </span>
                       <span class="ico-plus"></span>
@@ -995,7 +996,7 @@
 
                   <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
                     @click="selected !== 4 ? selected = 4 : selected = null">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between font-bold">
                       <span>
                         I have a Tech project. How can Zairza help me? </span>
                       <span class="ico-plus"></span>
@@ -1019,7 +1020,7 @@
 
                   <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
                     @click="selected !== 5 ? selected = 5 : selected = null">
-                    <div class="flex items-center justify-between">
+                    <div class="flex items-center justify-between font-bold">
                       <span>
                         What are the club timings? </span>
                       <span class="ico-plus"></span>
@@ -1038,8 +1039,8 @@
               </ul>
             </div>
           </div>
-          <div class="sm:order-last order-1 sm:-mt-40 sm:block hidden">
-            <img class="animated" data-src="/assets/images/illustrations/Saly-10.webp" >
+          <div class="sm:order-last order-1 sm:-mt-20 sm:block hidden">
+            <img class="animated" data-src="/assets/images/illustrations/Saly-6.webp" >
           </div>
         </div>
       </section>
@@ -1080,6 +1081,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"
     integrity="sha512-Gx/C4x1qubng2MWpJIxTPuWch9O88dhFFfpIl3WlqH0jPHtCiNdYsmJBFX0q5gIzFHmwkPzzYTlZC/Q7zgbwCw=="
     crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="/script.js"></script>
   	<!--Start of Tawk.to Script-->
 	<script type="text/javascript">
@@ -1094,6 +1096,9 @@
 		})();
 	</script>
 <!--End of Tawk.to Script-->
+<script>
+  AOS.init();
+</script>
 </body>
 
 </html>
