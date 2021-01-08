@@ -99,7 +99,7 @@ function demo(){
 function linkedin(){
   Swal.fire({
     icon: 'success',
-    title: 'It was introduced by CompuServe in 1987 as 87a and has since come into widespread usage on the World Wide Web due to its wide support and portability. Answer: GIF (Graphics Interchange Format)',
+    title: '3. It was introduced by CompuServe in 1987 as 87a and has since come into widespread usage on the World Wide Web due to its wide support and portability. Answer: GIF (Graphics Interchange Format)',
     showConfirmButton: true,
   })
 }
@@ -107,7 +107,7 @@ function linkedin(){
 function tagline(){
   Swal.fire({
     icon: 'success',
-    title: '41 years of a pizza without a slice.',
+    title: '1. 41 years of a pizza without a slice.',
     showConfirmButton: true,
   })
 }
@@ -115,7 +115,7 @@ function tagline(){
 function redhat(){
   Swal.fire({
     icon: 'success',
-    title: 'Solve' +':-'+'\n--. .-. ... -- .-. / . -..- ... .- . --- / --. --- -.- --.. -.-- -..- / --. -.- -.-. / -. --- ..-. --- ...- -.-- --.. --- -. / -. . -... ... -..- --.- / .--. -... --- -..- -- .-. / -... --- ..-. -.-- ...- . -.. ... -.-- -..- / .--. -.-- -... / --- .... --- -- . -.. ... -.-- -..- -.-. ..--..',
+    title: '2. Solve' +':-'+'\n--. .-. ... -- .-. / . -..- ... .- . --- / --. --- -.- --.. -.-- -..- / --. -.- -.-. / -. --- ..-. --- ...- -.-- --.. --- -. / -. . -... ... -..- --.- / .--. -... --- -..- -- .-. / -... --- ..-. -.-- ...- . -.. ... -.-- -..- / .--. -.-- -... / --- .... --- -- . -.. ... -.-- -..- -.-. ..--..',
     showConfirmButton: true,
   })
 }
@@ -123,7 +123,7 @@ function redhat(){
 function faq(){
   Swal.fire({
     icon: 'success',
-    title: 'Edward Snowden’s wants to say hi to Elon musk. How will he say? ',
+    title: '4. Edward Snowden’s wants to say hi to Elon musk. How will he say? ',
     showConfirmButton: true,
   })
 }
@@ -131,7 +131,7 @@ function faq(){
 function github(){
   Swal.fire({
     icon: 'success',
-    title: 'What’s a Burrito within a Burrito?',
+    title: '5. What’s a Burrito within a Burrito?',
     showConfirmButton: true,
   })
 }
