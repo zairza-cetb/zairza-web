@@ -99,7 +99,7 @@ function demo(){
 function linkedin(){
   Swal.fire({
     icon: 'success',
-    title: '3. It was introduced by CompuServe in 1987 as 87a and has since come into widespread usage on the World Wide Web due to its wide support and portability. Answer: GIF (Graphics Interchange Format)',
+    title: '3. It was introduced by CompuServe in 1987 as 87a and has since come into widespread usage on the World Wide Web due to its wide support and portability.',
     showConfirmButton: true,
   })
 }
