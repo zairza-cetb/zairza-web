@@ -86,3 +86,52 @@ $(document).ready(function() {
     $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
   });
 });
+
+
+function demo(){
+  Swal.fire({
+    icon: 'success',
+    title: 'This a demo alert',
+    showConfirmButton: true,
+  })
+}
+
+function linkedin(){
+  Swal.fire({
+    icon: 'success',
+    title: 'It was introduced by CompuServe in 1987 as 87a and has since come into widespread usage on the World Wide Web due to its wide support and portability. Answer: GIF (Graphics Interchange Format)',
+    showConfirmButton: true,
+  })
+}
+
+function tagline(){
+  Swal.fire({
+    icon: 'success',
+    title: '41 years of a pizza without a slice.',
+    showConfirmButton: true,
+  })
+}
+
+function redhat(){
+  Swal.fire({
+    icon: 'success',
+    title: 'Solve' +':-'+'\n--. .-. ... -- .-. / . -..- ... .- . --- / --. --- -.- --.. -.-- -..- / --. -.- -.-. / -. --- ..-. --- ...- -.-- --.. --- -. / -. . -... ... -..- --.- / .--. -... --- -..- -- .-. / -... --- ..-. -.-- ...- . -.. ... -.-- -..- / .--. -.-- -... / --- .... --- -- . -.. ... -.-- -..- -.-. ..--..',
+    showConfirmButton: true,
+  })
+}
+
+function faq(){
+  Swal.fire({
+    icon: 'success',
+    title: 'Edward Snowden’s wants to say hi to Elon musk. How will he say? ',
+    showConfirmButton: true,
+  })
+}
+
+function github(){
+  Swal.fire({
+    icon: 'success',
+    title: 'What’s a Burrito within a Burrito?',
+    showConfirmButton: true,
+  })
+}
