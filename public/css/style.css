@@ -601,6 +601,10 @@ body {
   border-left: 2px solid rgb(100, 97, 97);
   transform: rotate(135deg);
 }
+/* .long-arrow-right:hover{
+  -webkit-animation: bounceRight 2s infinite;
+  animation: bounceRight 2s infinite;
+} */
 .long-arrow-right::after {
   content: "";
   display: block;
@@ -611,6 +615,60 @@ body {
   left: 0;
   top: 0;
 }
+/* right bounce */
+/* @-webkit-keyframes bounceRight {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  40% {
+    -webkit-transform: translateX(-30px);
+    transform: translateX(-30px);
+  }
+  60% {
+    -webkit-transform: translateX(-15px);
+    transform: translateX(-15px);
+  }
+}
+@-moz-keyframes bounceRight {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-30px);
+  }
+  60% {
+    transform: translateX(-15px);
+  }
+}
+@keyframes bounceRight {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+  }
+  40% {
+    -ms-transform: translateX(-30px);
+    transform: translateX(-30px);
+  }
+  60% {
+    -ms-transform: translateX(-15px);
+    transform: translateX(-15px);
+  }
+} */
+/* /right bounce */
+
 /* Achievements */
 #achievements img {
   height: 20vh;
