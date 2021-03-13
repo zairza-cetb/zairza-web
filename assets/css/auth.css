@@ -39,7 +39,7 @@ section .container .user .imgBx {
   width: 50%;
   height: 100%;
   background: #FF7610;
-  transition: 0.5s;
+  transition:1s;
 }
 
 section .container .user .imgBx img {
@@ -60,7 +60,7 @@ section .container .user .formBx {
   justify-content: center;
   align-items: center;
   padding: 40px;
-  transition: 0.5s;
+  transition:1s;
 }
 
 section .container .user .formBx form h2 {
@@ -97,7 +97,7 @@ section .container .user .formBx form input[type="submit"] {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 1px;
-  transition: 0.5s;
+  transition:1s;
 }
 
 section .container .user .formBx form .signup {
