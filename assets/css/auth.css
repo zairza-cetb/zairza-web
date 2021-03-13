@@ -156,10 +156,10 @@ section .container.active .signinBx .imgBx {
   left: -100%;
 }
 
-.login-btn{
+.login-btn, .register-btn{
     background-color: #3888ff;
 }
-.login-btn:hover{
+.login-btn:hover,.register-btn:hover{
     background-color: #1471FF;
 }
 .register-btn{
