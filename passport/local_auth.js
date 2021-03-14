@@ -10,7 +10,6 @@ module.exports = (passport) => {
         passReqToCallback: true,
       },
       function (req, email, password, done) {
-        process.nextTick(function () {
           User.findOne({ email: email }, function (err, user) {
             if (err) return done(err);
 
@@ -19,7 +18,6 @@ module.exports = (passport) => {
             if (!user.validPassword(password)) return done(null, false, {message: "Incorrect password"});
             else return done(null, user);
           });
-        });
       }
     )
   );
@@ -33,7 +31,6 @@ module.exports = (passport) => {
         passReqToCallback: true,
       },
       function (req, email, password, done) {
-        process.nextTick(function () {
           User.findOne({ email: email }, function (err, existingUser) {
             if (err) return done(err);
             if (existingUser) return done(null, false, {message : "User already exists"});
@@ -54,12 +51,10 @@ module.exports = (passport) => {
 
               newUser.save(function (err) {
                 if (err) throw err;
-
                 return done(null, newUser);
               });
             }
           });
-        });
       }
     )
   );
