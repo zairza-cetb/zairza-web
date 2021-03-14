@@ -19,3 +19,26 @@ $("input[type='email']").on("change", function(){
     $(this).siblings("small").addClass("hidden");
   }
 })
+
+// Signup form submit
+$("#signup-btn").on("click", function(){
+  $email = $("#signup input[type='email']").val();
+  $password = $("#signup input[type='password']").val();
+  console.log("hey")
+  let signupData = {
+    email: $email,
+    password: $password
+  }
+  $.ajax({
+    type: "POST",
+    url:"/signup",
+    data:signupData,
+    dataType: "json"
+  })
+  .done(function(data){
+    console.log(data)
+  })
+  .fail(function(data){
+    console.log(data.mesage)
+  })
+})
