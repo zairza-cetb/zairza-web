@@ -5,7 +5,7 @@ module.exports = (app, passport) => {
   });
 
   // ---- For local sign in ----------
-  app.post("/login", function (req, res) {
+  app.post("/login", function (req, res, next) {
     passport.authenticate("local-login", function (err, user, info) {
       if (err) {
         res.status(404).json(err);
@@ -13,14 +13,19 @@ module.exports = (app, passport) => {
       }
 
       if (user) {
-        res.status(200).json(user);
+        req.logIn(user, function(err){
+          if(err){
+            return res.status(500).json(err);
+          }
+          res.status(200).json(user.id);
+        });
       } else {
         res.status(401).json(info);
       }
-    })(req, res);
+    })(req, res, next);
   });
 
-  app.post("/signup", function (req, res) {
+  app.post("/signup", function (req, res, next) {
     passport.authenticate("local-signup", function (err, user, info) {
       console.log(err,user,info);
       if (err) {
@@ -29,23 +34,29 @@ module.exports = (app, passport) => {
       }
 
       if (user) {
-        res.status(200).json(user);
+        req.logIn(user, function(err){
+          if(err){
+            res.status(500).json(err);
+          }
+          res.status(200).json(user.id);
+        });
       } else {
         res.status(401).json(info);
       }
-    })(req, res);
+    })(req, res, next);
   });
 
-  // -------- For google sign in -------
+  // -------- For google authentication -------
   app.get(
     "/auth/google",
     passport.authenticate("google", { scope: ["profile", "email"] })
   );
   app.get(
-    "/auth/google/callback",
+    "/auth/google/cb/",
     passport.authenticate("google", {
       successRedirect: "/profile",
       failureRedirect: "/auth?failed=true",
     })
   );
+
 };

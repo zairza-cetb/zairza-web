@@ -79,8 +79,6 @@ $("#signin-btn").on("click", function(){
     url:"/login",
     data:signinData,
     dataType: "json",
-    credentials: 'include',
-    withCredentials: true,
   })
   .done(function(data){
     console.log(data)
