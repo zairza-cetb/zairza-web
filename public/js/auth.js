@@ -89,3 +89,35 @@ $("#signin-btn").on("click", function(){
     console.log(data)
   })
 })
+
+// Show/Hide password
+// const passwordToggle = document.querySelector('.js-password-toggle')
+
+// passwordToggle.addEventListener('change', function() {
+//   const password = document.querySelector('.js-password'),
+//     passwordLabel = document.querySelector('.js-password-label')
+
+//   if (password.type === 'password') {
+//     password.type = 'text'
+//     passwordLabel.innerHTML = `<i class='bx bx-show' style='color:#1471ff' ></i>`
+//   } else {
+//     password.type = 'password'
+//     passwordLabel.innerHTML = `<i class='bx bx-hide' style='color:#1471ff' ></i>`
+//   }
+
+//   password.focus()
+// })
+
+  function togglePasswordVisibility(ele){
+    $password = ele.parent().siblings()
+    if($password.attr('type') === 'password'){
+      // console.log('password')
+      $password.attr('type','text');
+      ele.children().removeClass('bx-hide').addClass('bx-show');
+    }else{
+      // console.log('text')
+      $password.attr('type','password');
+      ele.children().removeClass('bx-show').addClass('bx-hide');
+    }
+  }
+

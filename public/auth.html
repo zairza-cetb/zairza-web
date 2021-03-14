@@ -11,6 +11,7 @@
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="./css/auth.css" />
   </head>
   <body>
@@ -36,13 +37,19 @@
                         placeholder="Email"
                         required
                       />
-                      <small class="text-red-500 hidden">Invalid Email Address</small>
-                      <input
-                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                        type="password"
-                        placeholder="Password"
-                        required
-                      />
+                      <small class="text-red-500 hidden invalid_email">Invalid Email Address</small>
+                      <div class="relative">
+                        <input
+                          class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 js-password"
+                          type="password"
+                          placeholder="Password"
+                          required
+                        />
+                        <div class="absolute inset-y-0 right-0 flex items-center px-2">
+                          <!-- <input class="hidden js-password-toggle" id="toggle" type="checkbox" /> -->
+                          <span class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" onclick="togglePasswordVisibility($(this))"><i class='bx bx-hide' style='color:#1471ff' ></i></span>
+                        </div>
+                      </div>
                       <button id="signin-btn"
                         class="mt-5 tracking-wide font-semibold register-btn text-gray-100 hover:text-white w-full py-4 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                       >
@@ -180,22 +187,34 @@
                       required
                     />
                     <small class="text-red-500 hidden invalid_email">Invalid Email Address</small>
-                    <input
-                      class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                      type="password"
-                      placeholder="Password"
-                      id="signup-password"
-                      required
-                    />
-                    <input
-                      class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                      type="password"
-                      placeholder="Confirm Password"
-                      id="confirm_password"
-                      required
-                    />
+                    <div class="relative">
+                      <input
+                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 js-password"
+                        type="password"
+                        placeholder="Password"
+                        required
+                        id="signup-password"
+                      />
+                      <div class="absolute inset-y-0 right-0 flex items-center px-2">
+                        <!-- <input class="hidden js-password-toggle" type="checkbox" /> -->
+                        <span class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" onclick="togglePasswordVisibility($(this))"><i class='bx bx-hide' style='color:#1471ff' ></i></span>
+                      </div>
+                    </div>
+                    <div class="relative">
+                      <input
+                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 js-password"
+                        type="password"
+                        placeholder="Confirm Password"
+                        id="confirm_password"
+                        required
+                      />
+                      <div class="absolute inset-y-0 right-0 flex items-center px-2">
+                        <!-- <input class="hidden js-password-toggle" type="checkbox"/> -->
+                        <span class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" onclick="togglePasswordVisibility($(this))"><i class='bx bx-hide' style='color:#1471ff' ></i></span>
+                      </div>
+                    </div>
                     <small class="text-red-500 hidden no_match">Passwords donot match</small>
-                    <button id="signup-btn"
+                    <button id="signin-btn"
                       class="mt-5 tracking-wide font-semibold register-btn text-gray-100 hover:text-white w-full py-4 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                     >
                       <svg
