@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const checkUserLoggedIn = (req, res, next) => {
+  req.user ? next(): res.sendStatus(401);
+}
 
 module.exports = router;

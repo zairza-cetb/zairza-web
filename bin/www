@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+/**
+ * Add environment variables
+ */
+require('dotenv').config()
 
 /**
  * Module dependencies.
