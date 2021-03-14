@@ -5,24 +5,36 @@ module.exports = (app, passport) => {
   });
 
   // ---- For local sign in ----------
-  app.post(
-    "/login",
-    passport.authenticate("local-login", {
-      successRedirect: "/profile",
-      failureRedirect: "/auth?failed=true",
-    })
-  );
+  app.post("/login", function (req, res) {
+    passport.authenticate("local-login", function (err, user, info) {
+      if (err) {
+        res.status(404).json(err);
+        return;
+      }
 
-  app.post(
-    "/signup",
-    passport.authenticate("local-signup", {
-      successRedirect: "/profile",
-      failureRedirect: "/auth?falied=true",
-    }),
-    function(req,res){
-      console.log()
-    }
-  );
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res.status(401).json(info);
+      }
+    })(req, res);
+  });
+
+  app.post("/signup", function (req, res) {
+    passport.authenticate("local-signup", function (err, user, info) {
+      console.log(err,user,info);
+      if (err) {
+        res.status(404).json(err);
+        return;
+      }
+
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res.status(401).json(info);
+      }
+    })(req, res);
+  });
 
   // -------- For google sign in -------
   app.get(
