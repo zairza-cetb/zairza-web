@@ -1,15 +1,15 @@
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
+var GitHubStrategy = require("passport-github").Strategy;
 
 module.exports = (passport) => {
   passport.use(
-    new GoogleStrategy(
+    new GitHubStrategy(
       {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "/auth/google/cb/",
-        passReqToCallback: true,
+        clientID: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        callbackURL: "/auth/github/cb",
       },
       function (req, token, refreshToken, profile, done) {
+        console.log(token,profile, refreshToken, profile);
         if (!req.user) {
           User.findOne(
             { email: profile.emails[0].value },
@@ -17,14 +17,14 @@ module.exports = (passport) => {
               if (err) return done(err);
 
               if (user) {
-                google_auth = user.third_party_auth
+                github_auth = user.third_party_auth
                   .filter(
-                    (third_party) => third_party.provider_name == "google"
+                    (third_party) => third_party.provider_name == "github"
                   )
                   .pop();
-                if (!google_auth) {
+                if (!github_auth) {
                   user.third_party_auth.push({
-                    provider_name: "google",
+                    provider_name: "github",
                     provider_id: profile.id,
                     provider_token: token,
                   });
@@ -42,7 +42,7 @@ module.exports = (passport) => {
                 newUser.email = profile.emails[0].value;
 
                 newUser.third_party_auth.push({
-                  provider_name: "google",
+                  provider_name: "github",
                   provider_id: profile.id,
                   provider_token: token,
                 });
@@ -62,7 +62,7 @@ module.exports = (passport) => {
           user.email = profile.emails[0].value;
 
           user.third_party_auth.push({
-            provider_name: "google",
+            provider_name: "github",
             provider_id: profile.id,
             provider_token: token,
           });
