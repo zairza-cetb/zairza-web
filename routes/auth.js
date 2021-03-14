@@ -13,8 +13,8 @@ module.exports = (app, passport) => {
       }
 
       if (user) {
-        req.logIn(user, function(err){
-          if(err){
+        req.logIn(user, function (err) {
+          if (err) {
             return res.status(500).json(err);
           }
           res.status(200).json(user.id);
@@ -27,15 +27,15 @@ module.exports = (app, passport) => {
 
   app.post("/signup", function (req, res, next) {
     passport.authenticate("local-signup", function (err, user, info) {
-      console.log(err,user,info);
+      console.log(err, user, info);
       if (err) {
         res.status(404).json(err);
         return;
       }
 
       if (user) {
-        req.logIn(user, function(err){
-          if(err){
+        req.logIn(user, function (err) {
+          if (err) {
             res.status(500).json(err);
           }
           res.status(200).json(user.id);
@@ -59,4 +59,32 @@ module.exports = (app, passport) => {
     })
   );
 
+  // -------- For github authentication -------
+  app.get(
+    "/auth/github",
+    passport.authenticate("github", { scope: ["profile", "email"] })
+  );
+  app.get(
+    "/auth/github/cb/",
+    passport.authenticate("github", {
+      successRedirect: "/profile",
+      failureRedirect: "/auth?failed=true",
+    })
+  );
+
+  // -------- for unlinking accounts ---------
+  app.get("/unlink/:name", function (req, res, next) {
+    var user = req.user;
+    var organisation_name = req.params.name;
+    var organisation_details = user.third_party_auth
+      .filter((third_party) => third_party.provider_name == organisation_name)
+      .pop();
+
+    if (organisation_details) {
+      user.third_party_auth.pull({ _id: organisation_details.id });
+    }
+    user.save(function (err) {
+      res.sendStatus(200);
+    });
+  });
 };

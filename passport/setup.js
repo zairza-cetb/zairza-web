@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/Users");
 const local_auth = require("./local_auth.js");
 const google_auth = require("./google_auth.js");
+const github_auth = require("./github_auth.js");
 
 module.exports = function (passport) {
   passport.serializeUser((user, done) => {
@@ -16,5 +17,6 @@ module.exports = function (passport) {
 
   local_auth(passport);
   google_auth(passport);
-
+  github_auth(passport);
+  
 };
