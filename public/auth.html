@@ -27,7 +27,7 @@
                   </h1>
               <div class="mx-auto max-w-md mt-8">
                 <div class="w-full flex-1 mt-8">
-                  <div class="my-12 border-b text-center">
+                  <div class="my-12 border-b">
 
                     <div class="mx-auto max-w-md">
                       <input
@@ -35,6 +35,7 @@
                         type="email"
                         placeholder="Email"
                       />
+                      <small class="text-red-500 hidden">Invalid Email Address</small>
                       <input
                         class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                         type="password"
@@ -175,6 +176,7 @@
                       type="email"
                       placeholder="Email"
                     />
+                    <small class="text-red-500 hidden">Invalid Email Address</small>
                     <input
                       class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="password"
@@ -216,5 +218,8 @@
       </div>
     </section>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
   <script src="./js/auth.js"></script>
 </html>
