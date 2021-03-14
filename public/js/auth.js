@@ -13,18 +13,40 @@ $("input[type='email']").on("change", function(){
   $response = validateEmail($(this).val());
   if(!$response){
     $(this).addClass("border-2 border-red-500");
-    $(this).siblings("small").removeClass("hidden");
+    $(this).siblings("small.invalid_email").removeClass("hidden");
   }else{
     $(this).removeClass("border-2 border-red-500");
-    $(this).siblings("small").addClass("hidden");
+    $(this).siblings("small.invalid_email").addClass("hidden");
   }
 })
+// Confirm Password Validation
+$("#confirm_password").on("change", function(){
+  $password = $("#signup-password").val();
+  $confirm_password = $(this).val();
+  if($password != $confirm_password){
+    $(this).addClass("border-2 border-red-500");
+    $(this).siblings("small.no_match").removeClass("hidden");
+  }
+  else{
+    $(this).removeClass("border-2 border-red-500");
+    $(this).siblings("small.no_match").addClass("hidden");
+  }
+})
+// Auth loader 
+// $(document).ajaxStart(function() {
+//   $(".container").addClass("animate-pulse");
+// });
 
+// $(document).ajaxStop(function() {
+//   setTimeout(function() {
+//     $(".container").removeClass("animate-pulse");
+//   },3000)
+// });
 // Signup form submit
 $("#signup-btn").on("click", function(){
   $email = $("#signup input[type='email']").val();
   $password = $("#signup input[type='password']").val();
-  console.log("hey")
+  // console.log($email)
   let signupData = {
     email: $email,
     password: $password
@@ -33,12 +55,37 @@ $("#signup-btn").on("click", function(){
     type: "POST",
     url:"/signup",
     data:signupData,
-    dataType: "json"
+    dataType: "json",
+
   })
   .done(function(data){
     console.log(data)
   })
   .fail(function(data){
-    console.log(data.mesage)
+    console.log(data.responseJSON.message)
+  })
+})
+// Signin form submit
+$("#signin-btn").on("click", function(){
+  $email = $("#signin input[type='email']").val();
+  $password = $("#signin input[type='password']").val();
+  // console.log($email)
+  let signinData = {
+    email: $email,
+    password: $password
+  }
+  $.ajax({
+    type: "POST",
+    url:"/login",
+    data:signinData,
+    dataType: "json",
+    credentials: 'include',
+    withCredentials: true,
+  })
+  .done(function(data){
+    console.log(data)
+  })
+  .fail(function(data){
+    console.log(data)
   })
 })

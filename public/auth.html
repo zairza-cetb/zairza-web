@@ -21,7 +21,7 @@
             <img src="./images/auth/login.png" alt="" />
           </div>
           <div class="formBx">
-            <form action="" id="signup">
+            <form action="" id="signin">
                 <h1 class="text-2xl xl:text-3xl text-center font-extrabold">
                     Sign In
                   </h1>
@@ -34,14 +34,16 @@
                         class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                         type="email"
                         placeholder="Email"
+                        required
                       />
                       <small class="text-red-500 hidden">Invalid Email Address</small>
                       <input
                         class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                         type="password"
                         placeholder="Password"
+                        required
                       />
-                      <button
+                      <button id="signin-btn"
                         class="mt-5 tracking-wide font-semibold register-btn text-gray-100 hover:text-white w-full py-4 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                       >
                         <svg
@@ -114,7 +116,7 @@
         </div>
         <div class="user signupBx">
           <div class="formBx">
-            <form action="" onsubmit="return false;">
+            <form action=""  id="signup">
               <div class="mt-12 flex flex-col items-center">
                 <h1 class="text-2xl xl:text-3xl font-extrabold">
                   Sign up for Zairza
@@ -175,13 +177,24 @@
                       class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                       type="email"
                       placeholder="Email"
+                      required
                     />
-                    <small class="text-red-500 hidden">Invalid Email Address</small>
+                    <small class="text-red-500 hidden invalid_email">Invalid Email Address</small>
                     <input
                       class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                       type="password"
                       placeholder="Password"
+                      id="signup-password"
+                      required
                     />
+                    <input
+                      class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                      type="password"
+                      placeholder="Confirm Password"
+                      id="confirm_password"
+                      required
+                    />
+                    <small class="text-red-500 hidden no_match">Passwords donot match</small>
                     <button id="signup-btn"
                       class="mt-5 tracking-wide font-semibold register-btn text-gray-100 hover:text-white w-full py-4 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                     >
