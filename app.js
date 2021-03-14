@@ -22,6 +22,8 @@ mongoose
   .then(console.log(`MongoDB connected`))
   .catch((err) => console.log(err));
 
+
+app.set('view engine', 'ejs');
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

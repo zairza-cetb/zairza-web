@@ -10,6 +10,7 @@ module.exports = (passport) => {
         passReqToCallback: true,
       },
       function (req, token, refreshToken, profile, done) {
+        console.log("token",token,"profile",profile,"reftoken",refreshToken,"profile",profile);
         if (!req.user) {
           User.findOne(
             { email: profile.emails[0].value },
@@ -57,9 +58,6 @@ module.exports = (passport) => {
         } else {
           // For users that are already authenticated through other methods
           var user = req.user;
-
-          user.name = profile.displayName;
-          user.email = profile.emails[0].value;
 
           user.third_party_auth.push({
             provider_name: "google",

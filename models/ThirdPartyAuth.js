@@ -12,6 +12,10 @@ const ThirdPartyProviderSchema = new mongoose.Schema({
     provider_token: {
         type: String,
         default: null
+    },
+    provider_data: {
+        type: {},
+        default: null
     }
 })
 
