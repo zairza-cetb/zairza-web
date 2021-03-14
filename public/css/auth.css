@@ -80,7 +80,7 @@ section .container .user .formBx form input {
   padding: 10px;
   background: #f5f5f5;
   color: #333;
-  border: none;
+  /* border: none; */
   outline: none;
   box-shadow: none;
   margin: 8px 0;
@@ -156,10 +156,10 @@ section .container.active .signinBx .imgBx {
   left: -100%;
 }
 
-.login-btn{
+.login-btn, .register-btn{
     background-color: #3888ff;
 }
-.login-btn:hover{
+.login-btn:hover,.register-btn:hover{
     background-color: #1471FF;
 }
 .register-btn{
