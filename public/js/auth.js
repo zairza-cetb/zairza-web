@@ -25,11 +25,11 @@ $("#confirm_password").on("change", function(){
   $confirm_password = $(this).val();
   if($password != $confirm_password){
     $(this).addClass("border-2 border-red-500");
-    $(this).siblings("small.no_match").removeClass("hidden");
+    $(this).parent().siblings("small.no_match").removeClass("hidden");
   }
   else{
     $(this).removeClass("border-2 border-red-500");
-    $(this).siblings("small.no_match").addClass("hidden");
+    $(this).parent().siblings("small.no_match").addClass("hidden");
   }
 })
 // Auth loader 
