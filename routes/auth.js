@@ -54,7 +54,7 @@ module.exports = (app, passport) => {
   app.get(
     "/auth/google/cb/",
     passport.authenticate("google", {
-      successRedirect: "/profile",
+      successRedirect: "/me",
       failureRedirect: "/auth?failed=true",
     })
   );
@@ -67,7 +67,7 @@ module.exports = (app, passport) => {
   app.get(
     "/auth/github/cb/",
     passport.authenticate("github", {
-      successRedirect: "/profile",
+      successRedirect: "/me",
       failureRedirect: "/auth?failed=true",
     })
   );

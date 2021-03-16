@@ -169,6 +169,10 @@ section .container.active .signinBx .imgBx {
     background-color: #1471FF;
 }
 
+#signup_google,#signup_github,#signin_google,#signin_github{
+  outline: none !important;
+}
+
 @media (max-width: 1024px) {
   section .container {
     max-width: 100%;

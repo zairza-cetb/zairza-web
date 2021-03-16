@@ -1,7 +1,25 @@
 const toggleForm = () => {
-  const container = document.querySelector(".container");
-  container.classList.toggle("active");
+  $container = $(".container");
+  $container.toggleClass("active");
 };
+
+$(document).ready(()=>{
+  const formType = window.location.href.split("#")[1];
+  console.log(formType)
+  if (formType === "signup") {
+    console.log("signup")
+    if (!$('.container').hasClass('active')) {
+      console.log("not active")
+      $('.container').addClass('active');
+    } else {
+      console.log("active")
+      $('.container').removeClass('active');
+    }
+  } else {
+    console.log("signin")
+    $('.container').removeClass('active');
+  }
+})
 
 // Email validate through regex
 function validateEmail(email) {
@@ -44,8 +62,8 @@ $("#confirm_password").on("change", function(){
 // });
 // Signup form submit
 $("#signup-btn").on("click", function(){
-  $email = $("#signup input[type='email']").val();
-  $password = $("#signup input[type='password']").val();
+  $email = $("#signup_form input[type='email']").val();
+  $password = $("#signup_form input[type='password']").val();
   // console.log($email)
   let signupData = {
     email: $email,
@@ -60,15 +78,16 @@ $("#signup-btn").on("click", function(){
   })
   .done(function(data){
     console.log(data)
+    window.location.href='/me'
   })
-  .fail(function(data){
-    console.log(data.responseJSON.message)
+  .fail(function(err){
+    console.log(err.responseJSON.message)
   })
 })
 // Signin form submit
 $("#signin-btn").on("click", function(){
-  $email = $("#signin input[type='email']").val();
-  $password = $("#signin input[type='password']").val();
+  $email = $("#signin_form input[type='email']").val();
+  $password = $("#signin_form input[type='password']").val();
   // console.log($email)
   let signinData = {
     email: $email,
@@ -82,30 +101,14 @@ $("#signin-btn").on("click", function(){
   })
   .done(function(data){
     console.log(data)
+    window.location.href='/me'
   })
-  .fail(function(data){
-    console.log(data)
+  .fail(function(err){
+    console.log(err)
   })
 })
 
 // Show/Hide password
-// const passwordToggle = document.querySelector('.js-password-toggle')
-
-// passwordToggle.addEventListener('change', function() {
-//   const password = document.querySelector('.js-password'),
-//     passwordLabel = document.querySelector('.js-password-label')
-
-//   if (password.type === 'password') {
-//     password.type = 'text'
-//     passwordLabel.innerHTML = `<i class='bx bx-show' style='color:#1471ff' ></i>`
-//   } else {
-//     password.type = 'password'
-//     passwordLabel.innerHTML = `<i class='bx bx-hide' style='color:#1471ff' ></i>`
-//   }
-
-//   password.focus()
-// })
-
   function togglePasswordVisibility(ele){
     $password = ele.parent().siblings()
     if($password.attr('type') === 'password'){
@@ -119,3 +122,13 @@ $("#signin-btn").on("click", function(){
     }
   }
 
+// ThirdParty Signin
+$('#signin_google, #signup_google').on('click', function(e) {
+  e.preventDefault();
+  window.location.href='/auth/google';
+})
+
+$('#signin_github, #signup_github').on('click', function(e) {
+  e.preventDefault();
+  window.location.href='/auth/github';
+})

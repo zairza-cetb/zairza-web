@@ -1,0 +1,58 @@
+.acc_update_btn {
+  background-color: #3888ff;
+}
+.acc_update_btn:hover {
+  background-color: #1471ff;
+}
+
+.switch {
+  width: 60px;
+  height: 30px;
+  display: inline-block;
+}
+.switch input {
+  display: none;
+}
+.switch .slider {
+  position: absolute;
+  background-color: #ff7610;
+  width: inherit;
+  height: inherit;
+  border-radius: 34px;
+  cursor: pointer;
+  transition: background-color 1s linear;
+}
+.switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+  background-color: #fff;
+  transition: 0.4s, background-color 1s linear;
+}
+.switch input:checked + .slider {
+  background-color: #1471ff;
+}
+.switch input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media all and (max-width: 410px) {
+  .window {
+    width: 100%;
+    min-width: 270px;
+  }
+}
