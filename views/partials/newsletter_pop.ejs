@@ -1,8 +1,8 @@
 
 
-<div class="wrapper: h-screen w-screen bg-gray-100 flex items-center justify-center">
-    <div class="card: w-64 p-6 bg-white rounded-lg shadow-lg flex flex-col items-center text-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x card__cross: fas fa-times self-end text-xl text-gray-400 hover:text-gray-500 cursor-pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<div class="wrapper: h-screen w-screen flex items-center justify-center absolute z-10 hidden" id="newsletter_pop">
+    <div class="card: w-64 p-6 bg-white rounded-lg shadow-2xl flex flex-col items-center text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" id="newsletter-close-icon" class="icon icon-tabler icon-tabler-x card__cross: fas fa-times self-end text-xl text-gray-400 hover:text-gray-500 cursor-pointer" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
             <line x1="18" y1="6" x2="6" y2="18"></line>
             <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -16,7 +16,7 @@
   
       <div class="card__form: w-full flex flex-col my-6">
         <!-- <input class="card__input: w-full h-10 pl-4 border divide-gray-200 rounded-full mb-4 outline-none" type="email" placeholder="Enter your email address" /> -->
-        <button class="card__submit: w-full h-10 rounded-full bg-red-700 hover:bg-red-800 text-white" onclick="window.location.href='/auth#signup'">Subscribe</button>
+        <button class="card__submit: w-full h-10 rounded-full bg-red-700 hover:bg-red-800 text-white" onclick="window.location.href='/profile'">Subscribe</button>
       </div>
     </div>
 </div>

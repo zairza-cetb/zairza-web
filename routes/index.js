@@ -28,7 +28,7 @@ router.get('/reset/:id', function(req, res, next){
 
 /* GET profile page. */
 router.get('/profile', function(req, res, next){
-    res.render("pages/profile");
+    res.render("pages/profile", );
 })
 
 
