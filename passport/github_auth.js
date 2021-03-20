@@ -9,7 +9,7 @@ module.exports = (passport) => {
         callbackURL: "/auth/github/cb",
       },
       function (req, token, refreshToken, profile, done) {
-        console.log("token",token,"profile",profile,"reftoken",refreshToken,"profile",profile);
+        // console.log("token",token,"profile",profile,"reftoken",refreshToken,"profile",profile);
         if (!req.user) {
           User.findOne(
             { email: profile.emails[0].value },

@@ -27,7 +27,7 @@ module.exports = (app, passport) => {
 
   app.post("/signup", function (req, res, next) {
     passport.authenticate("local-signup", function (err, user, info) {
-      console.log(err, user, info);
+      // console.log(err, user, info);
       if (err) {
         res.status(404).json(err);
         return;

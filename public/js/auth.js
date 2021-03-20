@@ -5,18 +5,13 @@ const toggleForm = () => {
 
 $(document).ready(()=>{
   const formType = window.location.href.split("#")[1];
-  console.log(formType)
   if (formType === "signup") {
-    console.log("signup")
     if (!$('.container').hasClass('active')) {
-      console.log("not active")
       $('.container').addClass('active');
     } else {
-      console.log("active")
       $('.container').removeClass('active');
     }
   } else {
-    console.log("signin")
     $('.container').removeClass('active');
   }
 })
@@ -77,7 +72,7 @@ $("#signup-btn").on("click", function(){
 
   })
   .done(function(data){
-    console.log(data)
+    // console.log(data)
     window.location.href='/me'
   })
   .fail(function(err){
@@ -100,7 +95,7 @@ $("#signin-btn").on("click", function(){
     dataType: "json",
   })
   .done(function(data){
-    console.log(data)
+    // console.log(data)
     window.location.href='/me'
   })
   .fail(function(err){

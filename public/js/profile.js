@@ -15,7 +15,6 @@ function toggleFieldVisibility(ele){
 
 // Iterate over checkbox fields to connect/disconnect third_party_auth
 function checkboxToggled(ele) {
-    console.log("banda")
     if (ele.prop('checked') == true) {
       $provider_name = ele.parent().siblings(".label").text().toLowerCase().split(" ")[2];
       if ($provider_name == "google") {
@@ -23,7 +22,7 @@ function checkboxToggled(ele) {
       } else if ($provider_name == "github") {
         window.location.href = '/auth/github'
       } else {
-        console.log("newletter")
+        // console.log("newletter")
       }
     }
 }

@@ -114,7 +114,6 @@ $(document).ready(function () {
   // Newsletter cookie
   let visited = $.cookie("visited");
   if (visited != "yes") {
-    console.log("yes")
     $("#newsletter_pop").toggleClass("hidden");
     $("main").toggleClass("opacity-10");
   }
