@@ -7,6 +7,7 @@ module.exports = (passport) => {
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
         callbackURL: "/auth/github/cb",
+        passReqToCallback: true,
       },
       function (req, token, refreshToken, profile, done) {
         // console.log("token",token,"profile",profile,"reftoken",refreshToken,"profile",profile);
@@ -57,7 +58,7 @@ module.exports = (passport) => {
         } else {
           // For users that are already authenticated through other methods
           var user = req.user;
-
+          
           user.third_party_auth.push({
             provider_name: "github",
             provider_id: profile.id,

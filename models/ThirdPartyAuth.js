@@ -13,6 +13,10 @@ const ThirdPartyProviderSchema = new mongoose.Schema({
         type: String,
         default: null
     },
+    provider_email: {
+        type: String,
+        default: null
+    },
     provider_data: {
         type: {},
         default: null

@@ -58,7 +58,7 @@ module.exports = (passport) => {
         } else {
           // For users that are already authenticated through other methods
           var user = req.user;
-
+          
           user.third_party_auth.push({
             provider_name: "google",
             provider_id: profile.id,
