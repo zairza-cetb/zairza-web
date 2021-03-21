@@ -9,9 +9,8 @@ const UserSchema = new mongoose.Schema(
     name: {
       type: String,
     },
-    primary_email: {
+    email: {
       type: String,
-      unique: true,
       index:true
     },
     email_is_verified: {

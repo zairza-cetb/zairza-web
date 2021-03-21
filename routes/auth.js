@@ -46,6 +46,9 @@ module.exports = (app, passport) => {
     })(req, res, next);
   });
 
+  app.get('/popup', (req, res, next) => {
+    res.render('pages/authPopCallback', {layout: false});
+  });
   // -------- For google authentication -------
   app.get(
     "/auth/google",
@@ -54,8 +57,8 @@ module.exports = (app, passport) => {
   app.get(
     "/auth/google/cb/",
     passport.authenticate("google", {
-      successRedirect: "/me",
-      failureRedirect: "/auth?failed=true",
+      successRedirect: "/popup",
+      failureRedirect: "/popup",
     })
   );
 
@@ -67,8 +70,8 @@ module.exports = (app, passport) => {
   app.get(
     "/auth/github/cb/",
     passport.authenticate("github", {
-      successRedirect: "/me",
-      failureRedirect: "/auth?failed=true",
+      successRedirect: "/popup",
+      failureRedirect: "/popup",
     })
   );
 

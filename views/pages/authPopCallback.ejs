@@ -1,0 +1,14 @@
+<!doctype html>
+<html>
+<head><title>Log-In</title></head>
+<script>
+	if (window.opener) {
+		window.opener.postMessage("popup-done", "*"); 
+		setTimeout(function() { window.close() }, 0);
+	}
+</script>
+</head>
+<body>
+	{{#if user}} <h1 style="text-align: center">Logging in...</h1> {{/if}}
+</body>
+</html>
