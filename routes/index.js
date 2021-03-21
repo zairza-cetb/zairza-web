@@ -12,8 +12,9 @@ router.get('/auth', function(req, res, next){
 })
 
 /* GET profile page. */
-router.get('user/me', function(req, res, next){
-    res.render("pages/me", );
+router.get('/me', function (req, res, next) {
+    res.render("pages/me", {user: req.user} );
+    console.log(req.user)
 })
 
 /* GET settings page. */
