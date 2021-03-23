@@ -1,6 +1,13 @@
 var express = require("express");
 var router = express.Router();
 
+const editable_fields = new Set([
+  "name",
+  "email",
+  "registration_no",
+  "newsletter_subscription",
+]);
+
 /* GET users listing. */
 const checkUserLoggedIn = (req, res, next) => {
   req.user
@@ -24,9 +31,17 @@ router.put("/edit", checkUserLoggedIn, function (req, res, next) {
         "Your registration number is not registered at Zairza. Please contact us to register you at Zairza",
     });
   } else {
-    // Deleting confidential fields
-    delete req.body.third_party_auth;
-    delete req.body.password;
+    // Check for editable fields fields only
+
+    var non_editable_fields = Object.keys(req.body).filter(
+      (x) => !editable_fields.has(x)
+    );
+
+    if (non_editable_fields.length > 0) {
+      return res.status(401).json({
+        message: "Accessing undefined fields",
+      });
+    }
 
     User.findByIdAndUpdate(req.user.id, req.body, { new: true })
       .then((user) => {

@@ -11,10 +11,11 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
+const admin_panel = require("./routes/admin_panel");
 
 const app = express();
 
-mongoose
+const connection = mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -22,6 +23,7 @@ mongoose
   })
   .then(console.log(`MongoDB connected`))
   .catch((err) => console.log(err));
+admin_panel(app, connection);
 
 // For session storage
 var store = new MongoDBStore({

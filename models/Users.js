@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const ValidRegNos = require("./ValidRegNos")
+const ValidRegNos = require("./ValidRegNos");
 const ThirdPartyProviderSchema = require("./ThirdPartyAuth");
-
 
 const UserSchema = new mongoose.Schema(
   {
@@ -11,7 +10,7 @@ const UserSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      index:true
+      index: true,
     },
     registration_no: {
       type: Number,
@@ -25,6 +24,12 @@ const UserSchema = new mongoose.Schema(
     newsletter_subscription: {
       applied: { type: Boolean, default: false },
       applied_at: Date,
+    },
+    role: {
+      type: String,
+      enum: ["admin", "restricted"],
+      required: true,
+      default: "restricted",
     },
   },
   {
@@ -48,6 +53,6 @@ UserSchema.methods.validPassword = function (password) {
 UserSchema.methods.checkValidRegistrationNo = function (registration_no) {
   // TODO: to be done
   return true;
-}
+};
 
 module.exports = User = mongoose.model("users", UserSchema);
