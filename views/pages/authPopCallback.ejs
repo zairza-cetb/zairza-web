@@ -4,7 +4,7 @@
 <script>
 	if (window.opener) {
 		window.opener.postMessage("popup-done", "*"); 
-		setTimeout(function() {}, 0);
+		setTimeout(function() {window.close()}, 0);
 	}
 </script>
 </head>
