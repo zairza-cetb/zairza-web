@@ -14,8 +14,8 @@ module.exports = (passport) => {
         if (!req.user) {
           User.findOne(
             {
-              "third_party.provider_email": profile.emails[0].value,
-              "third_party.provider_name": "google",
+              "third_party_auth.provider_email": profile.emails[0].value,
+              "third_party_auth.provider_name": "google",
             },
             function (err, user) {
               if (err) return done(err);

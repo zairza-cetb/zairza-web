@@ -14,8 +14,8 @@ module.exports = (passport) => {
         if (!req.user) {
           User.findOne(
             {
-              "third_party.provider_email": profile.emails[0].value,
-              "third_party.provider_name": "github",
+              "third_party_auth.provider_email": profile.emails[0].value,
+              "third_party_auth.provider_name": "github",
             },
             function (err, user) {
               if (err) return done(err);
@@ -51,8 +51,8 @@ module.exports = (passport) => {
             "third_party.provider_name": "github",
           });
 
-          if(doesUserExist){
-            return done(null, false, {message: "User already exists"});
+          if (doesUserExist) {
+            return done(null, false, { message: "User already exists" });
           }
 
           user.third_party_auth.push({
@@ -76,4 +76,3 @@ module.exports = (passport) => {
     )
   );
 };
-
