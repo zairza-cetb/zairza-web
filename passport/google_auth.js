@@ -43,34 +43,38 @@ module.exports = (passport) => {
             }
           );
         } else {
-          // For users that are already authenticated through other methods
-          var user = req.user;
+           // For users that are already authenticated through other methods
+           var user = req.user;
 
-          const doesUserExist = User.exists({
-            "third_party.provider_email": profile.emails[0].value,
-              "third_party.provider_name": "google",
-          });
-
-          if(doesUserExist){
-            return done(null, false, {message: "User already exists"});
-          }
-
-          user.third_party_auth.push({
-            provider_name: "google",
-            provider_id: profile.id,
-            provider_token: token,
-            provider_email: profile.emails[0].value,
-            provider_data: profile,
-          });
-
-          if (!user.email) {
-            user.email = profile.emails[0].value;
-          }
-
-          user.save(function (err) {
-            if (err) throw err;
-            return done(null, user);
-          });
+           User.exists(
+             {
+               "third_party_auth.provider_email": profile.emails[0].value,
+               "third_party_auth.provider_name": "google",
+             },
+             function (err, existing_user) {
+               if (err) throw err;
+               if (existing_user) {
+                 return done(null, false, { message: "User already exists" });
+               }
+ 
+               user.third_party_auth.push({
+                 provider_name: "google",
+                 provider_id: profile.id,
+                 provider_token: token,
+                 provider_email: profile.emails[0].value,
+                 provider_data: profile,
+               });
+ 
+               if (!user.email) {
+                 user.email = profile.emails[0].value;
+               }
+ 
+               user.save(function (err) {
+                 if (err) throw err;
+                 return done(null, user);
+               });
+             }
+           );
         }
       }
     )
