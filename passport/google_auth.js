@@ -48,7 +48,7 @@ module.exports = (passport) => {
 
           const doesUserExist = User.exists({
             "third_party.provider_email": profile.emails[0].value,
-            "third_party.provider_name": "google",
+              "third_party.provider_name": "google",
           });
 
           if(doesUserExist){

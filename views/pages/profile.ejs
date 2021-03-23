@@ -82,27 +82,22 @@
                 ></span>
               </div>
             </div>
-            <div class="flex flex-col justify-between h-32 my-4" id="checkbox-grp">
-              <div class="item flex justify-around">
+            <div class="flex flex-col justify-between my-4" id="checkbox-grp">
+              <div class="item flex justify-between items-center my-2">
                 <div class="label">Connect with Google</div>
-                <label class="switch"
-                  ><input checked="false" type="checkbox" onchange="checkboxToggled($(this))"/>
-                  <div class="slider"></div>
-                </label>
+                <%- include('../partials/connect.ejs') %>
               </div>
-              <div class="item flex justify-around">
+              <div class="item flex justify-between items-center my-2">
                 <div class="label">Connect with Github</div>
-                <label class="switch"
+                <!-- <label class="switch"
                   ><input type="checkbox" onchange="checkboxToggled($(this))" checked="false"/>
                   <div class="slider"></div>
-                </label>
+                </label> -->
+                <%- include('../partials/connect.ejs') %>
               </div>
-              <div class="item flex justify-around">
+              <div class="item flex justify-between items-center my-2">
                 <div class="label">Newsletter subscription</div>
-                <label class="switch"
-                  ><input type="checkbox" onchange="checkboxToggled($(this))" checked="false"/>
-                  <div class="slider"></div>
-                </label>
+                <%- include('../partials/connect.ejs') %>
               </div>
             </div>
             <button
