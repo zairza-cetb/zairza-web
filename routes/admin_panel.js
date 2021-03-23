@@ -8,10 +8,20 @@ module.exports = (app, mongoose_connection) => {
   AdminBro.registerAdapter(AdminBroMongoose);
   const adminBro = new AdminBro({
     Database: [mongoose_connection],
-    resources: [User, ValidRegNos],
+    resources: [
+      {
+        resource: User,
+        options: {
+          listProperties: ["name", "email", "registration_no"],
+        },
+      },
+      { resource: ValidRegNos, options: { listProperties: ["reg_nos"] } },
+    ],
     rootPath: "/admin",
     branding: {
       companyName: "Zairza",
+      logo: false,
+      softwareBrothers: false,
     },
   });
 
