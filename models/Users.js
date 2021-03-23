@@ -11,20 +11,13 @@ const UserSchema = new mongoose.Schema(
     },
     email: {
       type: String,
+      unique:true,
       index:true
-    },
-    email_is_verified: {
-      type: Boolean,
-      default: false,
     },
     registration_no: {
       type: Number,
       unique: true,
       sparse: true,
-    },
-    year: {
-      type:Number,
-      enum: [1,2,3,4,5]
     },
     password: {
       type: String,

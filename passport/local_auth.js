@@ -37,7 +37,6 @@ module.exports = (passport) => {
 
             if (req.user) {
               var user = req.user;
-              user.email = email;
               user.password = user.generateHash(password);
               user.save(function (err) {
                 if (err) throw err;

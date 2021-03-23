@@ -6,7 +6,8 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const passport_setup = require("./passport/setup");
 const auth_routes = require("./routes/auth");
-var session = require("express-session");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
@@ -22,8 +23,17 @@ mongoose
   .then(console.log(`MongoDB connected`))
   .catch((err) => console.log(err));
 
+// For session storage
+var store = new MongoDBStore({
+  uri: process.env.MONGO_URI,
+  collection: "Sessions",
+});
+// Catch errors
+store.on("error", function (error) {
+  console.log(error);
+});
 
-app.set('view engine', 'ejs');
+app.set("view engine", "ejs");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,7 +46,12 @@ app.use(
 passport_setup(passport);
 
 app.use(
-  session({ secret: process.env.SECRET, resave: true, saveUninitialized: true })
+  session({
+    secret: process.env.SECRET,
+    store: store,
+    resave: true,
+    saveUninitialized: true,
+  })
 );
 app.use(passport.initialize());
 app.use(passport.session());
