@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema(
     },
     email: {
       type: String,
+      unique: true,
       index: true,
     },
     registration_no: {
@@ -46,6 +47,7 @@ UserSchema.methods.generateHash = function (password) {
 
 // checking if password is valid
 UserSchema.methods.validPassword = function (password) {
+  if (!this.password) return false;
   return bcrypt.compareSync(password, this.password);
 };
 
