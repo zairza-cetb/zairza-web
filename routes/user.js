@@ -19,14 +19,14 @@ router.get("/me", checkUserLoggedIn, function (req, res, next) {
   res.json(req.user);
 });
 
-router.put("/edit", checkUserLoggedIn, function (req, res, next) {
+router.put("/edit", checkUserLoggedIn, async function (req, res, next) {
   if (!req.user.registration_no && !req.body.registration_no) {
-    res.status(403).json({ message: "Registration number is required" });
+    return res.status(403).json({ message: "Registration number is required" });
   } else if (
     req.body.registration_no &&
-    req.user.checkValidRegistrationNo(req.body.registration_no) == false
+    await req.user.checkValidRegistrationNo(req.body.registration_no) == false
   ) {
-    res.status(403).json({
+    return res.status(403).json({
       message:
         "Your registration number is not registered at Zairza. Please contact us to register you at Zairza",
     });
@@ -39,7 +39,7 @@ router.put("/edit", checkUserLoggedIn, function (req, res, next) {
 
     if (non_editable_fields.length > 0) {
       return res.status(401).json({
-        message: "Accessing undefined fields",
+        message: "Accessing unknown fields",
       });
     }
 

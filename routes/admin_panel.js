@@ -15,7 +15,7 @@ module.exports = (app, mongoose_connection) => {
           listProperties: ["name", "email", "registration_no"],
         },
       },
-      { resource: ValidRegNos, options: { listProperties: ["reg_nos"] } },
+      { resource: ValidRegNos, options: { listProperties: ["registration_no"] } },
     ],
     rootPath: "/admin",
     branding: {

@@ -52,9 +52,8 @@ UserSchema.methods.validPassword = function (password) {
 };
 
 // checking if registration no is valid
-UserSchema.methods.checkValidRegistrationNo = function (registration_no) {
-  // TODO: to be done
-  return true;
+UserSchema.methods.checkValidRegistrationNo = async function (registration_no) {
+  return await ValidRegNos.exists({registration_no});
 };
 
 module.exports = User = mongoose.model("users", UserSchema);
