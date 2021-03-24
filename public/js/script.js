@@ -94,22 +94,6 @@ $(document).ready(function () {
     $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
   });
 
-  // Check user loggedin
-  $.ajax({
-    type: "GET",
-    url: "/user/me",
-    dataType: "json",
-  })
-    .done(function (data) {
-      if (data) {
-        $("#user").empty().html("Profile").attr("href", "/profile");
-      } else {
-        $("#user").empty().html("Login");
-      }
-    })
-    .fail(function (data) {
-      console.log(data.responseJSON.message);
-    });
 
   // Newsletter cookie
   let visited = $.cookie("visited");

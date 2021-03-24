@@ -63,7 +63,7 @@ section .container .user .formBx {
   transition:1s;
 }
 
-section .container .user .formBx form h2 {
+section .container .user .formBx .form h2 {
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
@@ -74,7 +74,7 @@ section .container .user .formBx form h2 {
   color: #555;
 }
 
-section .container .user .formBx form input {
+section .container .user .formBx .form input {
   position: relative;
   width: 100%;
   padding: 10px;
@@ -89,7 +89,7 @@ section .container .user .formBx form input {
   font-weight: 300;
 }
 
-section .container .user .formBx form input[type="submit"] {
+section .container .user .formBx .form input[type="submit"] {
   max-width: 100px;
   background: #1471FF;
   color: #fff;
@@ -100,7 +100,7 @@ section .container .user .formBx form input[type="submit"] {
   transition:1s;
 }
 
-section .container .user .formBx form .signup {
+section .container .user .formBx .form .signup {
   position: relative;
   margin-top: 20px;
   font-size: 12px;
@@ -110,7 +110,7 @@ section .container .user .formBx form .signup {
   font-weight: 300;
 }
 
-section .container .user .formBx form .signup a {
+section .container .user .formBx .form .signup a {
   font-weight: 600;
   text-decoration: none;
   color: #1471FF;

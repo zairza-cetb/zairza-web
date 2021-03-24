@@ -3,11 +3,14 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next){
-    res.render("pages/index");
+    res.render("pages/index", {user: req.user});
 })
 
 /* GET auth page. */
-router.get('/auth', function(req, res, next){
+router.get('/auth', function (req, res, next) {
+    if (req.user) {
+        return res.redirect('/');
+    }
     res.render("pages/auth");
 })
 
@@ -29,7 +32,7 @@ router.get('/reset/:id', function(req, res, next){
 
 /* GET profile page. */
 router.get('/profile', function(req, res, next){
-    res.render("pages/profile", );
+    res.render("pages/profile", {user: req.user} );
 })
 
 

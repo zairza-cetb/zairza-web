@@ -26,10 +26,10 @@ $("input[type='email']").on("change", function () {
   $response = validateEmail($(this).val());
   if (!$response) {
     $(this).addClass("border-2 border-red-500");
-    $(this).siblings("small.invalid_email").removeClass("hidden");
+    $(this).siblings("small.invalid_email").removeClass("hidden").addClass("block");
   } else {
     $(this).removeClass("border-2 border-red-500");
-    $(this).siblings("small.invalid_email").addClass("hidden");
+    $(this).siblings("small.invalid_email").removeClass("block").addClass("hidden");
   }
 });
 // Confirm Password Validation
@@ -62,10 +62,13 @@ $("#signup-btn").on("click", function () {
   })
     .done(function (data) {
       // console.log(data)
-      window.location.href = "/me";
+      showToast(200, "Successfully signed up")
+      setTimeout(function () {
+        window.location.replace("/me")
+      },2000)
     })
     .fail(function (err) {
-      console.log(err.responseJSON.message);
+      showToast(err.status, err.responseJSON.message)
     });
 });
 // Signin form submit
@@ -85,10 +88,14 @@ $("#signin-btn").on("click", function () {
   })
     .done(function (data) {
       // console.log(data)
-      window.location.href = "/me";
+      showToast(200, "Successfully signed in")
+      setTimeout(function () {
+        window.location.replace("/me")
+      },2000)
     })
     .fail(function (err) {
-      console.log(err);
+      console.log("error")
+      showToast(err.status, err.responseJSON.message)
     });
 });
 
@@ -106,58 +113,4 @@ function togglePasswordVisibility(ele) {
   }
 }
 
-// ThirdParty Signin
-// $('#signin_google, #signup_google').on('click', function(e) {
-//   e.preventDefault();
-//   window.location.href='/auth/google';
-// })
 
-// $('#signin_github, #signup_github').on('click', function(e) {
-//   e.preventDefault();
-//   window.location.href='/auth/github';
-// })
-
-// Auth popup
-let loginWindow;
-
-window.addEventListener("message", function (e) {
-  if (e.data !== "popup-done") {
-    return;
-  }
-  window.location.replace("/me");
-});
-
-$(".loginLink").each(function () {
-  $(this).on("click", function (e) {
-    e.preventDefault();
-    // var url = link.getAttribute('href');
-    let url = $(this).children("span").text();
-    var width = 1366,
-      height = 768;
-    let link;
-    // console.log($(this).children('span').text().split(' ')[4])
-    if (url.toLowerCase().indexOf("github") != -1) {
-      link = "/auth/github";
-    } else {
-      link = "/auth/google";
-    }
-    var w = window.outerWidth - width,
-      h = window.outerHeight - height;
-    var left = Math.round(window.screenX + w / 2);
-    var top = Math.round(window.screenY + h / 2.5);
-
-    loginWindow = window.open(
-      link,
-      "LogIn",
-      "width=" +
-        width +
-        ",height=" +
-        height +
-        ",left=" +
-        left +
-        ",top=" +
-        top +
-        ",toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0"
-    );
-  });
-});

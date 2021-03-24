@@ -16,17 +16,18 @@
   </head>
   <body>
     <section>
+      <%- include('../partials/toast.ejs') %>
       <div class="container rounded-lg">
         <div class="user signinBx">
           <div class="imgBx">
             <img src="./images/auth/login.png" alt="" />
           </div>
           <div class="formBx">
-            <form action="" id="signin_form">
+            <div class="form" id="signin_form">
                 <h1 class="text-2xl xl:text-3xl text-center font-extrabold">
                     Sign In
                   </h1>
-              <div class="mx-auto max-w-md mt-8">
+              <!-- <div class="mx-auto max-w-md mt-8"> -->
                 <div class="w-full flex-1 mt-8">
                   <div class="my-12 border-b">
 
@@ -63,7 +64,7 @@
                   </div>
 
                   <div class="flex flex-col items-center">
-                    <button id="signin_google"
+                    <button id="signin_google" onclick="authenticate('google')"
                       class="w-full max-w-md font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
                     >
                       <div class="bg-white p-2 rounded-full">
@@ -89,7 +90,7 @@
                       <span class="ml-4"> Sign In with Google </span>
                     </button>
 
-                    <button id="signin_github"
+                    <button id="signin_github" onclick="authenticate('github')"
                       class="w-full max-w-md font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5"
                     >
                       <div class="bg-white p-1 rounded-full">
@@ -109,21 +110,21 @@
                   Don't have an account ?
                   <a href="#signup" onclick="toggleForm();">Sign Up.</a>
                 </p>
+              <!-- </div> -->
               </div>
-            </form>
           </div>
         </div>
         <div class="user signupBx">
           <div class="formBx">
-            <form action=""  id="signup_form">
+            <div class="form" id="signup_form">
               <div class="mt-12 flex flex-col items-center">
                 <h1 class="text-2xl xl:text-3xl font-extrabold">
                   Sign up for Zairza
                 </h1>
                 <div class="w-full flex-1 mt-8">
                   <div class="flex flex-col items-center">
-                    <button id="signup_google"
-                      class="loginLink w-full max-w-md font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+                    <button id="signup_google" onclick="authenticate('google')"
+                      class="w-full max-w-md font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
                     >
                       <div class="bg-white p-2 rounded-full">
                         <svg class="w-4" viewBox="0 0 533.5 544.3">
@@ -148,8 +149,8 @@
                       <span class="ml-4"> Sign Up with Google </span>
                     </button>
 
-                    <button id="signup_github"
-                      class="loginLink w-full max-w-md font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5"
+                    <button id="signup_github" onclick="authenticate('github')"
+                      class="w-full max-w-md font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5"
                     >
                       <div class="bg-white p-1 rounded-full">
                         <svg class="w-6" viewBox="0 0 32 32">
@@ -195,7 +196,6 @@
                         required
                       />
                       <div class="absolute inset-y-0 right-0 flex items-center px-2">
-                        <!-- <input class="hidden js-password-toggle" type="checkbox"/> -->
                         <span class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label" onclick="togglePasswordVisibility($(this))"><i class='bx bx-hide' style='color:#1471ff' ></i></span>
                       </div>
                     </div>
@@ -227,7 +227,7 @@
                 Already have an account ?
                 <a href="#signin" onclick="toggleForm();">Sign in.</a>
               </p>
-            </form>
+            </div>
           </div>
           <div class="imgBx">
             <img src="./images/auth/register.png" alt="" />
@@ -239,5 +239,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
     crossorigin="anonymous"></script>
-  <script src="./js/auth.js"></script>
+    <script src="./js/auth.js"></script>
+    <script src="./js/toast.js"></script>
+  <script src="./js/thirdPartyAuth.js"></script>
 </html>
