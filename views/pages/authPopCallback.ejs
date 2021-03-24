@@ -2,8 +2,13 @@
 <html>
 <head><title>Log-In</title></head>
 <script>
+	var success = <%= success%>;
 	if (window.opener) {
+		if(success)
 		window.opener.postMessage("popup-done", "*"); 
+		else
+		window.opener.postMessage("popup-failed", "*"); 
+
 		setTimeout(function() {window.close()}, 0);
 	}
 </script>

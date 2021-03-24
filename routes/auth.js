@@ -104,9 +104,9 @@ module.exports = (app, passport) => {
       if (user) {
         req.logIn(user, function (err) {
           if (err) {
-            res.status(500).json(err);
+            return res.status(500).json(err);
           }
-          res.status(200).json(user.id);
+          res.status(200).send(user.id);
         });
       } else {
         res.status(401).json(info);
@@ -114,8 +114,11 @@ module.exports = (app, passport) => {
     })(req, res, next);
   });
 
-  app.get('/popup', (req, res, next) => {
-    res.render('pages/authPopCallback', {layout: false});
+  app.get("/popup", (req, res, next) => {
+    res.render("pages/authPopCallback", { layout: false, success: true });
+  });
+  app.get("/failed_popup", (req, res, next) => {
+    res.render("pages/authPopCallback", { layout: false, success: false });
   });
   // -------- For google authentication -------
   app.get(
@@ -126,7 +129,7 @@ module.exports = (app, passport) => {
     "/auth/google/cb/",
     passport.authenticate("google", {
       successRedirect: "/popup",
-      failureRedirect: "/popup",
+      failureRedirect: "/failed_popup",
     })
   );
 
@@ -139,7 +142,7 @@ module.exports = (app, passport) => {
     "/auth/github/cb/",
     passport.authenticate("github", {
       successRedirect: "/popup",
-      failureRedirect: "/popup",
+      failureRedirect: "/failed_popup",
     })
   );
 
@@ -155,6 +158,10 @@ module.exports = (app, passport) => {
       user.third_party_auth.pull({ _id: organisation_details.id });
     }
     user.save(function (err) {
+      if (err) {
+        res.status(500).json(err);
+        return;
+      }
       res.sendStatus(200);
     });
   });
