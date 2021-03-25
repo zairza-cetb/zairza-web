@@ -1,5 +1,20 @@
 const nodemailer = require("nodemailer");
 const ResetRequest = require("../models/ResetRequest");
+const handlebars = require('handlebars');
+const fs = require('fs');
+const path = require('path');
+
+const readHTMLFile = function(path, callback) {
+    fs.readFile(path, {encoding: 'utf-8'}, function (err, html) {
+        if (err) {
+            throw err;
+            callback(err);
+        }
+        else {
+            callback(null, html);
+        }
+    });
+};
 
 const transporter = nodemailer.createTransport({
   service: "Gmail",
@@ -29,18 +44,30 @@ module.exports = (app, passport) => {
       }
       const website_url = req.protocol + "://" + req.headers.host + req.baseUrl;
 
+      const filePath = path.join(__dirname, '../templates/resetPasswordMailTemplate.html')
+
+      let mailOptions = {}
+      
+      readHTMLFile(filePath, function (err, html) {
+        let template = handlebars.compile(html);
+        let replacements = {
+          name: existingUser.name,
+          email: existingUser.email,
+          link: `${website_url}/forgot/${request._id}`
+        };
+        let htmlToSend = template(replacements);
+         mailOptions = {
+          from: process.env.ZAIRZA_EMAIL,
+          to: existingUser.email,
+          subject: "Password reset",
+          html: htmlToSend
+        };
+      })
       ResetRequest.create({ user: existingUser }, function (err, request) {
         if (err) throw err;
 
         // Send an E-Mail with a password reset link with id of the request
-        transporter.sendMail(
-          {
-            from: process.env.ZAIRZA_EMAIL,
-            to: existingUser.email,
-            subject: "Password reset",
-            text: `Hi, \t\nWe received a request to reset your Zairza account's password. If this wasn't you, you can safely ignore this email, otherwise please go to the following link to reset your password:\n${website_url}/forgot/${request._id}\n\n\nThis link will be valid for 10 mins.`,
-          },
-          function (error, info) {
+        transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
               message = "Sorry, There seems to be a problem at our end";
               res.status(500).json({ message });
