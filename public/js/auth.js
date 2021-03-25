@@ -26,10 +26,16 @@ $("input[type='email']").on("change", function () {
   $response = validateEmail($(this).val());
   if (!$response) {
     $(this).addClass("border-2 border-red-500");
-    $(this).siblings("small.invalid_email").removeClass("hidden").addClass("block");
+    $(this)
+      .siblings("small.invalid_email")
+      .removeClass("hidden")
+      .addClass("block");
   } else {
     $(this).removeClass("border-2 border-red-500");
-    $(this).siblings("small.invalid_email").removeClass("block").addClass("hidden");
+    $(this)
+      .siblings("small.invalid_email")
+      .removeClass("block")
+      .addClass("hidden");
   }
 });
 // Confirm Password Validation
@@ -62,13 +68,14 @@ $("#signup-btn").on("click", function () {
   })
     .done(function (data) {
       // console.log(data)
-      showToast(200, "Successfully signed up")
+      showToast(200, "Successfully signed in");
       setTimeout(function () {
-        window.location.replace("/me")
-      },2000)
+        window.location.replace("/me");
+      }, 2000);
     })
     .fail(function (err) {
-      showToast(err.status, err.responseJSON.message)
+      console.log("error");
+      showToast(err.status, err.responseJSON.message);
     });
 });
 // Signin form submit
@@ -88,14 +95,14 @@ $("#signin-btn").on("click", function () {
   })
     .done(function (data) {
       // console.log(data)
-      showToast(200, "Successfully signed in")
+      showToast(200, "Successfully signed in");
       setTimeout(function () {
-        window.location.replace("/me")
-      },2000)
+        window.location.replace("/me");
+      }, 2000);
     })
     .fail(function (err) {
-      console.log("error")
-      showToast(err.status, err.responseJSON.message)
+      console.log("error");
+      showToast(err.status, err.responseJSON.message);
     });
 });
 
@@ -112,5 +119,3 @@ function togglePasswordVisibility(ele) {
     ele.children().removeClass("bx-show").addClass("bx-hide");
   }
 }
-
-

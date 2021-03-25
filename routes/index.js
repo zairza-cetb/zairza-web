@@ -26,13 +26,23 @@ router.get('/settings', function(req, res, next){
 })
 
 /* GET forgot password page. */
-router.get('/reset/:id', function(req, res, next){
+router.get('/forgot', function(req, res, next){
     res.render("pages/forgot_password");
 })
 
 /* GET profile page. */
 router.get('/profile', function(req, res, next){
     res.render("pages/profile", {user: req.user} );
+})
+
+/* GET temp page. */
+router.get('/tmp', function(req, res, next){
+    res.render("pages/newPassword");
+})
+
+/* GET newPassword page. */
+router.get('/forgot/:token', function(req, res, next){
+    res.render("pages/newPassword");
 })
 
 

@@ -3,7 +3,7 @@ $(document).ready(function () {
     e.preventDefault();
     var parent = $(this).parent(".toast");
     parent.fadeOut("slow", function () {
-      $(this).remove();
+      $(this).toggleClass("hidden");
     });
   });
 });
@@ -45,7 +45,7 @@ function showToast(status_code, message) {
   });
   setTimeout(() => {
     $("#toast").fadeOut("slow", function () {
-      $(this).remove();
+      $(this).toggleClass("hidden");
     });
   },2000)
 }

@@ -382,7 +382,9 @@
           <div class="flex items-center mb-4">
             <h2 class="text-xl font-bold text-gray-800">
               <span class="text-gray-500">Welcome back,</span>
+              <% if (user.name) { %>
               <span class="font-semibold"><%= user.name.split(' ')[0] %></span>
+              <% } %>
             </h2>
           </div>
 

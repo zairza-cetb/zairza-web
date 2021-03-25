@@ -45,7 +45,7 @@ module.exports = (app, passport) => {
               message = "Sorry, There seems to be a problem at our end";
               res.status(500).json({ message });
             } else {
-              res.sendStatus(200);
+              res.status(200).json({success: true});
             }
           }
         );
@@ -67,7 +67,7 @@ module.exports = (app, passport) => {
         user.password = user.generateHash(req.body.password);
         user.save(function (err) {
           if (err) throw err;
-          res.sendStatus(200);
+          res.status(200).json({success: true});
         });
       });
     });
@@ -106,7 +106,7 @@ module.exports = (app, passport) => {
           if (err) {
             return res.status(500).json(err);
           }
-          res.status(200).send(user.id);
+          res.status(200).json(user.id);
         });
       } else {
         res.status(401).json(info);
