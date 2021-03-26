@@ -8,7 +8,7 @@ window.addEventListener("message", function (e) {
       window.location.replace("/me");
     }, 2000);
   } else if (e.data === "popup-failed") {
-    showToast(400, "Bad request");
+    showToast(409, "User with this email id already exists");
     setTimeout(function () {
       window.location.replace("/auth");
     }, 2000);
@@ -16,7 +16,7 @@ window.addEventListener("message", function (e) {
 });
 
 // ThirdParty Signin
-function authenticate(provider_name) {
+function ThirdPartyAuthenticate(provider_name) {
   var width = 1366,
     height = 768;
   let link;

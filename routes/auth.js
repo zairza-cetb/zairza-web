@@ -48,34 +48,35 @@ module.exports = (app, passport) => {
 
       let mailOptions = {}
       
-      readHTMLFile(filePath, function (err, html) {
-        let template = handlebars.compile(html);
-        let replacements = {
-          name: existingUser.name,
-          email: existingUser.email,
-          link: `${website_url}/forgot/${request._id}`
-        };
-        let htmlToSend = template(replacements);
-         mailOptions = {
-          from: process.env.ZAIRZA_EMAIL,
-          to: existingUser.email,
-          subject: "Password reset",
-          html: htmlToSend
-        };
-      })
       ResetRequest.create({ user: existingUser }, function (err, request) {
+        
         if (err) throw err;
 
-        // Send an E-Mail with a password reset link with id of the request
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-              message = "Sorry, There seems to be a problem at our end";
-              res.status(500).json({ message });
-            } else {
-              res.status(200).json({success: true});
-            }
-          }
-        );
+        readHTMLFile(filePath, function (err, html) {
+          let template = handlebars.compile(html);
+          let replacements = {
+            name: existingUser.name,
+            email: existingUser.email,
+            link: `${website_url}/forgot/${request._id}`
+          };
+          let htmlToSend = template(replacements);
+           mailOptions = {
+            from: process.env.ZAIRZA_EMAIL,
+            to: existingUser.email,
+            subject: "Password reset",
+            html: htmlToSend
+          };
+          // Send an E-Mail with a password reset link with id of the request
+          transporter.sendMail(mailOptions, function (error, info) {
+              if (error) {
+                message = "Sorry, There seems to be a problem at our end";
+                res.status(500).json({ message });
+              } else {
+                res.status(200).json({success: true});
+              }
+            });
+        })
+
       });
     });
   });
@@ -100,7 +101,7 @@ module.exports = (app, passport) => {
     });
   });
   // ---- For local sign in ----------
-  app.post("/login", function (req, res, next) {
+  app.post("/signin", function (req, res, next) {
     passport.authenticate("local-login", function (err, user, info) {
       if (err) {
         res.status(404).json(err);
@@ -115,7 +116,7 @@ module.exports = (app, passport) => {
           res.status(200).json(user.id);
         });
       } else {
-        res.status(401).json(info);
+        res.status(409).json(info);
       }
     })(req, res, next);
   });
@@ -136,7 +137,7 @@ module.exports = (app, passport) => {
           res.status(200).json(user.id);
         });
       } else {
-        res.status(401).json(info);
+        res.status(409).json(info);
       }
     })(req, res, next);
   });

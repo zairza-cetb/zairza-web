@@ -31,23 +31,25 @@ function showToast(status_code, message) {
       </g>
     </g>
   </svg>`);
-    $(".toast__type").text("Success");
-    $(".toast__message").text(message);
-    $('#toast').addClass('toast--green')
-  } else {
-    $(".toast__icon").html(`<img src="./images/auth/cancel.svg" alt="" style="color:#fff">`);
     $(".toast__type").text(status_code);
     $(".toast__message").text(message);
-    $('#toast').addClass('toast--yellow')
+    $("#toast").addClass("toast--green").removeClass("toast--yellow");
+  } else {
+    $(".toast__icon").html(
+      `<img src="/images/auth/cancel.png"/>`
+    );
+    $(".toast__type").text(status_code);
+    $(".toast__message").text(message);
+    $("#toast").removeClass("toast--green").addClass("toast--yellow");
   }
   $("#toast").fadeIn("slow", () => {
-    $(this).toggleClass("hidden")
+    $(this).toggleClass("hidden");
   });
   setTimeout(() => {
     $("#toast").fadeOut("slow", function () {
       $(this).toggleClass("hidden");
     });
-  },2000)
+  }, 2000);
 }
 
 // showToast(400, 'lorem10asudhfuiewhfiuahdflaius')

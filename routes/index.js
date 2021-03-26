@@ -37,7 +37,7 @@ router.get('/profile', function(req, res, next){
 
 /* GET temp page. */
 router.get('/tmp', function(req, res, next){
-    res.render("pages/newPassword");
+    res.render("pages/print");
 })
 
 /* GET newPassword page. */

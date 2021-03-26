@@ -36,7 +36,9 @@ module.exports = (passport) => {
                 });
 
                 newUser.save(function (err) {
-                  if (err) throw err;
+                  if (err) {
+                    return done(null, false, {message: "User with this email id already exists" });
+                  }
                   return done(null, newUser);
                 });
               }

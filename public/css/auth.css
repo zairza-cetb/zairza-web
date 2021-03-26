@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap");
-
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +10,7 @@
 section {
   position: relative;
   min-height: 100vh;
-  background-color: #FF7610;
+  background-color: #ff7610;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,8 +38,8 @@ section .container .user .imgBx {
   position: relative;
   width: 50%;
   height: 100%;
-  background: #FF7610;
-  transition:1s;
+  background: #ff7610;
+  transition: 1s;
 }
 
 section .container .user .imgBx img {
@@ -60,7 +60,7 @@ section .container .user .formBx {
   justify-content: center;
   align-items: center;
   padding: 40px;
-  transition:1s;
+  transition: 1s;
 }
 
 section .container .user .formBx .form h2 {
@@ -91,13 +91,13 @@ section .container .user .formBx .form input {
 
 section .container .user .formBx .form input[type="submit"] {
   max-width: 100px;
-  background: #1471FF;
+  background: #1471ff;
   color: #fff;
   cursor: pointer;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 1px;
-  transition:1s;
+  transition: 1s;
 }
 
 section .container .user .formBx .form .signup {
@@ -113,7 +113,7 @@ section .container .user .formBx .form .signup {
 section .container .user .formBx .form .signup a {
   font-weight: 600;
   text-decoration: none;
-  color: #1471FF;
+  color: #1471ff;
 }
 
 section .container .signupBx {
@@ -156,21 +156,111 @@ section .container.active .signinBx .imgBx {
   left: -100%;
 }
 
-.login-btn, .register-btn{
-    background-color: #3888ff;
+.login-btn,
+.register-btn {
+  background-color: #3888ff;
 }
-.login-btn:hover,.register-btn:hover{
-    background-color: #1471FF;
+.login-btn:hover,
+.register-btn:hover {
+  background-color: #1471ff;
 }
-.register-btn{
-    background-color: #3888ff;
+.register-btn {
+  background-color: #3888ff;
 }
-.register-btn:hover{
-    background-color: #1471FF;
+.register-btn:hover {
+  background-color: #1471ff;
 }
 
-#signup_google,#signup_github,#signin_google,#signin_github{
+#signup_google,
+#signup_github,
+#signin_google,
+#signin_github {
   outline: none !important;
+}
+
+/* Submit button for local authentication */
+
+/* #signin-btn {
+  outline: none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius: 40px;
+  background: #fff;
+  border: 2px solid #1ecd97;
+  color: #1ecd97;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.25s ease;
+} */
+#signin-btn {
+  transition: all 0.25s ease;
+}
+#signin-btn:hover {
+  color: white;
+}
+#signin-btn:active {
+  letter-spacing: 2px;
+}
+/* #signin-btn:after {
+  font-family: "FontAwesome";
+  content: "\f090 Sign In";
+  word-spacing: 10px;
+} */
+
+.onclic {
+  content: "" !important;
+  width: 40px;
+  border-color: #bbbbbb;
+  border-width: 3px;
+  font-size: 0;
+  border-radius: 40px;
+  background-color: #fff;
+  margin: auto;
+  margin-top: 20px;
+  border-left-color: #1471ff;
+  -webkit-animation: rotating 2s 0.25s linear infinite;
+  animation: rotating 2s 0.25s linear infinite;
+}
+.onclic:after {
+  content: " " !important;
+}
+.onclic:hover {
+  color: #1471ff;
+  background: white;
+}
+
+.validate {
+  font-size: 13px;
+  color: white;
+  background: #1471ff;
+}
+.validate:after {
+  font-family: "FontAwesome" !important;
+  content: "\f00c" !important;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -186,4 +276,3 @@ section .container.active .signinBx .imgBx {
     width: 100%;
   }
 }
-

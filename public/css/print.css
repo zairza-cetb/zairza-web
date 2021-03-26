@@ -1,0 +1,242 @@
+html {
+    color: #343a4a;
+  }
+  
+  .container {
+    max-width: 1024px;
+  }
+  
+  .main {
+    position: relative;
+    height: 400px;
+  }
+  
+  .file-drop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    border-width: 3px;
+    border-style: dashed;
+    border-color: #cbd5e0;
+    background-color: #edf2f7;
+    transition: background-color 160ms ease, border-color 400ms ease;
+  }
+  .file-drop.dragover {
+    background-color: #feeee9;
+  }
+  
+  svg,
+  .svg {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .svg-index {
+    position: relative;
+    z-index: -2;
+  }
+  
+  .svg-success {
+    display: flex;
+    flex-direction: column;
+  }
+  .svg-success svg {
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+  
+  .button {
+    min-width: 170px;
+    min-height: 42px;
+    padding: 0 14px;
+    font-size: 1rem;
+    color: white;
+    background-color: #F1592A;
+    border-color: #F1592A;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+    border-radius: 4px;
+    border: 2px solid;
+    border-color: transparent;
+    font-weight: 500;
+    line-height: 1;
+    user-select: none;
+    touch-action: manipulation;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: background-color 160ms, color 160ms, box-shadow 160ms, border 160ms;
+  }
+  .button:focus {
+    background-color: #ed4410;
+    border-color: #ed4410;
+  }
+  .button:hover {
+    background-color: #ed4410;
+    border-color: #ed4410;
+  }
+  .button:active {
+    background-color: #d03c0e;
+    border-color: #d03c0e;
+  }
+  .button.button-outlined {
+    color: #F1592A;
+    border-color: currentColor;
+  }
+  .button.button-outlined, .button.button-outlined:hover, .button.button-outlined:active {
+    color: #F1592A;
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .button.button-outlined:hover, .button.button-outlined:focus {
+    background-color: rgba(241, 89, 42, 0.15);
+  }
+  .button.button-outlined:active {
+    color: white;
+    background-color: #F1592A;
+    border-color: #F1592A;
+  }
+  .button:disabled, .button:disabled:hover, .button:disabled:active, .button:disabled:focus, .button.disabled, .button.disabled:hover, .button.disabled:active, .button.disabled:focus {
+    border-color: #dbdbdb;
+    background-color: #dbdbdb;
+  }
+  .button:disabled {
+    box-shadow: none;
+  }
+  .button:focus {
+    outline: none;
+  }
+  
+  .button-iconed-left i,
+  .button-iconed-left span {
+    margin-right: 0.6em;
+  }
+  
+  .spinner {
+    display: inline-block;
+    margin: 0 8px;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+    border: 0.215em solid transparent;
+    font-size: 16px;
+    border-top-color: white;
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.55, 0.15, 0.45, 0.85);
+  }
+  
+  .index,
+  .success,
+  .title,
+  .svg {
+    opacity: 1;
+    transition: opacity 800ms cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  
+  .view-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    background-color: #edf2f7;
+    transform-origin: left center;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  
+  .index-bg {
+    transform: scale(0.5, 1);
+  }
+  
+  .v-view-next-leave-active .title {
+    animation: fade-in 800ms cubic-bezier(0.2, 0, 0.2, 1) reverse;
+  }
+  .v-view-next-leave-active .index-bg {
+    transform: scale(1, 1);
+    transition-duration: 800ms;
+  }
+  .v-view-next-leave-active .file-drop {
+    border-color: #edf2f7;
+  }
+  .v-view-next-leave-active .index,
+  .v-view-next-leave-active .svg-index {
+    animation: fade-in 800ms cubic-bezier(0.2, 0, 0.2, 1) reverse;
+  }
+  
+  .v-view-next-enter-active .title {
+    animation: fade-in 800ms cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  .v-view-next-enter-active .success {
+    animation: fade-in 800ms cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  
+  .v-view-back-enter-active .title {
+    animation: fade-in 600ms cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  .v-view-back-enter-active .index,
+  .v-view-back-enter-active .svg-index {
+    animation: fade-in 600ms cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  
+  .v-view-back-leave-active .title {
+    animation: fade-in 600ms cubic-bezier(0.2, 0, 0.2, 1) reverse;
+  }
+  .v-view-back-leave-active .success {
+    animation: fade-in 600ms cubic-bezier(0.2, 0, 0.2, 1) reverse;
+  }
+  .v-view-back-leave-active .success-bg {
+    transform: scale(0.5, 1);
+    transition-duration: 600ms;
+  }
+  
+  .v-view-next-enter-active {
+    animation: no-animation 800ms cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  
+  .v-view-next-leave-active {
+    animation: no-animation 800ms cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  
+  .v-view-back-enter-active {
+    animation: no-animation 600ms cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  
+  .v-view-back-leave-active {
+    animation: no-animation 600ms cubic-bezier(0.2, 0, 0.2, 1);
+  }
+  
+  @keyframes no-animation {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
