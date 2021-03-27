@@ -42,7 +42,11 @@ router.get('/tmp', function(req, res, next){
 
 /* GET newPassword page. */
 router.get('/forgot/:token', function(req, res, next){
-    res.render("pages/newPassword");
+    ResetRequest.findById(req.params.token,function(err,request){
+        if(err) return next(err);
+        if(!request) return next();
+        res.render("pages/newPassword");
+    })
 })
 
 

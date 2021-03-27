@@ -1,19 +1,17 @@
 const nodemailer = require("nodemailer");
 const ResetRequest = require("../models/ResetRequest");
-const handlebars = require('handlebars');
-const fs = require('fs');
-const path = require('path');
+const handlebars = require("handlebars");
+const fs = require("fs");
+const path = require("path");
 
-const readHTMLFile = function(path, callback) {
-    fs.readFile(path, {encoding: 'utf-8'}, function (err, html) {
-        if (err) {
-            throw err;
-            callback(err);
-        }
-        else {
-            callback(null, html);
-        }
-    });
+const readHTMLFile = function (path, callback) {
+  fs.readFile(path, { encoding: "utf-8" }, function (err, html) {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, html);
+    }
+  });
 };
 
 const transporter = nodemailer.createTransport({
@@ -37,65 +35,68 @@ module.exports = (app, passport) => {
   app.post("/forgot", function (req, res, next) {
     var email = req.body.email;
     User.findOne({ email: email }, function (err, existingUser) {
-      if (err) return res.status(500).send(err);
+      if (err) return next(err);
 
       if (!existingUser) {
         return res.status(404).json({ message: "User not found" });
       }
       const website_url = req.protocol + "://" + req.headers.host + req.baseUrl;
 
-      const filePath = path.join(__dirname, '../templates/resetPasswordMailTemplate.html')
+      const filePath = path.join(
+        __dirname,
+        "../templates/resetPasswordMailTemplate.html"
+      );
 
-      let mailOptions = {}
-      
+      let mailOptions = {};
+
       ResetRequest.create({ user: existingUser }, function (err, request) {
-        
-        if (err) throw err;
+        if (err) return next(err);
 
         readHTMLFile(filePath, function (err, html) {
+          if (err) {
+            return next(err);
+          }
           let template = handlebars.compile(html);
           let replacements = {
             name: existingUser.name,
             email: existingUser.email,
-            link: `${website_url}/forgot/${request._id}`
+            link: `${website_url}/forgot/${request._id}`,
           };
           let htmlToSend = template(replacements);
-           mailOptions = {
+          mailOptions = {
             from: process.env.ZAIRZA_EMAIL,
             to: existingUser.email,
             subject: "Password reset",
-            html: htmlToSend
+            html: htmlToSend,
           };
           // Send an E-Mail with a password reset link with id of the request
           transporter.sendMail(mailOptions, function (error, info) {
-              if (error) {
-                message = "Sorry, There seems to be a problem at our end";
-                res.status(500).json({ message });
-              } else {
-                res.status(200).json({success: true});
-              }
-            });
-        })
-
+            if (error) {
+              return next(error);
+            } else {
+              res.status(200).json({ status: "success" });
+            }
+          });
+        });
       });
     });
   });
   app.post("/forgot/:token", function (req, res, next) {
     ResetRequest.findByIdAndDelete(req.params.token, function (err, request) {
       if (err) {
-        return res.status(500).json({ message: "Some error occured" });
+        return next(err);
       }
       if (!request) {
         return res.status(404).json({ message: "Invalid Link" });
       }
       User.findById(request.user, function (err, user) {
         if (err) {
-          return res.status(500).json({ message: "Some error occured" });
+          return next(err);
         }
         user.password = user.generateHash(req.body.password);
         user.save(function (err) {
-          if (err) throw err;
-          res.status(200).json({success: true});
+          if (err) return next(err);
+          res.status(200).json({ status: "success" });
         });
       });
     });
@@ -104,16 +105,14 @@ module.exports = (app, passport) => {
   app.post("/signin", function (req, res, next) {
     passport.authenticate("local-login", function (err, user, info) {
       if (err) {
-        res.status(404).json(err);
-        return;
+        return next(err);
       }
-
       if (user) {
         req.logIn(user, function (err) {
           if (err) {
-            return res.status(500).json(err);
+            return next(err);
           }
-          res.status(200).json(user.id);
+          res.status(200).json({ status: "success", user_id: user.id });
         });
       } else {
         res.status(409).json(info);
@@ -125,16 +124,15 @@ module.exports = (app, passport) => {
     passport.authenticate("local-signup", function (err, user, info) {
       // console.log(err, user, info);
       if (err) {
-        res.status(404).json(err);
-        return;
+        return next(err);
       }
 
       if (user) {
         req.logIn(user, function (err) {
           if (err) {
-            return res.status(500).json(err);
+            return next(err);
           }
-          res.status(200).json(user.id);
+          res.status(200).json({ status: "success", user_id: user.id });
         });
       } else {
         res.status(409).json(info);
@@ -187,10 +185,9 @@ module.exports = (app, passport) => {
     }
     user.save(function (err) {
       if (err) {
-        res.status(500).json(err);
-        return;
+        return next(err);
       }
-      res.sendStatus(200);
+      return res.status(200).json({ status: "success" });
     });
   });
 };
