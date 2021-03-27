@@ -8,11 +8,37 @@ $(document).ready(function () {
   });
 });
 
+const errorCodes = {
+  200: "OK — We’re cool.😎",
+  201: "Created — I’ve created what you requested.👍",
+  202: "Accepted — I acknowledged what you were saying.🤝",
+  204: "No Content — 😞",
+  301: "Moved Permanently — We moved! Please don’t visit here next time.🚫",
+  302: "Found — We’re still here, but please follow the sign till we’re back➡️",
+  304: "Not Modified — Please use cached data.😊",
+  307: "Temporary Redirect 😞",
+  308: "Permanent Redirect 😞",
+  400: "Bad Request — I’m not sure what you meant.🥺",
+  401: "Unauthorized — It failed to identify yourself.🚫",
+  403: "Forbidden —You have no permission to do that.⛔",
+  404: "Not Found — I can’t find what you’re looking for.🙅‍♂️",
+  405: "Method Not Allowed—We don’t support your method.🙅‍♂️",
+  429: "Too Many Request — Please slow down!✋",
+  500: "Internal Server Error — There are something wrong with us.💔",
+  503: "Service Unavailable — We are currently busy, can you try again sometime later?🔐",
+};
+
 // Show toast based on response message
 
 function showToast(status_code, message) {
-  if (status_code === 200) {
-    $(".toast__icon").html(`<svg
+  $(".toast__type").text(status_code);
+  if (message) {
+    $(".toast__message").text(message);
+  } else {
+    $(".toast__message").text(errorCodes[status_code]);
+  }
+  if (status_code >= 200 && status_code < 300) {
+    $(".toast__icon").empty().html(`<svg
     version="1.1"
     class="toast__svg"
     xmlns="http://www.w3.org/2000/svg"
@@ -31,16 +57,38 @@ function showToast(status_code, message) {
       </g>
     </g>
   </svg>`);
-    $(".toast__type").text(status_code);
-    $(".toast__message").text(message);
-    $("#toast").addClass("toast--green").removeClass("toast--yellow");
-  } else {
-    $(".toast__icon").html(
-      `<img src="/images/auth/cancel.png"/>`
+    $("#toast")
+      .addClass("toast--green")
+      .removeClass("toast--yellow")
+      .removeClass("toast--blue")
+      .removeClass("toast--violet");
+  } else if (status_code >= 300 && status_code < 400) {
+    $(".toast__icon").empty().html(
+      `<img src="https://img.icons8.com/metro/52/ffffff/cancel.png"/>`
     );
-    $(".toast__type").text(status_code);
-    $(".toast__message").text(message);
-    $("#toast").removeClass("toast--green").addClass("toast--yellow");
+    $("#toast")
+      .removeClass("toast--green")
+      .removeClass("toast--yellow")
+      .removeClass("toast--violet")
+      .addClass("toast--blue");
+  } else if (status_code >= 400 && status_code < 500) {
+    $(".toast__icon").empty().html(
+      `<img src="https://img.icons8.com/emoji/48/ffffff/warning-emoji.png"/>`
+    );
+    $("#toast")
+      .removeClass("toast--green")
+      .removeClass("toast--blue")
+      .removeClass("toast--violet")
+      .addClass("toast--yellow");
+  } else {
+    $(".toast__icon").empty().html(
+      `<img src="https://img.icons8.com/windows/32/ffffff/amazon-web-services.png"/>`
+    );
+    $("#toast")
+      .removeClass("toast--green")
+      .removeClass("toast--blue")
+      .removeClass("toast--yellow")
+      .addClass("toast--violet");
   }
   $("#toast").fadeIn("slow", () => {
     $(this).toggleClass("hidden");

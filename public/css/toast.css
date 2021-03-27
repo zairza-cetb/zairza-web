@@ -79,25 +79,33 @@
 }
 
 .toast--green .toast__icon {
-  background-color: #2bde3f;
+  background-color: #499934;
 }
 
 .toast--green:before {
-  background-color: #2bde3f;
+  background-color: #499934;
 }
 
 .toast--blue .toast__icon {
-  background-color: #1d72f3;
+  background-color: #3868FA;
 }
 
 .toast--blue:before {
-  background-color: #1d72f3;
+  background-color: #3868FA;
 }
 
 .toast--yellow .toast__icon {
-  background-color: #ffc007;
+  background-color: #F9992E;
 }
 
 .toast--yellow:before {
-  background-color: #ffc007;
+  background-color: #F9992E;
+}
+
+.toast--violet .toast__icon {
+  background-color: #6A4299;
+}
+
+.toast--violet:before {
+  background-color: #6A4299;
 }
