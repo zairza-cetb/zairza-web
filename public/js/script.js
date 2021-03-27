@@ -25,6 +25,7 @@ $(document).ready(function () {
     }
   });
   new fullpage("#fullpage", {
+    licenseKey: 'XaTw#PV$o2',
     afterLoad: function (origin, destination, direction) {
       navs = $("ul#mob-menu > li");
       if (origin.index != 11)
