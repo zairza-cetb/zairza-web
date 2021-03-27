@@ -12,7 +12,9 @@ const editable_fields = new Set([
 const checkUserLoggedIn = (req, res, next) => {
   req.user
     ? next()
-    : res.status(401).json({ message: "User is not logged in" });
+    : res
+        .status(401)
+        .json({ status: "fail", message: "User is not logged in" });
 };
 
 router.get("/me", checkUserLoggedIn, function (req, res, next) {
@@ -21,12 +23,15 @@ router.get("/me", checkUserLoggedIn, function (req, res, next) {
 
 router.put("/edit", checkUserLoggedIn, async function (req, res, next) {
   if (!req.user.registration_no && !req.body.registration_no) {
-    return res.status(403).json({ message: "Registration number is required" });
+    return res
+      .status(403)
+      .json({ status: "fail", message: "Registration number is required" });
   } else if (
     req.body.registration_no &&
-    await req.user.checkValidRegistrationNo(req.body.registration_no) == false
+    (await req.user.checkValidRegistrationNo(req.body.registration_no)) == false
   ) {
     return res.status(403).json({
+      status: "fail",
       message:
         "Your registration number is not registered at Zairza. Please contact us to register you at Zairza",
     });
@@ -38,9 +43,9 @@ router.put("/edit", checkUserLoggedIn, async function (req, res, next) {
     );
 
     if (non_editable_fields.length > 0) {
-      return res.status(401).json({
-        message: "Accessing unknown fields",
-      });
+      return res
+        .status(401)
+        .json({ status: "fail", message: "Accessing unknown fields" });
     }
 
     User.findByIdAndUpdate(req.user.id, req.body, { new: true })
@@ -50,12 +55,10 @@ router.put("/edit", checkUserLoggedIn, async function (req, res, next) {
             message: "No user found",
           });
         }
-        res.status(200).json(user);
+        res.status(200).json({ status: "success", user });
       })
       .catch((err) => {
-        return res.status(404).json({
-          message: "Error while updating the user",
-        });
+        return next(err);
       });
   }
 });
@@ -69,12 +72,10 @@ router.delete("/", checkUserLoggedIn, function (req, res, next) {
         });
       }
       req.logout();
-      res.json({ message: "User deleted successfully!" });
+      res.json({ status: "success", message: "User deleted successfully!" });
     })
     .catch((err) => {
-      return res.status(500).json({
-        message: "Could not delete user ",
-      });
+      return next(err);
     });
 });
 

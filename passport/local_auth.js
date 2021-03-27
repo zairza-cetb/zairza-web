@@ -10,14 +10,16 @@ module.exports = (passport) => {
         passReqToCallback: true,
       },
       function (req, email, password, done) {
-          User.findOne({ email: email }, function (err, user) {
-            if (err) return done(err);
+        User.findOne({ email: email }, function (err, user) {
+          if (err) return done(err);
 
-            if (!user) return done(null, false,{message : "User does not exist"});
+          if (!user)
+            return done(null, false, { message: "User does not exist" });
 
-            if (!user.validPassword(password)) return done(null, false, {message: "Incorrect password"});
-            else return done(null, user);
-          });
+          if (!user.validPassword(password))
+            return done(null, false, { message: "Incorrect password" });
+          else return done(null, user);
+        });
       }
     )
   );
@@ -31,29 +33,30 @@ module.exports = (passport) => {
         passReqToCallback: true,
       },
       function (req, email, password, done) {
-          User.findOne({ email: email }, function (err, existingUser) {
-            if (err) return done(err);
-            if (existingUser) return done(null, false, {message : "User already exists"});
+        User.findOne({ email: email }, function (err, existingUser) {
+          if (err) return done(err);
+          if (existingUser)
+            return done(null, false, { message: "User already exists" });
 
-            if (req.user) {
-              var user = req.user;
-              user.password = user.generateHash(password);
-              user.save(function (err) {
-                if (err) throw err;
-                return done(null, user);
-              });
-            } else {
-              var newUser = new User();
+          if (req.user) {
+            var user = req.user;
+            user.password = user.generateHash(password);
+            user.save(function (err) {
+              if (err) return done(err);
+              return done(null, user);
+            });
+          } else {
+            var newUser = new User();
 
-              newUser.email = email;
-              newUser.password = newUser.generateHash(password);
+            newUser.email = email;
+            newUser.password = newUser.generateHash(password);
 
-              newUser.save(function (err) {
-                if (err) throw err;
-                return done(null, newUser);
-              });
-            }
-          });
+            newUser.save(function (err) {
+              if (err) return done(err);
+              return done(null, newUser);
+            });
+          }
+        });
       }
     )
   );

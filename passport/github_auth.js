@@ -23,24 +23,35 @@ module.exports = (passport) => {
               if (user) {
                 return done(null, user);
               } else {
-                var newUser = new User();
-                newUser.name = profile.displayName;
-                newUser.email = profile.emails[0].value;
+                User.findOne(
+                  { email: profile.emails[0].value },
+                  function (err, user) {
+                    if (err) return done(err);
+                    if (user)
+                      return done(null, false, {
+                        message: "User with this email already exists",
+                      });
 
-                newUser.third_party_auth.push({
-                  provider_name: "github",
-                  provider_id: profile.id,
-                  provider_token: token,
-                  provider_email: profile.emails[0].value,
-                  provider_data: profile,
-                });
+                    var newUser = new User();
+                    newUser.name = profile.displayName;
+                    newUser.email = profile.emails[0].value;
 
-                newUser.save(function (err) {
-                  if (err) {
-                    return done(null, false, {message: "User with this email id already exists" });
+                    newUser.third_party_auth.push({
+                      provider_name: "github",
+                      provider_id: profile.id,
+                      provider_token: token,
+                      provider_email: profile.emails[0].value,
+                      provider_data: profile,
+                    });
+
+                    newUser.save(function (err) {
+                      if (err) {
+                        return done(err);
+                      }
+                      return done(null, newUser);
+                    });
                   }
-                  return done(null, newUser);
-                });
+                );
               }
             }
           );
@@ -54,7 +65,7 @@ module.exports = (passport) => {
               "third_party_auth.provider_name": "github",
             },
             function (err, existing_user) {
-              if (err) throw err;
+              if (err) return done(err);
               if (existing_user) {
                 return done(null, false, { message: "User already exists" });
               }
@@ -72,7 +83,7 @@ module.exports = (passport) => {
               }
 
               user.save(function (err) {
-                if (err) throw err;
+                if (err) return done(err);
                 return done(null, user);
               });
             }

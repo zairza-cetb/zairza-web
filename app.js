@@ -4,10 +4,12 @@ const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const passport_setup = require("./passport/setup");
-const auth_routes = require("./routes/auth");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+
+const auth_routes = require("./routes/auth");
+const passport_setup = require("./passport/setup");
+const errorHandler = require("./error_handlers/errorHandler");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
@@ -66,5 +68,7 @@ auth_routes(app, passport);
 app.get("*", function (req, res) {
   res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
 });
+
+app.use(errorHandler);
 
 module.exports = app;
