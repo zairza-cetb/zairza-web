@@ -49,11 +49,12 @@ function authenticate(req) {
   $email = $(`#${req}_form input[type='email']`).val();
   $password = $(`#${req}_form #${req}-password`).val();
   $confirm_password = $(`#${req}_form #confirm-password`).val();
+  if (!validateEmail($email)) {
+    showToast(401, "Please enter a valid email");
+    return;
+  }
   if (req === "signup") {
     if (!matchPassword($password, $confirm_password)) {
-      return;
-    } else if (!validateEmail($email)) {
-      showToast(401, "Please enter a valid email");
       return;
     }
   }
