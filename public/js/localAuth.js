@@ -73,11 +73,11 @@ function authenticate(req) {
     dataType: "json",
   })
     .done(function (data) {
-      console.log("success");
+      // console.log("success");
       validate(req, "success");
     })
     .fail(function (err) {
-      console.log("error");
+      // console.log("error");
       validate(req, err);
     });
 }

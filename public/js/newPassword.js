@@ -1,5 +1,5 @@
 // Confirm Password Validation
-$("#confirm_password").on("change", function () {
+$("#confirm-password").on("change", function () {
   $password = $("#new-password").val();
   $confirm_password = $(this).val();
   if ($password != $confirm_password) {
@@ -25,9 +25,53 @@ function togglePasswordVisibility(ele) {
   }
 }
 
+// Confirm Password Validation
+function matchPassword(password, confirm_password) {
+  if (password != confirm_password) {
+    $(this).addClass("border-2 border-red-500");
+    $(this).parent().siblings("small.no_match").removeClass("hidden");
+    showToast(401, "Passwords donot match");
+    return false;
+  } else {
+    $(this).removeClass("border-2 border-red-500");
+    $(this).parent().siblings("small.no_match").addClass("hidden");
+    return true;
+  }
+}
+
+function validate(res) {
+  setTimeout(function () {
+    $("#update-btn").removeClass("onclic");
+    $("#update-btn").addClass("validate", 450, callback(res));
+  }, 2250);
+}
+
+function callback(res) {
+  if (res === "success") {
+    showToast(200, "Password successfully changed 🙌");
+  } else {
+    showToast(res.status, res.responseJSON.message);
+  }
+  setTimeout(function () {
+    $("#update-btn").removeClass("validate");
+    $("#update-icon").show();
+    $("#update-btn span").text("Update Password");
+    if (res === "success") {
+      window.location.replace("/auth")
+    }
+  }, 1250);
+}
+
 // Update password form submit
-$("#update-btn").on("click", function () {
-  $password = $("#update_form input[type='password']").val();
+function updatePassword() {
+  $password = $("#update_form #new-password").val();
+  $confirm_password = $("#update_form #confirm-password").val();
+  if (!matchPassword($password, $confirm_password)) {
+    return;
+  }
+  $("#update-icon").hide();
+  $("#update-btn span").text("");
+  $("#update-btn").addClass("onclic", 50);
   // console.log($email)
   let updateData = {
     password: $password,
@@ -42,13 +86,10 @@ $("#update-btn").on("click", function () {
   })
     .done(function (data) {
       // console.log(data)
-      showToast(200, "Password successfully changed 🙌");
-      setTimeout(function () {
-        window.location.replace("/auth");
-      }, 2000);
+      validate("success")
     })
     .fail(function (err) {
       // console.log("error")
-      showToast(err.status, err.responseJSON.message);
+      validate(err)
     });
-});
+}
