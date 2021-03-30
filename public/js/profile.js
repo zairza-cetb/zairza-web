@@ -88,7 +88,7 @@ document.querySelectorAll(".rocket-button").forEach((elem) => {
 });
 
 // Update profile ajax request
-function udpateProfile() {
+function updateProfile() {
   $email = $("#profile_form input[type='email']").val();
   $registration_no = $("#profile_form #regno").val();
   $branch = $("#profile_form #branch").val();
