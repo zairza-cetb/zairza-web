@@ -35,7 +35,15 @@ router.get('/profile', function (req, res, next) {
     if (!req.user) {
         return res.redirect('/');
     }
-    res.render("pages/profile", {user: req.user} );
+    let google = false, github = false;
+    req.user.third_party_auth.forEach((provider) => {
+        if (provider.provider_name === 'google') {
+            google = true;
+        } else if (provider.provider_name === 'github') {
+            github = true;
+        }
+    })
+    res.render("pages/profile", {user: req.user,google,github} );
 })
 
 /* GET temp page. */

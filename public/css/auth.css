@@ -277,6 +277,42 @@ section .container.active .signinBx .imgBx {
   vertical-align: middle;
 }
 
+/* Connect 3rd party auth in profile page */
+
+my-toggle-group my-toggle {
+  background: #e5e7eb;
+  width: 80px;
+  height: 40px;
+  border-radius: 40px;
+
+}
+
+my-toggle-group my-toggle my-toggle-orb {
+  width: 32px;
+  height: 32px;
+  border-radius: 32px;
+  top: 4px;
+  left: 4px;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  position: absolute;
+  background: #fff;
+  z-index: 2;
+}
+my-toggle-group my-toggle input[type=checkbox] {
+  height: 80px;
+  width: 40px;
+  margin: 0 !important;
+  background: #f87171 !important;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+my-toggle-group my-toggle input[type=checkbox]:checked {
+  background: #34d399 !important;
+}
+my-toggle-group my-toggle input[type=checkbox]:checked ~ my-toggle-orb {
+  transform: translateX(calc( .67 * (calc(80px - 32px)) + calc(4px * 2) ));
+}
 @-webkit-keyframes rotating {
   from {
     transform: rotate(0deg);

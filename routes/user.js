@@ -6,6 +6,8 @@ const editable_fields = new Set([
   "email",
   "registration_no",
   "newsletter_subscription",
+  "wing",
+  "branch"
 ]);
 
 /* GET users listing. */
@@ -22,6 +24,7 @@ router.get("/me", checkUserLoggedIn, function (req, res, next) {
 });
 
 router.put("/edit", checkUserLoggedIn, async function (req, res, next) {
+  console.log(req.body)
   if (!req.user.registration_no && !req.body.registration_no) {
     return res
       .status(403)

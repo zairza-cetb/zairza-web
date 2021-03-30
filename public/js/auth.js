@@ -117,6 +117,7 @@ function togglePasswordVisibility(ele) {
     // console.log('password')
     $password.attr("type", "text");
     ele.children().removeClass("bx-hide").addClass("bx-show");
+    $password.focus();
   } else {
     // console.log('text')
     $password.attr("type", "password");

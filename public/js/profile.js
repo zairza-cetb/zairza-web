@@ -5,6 +5,7 @@ function toggleFieldVisibility(ele) {
     // console.log('password')
     $field.attr("readonly", false);
     ele.children().removeClass("bxs-lock").addClass("bxs-lock-open");
+    $field.focus();
   } else {
     // console.log('text')
     $field.attr("readonly", true);
@@ -13,79 +14,85 @@ function toggleFieldVisibility(ele) {
 }
 
 // Iterate over checkbox fields to connect/disconnect third_party_auth
-let loginWindow;
+let authWindow;
 
 window.addEventListener("message", function (e) {
-  if (e.data !== "popup-done") {
-    return;
+  // console.log("popup-done")
+  if (e.data === "popup-done") {
+    showToast(200, "Conected 😎");
+  } else if (e.data === "popup-failed") {
+    showToast(409, "User with this email id already exists");
   }
-  window.location.replace("/profile");
 });
-function connect(ele) {
-  $provider_name = ele
-    .siblings(".label")
-    .text()
-    .toLowerCase();
+function ThirdPartyAuthenticate(provider_name, state) {
+  // console.log(state)
   var width = 1366,
     height = 768;
   let link;
-  console.log($provider_name)
-  if ($provider_name.indexOf("google") != -1) {
+  if (provider_name === "Google" && state) {
     link = "/auth/google";
-    console.log("google");
-  } else if ($provider_name.indexOf("github") != -1) {
+    console.log("google", state);
+  } else if (provider_name === "github" && state) {
     link = "/auth/github";
-    console.log("github");
-  } else {
-    console.log("newletter");
+    console.log("Github", state);
+  } else if(!state){
+    $.ajax({
+      type: "GEt",
+      url: `/unlink/${provider_name}`,
+    })
+      .done(function (data) {
+        // console.log("success");
+        showToast(200, `${provider_name} disconnected 😞`);
+      })
+      .fail(function (err) {
+        // console.log("error");
+        showToast(err.status, err.errResponse.message);
+      });
   }
   var w = window.outerWidth - width,
     h = window.outerHeight - height;
   var left = Math.round(window.screenX + w / 2);
   var top = Math.round(window.screenY + h / 2.5);
 
-  loginWindow = window.open(
-    link,
-    "LogIn",
-    "width=" +
-      width +
-      ",height=" +
-      height +
-      ",left=" +
-      left +
-      ",top=" +
-      top +
-      ",toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0"
-  );
+  if (state) {
+    authWindow = window.open(
+      link,
+      "Connect",
+      "width=" +
+        width +
+        ",height=" +
+        height +
+        ",left=" +
+        left +
+        ",top=" +
+        top +
+        ",toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0"
+    );
+  }
 }
 
-const d = 40;
+function validate(res) {
+  setTimeout(function () {
+    $("#update-btn").removeClass("onclic");
+    $("#update-btn").addClass("validate", 450, callback(res));
+  }, 2250);
+}
 
-document.querySelectorAll(".rocket-button").forEach((elem) => {
-  elem.querySelectorAll(".default, .success > div").forEach((text) => {
-    charming(text);
-    text.querySelectorAll("span").forEach((span, i) => {
-      span.innerHTML = span.textContent == " " ? "&nbsp;" : span.textContent;
-      span.style.setProperty("--d", i * d + "ms");
-      span.style.setProperty(
-        "--ds",
-        text.querySelectorAll("span").length * d - d - i * d + "ms"
-      );
-    });
-  });
-
-  elem.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (elem.classList.contains("animated")) {
-      return;
+function callback(res) {
+  if (res === "success") {
+    showToast(200, "Profile updated successfully 🙌");
+  } else {
+    showToast(res.status, res.responseJSON.message);
+  }
+  setTimeout(function () {
+    $("#update-btn").removeClass("validate");
+    $("#update-icon").show();
+    $("#update-btn span").text("Update Profile");
+    if (res === "success") {
+      window.location.replace("/me");
     }
-    elem.classList.add("animated");
-    elem.classList.toggle("live");
-    setTimeout(() => {
-      elem.classList.remove("animated");
-    }, 2400);
-  });
-});
+  }, 1250);
+}
 
 // Update profile ajax request
 function updateProfile() {
@@ -93,25 +100,36 @@ function updateProfile() {
   $registration_no = $("#profile_form #regno").val();
   $branch = $("#profile_form #branch").val();
   $wing = $("#profile_form #wing").val();
+  $name = $("#profile_form #name").val();
+  $newsletter_subscription = $("#profile_form #newsletter_toggle").prop("checked");
+
+  $("#update-icon").hide();
+  $("#update-btn span").text("");
+  $("#update-btn").addClass("onclic", 50);
 
   let data = {
     email: $email,
     registration_no: $registration_no,
     branch: $branch,
-    wing: $wing
-  }
+    wing: $wing,
+    name: $name,
+    newsletter_subscription: {
+      applied: $newsletter_subscription
+    }
+  };
+  // console.log(data);
   $.ajax({
     type: "PUT",
-    url: "/edit",
+    url: "/user/edit",
     data: data,
     dataType: "json",
   })
     .done(function (data) {
-      console.log("success");
-      // validate(req, "success");
+      // console.log("success");
+      validate("success");
     })
     .fail(function (err) {
-      console.log("error");
-      // validate(req, err);
+      // console.log("error");
+      validate(err);
     });
 }
