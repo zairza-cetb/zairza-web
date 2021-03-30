@@ -86,3 +86,32 @@ document.querySelectorAll(".rocket-button").forEach((elem) => {
     }, 2400);
   });
 });
+
+// Update profile ajax request
+function udpateProfile() {
+  $email = $("#profile_form input[type='email']").val();
+  $registration_no = $("#profile_form #regno").val();
+  $branch = $("#profile_form #branch").val();
+  $wing = $("#profile_form #wing").val();
+
+  let data = {
+    email: $email,
+    registration_no: $registration_no,
+    branch: $branch,
+    wing: $wing
+  }
+  $.ajax({
+    type: "PUT",
+    url: "/edit",
+    data: data,
+    dataType: "json",
+  })
+    .done(function (data) {
+      console.log("success");
+      // validate(req, "success");
+    })
+    .fail(function (err) {
+      console.log("error");
+      // validate(req, err);
+    });
+}

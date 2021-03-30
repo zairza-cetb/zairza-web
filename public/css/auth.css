@@ -7,6 +7,14 @@
   font-family: "Montserrat", sans-serif;
 }
 
+.text-custom-blue {
+  color: #1071ff;
+}
+
+.text-custom-orange {
+  color: #ff7610;
+}
+
 section {
   position: relative;
   min-height: 100vh;
@@ -99,8 +107,17 @@ section .container .user .formBx .form input {
 }
 
 section .container .user .formBx .form input:focus,
-section .container .user .formBx .form input::placeholder {
+section .container .user .formBx .form select:focus {
   border: 1px solid #1071ff;
+}
+
+section .container .user .formBx .form select::placeholder,
+section .container .user .formBx .form input::placeholder {
+  color: #1071ff;
+}
+
+section .container .user .formBx .form input,
+section .container .user .formBx .form select {
   color: #1071ff;
 }
 
