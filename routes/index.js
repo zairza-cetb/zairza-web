@@ -31,7 +31,10 @@ router.get('/forgot', function(req, res, next){
 })
 
 /* GET profile page. */
-router.get('/profile', function(req, res, next){
+router.get('/profile', function (req, res, next) {
+    if (!req.user) {
+        return res.redirect('/');
+    }
     res.render("pages/profile", {user: req.user} );
 })
 

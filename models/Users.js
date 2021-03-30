@@ -21,6 +21,14 @@ const UserSchema = new mongoose.Schema(
     password: {
       type: String,
     },
+    wing: {
+      type: String,
+      enum: ["Software","Hardware","Design"]
+    },
+    branch: {
+      type: String,
+      enum: ["Computer Science & Engineering", "Information Technology","Electrical Engineering","Mechanical Engineering","Electronics & Intrumentation Engineering","Biotechnology","Civil Engineering","Textile Engineering","Fashion & Apparel Technology","Architecture","Computer Science & Application","Planning","Mathematics & Humanities","Physics","Chemistry"]
+    },
     third_party_auth: [ThirdPartyProviderSchema],
     newsletter_subscription: {
       applied: { type: Boolean, default: false },
