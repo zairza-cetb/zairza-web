@@ -1,7 +1,12 @@
 function validate(res) {
   setTimeout(function () {
     $("#update-btn").removeClass("onclic");
-    $("#update-btn").addClass("validate", 450, callback(res));
+    // $("#update-btn").addClass("validate", 450, callback(res));
+    if (res == "success") {
+      $("#update-btn").addClass("validate-success", 450, callback(res));
+    } else {
+      $("#update-btn").addClass("validate-fail", 450, callback(res));
+    }
   }, 2250);
 }
 
@@ -12,7 +17,11 @@ function callback(res) {
     showToast(res.status, res.responseJSON.message);
   }
   setTimeout(function () {
-    $("#update-btn").removeClass("validate");
+    if (res === "success") {
+      $("#update-btn").removeClass("validate-success");
+    } else {
+      $("#update-btn").removeClass("validate-fail");
+    }
     $("#update-icon").show();
     $("#update-btn span").text("Reset Password");
   }, 1250);
@@ -29,7 +38,7 @@ function sendEmail() {
   if (!validateEmail($email)) {
     $("#form input[type='email']").addClass("border-2 border-red-500");
       $("#form input[type='email']").siblings("small.invalid_email").removeClass("hidden");
-      showToast(401, "Please enter a valid email");
+      showToast(401, "Please enter a valid email 🚫");
     return;
   } else {
     $("#form input[type='email']").removeClass("border-2 border-red-500");

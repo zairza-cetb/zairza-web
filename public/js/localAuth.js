@@ -1,18 +1,32 @@
 function validate(req, res) {
   setTimeout(function () {
     $(`#${req}-btn`).removeClass("onclic");
-    $(`#${req}-btn`).addClass("validate", 450, callback(req, res));
+    // $(`#${req}-btn`).addClass("validate", 450, callback(req, res));
+    if (res == "success") {
+      $(`#${req}-btn`).addClass("validate-success", 450, callback(req, res));
+    } else {
+      $(`#${req}-btn`).addClass("validate-fail", 450, callback(req, res));
+    }
   }, 2250);
 }
 
 function callback(req, res) {
   if (res === "success") {
-    showToast(200, "Successfully signed in");
+    if (req === "signin") {
+      showToast(200, "Successfully signed in 🤝");
+    } else if (req === "signup") {
+      showToast(200, "Successfully signed up 🤝");
+    }
   } else {
     showToast(res.status, res.responseJSON.message);
   }
   setTimeout(function () {
-    $(`#${req}-btn`).removeClass("validate");
+    // $(`#${req}-btn`).removeClass("validate");
+    if (res === "success") {
+      $(`#${req}-btn`).removeClass("validate-success");
+    } else {
+      $(`#${req}-btn`).removeClass("validate-fail");
+    }
     $(`#${req}-svg`).show();
     if (req === "signin") {
       $(`#${req}-btn span`).text("Sign In");
@@ -30,7 +44,7 @@ function matchPassword(password, confirm_password) {
   if (password != confirm_password) {
     $(this).addClass("border-2 border-red-500");
     $(this).parent().siblings("small.no_match").removeClass("hidden");
-    showToast(401, "Passwords donot match");
+    showToast(401, "Passwords donot match ⛔");
     return false;
   } else {
     $(this).removeClass("border-2 border-red-500");
@@ -50,7 +64,7 @@ function authenticate(req) {
   $password = $(`#${req}_form #${req}-password`).val();
   $confirm_password = $(`#${req}_form #confirm-password`).val();
   if (!validateEmail($email)) {
-    showToast(401, "Please enter a valid email");
+    showToast(401, "Please enter a valid email 🚫");
     return;
   }
   if (req === "signup") {

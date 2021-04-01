@@ -1,14 +1,25 @@
 // Auth popup
+const request = window.location.href.split('#')[1]
+// console.log(request)
+if (request === "signin") {
+  request_message = "signed in"
+} else {
+  request_message = "signed up"
+}
 let authWindow;
 
 window.addEventListener("message", function (e) {
-  if (e.data === "popup-done") {
-    showToast(200, "Successfull");
+
+  let redirect_url = JSON.parse(e.data).redirect_from;
+  let url = new URL(redirect_url);
+  let provider = url.searchParams.get("provider");
+  if (url.pathname === "/success_popup") {
+    showToast(200, `Successfully ${request_message} via ${provider} 🙌`);
     setTimeout(function () {
       window.location.replace("/me");
     }, 2000);
-  } else if (e.data === "popup-failed") {
-    showToast(409, "User with this email id already exists");
+  } else if (url.pathname === "/failed_popup") {
+    showToast(409, "User with this email id already exists ⛔");
     setTimeout(function () {
       window.location.replace("/auth");
     }, 2000);

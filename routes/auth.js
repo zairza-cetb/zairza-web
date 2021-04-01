@@ -140,7 +140,7 @@ module.exports = (app, passport) => {
     })(req, res, next);
   });
 
-  app.get("/popup", (req, res, next) => {
+  app.get("/success_popup", (req, res, next) => {
     res.render("pages/authPopCallback", { layout: false, success: true });
   });
   app.get("/failed_popup", (req, res, next) => {
@@ -154,8 +154,8 @@ module.exports = (app, passport) => {
   app.get(
     "/auth/google/cb/",
     passport.authenticate("google", {
-      successRedirect: "/popup",
-      failureRedirect: "/failed_popup",
+      successRedirect: "/success_popup?provider=google",
+      failureRedirect: "/failed_popup?provider=google",
     })
   );
 
@@ -167,8 +167,8 @@ module.exports = (app, passport) => {
   app.get(
     "/auth/github/cb/",
     passport.authenticate("github", {
-      successRedirect: "/popup",
-      failureRedirect: "/failed_popup",
+      successRedirect: "/success_popup?provider=github",
+      failureRedirect: "/failed_popup?provider=github",
     })
   );
 
@@ -179,7 +179,7 @@ module.exports = (app, passport) => {
     var organisation_details = user.third_party_auth
       .filter((third_party) => third_party.provider_name == organisation_name)
       .pop();
-
+    console.log(organisation_details,organisation_name);
     if (organisation_details) {
       user.third_party_auth.pull({ _id: organisation_details.id });
     }

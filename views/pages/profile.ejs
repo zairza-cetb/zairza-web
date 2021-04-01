@@ -20,10 +20,10 @@
   <body>
     <section>
       <%- include('../partials/toast.ejs') %>
-      <div class="container rounded-lg">
+      <div class="container rounded-lg" style="height:900px">
         <div class="user signinBx">
           <div class="formBx">
-            <div class="form" id="profile_form">
+            <div class="form w-full" id="profile_form">
               <div class="mt-12 flex flex-col items-center">
                 <h1 class="text-2xl xl:text-3xl font-bold">My Profile</h1>
                 <div class="w-full flex-1 mt-8">
@@ -37,7 +37,6 @@
                         if
                         (user.name){
                         %>
-                      placeholder="<%= user.name %>" 
                       value="<%= user.name %>" 
                       readonly
                       <% } else { %>
@@ -63,7 +62,6 @@
                         if
                         (user.email){
                         %>
-                      placeholder="<%= user.email %>" 
                       value="<%= user.email %>" 
                       readonly
                       <% } else { %>
@@ -84,7 +82,10 @@
                     <small class="text-custom-blue primary_email ml-1"
                       >Primary Email which will be used to send
                       newsletter</small
-                    >
+                    ><br>
+                    <small class="text-red-500 hidden invalid_email"
+                        >Invalid Email Address</small
+                      >
                     <div class="relative">
                       <input
                         id="regno"
@@ -94,7 +95,6 @@
                         if
                         (user.registration_no){
                         %>
-                      placeholder="<%= user.registration_no %>" 
                       value="<%= user.registration_no %>" 
                       readonly
                       <% } else { %>
@@ -118,7 +118,7 @@
                         id="branch"
                         class="my-2 appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white"
                       >
-                      <option>Select Branch</option>
+                      <option disabled selected value>Select Branch</option>
                       <% const branches = ["Computer Science & Engineering", "Information Technology","Electrical Engineering","Mechanical Engineering","Electronics & Intrumentation Engineering","Biotechnology","Civil Engineering","Textile Engineering","Fashion & Apparel Technology","Architecture","Computer Science & Application","Planning","Mathematics & Humanities","Physics","Chemistry"];
                         let selectedBranch;  
                       branches.forEach((branch) =>{
@@ -148,7 +148,7 @@
                         id="wing"
                         class="my-2 appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white"
                       >
-                        <option>Select Wing</option>
+                        <option disabled selected value>Select Wing</option>
                         <% const wings = ["Software","Hardware","Design"];
                         let selectedWing;  
                       wings.forEach((wing) =>{
@@ -172,20 +172,67 @@
                         </svg>
                       </div>
                     </div>
-                    <div class="flex justify-between items-center my-2">
-                      <label for="google_toggle" class="text-custom-orange flex items-center justify-between"><i class='bx bxl-google bx-md'></i></label>
+                    <form id="connect_github" class="connect flex flex-row" data-state="<%= (github)?'on':'off' %>" data-provider="github">
+                      <div class="toggle-wrapper flex items-center w-full justify-center">
+                        <% checked = (github)?'checked':'' %>
+                        <input id="github_toggle" <%= checked %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onchange="ThirdPartyAuthenticate('Github',$(this).prop('checked'),$(this).closest('form'))">
+                        <label for="github_toggle" class="fancy-toggle relative">
+                          <div class="bg relative top-0 left-0 h-full"></div>
+                          <div class="circle absolute cursor-pointer">
+                            <svg viewBox="0 0 100 100">
+                              <circle class="loader" cx="50" cy="50" r="45" pathLength="1" />
+                            </svg>
+                          </div>
+                        </label>
+                        <output class="status overflow-hidden">
+                          <div class="status-text text-custom-orange flex items-center justify-around" data-for="off">Connect <i class='bx bxl-github bx-md'></i></div>
+                          <div class="status-text" data-for="pending">Please Wait...</div>
+                          <div class="status-text text-custom-blue flex items-center justify-around" data-for="on">Disconnect <i class='bx bxl-github bx-md ml-2'></i></div>
+                        </output>
+                      </div>
+                    </form>
+                    
+                    <form id="connect_google" class="connect flex flex-row" data-state="<%= (google)?'on':'off' %>" data-provider="google">
+                      <div class="toggle-wrapper flex items-center w-full justify-center">
+                        <% checked = (google)?'checked':'' %>
+                        <input id="google_toggle" <%= checked %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onchange="ThirdPartyAuthenticate('Google',$(this).prop('checked'),$(this).closest('form'))">
+                        <label for="google_toggle" class="fancy-toggle relative">
+                          <div class="bg relative top-0 left-0 h-full"></div>
+                          <div class="circle absolute cursor-pointer">
+                            <svg viewBox="0 0 100 100">
+                              <circle class="loader" cx="50" cy="50" r="45" pathLength="1" />
+                            </svg>
+                          </div>
+                        </label>
+                        <output class="status overflow-hidden">
+                          <div class="status-text text-custom-orange flex items-center justify-around" data-for="off">Connect <i class='bx bxl-google bx-md'></i></div>
+                          <div class="status-text" data-for="pending">Please Wait...</div>
+                          <div class="status-text text-custom-blue flex items-center justify-around" data-for="on">Disconnect <i class='bx bxl-google bx-md ml-2'></i></div>
+                        </output>
+                      </div>
+                    </form>
+                    <form id="newsletter" class="connect flex flex-row" data-state="<%= (user.newsletter_subscription.applied)?'on':'off' %>" data-provider="newsletter">
+                      <div class="toggle-wrapper flex items-center w-full justify-center">
+                        <% newsletter_subscription = (user.newsletter_subscription.applied)?'checked':'' %>
+                        <input id="newsletter_toggle" <%= newsletter_subscription %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onclick="subscribe_newsletter($(this).closest('form'),$(this).prop('checked'))">
+                        <label for="newsletter_toggle" class="fancy-toggle relative">
+                          <div class="bg relative top-0 left-0 h-full"></div>
+                          <div class="circle absolute cursor-pointer">
+                            <svg viewBox="0 0 100 100">
+                              <circle class="loader" cx="50" cy="50" r="45" pathLength="1" />
+                            </svg>
+                          </div>
+                        </label>
+                        <output class="status overflow-hidden">
+                          <div class="status-text text-custom-orange flex items-center justify-around" data-for="off">Subscribe <i class='bx bx-news bx-md'></i></div>
+                          <div class="status-text" data-for="pending">Please Wait...</div>
+                          <div class="status-text text-custom-blue flex items-center justify-around" data-for="on">Unsubscribe <i class='bx bx-news bx-md ml-2'></i></div>
+                        </output>
+                      </div>
+                    </form>
 
-                      <my-toggle-group class="flex items-center">
-                        <my-toggle class="relative overflow-hidden inline-block">
-                          <% checked = (google)?'checked':'' %>
-                          <input type="checkbox" <%= checked %> class="m-0 relative cursor-pointer" name="toggle" id="google_toggle" onchange="ThirdPartyAuthenticate('Google',$(this).prop('checked'))" style="border: none;">
-                        
-                          <my-toggle-orb class="block pointer-events-none"></my-toggle-orb>
-                        </my-toggle>
-                      
-                      </my-toggle-group>
-                    </div>
-                    <div class="flex justify-between items-center my-2">
+
+                    <!-- <div class="flex justify-between items-center my-2">
                       <label for="github_toggle" class="text-custom-orange"><i class='bx bxl-github bx-md'></i></label>
 
                       <my-toggle-group class="flex items-center">
@@ -210,7 +257,7 @@
                         </my-toggle>
                       
                       </my-toggle-group>
-                    </div>
+                    </div> -->
                     <button
                       id="update-btn"
                       onclick="updateProfile()"
@@ -229,7 +276,7 @@
             </div>
           </div>
           <div class="imgBx">
-            <img src="/images/auth/newPassword.png" alt="" />
+            <img src="/images/auth/profile.png" alt="" />
           </div>
         </div>
       </div>

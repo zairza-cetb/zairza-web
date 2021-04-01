@@ -30,7 +30,7 @@ function matchPassword(password, confirm_password) {
   if (password != confirm_password) {
     $(this).addClass("border-2 border-red-500");
     $(this).parent().siblings("small.no_match").removeClass("hidden");
-    showToast(401, "Passwords donot match");
+    showToast(401, "Passwords donot match 🚫");
     return false;
   } else {
     $(this).removeClass("border-2 border-red-500");
@@ -42,7 +42,12 @@ function matchPassword(password, confirm_password) {
 function validate(res) {
   setTimeout(function () {
     $("#update-btn").removeClass("onclic");
-    $("#update-btn").addClass("validate", 450, callback(res));
+    // $("#update-btn").addClass("validate", 450, callback(res));
+    if (res == "success") {
+      $("#update-btn").addClass("validate-success", 450, callback(res));
+    } else {
+      $("#update-btn").addClass("validate-fail", 450, callback(res));
+    }
   }, 2250);
 }
 
@@ -53,7 +58,11 @@ function callback(res) {
     showToast(res.status, res.responseJSON.message);
   }
   setTimeout(function () {
-    $("#update-btn").removeClass("validate");
+    if (res === "success") {
+      $("#update-btn").removeClass("validate-success");
+    } else {
+      $("#update-btn").removeClass("validate-fail");
+    }
     $("#update-icon").show();
     $("#update-btn span").text("Update Password");
     if (res === "success") {

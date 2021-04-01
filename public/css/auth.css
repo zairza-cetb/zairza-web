@@ -265,26 +265,36 @@ section .container.active .signinBx .imgBx {
   background: white;
 }
 
-.validate {
+.validate-success {
   font-size: 13px;
   color: white;
   background: #1471ff;
 }
-.validate:after {
+.validate-fail {
+  font-size: 13px;
+  color: white;
+  background: #1471ff;
+}
+.validate-success:after {
   font-family: "FontAwesome" !important;
   content: "\f00c" !important;
+  font-size: 20px;
+  vertical-align: middle;
+}
+.validate-fail:after {
+  font-family: "FontAwesome" !important;
+  content: "\f00d" !important;
   font-size: 20px;
   vertical-align: middle;
 }
 
 /* Connect 3rd party auth in profile page */
 
-my-toggle-group my-toggle {
+/* my-toggle-group my-toggle {
   background: #e5e7eb;
   width: 80px;
   height: 40px;
   border-radius: 40px;
-
 }
 
 my-toggle-group my-toggle my-toggle-orb {
@@ -298,21 +308,144 @@ my-toggle-group my-toggle my-toggle-orb {
   background: #fff;
   z-index: 2;
 }
-my-toggle-group my-toggle input[type=checkbox] {
+my-toggle-group my-toggle input[type="checkbox"] {
   height: 80px;
   width: 40px;
   margin: 0 !important;
   background: #f87171 !important;
   -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
-my-toggle-group my-toggle input[type=checkbox]:checked {
+my-toggle-group my-toggle input[type="checkbox"]:checked {
   background: #34d399 !important;
 }
-my-toggle-group my-toggle input[type=checkbox]:checked ~ my-toggle-orb {
-  transform: translateX(calc( .67 * (calc(80px - 32px)) + calc(4px * 2) ));
+my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
+  transform: translateX(calc(0.67 * (calc(80px - 32px)) + calc(4px * 2)));
+} */
+
+/* Third Party new toggle */
+.toggle-wrapper {
+  /* font-size: 2rem; */
+  /* display: flex;
+  align-items: center; */
+  font-size: inherit;
 }
+
+.toggle_input {
+  width: 2em !important;
+  height: 2em;
+  /* visibility: hidden;
+  position: absolute; */
+}
+
+.connect {
+  /* display: flex;
+  flex-direction: row; */
+  color: #404843;
+}
+
+.fancy-toggle {
+  font-size: 3rem;
+  width: 1em;
+  height: 1em;
+  padding: 0.2em;
+  /* position: relative; */
+  box-sizing: content-box;
+  margin-right: 1.5em;
+  transition: transform 0.4s cubic-bezier(.5, 0, .5, 1);
+  transition-property: transform, width, background-color;
+}
+.fancy-toggle .bg {
+  background: grey;
+  /* position: relative;
+  top: 0;
+  left: 0; */
+  width: 175%;
+  /* height: 100%; */
+  border-radius: 2em;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+  transition: inherit;
+}
+.fancy-toggle .circle {
+  width: .8em;
+  height: .8em;
+  background: white;
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transition: inherit;
+  /* position: absolute; */
+  top: 14px;
+  left: 14px;
+}
+.fancy-toggle .circle > svg {
+  transform: rotate(-90deg);
+  margin: -0.1em;
+}
+.fancy-toggle .loader {
+  stroke: #6C80F5;
+  stroke-width: 6;
+  fill: none;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: -1;
+  transition: stroke-dasharray calc(1000 * 0.5ms) linear,
+    stroke-dashoffset 1000ms linear;
+}
+
+.status {
+  overflow: hidden;
+  display: grid;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.status > div {
+  grid-area: 1/1;
+}
+
+.status-text {
+  transition: transform .3s cubic-bezier(.5, 0, .5, 1);
+}
+.status-text[data-for="off"],
+.status-text[data-for="pending"] {
+  transform: translateY(-100%);
+}
+.status-text[data-for="on"] {
+  transform: translateY(100%);
+}
+.status-text[data-active] ~ [data-for="pending"] {
+  transform: translateY(100%);
+}
+.status-text[data-active] {
+  transform: translateY(0);
+}
+
+[data-state="off"] .fancy-toggle .bg {
+  background: #e44b45;
+}
+
+[data-state="pending"] .fancy-toggle {
+  transform: translateX(50%);
+}
+[data-state="pending"] .fancy-toggle .bg {
+  width: 100%;
+  background: #b5b5b5;
+}
+[data-state="pending"] .fancy-toggle .loader {
+  stroke-dashoffset: 0;
+}
+
+[data-state="on"] .fancy-toggle .bg {
+  background: #1bce6f;
+}
+[data-state="on"] .fancy-toggle .circle {
+  transform: translateX(95%);
+}
+[data-state="on"] .fancy-toggle .loader {
+  stroke-dashoffset: 1;
+}
+
 @-webkit-keyframes rotating {
   from {
     transform: rotate(0deg);

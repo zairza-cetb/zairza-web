@@ -36,12 +36,15 @@ const handleCastErrorDB = (err) => {
 };
 
 const handleDuplicateFieldsDB = (err) => {
-  const value = err.errmsg.match(/(["'])(?:(?=(\\?))\2.)*?\1/)[0];
-  const message = `Duplicate field value: ${value}. Please use another value!`;
+
+  const key = Object.keys(err.keyValue)[0];
+  const message = `${err.keyValue[key]} already exists`;
+
 
   const error = new Error(message);
   error.status = "fail";
   error.statusCode = 400;
+  error.isOperational = true;
   return error;
 };
 

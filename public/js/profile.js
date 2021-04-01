@@ -18,43 +18,61 @@ let authWindow;
 
 window.addEventListener("message", function (e) {
   // console.log("popup-done")
-  if (e.data === "popup-done") {
-    showToast(200, "Conected 😎");
-  } else if (e.data === "popup-failed") {
-    showToast(409, "User with this email id already exists");
+  let redirect_url = JSON.parse(e.data).redirect_from;
+  let url = new URL(redirect_url);
+
+  let provider = url.searchParams.get("provider");
+  let element = $(`.connect[data-provider=${provider}]`);
+  if (url.pathname === "/success_popup") {
+    setState("on", element);
+    showToast(
+      200,
+      `${provider.substr(0, 1).toUpperCase() + provider.substr(1)} conected 😎`
+    );
+  } else if (url.pathname === "/failed_popup") {
+    setState("off", element);
+    showToast(409, "User with this email id already exists ⛔");
   }
 });
-function ThirdPartyAuthenticate(provider_name, state) {
-  // console.log(state)
+function ThirdPartyAuthenticate(provider_name, state, element) {
+  console.log(provider_name, state);
   var width = 1366,
     height = 768;
   let link;
-  if (provider_name === "Google" && state) {
-    link = "/auth/google";
-    console.log("google", state);
-  } else if (provider_name === "github" && state) {
-    link = "/auth/github";
-    console.log("Github", state);
-  } else if(!state){
+  // provider_name = provider_name.toLowerCase();
+  // if (provider_name == "Google" && state) {
+  //   link = "/auth/google";
+  //   // console.log("google", state);
+  // } else if (provider_name == "Github" && state) {
+  //   link = "/auth/github";
+  //   // console.log("Github", state);
+  // }
+  if (!state) {
+    setState("pending", element);
+    // console.log(provider_name, state);
     $.ajax({
-      type: "GEt",
-      url: `/unlink/${provider_name}`,
+      type: "GET",
+      url: `/unlink/${provider_name.toLowerCase()}`,
     })
       .done(function (data) {
         // console.log("success");
+        setState("off", element);
         showToast(200, `${provider_name} disconnected 😞`);
       })
       .fail(function (err) {
         // console.log("error");
+        setState("on", element);
         showToast(err.status, err.errResponse.message);
       });
-  }
-  var w = window.outerWidth - width,
-    h = window.outerHeight - height;
-  var left = Math.round(window.screenX + w / 2);
-  var top = Math.round(window.screenY + h / 2.5);
+  } else if (state) {
+    link = `/auth/${provider_name.toLowerCase()}`;
+    var w = window.outerWidth - width,
+      h = window.outerHeight - height;
+    var left = Math.round(window.screenX + w / 2);
+    var top = Math.round(window.screenY + h / 2.5);
 
-  if (state) {
+    setState("pending", element);
+    console.log(link);
     authWindow = window.open(
       link,
       "Connect",
@@ -74,7 +92,11 @@ function ThirdPartyAuthenticate(provider_name, state) {
 function validate(res) {
   setTimeout(function () {
     $("#update-btn").removeClass("onclic");
-    $("#update-btn").addClass("validate", 450, callback(res));
+    if (res == "success") {
+      $("#update-btn").addClass("validate-success", 450, callback(res));
+    } else {
+      $("#update-btn").addClass("validate-fail", 450, callback(res));
+    }
   }, 2250);
 }
 
@@ -85,7 +107,11 @@ function callback(res) {
     showToast(res.status, res.responseJSON.message);
   }
   setTimeout(function () {
-    $("#update-btn").removeClass("validate");
+    if (res === "success") {
+      $("#update-btn").removeClass("validate-success");
+    } else {
+      $("#update-btn").removeClass("validate-fail");
+    }
     $("#update-icon").show();
     $("#update-btn span").text("Update Profile");
     if (res === "success") {
@@ -94,6 +120,29 @@ function callback(res) {
   }, 1250);
 }
 
+// Email validate through regex
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+//  Registration number validate
+function validateRegistrationNumber(reg_no) {
+  const re = /^[0-9]{10}$/;
+  return re.test(reg_no);
+}
+
+$("input[type='email']").on("change", function () {
+  $response = validateEmail($(this).val());
+  if (!$response) {
+    $(this).addClass("border-2 border-red-500");
+    $("small.invalid_email").removeClass("hidden");
+  } else {
+    $(this).removeClass("border-2 border-red-500");
+    $("small.invalid_email").addClass("hidden");
+  }
+});
+
 // Update profile ajax request
 function updateProfile() {
   $email = $("#profile_form input[type='email']").val();
@@ -101,7 +150,24 @@ function updateProfile() {
   $branch = $("#profile_form #branch").val();
   $wing = $("#profile_form #wing").val();
   $name = $("#profile_form #name").val();
-  $newsletter_subscription = $("#profile_form #newsletter_toggle").prop("checked");
+  $newsletter_subscription = $("#profile_form #newsletter_toggle").prop(
+    "checked"
+  );
+  if (!validateEmail($email) || $email.length == 0) {
+    showToast(401, "Please enter a valid email 🚫");
+    return;
+  }
+  if ($name.length == 0) {
+    showToast(401, "Please enter your name 🔐");
+    return;
+  }
+  if (
+    !validateRegistrationNumber($registration_no) ||
+    $registration_no.length == 0
+  ) {
+    showToast(401, "Please enter a valid registration number 🔐");
+    return;
+  }
 
   $("#update-icon").hide();
   $("#update-btn span").text("");
@@ -113,9 +179,6 @@ function updateProfile() {
     branch: $branch,
     wing: $wing,
     name: $name,
-    newsletter_subscription: {
-      applied: $newsletter_subscription
-    }
   };
   // console.log(data);
   $.ajax({
@@ -131,5 +194,124 @@ function updateProfile() {
     .fail(function (err) {
       // console.log("error");
       validate(err);
+    });
+}
+
+// console.clear();
+// const elToggle = document.querySelector("#toggle");
+// const elApp = document.querySelector("#app");
+// const elBody = document.body;
+
+// let current = elApp.dataset.state;
+
+// function activate(state) {
+//   elApp.dataset.state = state;
+//   // elBody.dataset.toggleState = current;
+
+//   document
+//     .querySelectorAll(`[data-active]`)
+//     .forEach((el) => delete el.dataset.active);
+//   document
+//     .querySelectorAll(`[data-for="${state}"]`)
+//     .forEach((el) => (el.dataset.active = true));
+// }
+
+// activate(current);
+
+function setState(state, element) {
+  // elApp.dataset.prevState = state;
+  // current = state;
+  // activate(state);
+
+  $elApp = element;
+  $elToggle = $elApp.find("input");
+
+  $elApp.attr("data-state", state);
+  element
+    .find(`[data-active]`)
+    .each((i, $el) => $($el).removeAttr("data-active"));
+  element
+    .find(`[data-for="${state}"]`)
+    .each((i, $el) => $($el).attr("data-active", true));
+
+  // elToggle = $elToggle.get(0);
+  switch (state) {
+    // case 'off':
+    //   elToggle.indeterminate = false;
+    //   elToggle.checked = false;
+    //   elToggle.readOnly = false;
+    //   break;
+    // case 'pending':
+    //   elToggle.readOnly = true;
+    //   elToggle.indeterminate = true;
+
+    //   break;
+    // case 'on':
+    //   elToggle.readOnly = false;
+    //   elToggle.checked = true;
+    //   elToggle.indeterminate = false;
+    //   break;
+    // default:
+    //   break;
+    case "off":
+      $($elToggle).prop("indeterminate", false);
+      $($elToggle).attr("checked", false);
+      $($elToggle).prop("readonly ", false);
+      break;
+    case "pending":
+      $($elToggle).prop("readonly", true);
+      $($elToggle).prop("indeterminate ", true);
+      break;
+    case "on":
+      $($elToggle).prop("readonly", false);
+      $($elToggle).attr("checked", true);
+      $($elToggle).prop("indeterminate", false);
+      break;
+    default:
+      break;
+  }
+}
+
+// $github_provider = $(".connect_github[data-provider=github]");
+// $google_provider = $(".connect_google[data-provider=google]");
+// setState($github_provider.data("state"), $github_provider);
+// setState($google_provider.data("state"), $google_provider)
+
+$(document).ready(function () {
+  $(".connect").each(function (index, el) {
+    setState($(el).attr("data-state"), $(el));
+  });
+});
+
+// Subscribe to newsletter
+function subscribe_newsletter(ele,state) {
+  $newsletter_subscription = state;
+  let data = {
+    newsletter_subscription: {
+      applied: $newsletter_subscription,
+    },
+  };
+  setState("pending",ele)
+  $.ajax({
+    type: "PUT",
+    url: "/user/edit",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json",
+  })
+    .done(function (data) {
+      // console.log("success");
+      if (state) {
+        setState("on",ele)
+        showToast(200, "Newsletter subscribed 👍")
+      } else {
+        setState("off",ele)
+        showToast(200, "Newsletter unsubscribed 🥺")
+      }
+    })
+    .fail(function (err) {
+      // console.log("error");
+      setState("off",ele)
+      showToast(err.status, err.errResponse.message);
     });
 }
