@@ -1,69 +1,30 @@
 body {
-    font-family: "Montserrat", sans-serif;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    margin: 0;
-    padding: 0;
-  }
-  .navbar-brand {
-    margin-top: 2em;
-    margin-left: 2em;
-  }
-  .animated {
-    /* height: 50vh;
-    width: 50vh; */
-    animation: up-down 2s ease-in-out infinite alternate-reverse both;
-  }
-  @-webkit-keyframes up-down {
-    0% {
-      transform: translateY(10px);
-    }
-  
-    100% {
-      transform: translateY(-10px);
-    }
-  }
-  
-  @keyframes up-down {
-    0% {
-      transform: translateY(10px);
-    }
-  
-    100% {
-      transform: translateY(-10px);
-    }
-  }
-  .title {
-    text-align: center;
-    font-family: "Montserrat";
-    letter-spacing: 1px;
-    color: #1d1d1d;
-    font-weight: bold;
-    font-size: 1.3em;
-    line-height: 1.2em;
-  }
-  
-  @media only screen and (max-width: 768px) {
-    body section .row{
-      margin: 0;
-    }
-    .navbar {
-      flex-direction: column;
-    }
-    .animated{
-      /* height: 40vh !important; */
-      margin-top: 8rem;
-    }
-    .navbar-brand{
-      margin-top:1rem;
-      margin-left: 0;
-    }
-    .title {
-      font-size: 1.2em;
-      margin-top: 5rem;
-    }
-    .main-col{
-      height: 70vh;
-    }
-  }
-  
+  font-family: "Montserrat", sans-serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 60%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  /* padding: 10px 20px; */
+  background: #FF7610;
+  /* margin: 20px 0; */
+  display: inline-block;
+}
