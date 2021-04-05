@@ -16,8 +16,8 @@
   text-align: left;
   padding: 21px 0;
   background-color: #fff;
-  top: 20px;
-  position: absolute;
+  top: 30px;
+  position: fixed;
   box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.2);
   max-width: calc(100vw - 10%);
 }

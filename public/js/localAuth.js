@@ -97,14 +97,19 @@ function authenticate(req) {
 }
 
 // Submit forms on click of 'ENTER' key
-$("#signup-btn").keypress(function (e) {
+$("input").keypress(function (e) {
   if (e.keyCode === 13) {
-    $(this).click();
+    let authType = (window.location.href.split('#')[1]);
+    if ( authType === 'signin'){
+      $("#signin-btn").click();
+    }else if(authType === 'signup'){
+      $("#signup-btn").click();
+    }
   }
 });
 
-$("#signin-btn").keypress(function (e) {
-  if (e.keyCode === 13) {
-    $(this).click();
-  }
-});
+// $("#signin-btn").keypress(function (e) {
+//   if (e.keyCode === 13) {
+//     $(this).click();
+//   }
+// });
