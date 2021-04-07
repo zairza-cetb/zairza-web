@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="/css/auth.css" />
   </head>
   <body>
+    <%- include('../partials/firebase.ejs') %>
     <section>
       <%- include('../partials/toast.ejs') %>
 
@@ -309,6 +310,7 @@
     crossorigin="anonymous"
   ></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous"></script>
   <script src="/js/toast.js"></script>
   <script src="/js/auth.js"></script>
   <script src="/js/localAuth.js"></script>

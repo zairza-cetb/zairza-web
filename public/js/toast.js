@@ -31,7 +31,7 @@ const errorCodes = {
 // Show toast based on response message
 
 function showToast(status_code, message) {
-  $(".toast__type").text(status_code);
+  // $(".toast__type").text(status_code);
   if (message) {
     $(".toast__message").text(message);
   } else {

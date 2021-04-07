@@ -18,7 +18,7 @@ function callback(req, res) {
       showToast(200, "Successfully signed up 🤝");
     }
   } else {
-    showToast(res.status, res.responseJSON.message);
+    showToast(res.errorCode, res.errorMessage);
   }
   setTimeout(function () {
     // $(`#${req}-btn`).removeClass("validate");
@@ -33,9 +33,9 @@ function callback(req, res) {
     } else {
       $(`#${req}-btn span`).text("Sign Up");
     }
-    if (res == "success") {
-      window.location.replace("/me");
-    }
+    // if (res == "success") {
+    //   window.location.replace("/me");
+    // }
   }, 1250);
 }
 
@@ -80,36 +80,76 @@ function authenticate(req) {
     email: $email,
     password: $password,
   };
-  $.ajax({
-    type: "POST",
-    url: `/${req}`,
-    data: data,
-    dataType: "json",
-  })
-    .done(function (data) {
-      // console.log("success");
+  // $.ajax({
+  //   type: "POST",
+  //   url: `/${req}`,
+  //   data: data,
+  //   dataType: "json",
+  // })
+  //   .done(function (data) {
+  //     // console.log("success");
+  //     validate(req, "success");
+  //   })
+  //   .fail(function (err) {
+  //     // console.log("error");
+  //     validate(req, err);
+  //   });
+  if(req == 'signup'){
+    firebase.auth().createUserWithEmailAndPassword($email, $password)
+    .then((userCredential) => {
+      // Signed in 
+      var user = userCredential.user;
+      console.log(user.getIdToken());
       validate(req, "success");
+      // ...
     })
-    .fail(function (err) {
-      // console.log("error");
+    .catch((error) => {
+      // var errorCode = error.code;
+      // var errorMessage = error.message;
+      const err = {
+        errorCode: error.code,
+        errorMessage: error.message
+      }
+      console.log(errorCode, errorMessage)
       validate(req, err);
+      // ..
     });
+  }else if(req == 'signin'){
+    firebase.auth().signInWithEmailAndPassword($email, $password)
+  .then(async (userCredential) => {
+    // Signed in
+    var user = userCredential.user;
+    const token = await firebase.auth().currentUser.getIdToken();
+    console.log(token)
+    let zairzaToken = $.cookie("zairzaToken")
+    $.cookie("zairzaToken", token, {
+      expires: 7
+    })
+    validate(req, "success");
+    // ...
+  })
+  .catch((error) => {
+    // var errorCode = error.code;
+    // var errorMessage = error.message;
+    const err = {
+      errorCode: 400,
+      errorMessage: error.message
+    }
+    validate(req, err)
+  });
+  }
+
 }
 
 // Submit forms on click of 'ENTER' key
 $("input").keypress(function (e) {
   if (e.keyCode === 13) {
     let authType = (window.location.href.split('#')[1]);
-    if ( authType === 'signin'){
-      $("#signin-btn").click();
-    }else if(authType === 'signup'){
+    if(authType === 'signup'){
       $("#signup-btn").click();
+    }else{
+      $("#signin-btn").click();
     }
   }
 });
 
-// $("#signin-btn").keypress(function (e) {
-//   if (e.keyCode === 13) {
-//     $(this).click();
-//   }
-// });
