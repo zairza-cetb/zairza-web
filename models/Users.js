@@ -5,6 +5,11 @@ const ThirdPartyProviderSchema = require("./ThirdPartyAuth");
 
 const UserSchema = new mongoose.Schema(
   {
+    firebase_uid: {
+      type: String,
+      unique: true,
+      index: true,
+    },
     name: {
       type: String,
     },
@@ -23,11 +28,27 @@ const UserSchema = new mongoose.Schema(
     },
     wing: {
       type: String,
-      enum: ["Software","Hardware","Design"]
+      enum: ["Software", "Hardware", "Design"],
     },
     branch: {
       type: String,
-      enum: ["Computer Science & Engineering", "Information Technology","Electrical Engineering","Mechanical Engineering","Electronics & Intrumentation Engineering","Biotechnology","Civil Engineering","Textile Engineering","Fashion & Apparel Technology","Architecture","Computer Science & Application","Planning","Mathematics & Humanities","Physics","Chemistry"]
+      enum: [
+        "Computer Science & Engineering",
+        "Information Technology",
+        "Electrical Engineering",
+        "Mechanical Engineering",
+        "Electronics & Intrumentation Engineering",
+        "Biotechnology",
+        "Civil Engineering",
+        "Textile Engineering",
+        "Fashion & Apparel Technology",
+        "Architecture",
+        "Computer Science & Application",
+        "Planning",
+        "Mathematics & Humanities",
+        "Physics",
+        "Chemistry",
+      ],
     },
     third_party_auth: [ThirdPartyProviderSchema],
     newsletter_subscription: {
@@ -61,7 +82,7 @@ UserSchema.methods.validPassword = function (password) {
 
 // checking if registration no is valid
 UserSchema.methods.checkValidRegistrationNo = async function (registration_no) {
-  return await ValidRegNos.exists({registration_no});
+  return await ValidRegNos.exists({ registration_no });
 };
 
 module.exports = User = mongoose.model("users", UserSchema);

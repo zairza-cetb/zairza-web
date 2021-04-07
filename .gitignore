@@ -3,4 +3,5 @@ temp/
 node_modules
 .env
 package-lock.json
+firebase_service_account.json
 .adminbro

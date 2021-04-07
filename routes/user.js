@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const checkIfAuthenticated = require("../firebase/firebaseAuth");
 
 const editable_fields = new Set([
   "name",
@@ -7,24 +8,15 @@ const editable_fields = new Set([
   "registration_no",
   "newsletter_subscription",
   "wing",
-  "branch"
+  "branch",
 ]);
 
-/* GET users listing. */
-const checkUserLoggedIn = (req, res, next) => {
-  req.user
-    ? next()
-    : res
-        .status(401)
-        .json({ status: "fail", message: "User is not logged in" });
-};
-
-router.get("/me", checkUserLoggedIn, function (req, res, next) {
+router.get("/me", checkIfAuthenticated, function (req, res, next) {
   res.json(req.user);
 });
 
-router.put("/edit", checkUserLoggedIn, async function (req, res, next) {
-  console.log(req.body)
+router.put("/edit", checkIfAuthenticated, async function (req, res, next) {
+  console.log(req.body);
   if (!req.user.registration_no && !req.body.registration_no) {
     return res
       .status(403)
@@ -66,7 +58,7 @@ router.put("/edit", checkUserLoggedIn, async function (req, res, next) {
   }
 });
 
-router.delete("/", checkUserLoggedIn, function (req, res, next) {
+router.delete("/", checkIfAuthenticated, function (req, res, next) {
   User.findByIdAndRemove(req.user.id)
     .then((user) => {
       if (!user) {
