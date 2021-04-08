@@ -33,9 +33,9 @@ function callback(req, res) {
     } else {
       $(`#${req}-btn span`).text("Sign Up");
     }
-    // if (res == "success") {
-    //   window.location.replace("/me");
-    // }
+    if (res == "success") {
+      window.location.replace("/me");
+    }
   }, 1250);
 }
 
@@ -94,62 +94,99 @@ function authenticate(req) {
   //     // console.log("error");
   //     validate(req, err);
   //   });
-  if(req == 'signup'){
-    firebase.auth().createUserWithEmailAndPassword($email, $password)
-    .then((userCredential) => {
-      // Signed in 
-      var user = userCredential.user;
-      console.log(user.getIdToken());
-      validate(req, "success");
-      // ...
-    })
-    .catch((error) => {
-      // var errorCode = error.code;
-      // var errorMessage = error.message;
-      const err = {
-        errorCode: error.code,
-        errorMessage: error.message
-      }
-      console.log(errorCode, errorMessage)
-      validate(req, err);
-      // ..
-    });
-  }else if(req == 'signin'){
-    firebase.auth().signInWithEmailAndPassword($email, $password)
-  .then(async (userCredential) => {
-    // Signed in
-    var user = userCredential.user;
-    const token = await firebase.auth().currentUser.getIdToken();
-    console.log(token)
-    let zairzaToken = $.cookie("zairzaToken")
-    $.cookie("zairzaToken", token, {
-      expires: 7
-    })
-    validate(req, "success");
-    // ...
-  })
-  .catch((error) => {
-    // var errorCode = error.code;
-    // var errorMessage = error.message;
-    const err = {
-      errorCode: 400,
-      errorMessage: error.message
-    }
-    validate(req, err)
-  });
+  if (req == "signup") {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword($email, $password)
+      .then(async (userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        const token = await firebase.auth().currentUser.getIdToken();
+        $.cookie("zToken", token, {
+          expires: 7,
+        });
+        $.ajax({
+          url: "/user/me",
+          type: "GET",
+          // Fetch the stored token from localStorage and set in the header
+          headers: { Authorization: "Bearer " + token },
+        })
+          .done(function () {
+            validate(req, "success");
+          })
+          .fail(function (error) {
+            console.log(error);
+            const err = {
+              errorCode: error.status_code,
+              errorMessage: error.message,
+            };
+            validate(req, err);
+          });
+        // ...
+      })
+      .catch((error) => {
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
+        const err = {
+          errorCode: error.code,
+          errorMessage: error.message,
+        };
+        console.log(errorCode, errorMessage);
+        validate(req, err);
+        // ..
+      });
+  } else if (req == "signin") {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword($email, $password)
+      .then(async (userCredential) => {
+        // Signed in
+        var user = userCredential.user;
+        const token = await firebase.auth().currentUser.getIdToken();
+        // console.log(token)
+        // let zairzaToken = $.cookie("zairzaToken")
+        $.cookie("zToken", token, {
+          expires: 7,
+        });
+        $.ajax({
+          url: "/user/me",
+          type: "GET",
+          // Fetch the stored token from localStorage and set in the header
+          headers: { Authorization: "Bearer " + token },
+        })
+          .then(function () {
+            validate(req, "success");
+          })
+          .fail(function (error) {
+            console.log(error);
+            const err = {
+              errorCode: error.status_code,
+              errorMessage: error.message,
+            };
+            validate(req, err);
+          });
+        // ...
+      })
+      .catch((error) => {
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
+        const err = {
+          errorCode: 400,
+          errorMessage: error.message,
+        };
+        validate(req, err);
+      });
   }
-
 }
 
 // Submit forms on click of 'ENTER' key
 $("input").keypress(function (e) {
   if (e.keyCode === 13) {
-    let authType = (window.location.href.split('#')[1]);
-    if(authType === 'signup'){
+    let authType = window.location.href.split("#")[1];
+    if (authType === "signup") {
       $("#signup-btn").click();
-    }else{
+    } else {
       $("#signin-btn").click();
     }
   }
 });
-

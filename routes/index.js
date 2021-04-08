@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const checkIfAuthenticated = require("../firebase/firebaseAuth");
 
+function getFirebaseToken(){
+ return $.cookie("zToken")
+}
+
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("pages/index", { user: req.user });
@@ -16,13 +20,12 @@ router.get("/auth", function (req, res, next) {
 });
 
 /* GET profile page. */
-router.get("/me", checkIfAuthenticated, function (req, res, next) {
-  res.render("pages/me", { user: req.user });
-  console.log(req.user);
+router.get("/me", function (req, res, next) {
+  res.render("pages/me");
 });
 
 /* GET settings page. */
-router.get("/settings", checkIfAuthenticated, function (req, res, next) {
+router.get("/settings", function (req, res, next) {
   res.render("pages/settings");
 });
 
@@ -32,7 +35,7 @@ router.get("/forgot", function (req, res, next) {
 });
 
 /* GET profile page. */
-router.get("/profile", checkIfAuthenticated, function (req, res, next) {
+router.get("/profile", function (req, res, next) {
   if (!req.user) {
     return res.redirect("/");
   }
