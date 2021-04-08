@@ -131,7 +131,6 @@ function authenticate(req) {
           errorCode: error.code,
           errorMessage: error.message,
         };
-        console.log(errorCode, errorMessage);
         validate(req, err);
         // ..
       });
