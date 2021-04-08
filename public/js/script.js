@@ -25,7 +25,7 @@ $(document).ready(function () {
     }
   });
   new fullpage("#fullpage", {
-    licenseKey: 'XaTw#PV$o2',
+    licenseKey: "XaTw#PV$o2",
     afterLoad: function (origin, destination, direction) {
       navs = $("ul#mob-menu > li");
       if (origin.index != 11)
@@ -95,7 +95,6 @@ $(document).ready(function () {
     $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
   });
 
-
   // Newsletter cookie
   let visited = $.cookie("visited");
   if (visited != "yes") {
@@ -106,8 +105,25 @@ $(document).ready(function () {
     expires: 1, // the number of days cookie  will be effective
   });
 
-  $('#newsletter-close-icon').on("click", function () {
+  $("#newsletter-close-icon").on("click", function () {
     $("#newsletter_pop").toggleClass("hidden");
     $("main").toggleClass("opacity-10");
-  })
+  });
+});
+
+firebase.auth().onAuthStateChanged(async function (user) {
+  // Store firebase token
+  // const token = await firebase.auth().currentUser.getIdToken();
+  // $.cookie("zToken", token, {
+  //   expires: 7,
+  // });
+  if (await user) {
+    // User is signed in.
+    console.log("user exists");
+    $("#authRoute").html('<a href="/profile" id="user">Profile</a>');
+  } else {
+    // No user is signed in.
+    console.log("user not exists");
+    $("#authRoute").html('<a href="/auth#signin" id="user">Login</a>');
+  }
 });

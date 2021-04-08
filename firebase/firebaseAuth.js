@@ -21,6 +21,7 @@ module.exports = checkIfAuthenticated = (req, res, next) => {
     try {
       const { authToken } = req;
       const userInfo = await admin.auth().verifyIdToken(authToken);
+      req.userInfo = userInfo
       req.authId = userInfo.uid;
       User.findOne(
         { firebase_uid: userInfo.uid },

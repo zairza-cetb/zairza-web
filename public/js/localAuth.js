@@ -34,7 +34,7 @@ function callback(req, res) {
       $(`#${req}-btn span`).text("Sign Up");
     }
     if (res == "success") {
-      window.location.replace("/me");
+      window.location.replace("/profile");
     }
   }, 1250);
 }

@@ -14,30 +14,30 @@ function toggleFieldVisibility(ele) {
 }
 
 // Iterate over checkbox fields to connect/disconnect third_party_auth
-let authWindow;
+// let authWindow;
 
-window.addEventListener("message", function (e) {
-  // console.log("popup-done")
-  let redirect_url = JSON.parse(e.data).redirect_from;
-  let url = new URL(redirect_url);
+// window.addEventListener("message", function (e) {
+//   // console.log("popup-done")
+//   let redirect_url = JSON.parse(e.data).redirect_from;
+//   let url = new URL(redirect_url);
 
-  let provider = url.searchParams.get("provider");
-  let element = $(`.connect[data-provider=${provider}]`);
-  if (url.pathname === "/success_popup") {
-    setState("on", element);
-    showToast(
-      200,
-      `${provider.substr(0, 1).toUpperCase() + provider.substr(1)} conected 😎`
-    );
-  } else if (url.pathname === "/failed_popup") {
-    setState("off", element);
-    showToast(409, "User with this email id already exists ⛔");
-  }
-});
+//   let provider = url.searchParams.get("provider");
+//   let element = $(`.connect[data-provider=${provider}]`);
+//   if (url.pathname === "/success_popup") {
+//     setState("on", element);
+//     showToast(
+//       200,
+//       `${provider.substr(0, 1).toUpperCase() + provider.substr(1)} conected 😎`
+//     );
+//   } else if (url.pathname === "/failed_popup") {
+//     setState("off", element);
+//     showToast(409, "User with this email id already exists ⛔");
+//   }
+// });
 function ThirdPartyAuthenticate(provider_name, state, element) {
   console.log(provider_name, state);
-  var width = 1366,
-    height = 768;
+  // var width = 1366,
+  //   height = 768;
   let link;
   // provider_name = provider_name.toLowerCase();
   // if (provider_name == "Google" && state) {
@@ -50,42 +50,95 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
   if (!state) {
     setState("pending", element);
     // console.log(provider_name, state);
-    $.ajax({
-      type: "GET",
-      url: `/unlink/${provider_name.toLowerCase()}`,
-    })
-      .done(function (data) {
-        // console.log("success");
-        setState("off", element);
-        showToast(200, `${provider_name} disconnected 😞`);
-      })
-      .fail(function (err) {
-        // console.log("error");
-        setState("on", element);
-        showToast(err.status, err.errResponse.message);
-      });
+    // $.ajax({
+    //   type: "GET",
+    //   url: `/unlink/${provider_name.toLowerCase()}`,
+    // })
+    //   .done(function (data) {
+    //     // console.log("success");
+    //     setState("off", element);
+    //     showToast(200, `${provider_name} disconnected 😞`);
+    //   })
+    //   .fail(function (err) {
+    //     // console.log("error");
+    //     setState("on", element);
+    //     showToast(err.status, err.errResponse.message);
+    //   });
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        user
+          .unlink(user.providerData.providerId)
+          .then(() => {
+            // Auth provider unlinked from account
+            // ...
+            setState("off", element);
+            showToast(200, `${provider_name} disconnected 😞`);
+          })
+          .catch((error) => {
+            // An error happened
+            // ...
+            setState("on", element);
+        showToast(400, error.message);
+          });
+      } else {
+        console.log("error");
+      }
+    });
   } else if (state) {
-    link = `/auth/${provider_name.toLowerCase()}`;
-    var w = window.outerWidth - width,
-      h = window.outerHeight - height;
-    var left = Math.round(window.screenX + w / 2);
-    var top = Math.round(window.screenY + h / 2.5);
+    // link = `/auth/${provider_name.toLowerCase()}`;
+    // var w = window.outerWidth - width,
+    //   h = window.outerHeight - height;
+    // var left = Math.round(window.screenX + w / 2);
+    // var top = Math.round(window.screenY + h / 2.5);
+    let provider;
+    if (provider_name == "Google") {
+      provider = new firebase.auth.GoogleAuthProvider();
+    } else if (provider_name == "Github") {
+      provider = new firebase.auth.GithubAuthProvider();
+    }
 
     setState("pending", element);
-    console.log(link);
-    authWindow = window.open(
-      link,
-      "Connect",
-      "width=" +
-        width +
-        ",height=" +
-        height +
-        ",left=" +
-        left +
-        ",top=" +
-        top +
-        ",toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0"
-    );
+    // console.log(link);
+    // authWindow = window.open(
+    //   link,
+    //   "Connect",
+    //   "width=" +
+    //     width +
+    //     ",height=" +
+    //     height +
+    //     ",left=" +
+    //     left +
+    //     ",top=" +
+    //     top +
+    //     ",toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0"
+    // );
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        user
+          .linkWithPopup(provider)
+          .then((result) => {
+            // Accounts successfully linked.
+            var credential = result.credential;
+            var user = result.user;
+            console.log(user);
+            let element = $(
+              `.connect[data-provider=${provider_name.toLowerCase()}]`
+            );
+            setState("on", element);
+            showToast(200, `${provider_name} conected 😎`);
+            // ...
+          })
+          .catch((error) => {
+            // Handle Errors here.
+            // ...
+            setState("off", element);
+            showToast(409, error.message);
+            console.log(error);
+          });
+      } else {
+        console.log("state = definitely signed out");
+      }
+    });
   }
 }
 
@@ -115,7 +168,7 @@ function callback(res) {
     $("#update-icon").show();
     $("#update-btn span").text("Update Profile");
     if (res === "success") {
-      window.location.replace("/me");
+      window.location.replace("/profile");
     }
   }, 1250);
 }
@@ -284,14 +337,14 @@ $(document).ready(function () {
 });
 
 // Subscribe to newsletter
-function subscribe_newsletter(ele,state) {
+function subscribe_newsletter(ele, state) {
   $newsletter_subscription = state;
   let data = {
     newsletter_subscription: {
       applied: $newsletter_subscription,
     },
   };
-  setState("pending",ele)
+  setState("pending", ele);
   $.ajax({
     type: "PUT",
     url: "/user/edit",
@@ -302,16 +355,16 @@ function subscribe_newsletter(ele,state) {
     .done(function (data) {
       // console.log("success");
       if (state) {
-        setState("on",ele)
-        showToast(200, "Newsletter subscribed 👍")
+        setState("on", ele);
+        showToast(200, "Newsletter subscribed 👍");
       } else {
-        setState("off",ele)
-        showToast(200, "Newsletter unsubscribed 🥺")
+        setState("off", ele);
+        showToast(200, "Newsletter unsubscribed 🥺");
       }
     })
     .fail(function (err) {
       // console.log("error");
-      setState("off",ele)
+      setState("off", ele);
       showToast(err.status, err.errResponse.message);
     });
 }

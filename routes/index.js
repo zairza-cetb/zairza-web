@@ -5,7 +5,7 @@ const checkIfAuthenticated = require("../firebase/firebaseAuth");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("pages/index", { user: req.user });
+  res.render("pages/index");
 });
 
 /* GET auth page. */
@@ -33,15 +33,16 @@ router.get("/forgot", function (req, res, next) {
 
 /* GET profile page. */
 router.get("/profile", checkIfAuthenticated, function (req, res, next) {
+  console.log(req.userInfo)
   if (!req.user) {
     return res.redirect("/");
   }
   let google = false,
     github = false;
-  req.user.third_party_auth.forEach((provider) => {
-    if (provider.provider_name === "google") {
+  req.userInfo.firebase.forEach((provider) => {
+    if (provider.providerId === "google.com") {
       google = true;
-    } else if (provider.provider_name === "github") {
+    } else if (provider.providerId === "github.com") {
       github = true;
     }
   });

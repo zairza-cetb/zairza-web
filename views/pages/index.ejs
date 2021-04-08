@@ -42,6 +42,9 @@
 <body>
   <!--js xor no-js -->
   <%- include('../partials/newsletter_pop.ejs') %>
+
+  <%- include('../partials/firebase.ejs') %>
+
   <main class="js mb-20 sm:mb-0">
     <section>
       <header class="navbar bg-white sm:flex sm:justify-between sm:items-center sm:px-16 sm:py-6">
@@ -71,12 +74,8 @@
           <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Our Team</li>
           <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Contact</li>
           <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">FAQ</li>
-          <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">
-            <% if (user) { %>
-            <a href="/me" id="user">Profile</a>
-            <% } else { %>
-              <a href="/auth#signin" id="user">Login</a>
-              <% } %>
+          <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded" id="authRoute">
+         
           </li>
         </ul>
       </header>
