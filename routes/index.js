@@ -39,13 +39,12 @@ router.get("/profile", checkIfAuthenticated, function (req, res, next) {
   }
   let google = false,
     github = false;
-  req.userInfo.firebase.forEach((provider) => {
-    if (provider.providerId === "google.com") {
+  
+    if ('google.com' in req.userInfo.firebase.identities) {
       google = true;
-    } else if (provider.providerId === "github.com") {
+    } else if ('github.com' in req.userInfo.firebase.identities) {
       github = true;
     }
-  });
   res.render("pages/profile", { user: req.user, google, github });
 });
 

@@ -365,6 +365,6 @@ function subscribe_newsletter(ele, state) {
     .fail(function (err) {
       // console.log("error");
       setState("off", ele);
-      showToast(err.status, err.errResponse.message);
+      showToast(err.status, err.responseJSON.message);
     });
 }

@@ -37,32 +37,55 @@ function sendEmail() {
   $email = $('#form input[type="email"]').val();
   if (!validateEmail($email)) {
     $("#form input[type='email']").addClass("border-2 border-red-500");
-      $("#form input[type='email']").siblings("small.invalid_email").removeClass("hidden");
-      showToast(401, "Please enter a valid email 🚫");
+    $("#form input[type='email']")
+      .siblings("small.invalid_email")
+      .removeClass("hidden");
+    showToast(401, "Please enter a valid email 🚫");
     return;
   } else {
     $("#form input[type='email']").removeClass("border-2 border-red-500");
-    $("#form input[type='email']").siblings("small.invalid_email").addClass("hidden");
+    $("#form input[type='email']")
+      .siblings("small.invalid_email")
+      .addClass("hidden");
   }
-  $('#update-icon').hide();
-  $('#update-btn span').text("");
-  $('#update-btn').addClass("onclic", 50);
+  $("#update-icon").hide();
+  $("#update-btn span").text("");
+  $("#update-btn").addClass("onclic", 50);
   // console.log($email);
-  const data = {
-    email: $email,
-  };
-  $.ajax({
-    type: "POST",
-    url: "/forgot",
-    data: data,
-    dataType: "json",
-  })
-    .done(function (data) {
-      // console.log(data)
+  // const data = {
+  //   email: $email,
+  // };
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/forgot",
+  //   data: data,
+  //   dataType: "json",
+  // })
+  //   .done(function (data) {
+  //     // console.log(data)
+  //     validate("success");
+  //   })
+  //   .fail(function (err) {
+  //     // console.log("error")
+  //     validate(err);
+  //   });
+  let auth = firebase.auth();
+
+  auth
+    .sendPasswordResetEmail($email)
+    .then(function () {
+      // Email sent.
       validate("success");
     })
-    .fail(function (err) {
-      // console.log("error")
-      validate(err);
+    .catch(function (error) {
+      // An error happened.
+      validate(error)
     });
 }
+
+// Submit forms on click of 'ENTER' key
+$("input").keypress(function (e) {
+  if (e.keyCode === 13) {
+    $("#update-btn").click();
+  }
+});

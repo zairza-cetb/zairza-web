@@ -66,7 +66,7 @@ function callback(res) {
     $("#update-icon").show();
     $("#update-btn span").text("Update Password");
     if (res === "success") {
-      window.location.replace("/auth")
+      window.location.replace("/auth");
     }
   }, 1250);
 }
@@ -82,23 +82,36 @@ function updatePassword() {
   $("#update-btn span").text("");
   $("#update-btn").addClass("onclic", 50);
   // console.log($email)
-  let updateData = {
-    password: $password,
-  };
-  let url = window.location.pathname;
-  // console.log(url)
-  $.ajax({
-    type: "POST",
-    url: url,
-    data: updateData,
-    dataType: "json",
-  })
-    .done(function (data) {
-      // console.log(data)
+  // let updateData = {
+  //   password: $password,
+  // };
+  // let url = window.location.pathname;
+  // // console.log(url)
+  // $.ajax({
+  //   type: "POST",
+  //   url: url,
+  //   data: updateData,
+  //   dataType: "json",
+  // })
+  //   .done(function (data) {
+  //     // console.log(data)
+  //     validate("success")
+  //   })
+  //   .fail(function (err) {
+  //     // console.log("error")
+  //     validate(err)
+  //   });
+  var user = firebase.auth().currentUser;
+  // var newPassword = getASecureRandomPassword();
+
+  user
+    .updatePassword($password)
+    .then(function () {
+      // Update successful.
       validate("success")
     })
-    .fail(function (err) {
-      // console.log("error")
-      validate(err)
+    .catch(function (error) {
+      // An error happened.
+      validate(error)
     });
 }

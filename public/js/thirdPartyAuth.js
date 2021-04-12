@@ -1,7 +1,7 @@
 // Auth popup
 const request = window.location.href.split("#")[1];
 // console.log(request)
-if (request === "signuo") {
+if (request === "signup") {
   request_message = "signed up";
 } else {
   request_message = "signed in";
@@ -31,7 +31,7 @@ function ThirdPartyAuthenticate(provider_name) {
   // var width = 1366,
   //   height = 768;
   let provider;
-  if (provider_name === "github") {
+  if (provider_name === "Github") {
     provider = new firebase.auth.GithubAuthProvider();
   } else {
     provider = new firebase.auth.GoogleAuthProvider();
@@ -60,15 +60,15 @@ function ThirdPartyAuthenticate(provider_name) {
     .signInWithPopup(provider)
     .then((result) => {
       /** @type {firebase.auth.OAuthCredential} */
-      var credential = result.credential;
-      console.log(credential);
+      // var credential = result.credential;
+      // console.log(credential);
       // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = credential.accessToken;
+      // var token = credential.accessToken;
       
       // The signed-in user info.
       var user = result.user;
       // console.log(user)
-      showToast(200, `Successfully ${request_message} via Google 🙌`);
+      showToast(200, `Successfully ${request_message} via ${provider_name} 🙌`);
       setTimeout(function () {
         window.location.replace("/me");
       }, 2000);

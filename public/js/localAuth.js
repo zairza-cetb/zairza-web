@@ -59,6 +59,9 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+
+
+
 function authenticate(req) {
   $email = $(`#${req}_form input[type='email']`).val();
   $password = $(`#${req}_form #${req}-password`).val();
@@ -100,29 +103,13 @@ function authenticate(req) {
       .createUserWithEmailAndPassword($email, $password)
       .then(async (userCredential) => {
         // Signed in
-        var user = userCredential.user;
-        const token = await firebase.auth().currentUser.getIdToken();
-        $.cookie("zToken", token, {
-          expires: 7,
-        });
-        $.ajax({
-          url: "/user/me",
-          type: "GET",
-          // Fetch the stored token from localStorage and set in the header
-          headers: { Authorization: "Bearer " + token },
-        })
-          .done(function () {
-            validate(req, "success");
-          })
-          .fail(function (error) {
-            console.log(error);
-            const err = {
-              errorCode: error.status_code,
-              errorMessage: error.message,
-            };
-            validate(req, err);
-          });
-        // ...
+        // var user = userCredential.user;
+        // const token = await user.getIdToken();
+        // console.log(token,"token::")
+        // $.cookie("zToken", token, {
+        //   expires: 7,
+        // });
+        validate(req, "success");
       })
       .catch((error) => {
         // var errorCode = error.code;
@@ -140,31 +127,15 @@ function authenticate(req) {
       .signInWithEmailAndPassword($email, $password)
       .then(async (userCredential) => {
         // Signed in
-        var user = userCredential.user;
-        const token = await firebase.auth().currentUser.getIdToken();
+        // var user = userCredential.user;
+        // const token = await user.getIdToken();
         // console.log(token)
-        // let zairzaToken = $.cookie("zairzaToken")
-        $.cookie("zToken", token, {
-          expires: 7,
-        });
-        $.ajax({
-          url: "/user/me",
-          type: "GET",
-          // Fetch the stored token from localStorage and set in the header
-          headers: { Authorization: "Bearer " + token },
-        })
-          .then(function () {
-            validate(req, "success");
-          })
-          .fail(function (error) {
-            console.log(error);
-            const err = {
-              errorCode: error.status_code,
-              errorMessage: error.message,
-            };
-            validate(req, err);
-          });
+        // // let zairzaToken = $.cookie("zairzaToken")
+        // $.cookie("zToken", token, {
+        //   expires: 7,
+        // });
         // ...
+        validate(req, "success")
       })
       .catch((error) => {
         // var errorCode = error.code;
