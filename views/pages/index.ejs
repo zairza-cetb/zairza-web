@@ -74,9 +74,15 @@
           <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Our Team</li>
           <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">Contact</li>
           <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded">FAQ</li>
-          <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded" id="authRoute">
-         
-          </li>
+          <% if(loggedIn){ %>
+            <a href="/profile" id="user">
+              <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded" id="authRoute">Profile</li>
+            </a>
+          <% } else { %>
+            <a href="/auth#signin" id="user">
+              <li class="block hover:text-white px-2 py-1 sm:my-0 my-1 sm:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li>
+            </a>
+          <% } %>
         </ul>
       </header>
     </section>

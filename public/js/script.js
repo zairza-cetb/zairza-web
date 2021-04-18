@@ -110,20 +110,3 @@ $(document).ready(function () {
     $("main").toggleClass("opacity-10");
   });
 });
-
-firebase.auth().onAuthStateChanged(async function (user) {
-  // Store firebase token
-  // const token = await firebase.auth().currentUser.getIdToken();
-  // $.cookie("zToken", token, {
-  //   expires: 7,
-  // });
-  if (await user) {
-    // User is signed in.
-    console.log("user exists");
-    $("#authRoute").html('<a href="/profile" id="user">Profile</a>');
-  } else {
-    // No user is signed in.
-    console.log("user not exists");
-    $("#authRoute").html('<a href="/auth#signin" id="user">Login</a>');
-  }
-});

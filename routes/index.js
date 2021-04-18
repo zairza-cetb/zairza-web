@@ -1,11 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const checkIfAuthenticated = require("../firebase/firebaseAuth");
-
+const admin = require("../firebase/firebaseService");
+const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("pages/index");
+  if (req.cookies["zToken"]!=null) {
+    admin
+      .auth()
+      .verifyIdToken(req.cookies["zToken"])
+      .then((decodedToken) => {
+        res.render("pages/index", { loggedIn: true });
+      })
+      .catch((err) => {
+        res.render("pages/index", { loggedIn: false });
+      });
+  } else {
+    res.render("pages/index", { loggedIn: false });
+  }
 });
 
 /* GET auth page. */
@@ -33,19 +45,19 @@ router.get("/forgot", function (req, res, next) {
 
 /* GET profile page. */
 router.get("/profile", checkIfAuthenticated, function (req, res, next) {
-  console.log(req.userInfo)
+  console.log(req.userInfo);
   if (!req.user) {
     return res.redirect("/");
   }
   let google = false,
     github = false;
-  
-    if ('google.com' in req.userInfo.firebase.identities) {
-      google = true;
-    } 
-    if ('github.com' in req.userInfo.firebase.identities) {
-      github = true;
-    }
+
+  if ("google.com" in req.userInfo.firebase.identities) {
+    google = true;
+  }
+  if ("github.com" in req.userInfo.firebase.identities) {
+    github = true;
+  }
   res.render("pages/profile", { user: req.user, google, github });
 });
 

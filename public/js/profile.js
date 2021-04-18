@@ -14,13 +14,13 @@ function toggleFieldVisibility(ele) {
 function ThirdPartyAuthenticate(provider_name, state, element) {
   console.log(provider_name, state);
 
-  var provider,providerId;
+  var provider, providerId;
   if (provider_name == "Google") {
     provider = new firebase.auth.GoogleAuthProvider();
-    providerId = "google.com"
+    providerId = "google.com";
   } else if (provider_name == "Github") {
     provider = new firebase.auth.GithubAuthProvider();
-    providerId = "github.com"
+    providerId = "github.com";
   }
   if (!state) {
     setState("pending", element);
@@ -40,14 +40,13 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             // An error happened
             // ...
             setState("on", element);
-        showToast(400, error.message);
+            showToast(400, error.message);
           });
       } else {
         console.log("error");
       }
     });
   } else if (state) {
-
     setState("pending", element);
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -190,19 +189,20 @@ function updateProfile() {
 }
 
 function logout() {
-  firebase.auth().signOut()
+  firebase
+    .auth()
+    .signOut()
     .then(() => {
       // Sign-out successful.
-      
-      $.cookie("zToken", null);
-      window.location.href="/";
+
+      console.log($.cookie("zToken",null, { path: "/" }),"check");
+      window.location.href = "/";
     })
     .catch((error) => {
       // An error happened.
       showToast(500, error.message);
     });
 }
-    
 
 function setState(state, element) {
   // elApp.dataset.prevState = state;
@@ -257,7 +257,6 @@ function setState(state, element) {
       break;
   }
 }
-
 
 $(document).ready(function () {
   $(".connect").each(function (index, el) {

@@ -8,7 +8,7 @@ const getAuthToken = (req, res, next) => {
     req.headers.authorization.split(" ")[0] === "Bearer"
   ) {
     req.authToken = req.headers.authorization.split(" ")[1];
-  } else if (req.cookies["zToken"]) {
+  } else if (req.cookies["zToken"]!=null) {
     req.authToken = req.cookies["zToken"];
   } else {
     req.authToken = null;

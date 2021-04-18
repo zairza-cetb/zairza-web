@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const checkIfAuthenticated = require("../firebase/firebaseAuth");
+const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 
 const editable_fields = new Set([
   "name",
@@ -16,7 +16,6 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
 });
 
 router.put("/edit", checkIfAuthenticated, async function (req, res, next) {
-  console.log(req.body);
   if (!req.user.registration_no && !req.body.registration_no) {
     return res
       .status(403)
