@@ -42,7 +42,8 @@ router.get("/profile", checkIfAuthenticated, function (req, res, next) {
   
     if ('google.com' in req.userInfo.firebase.identities) {
       google = true;
-    } else if ('github.com' in req.userInfo.firebase.identities) {
+    } 
+    if ('github.com' in req.userInfo.firebase.identities) {
       github = true;
     }
   res.render("pages/profile", { user: req.user, google, github });

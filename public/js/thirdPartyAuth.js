@@ -70,7 +70,7 @@ function ThirdPartyAuthenticate(provider_name) {
       // console.log(user)
       showToast(200, `Successfully ${request_message} via ${provider_name} 🙌`);
       setTimeout(function () {
-        window.location.replace("/me");
+        window.location.replace("/profile");
       }, 2000);
       // ...
     })

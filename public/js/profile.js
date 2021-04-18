@@ -2,77 +2,39 @@
 function toggleFieldVisibility(ele) {
   $field = ele.parent().siblings();
   if ($field.is("[readonly]")) {
-    // console.log('password')
     $field.attr("readonly", false);
     ele.children().removeClass("bxs-lock").addClass("bxs-lock-open");
     $field.focus();
   } else {
-    // console.log('text')
     $field.attr("readonly", true);
     ele.children().removeClass("bxs-lock-open").addClass("bxs-lock");
   }
 }
 
-// Iterate over checkbox fields to connect/disconnect third_party_auth
-// let authWindow;
-
-// window.addEventListener("message", function (e) {
-//   // console.log("popup-done")
-//   let redirect_url = JSON.parse(e.data).redirect_from;
-//   let url = new URL(redirect_url);
-
-//   let provider = url.searchParams.get("provider");
-//   let element = $(`.connect[data-provider=${provider}]`);
-//   if (url.pathname === "/success_popup") {
-//     setState("on", element);
-//     showToast(
-//       200,
-//       `${provider.substr(0, 1).toUpperCase() + provider.substr(1)} conected 😎`
-//     );
-//   } else if (url.pathname === "/failed_popup") {
-//     setState("off", element);
-//     showToast(409, "User with this email id already exists ⛔");
-//   }
-// });
 function ThirdPartyAuthenticate(provider_name, state, element) {
   console.log(provider_name, state);
-  // var width = 1366,
-  //   height = 768;
-  let link;
-  // provider_name = provider_name.toLowerCase();
-  // if (provider_name == "Google" && state) {
-  //   link = "/auth/google";
-  //   // console.log("google", state);
-  // } else if (provider_name == "Github" && state) {
-  //   link = "/auth/github";
-  //   // console.log("Github", state);
-  // }
+
+  var provider,providerId;
+  if (provider_name == "Google") {
+    provider = new firebase.auth.GoogleAuthProvider();
+    providerId = "google.com"
+  } else if (provider_name == "Github") {
+    provider = new firebase.auth.GithubAuthProvider();
+    providerId = "github.com"
+  }
   if (!state) {
     setState("pending", element);
-    // console.log(provider_name, state);
-    // $.ajax({
-    //   type: "GET",
-    //   url: `/unlink/${provider_name.toLowerCase()}`,
-    // })
-    //   .done(function (data) {
-    //     // console.log("success");
-    //     setState("off", element);
-    //     showToast(200, `${provider_name} disconnected 😞`);
-    //   })
-    //   .fail(function (err) {
-    //     // console.log("error");
-    //     setState("on", element);
-    //     showToast(err.status, err.errResponse.message);
-    //   });
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         user
-          .unlink(user.providerData.providerId)
-          .then(() => {
+          .unlink(providerId)
+          .then(async (result) => {
             // Auth provider unlinked from account
             // ...
             setState("off", element);
             showToast(200, `${provider_name} disconnected 😞`);
+            const token = await user.getIdToken();
+            $.cookie("zToken", token);
           })
           .catch((error) => {
             // An error happened
@@ -85,38 +47,13 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
       }
     });
   } else if (state) {
-    // link = `/auth/${provider_name.toLowerCase()}`;
-    // var w = window.outerWidth - width,
-    //   h = window.outerHeight - height;
-    // var left = Math.round(window.screenX + w / 2);
-    // var top = Math.round(window.screenY + h / 2.5);
-    let provider;
-    if (provider_name == "Google") {
-      provider = new firebase.auth.GoogleAuthProvider();
-    } else if (provider_name == "Github") {
-      provider = new firebase.auth.GithubAuthProvider();
-    }
 
     setState("pending", element);
-    // console.log(link);
-    // authWindow = window.open(
-    //   link,
-    //   "Connect",
-    //   "width=" +
-    //     width +
-    //     ",height=" +
-    //     height +
-    //     ",left=" +
-    //     left +
-    //     ",top=" +
-    //     top +
-    //     ",toolbar=0,scrollbars=0,status=0,resizable=0,location=0,menuBar=0"
-    // );
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         user
           .linkWithPopup(provider)
-          .then((result) => {
+          .then(async (result) => {
             // Accounts successfully linked.
             var credential = result.credential;
             var user = result.user;
@@ -126,6 +63,8 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             );
             setState("on", element);
             showToast(200, `${provider_name} conected 😎`);
+            const token = await user.getIdToken();
+            $.cookie("zToken", token);
             // ...
           })
           .catch((error) => {
@@ -250,26 +189,20 @@ function updateProfile() {
     });
 }
 
-// console.clear();
-// const elToggle = document.querySelector("#toggle");
-// const elApp = document.querySelector("#app");
-// const elBody = document.body;
-
-// let current = elApp.dataset.state;
-
-// function activate(state) {
-//   elApp.dataset.state = state;
-//   // elBody.dataset.toggleState = current;
-
-//   document
-//     .querySelectorAll(`[data-active]`)
-//     .forEach((el) => delete el.dataset.active);
-//   document
-//     .querySelectorAll(`[data-for="${state}"]`)
-//     .forEach((el) => (el.dataset.active = true));
-// }
-
-// activate(current);
+function logout() {
+  firebase.auth().signOut()
+    .then(() => {
+      // Sign-out successful.
+      
+      $.cookie("zToken", null);
+      window.location.href="/";
+    })
+    .catch((error) => {
+      // An error happened.
+      showToast(500, error.message);
+    });
+}
+    
 
 function setState(state, element) {
   // elApp.dataset.prevState = state;
@@ -325,10 +258,6 @@ function setState(state, element) {
   }
 }
 
-// $github_provider = $(".connect_github[data-provider=github]");
-// $google_provider = $(".connect_google[data-provider=google]");
-// setState($github_provider.data("state"), $github_provider);
-// setState($google_provider.data("state"), $google_provider)
 
 $(document).ready(function () {
   $(".connect").each(function (index, el) {
