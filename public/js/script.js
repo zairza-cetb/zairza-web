@@ -96,17 +96,17 @@ $(document).ready(function () {
   });
 
   // Newsletter cookie
-  let visited = $.cookie("visited");
-  if (visited != "yes") {
-    $("#newsletter_pop").toggleClass("hidden");
-    $("main").toggleClass("opacity-10");
-  }
-  $.cookie("visited", "yes", {
-    expires: 1, // the number of days cookie  will be effective
-  });
+  //   let visited = $.cookie("visited");
+  //   if (visited != "yes") {
+  //     $("#newsletter_pop").toggleClass("hidden");
+  //     $("main").toggleClass("opacity-10");
+  //   }
+  //   $.cookie("visited", "yes", {
+  //     expires: 1, // the number of days cookie  will be effective
+  //   });
 
-  $("#newsletter-close-icon").on("click", function () {
-    $("#newsletter_pop").toggleClass("hidden");
-    $("main").toggleClass("opacity-10");
-  });
+  //   $("#newsletter-close-icon").on("click", function () {
+  //     $("#newsletter_pop").toggleClass("hidden");
+  //     $("main").toggleClass("opacity-10");
+  //   });
 });
