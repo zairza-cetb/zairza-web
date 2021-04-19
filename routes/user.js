@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 
-const editable_fields = new Set([
+const editableFields = new Set([
   "name",
   "email",
-  "registration_no",
-  "newsletter_subscription",
+  "registrationNo",
+  "newsletterSubscription",
   "wing",
   "branch",
 ]);
@@ -16,13 +16,13 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
 });
 
 router.put("/edit", checkIfAuthenticated, async function (req, res, next) {
-  if (!req.user.registration_no && !req.body.registration_no) {
+  if (!req.user.registrationNo && !req.body.registrationNo) {
     return res
       .status(403)
       .json({ status: "fail", message: "Registration number is required" });
   } else if (
-    req.body.registration_no &&
-    (await req.user.checkValidRegistrationNo(req.body.registration_no)) == false
+    req.body.registrationNo &&
+    (await req.user.checkValidRegistrationNo(req.body.registrationNo)) == false
   ) {
     return res.status(403).json({
       status: "fail",
@@ -32,11 +32,11 @@ router.put("/edit", checkIfAuthenticated, async function (req, res, next) {
   } else {
     // Check for editable fields fields only
 
-    var non_editable_fields = Object.keys(req.body).filter(
-      (x) => !editable_fields.has(x)
+    var nonEditableFields = Object.keys(req.body).filter(
+      (x) => !editableFields.has(x)
     );
 
-    if (non_editable_fields.length > 0) {
+    if (nonEditableFields.length > 0) {
       return res
         .status(401)
         .json({ status: "fail", message: "Accessing unknown fields" });

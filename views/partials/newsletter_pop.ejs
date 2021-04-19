@@ -106,13 +106,13 @@
 
   $.ajax({
     type: "GET",
-    url: "/user/me",
+    url: "/api/user/me",
     contentType: "application/json",
     dataType: "json",
   })
     .done(function (data) {
       // console.log(data);
-      if ($.cookie("visited") || data.newsletter_subscription.applied) {
+      if ($.cookie("visited") || data.newsletterSubscription.applied) {
         $.cookie("zNewsletter", "subscribed", {
           expires: 1000, // the number of days cookie  will be effective
         });

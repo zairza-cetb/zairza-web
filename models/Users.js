@@ -3,7 +3,7 @@ const ValidRegNos = require("./ValidRegNos");
 
 const UserSchema = new mongoose.Schema(
   {
-    firebase_uid: {
+    firebaseUid: {
       type: String,
       unique: true,
       index: true,
@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       index: true,
     },
-    registration_no: {
+    registrationNo: {
       type: Number,
       unique: true,
       sparse: true,
@@ -44,9 +44,9 @@ const UserSchema = new mongoose.Schema(
         "Chemistry",
       ],
     },
-    newsletter_subscription: {
+    newsletterSubscription: {
       applied: { type: Boolean, default: false },
-      applied_at: Date,
+      appliedAt: Date,
     },
     role: {
       type: String,
@@ -63,8 +63,8 @@ const UserSchema = new mongoose.Schema(
 );
 
 // checking if registration no is valid
-UserSchema.methods.checkValidRegistrationNo = async function (registration_no) {
-  return await ValidRegNos.exists({ registration_no });
+UserSchema.methods.checkValidRegistrationNo = async function (registrationNo) {
+  return await ValidRegNos.exists({ registrationNo });
 };
 
 module.exports = User = mongoose.model("users", UserSchema);

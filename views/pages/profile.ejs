@@ -94,9 +94,9 @@
                         type="text"
                         <%
                         if
-                        (user.registration_no){
+                        (user.registrationNo){
                         %>
-                      value="<%= user.registration_no %>" 
+                      value="<%= user.registrationNo %>" 
                       readonly
                       <% } else { %>
                       placeholder="Registration number"
@@ -105,7 +105,7 @@
                       <div
                           class="absolute inset-y-0 right-0 flex items-center px-2"
                         >
-                        <% myClass = (user.registration_no)?'bxs-lock':'bxs-lock-open'; %>
+                        <% myClass = (user.registrationNo)?'bxs-lock':'bxs-lock-open'; %>
                           <span
                             class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label"
                             onclick="toggleFieldVisibility($(this))"
@@ -212,10 +212,10 @@
                         </output>
                       </div>
                     </form>
-                    <form id="newsletter" class="connect flex flex-row" data-state="<%= (user.newsletter_subscription.applied)?'on':'off' %>" data-provider="newsletter">
+                    <form id="newsletter" class="connect flex flex-row" data-state="<%= (user.newsletterSubscription.applied)?'on':'off' %>" data-provider="newsletter">
                       <div class="toggle-wrapper flex items-center w-full justify-center">
-                        <% newsletter_subscription = (user.newsletter_subscription.applied)?'checked':'' %>
-                        <input id="newsletter_toggle" <%= newsletter_subscription %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onclick="subscribe_newsletter($(this).closest('form'),$(this).prop('checked'))">
+                        <% newsletterSubscription = (user.newsletterSubscription.applied)?'checked':'' %>
+                        <input id="newsletter_toggle" <%= newsletterSubscription %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onclick="subscribe_newsletter($(this).closest('form'),$(this).prop('checked'))">
                         <label for="newsletter_toggle" class="fancy-toggle relative">
                           <div class="bg relative top-0 left-0 h-full"></div>
                           <div class="circle absolute cursor-pointer">
@@ -232,33 +232,6 @@
                       </div>
                     </form>
 
-
-                    <!-- <div class="flex justify-between items-center my-2">
-                      <label for="github_toggle" class="text-custom-orange"><i class='bx bxl-github bx-md'></i></label>
-
-                      <my-toggle-group class="flex items-center">
-                        <my-toggle class="relative overflow-hidden inline-block">
-                          <% checked = (github)?'checked':'' %>
-                          <input type="checkbox" <%= checked %> class="m-0 relative cursor-pointer" name="toggle" id="github_toggle" onchange="ThirdPartyAuthenticate('Github',$(this).prop('checked'))" style="border: none;">
-                        
-                          <my-toggle-orb class="block pointer-events-none"></my-toggle-orb>
-                        </my-toggle>
-                      
-                      </my-toggle-group>
-                    </div>
-                    <div class="flex justify-between items-center my-2">
-                      <label for="newsletter_toggle" class="text-custom-orange"><i class='bx bx-news bx-md'></i></label>
-
-                      <my-toggle-group class="flex items-center">
-                        <my-toggle class="relative overflow-hidden inline-block">
-                          <% newsletter_subscription = (user.newsletter_subscription.applied)?'checked':'' %>
-                          <input type="checkbox" <%= newsletter_subscription %> class="m-0 relative cursor-pointer" name="toggle" id="newsletter_toggle" style="border: none;">
-                        
-                          <my-toggle-orb class="block pointer-events-none"></my-toggle-orb>
-                        </my-toggle>
-                      
-                      </my-toggle-group>
-                    </div> -->
                     <button
                       id="update-btn"
                       onclick="updateProfile()"

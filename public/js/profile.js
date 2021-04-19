@@ -166,7 +166,7 @@ function updateProfile() {
 
   let data = {
     email: $email,
-    registration_no: $registration_no,
+    registrationNo: $registration_no,
     branch: $branch,
     wing: $wing,
     name: $name,
@@ -174,7 +174,7 @@ function updateProfile() {
   // console.log(data);
   $.ajax({
     type: "PUT",
-    url: "/user/edit",
+    url: "/api/user/edit",
     data: data,
     dataType: "json",
   })
@@ -268,14 +268,14 @@ $(document).ready(function () {
 function subscribe_newsletter(ele, state) {
   $newsletter_subscription = state;
   let data = {
-    newsletter_subscription: {
+    newsletterSubscription: {
       applied: $newsletter_subscription,
     },
   };
   setState("pending", ele);
   $.ajax({
     type: "PUT",
-    url: "/user/edit",
+    url: "/api/user/edit",
     data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json",

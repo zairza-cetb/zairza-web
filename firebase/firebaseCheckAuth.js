@@ -8,7 +8,7 @@ const getAuthToken = (req, res, next) => {
     req.headers.authorization.split(" ")[0] === "Bearer"
   ) {
     req.authToken = req.headers.authorization.split(" ")[1];
-  } else if (req.cookies["zToken"]!=null) {
+  } else if (req.cookies!=null && req.cookies["zToken"]!=null) {
     req.authToken = req.cookies["zToken"];
   } else {
     req.authToken = null;
@@ -24,13 +24,13 @@ module.exports = checkIfAuthenticated = (req, res, next) => {
       req.userInfo = userInfo
       req.authId = userInfo.uid;
       User.findOne(
-        { firebase_uid: userInfo.uid },
-        function (err, existing_user) {
+        { firebaseUid: userInfo.uid },
+        function (err, existingUser) {
           if (err) {
             return next(err);
           }
-          if (!existing_user) {
-            User.create({ firebase_uid: userInfo.uid }, function (err, user) {
+          if (!existingUser) {
+            User.create({ firebaseUid: userInfo.uid }, function (err, user) {
               if (err) {
                 return next(err);
               }
@@ -38,7 +38,7 @@ module.exports = checkIfAuthenticated = (req, res, next) => {
               return next();
             });
           } else {
-            req.user = existing_user;
+            req.user = existingUser;
             return next();
           }
         }

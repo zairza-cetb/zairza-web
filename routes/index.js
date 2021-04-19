@@ -5,7 +5,7 @@ const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  if (req.cookies["zToken"]!=null) {
+  if (req.cookies["zToken"] != null) {
     admin
       .auth()
       .verifyIdToken(req.cookies["zToken"])

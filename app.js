@@ -4,11 +4,11 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
-const errorHandler = require("./error_handlers/errorHandler");
+const errorHandler = require("./errorHandlers/errorHandler");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
-const admin_panel = require("./routes/admin_panel");
+const adminPanel = require("./routes/adminPanel");
 
 const app = express();
 
@@ -21,7 +21,6 @@ const connection = mongoose
   .then(console.log(`MongoDB connected`))
   .catch((err) => console.log(err));
 
-admin_panel(app, connection);
 
 app.set("view engine", "ejs");
 app.use(logger("dev"));
@@ -33,11 +32,12 @@ app.use(
 );
 
 app.use("/", indexRouter);
-app.use("/user", userRouter);
+app.use("/api/user", userRouter);
+adminPanel(app, connection);
 
 
 app.get("*", function (req, res) {
-  res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
+  res.render("pages/404");
 });
 
 app.use(errorHandler);
