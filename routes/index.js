@@ -67,12 +67,8 @@ router.get("/tmp", function (req, res, next) {
 });
 
 /* GET newPassword page. */
-router.get("/forgot/:token", function (req, res, next) {
-  ResetRequest.findById(req.params.token, function (err, request) {
-    if (err) return next(err);
-    if (!request) return next();
-    res.render("pages/newPassword");
-  });
+router.get("/forgot_password", function (req, res, next) {
+  res.render("pages/newPassword");
 });
 
 module.exports = router;

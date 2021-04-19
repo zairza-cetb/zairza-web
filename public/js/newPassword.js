@@ -81,34 +81,16 @@ function updatePassword() {
   $("#update-icon").hide();
   $("#update-btn span").text("");
   $("#update-btn").addClass("onclic", 50);
-  // console.log($email)
-  // let updateData = {
-  //   password: $password,
-  // };
-  // let url = window.location.pathname;
-  // // console.log(url)
-  // $.ajax({
-  //   type: "POST",
-  //   url: url,
-  //   data: updateData,
-  //   dataType: "json",
-  // })
-  //   .done(function (data) {
-  //     // console.log(data)
-  //     validate("success")
-  //   })
-  //   .fail(function (err) {
-  //     // console.log("error")
-  //     validate(err)
-  //   });
-  var user = firebase.auth().currentUser;
-  // var newPassword = getASecureRandomPassword();
 
-  user
-    .updatePassword($password)
+  var code = new URL(window.location.href).searchParams.get("oobCode");
+
+  firebase.auth().confirmPasswordReset(code, $password)
     .then(function () {
       // Update successful.
       validate("success")
+      setTimeout(function (){
+        window.location.replace("/auth#signin");
+      },1000);
     })
     .catch(function (error) {
       // An error happened.
