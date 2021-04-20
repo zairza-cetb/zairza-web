@@ -36,10 +36,8 @@ const handleCastErrorDB = (err) => {
 };
 
 const handleDuplicateFieldsDB = (err) => {
-
   const key = Object.keys(err.keyValue)[0];
   const message = `${err.keyValue[key]} already exists`;
-
 
   const error = new Error(message);
   error.status = "fail";
@@ -58,9 +56,26 @@ const handleValidationErrorDB = (err) => {
   return error;
 };
 
+// For handling non-api errors
+
+const showErrorPage = (err, res) => {
+  res.render("pages/500");
+};
+
+const redirectAuthPage = (err, req, res) => {
+  res.redirect(`/auth?next=${req.url}`);
+};
+
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
+
+  if (!req.url.startsWith("/api/")) {
+    if (err.codePrefix == "auth") {
+      return redirectAuthPage(err, req, res);
+    }
+    return showErrorPage(err, res);
+  }
 
   if (process.env.NODE_ENV === "development") {
     sendErrorDev(err, res);
