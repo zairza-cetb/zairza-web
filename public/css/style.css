@@ -11,8 +11,6 @@ body {
   display: none;
 }
 
-
-
 .navbar {
   top: 0;
   z-index: 100;
@@ -176,7 +174,7 @@ body {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
-.sally-11 {
+/* .sally-11 {
   height: 85vh !important;
 }
 
@@ -184,7 +182,7 @@ body {
   .sally-11 {
     height: auto !important;
   }
-}
+} */
 
 @-webkit-keyframes up-down {
   0% {
@@ -679,4 +677,10 @@ body {
   transform: scale(1.1);  
   cursor: pointer;
   transition: all 100ms ease-in-out;
+}
+
+/* Footer image */
+.footer-img{
+  height:60vw;
+  width: auto;
 }
