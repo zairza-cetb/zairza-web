@@ -309,5 +309,5 @@ $("input").keypress(function (e) {
 let params = window.location.href.split("#")[1];
 let newsletterSubscription = $("#newsletter_toggle").prop("checked");
 if (!newsletterSubscription && params) {
-  showToast(200, "Subscribe to our newsletter to get latest tech updates.");
+  $("#newsletter_toggle").click();
 }
