@@ -124,3 +124,7 @@ function togglePasswordVisibility(ele) {
     ele.children().removeClass("bx-show").addClass("bx-hide");
   }
 }
+
+// Track next page from url
+let nextPage = window.location.href.split("=")[1];
+let baseUrl = window.location.origin;

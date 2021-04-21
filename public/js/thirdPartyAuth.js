@@ -1,6 +1,6 @@
 // Auth popup
 const request = window.location.href.split("#")[1];
-// console.log(request)
+
 if (request === "signup") {
   request_message = "signed up";
 } else {
@@ -64,13 +64,17 @@ function ThirdPartyAuthenticate(provider_name) {
       // console.log(credential);
       // This gives you a Google Access Token. You can use it to access the Google API.
       // var token = credential.accessToken;
-      
+
       // The signed-in user info.
       var user = result.user;
       // console.log(user)
       showToast(200, `Successfully ${request_message} via ${provider_name} 🙌`);
       setTimeout(function () {
-        window.location.replace("/profile");
+        if (nextPage) {
+          window.location.replace(nextPage);
+        } else {
+          window.location.replace("/profile");
+        }
       }, 2000);
       // ...
     })

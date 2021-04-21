@@ -1,3 +1,4 @@
+
 function validate(req, res) {
   setTimeout(function () {
     $(`#${req}-btn`).removeClass("onclic");
@@ -34,7 +35,11 @@ function callback(req, res) {
       $(`#${req}-btn span`).text("Sign Up");
     }
     if (res == "success") {
-      window.location.replace("/profile");
+      if (nextPage) {
+        window.location.replace(nextPage);
+      } else {
+        window.location.replace("/profile");
+      }
     }
   }, 1250);
 }
@@ -58,9 +63,6 @@ function validateEmail(email) {
   const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
-
-
-
 
 function authenticate(req) {
   $email = $(`#${req}_form input[type='email']`).val();
@@ -135,7 +137,7 @@ function authenticate(req) {
         //   expires: 7,
         // });
         // ...
-        validate(req, "success")
+        validate(req, "success");
       })
       .catch((error) => {
         // var errorCode = error.code;

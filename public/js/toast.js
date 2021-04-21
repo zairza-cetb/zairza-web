@@ -97,7 +97,7 @@ function showToast(status_code, message) {
     $("#toast").fadeOut("slow", function () {
       $(this).toggleClass("hidden");
     });
-  }, 2000);
+  }, 5000);
 }
 
 // showToast(400, 'lorem10asudhfuiewhfiuahdflaius')

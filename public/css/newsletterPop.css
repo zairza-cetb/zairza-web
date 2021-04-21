@@ -88,7 +88,7 @@
       top: -158px;
       min-width: 0;
       max-width: 99999px;
-      width: 225px;
+      width: 425px;
       box-shadow: 0 0 30px 0 rgb(0 0 0 / 10%);
       padding: 22px 26px;
       border-radius: 20px;
@@ -107,7 +107,7 @@
         left: 150px;
         top: 50px;
         min-width: 300px;
-        max-width: 370px;
+        max-width: 390px;
         transform-origin: left top;
       }
     }
@@ -159,7 +159,7 @@
 
     .popup-prompt__cancel-btn {
       color: black;
-      padding-left: 20px;
+      padding-right: 20px;
     }
 
     .popup-prompt__cancel-btn:hover,

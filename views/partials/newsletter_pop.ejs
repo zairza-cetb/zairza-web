@@ -40,10 +40,10 @@
         Hi there! can I share cool tech stuffs with you? 😻
       </p>
       <div class="popup-prompt__footer">
-        <a href="/profile" class="popup-prompt__confirm-btn">Ok, show me</a>
         <button onclick="closePopup(event)" class="popup-prompt__cancel-btn">
           Nope, thanks 💩
         </button>
+        <a href="/profile#subscribe_newsletter" class="popup-prompt__confirm-btn">Ok, show me</a>
       </div>
       <svg
         class="popup-prompt__tail"
@@ -102,7 +102,7 @@
   var min = 5,
     max = 10;
   var rand = Math.floor(Math.random() * (max - min + 1) + min); //Generate Random number between 5 - 10
-  console.log("Wait for " + rand + " seconds");
+  // console.log("Wait for " + rand + " seconds");
 
   $.ajax({
     type: "GET",
