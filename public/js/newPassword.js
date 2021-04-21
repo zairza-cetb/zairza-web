@@ -55,7 +55,7 @@ function callback(res) {
   if (res === "success") {
     showToast(200, "Password successfully changed 🙌");
   } else {
-    showToast(res.status, res.responseJSON.message);
+    showToast(400, res.message);
   }
   setTimeout(function () {
     if (res === "success") {
@@ -97,3 +97,15 @@ function updatePassword() {
       validate(error)
     });
 }
+
+// Submit forms on click of 'ENTER' key
+$("input").keypress(function (e) {
+  if (e.keyCode === 13) {
+    let authType = window.location.href.split("#")[1];
+    if (authType === "signup") {
+      $("#signup-btn").click();
+    } else {
+      $("#signin-btn").click();
+    }
+  }
+});

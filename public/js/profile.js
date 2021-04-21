@@ -32,7 +32,7 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             // Auth provider unlinked from account
             // ...
             setState("off", element);
-            showToast(200, `${provider_name} disconnected 😞`);
+            showToast(200, `${provider_name} account disconnected 😞`);
             const token = await user.getIdToken();
             $.cookie("zToken", token);
           })
@@ -61,7 +61,7 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
               `.connect[data-provider=${provider_name.toLowerCase()}]`
             );
             setState("on", element);
-            showToast(200, `${provider_name} conected 😎`);
+            showToast(200, `${provider_name} account connected 😎`);
             const token = await user.getIdToken();
             $.cookie("zToken", token);
             // ...
@@ -195,7 +195,7 @@ function logout() {
     .then(() => {
       // Sign-out successful.
 
-      console.log($.cookie("zToken",null, { path: "/" }),"check");
+      console.log($.cookie("zToken", null, { path: "/" }), "check");
       window.location.href = "/";
     })
     .catch((error) => {
@@ -295,4 +295,18 @@ function subscribe_newsletter(ele, state) {
       setState("off", ele);
       showToast(err.status, err.responseJSON.message);
     });
+}
+
+// Submit forms on click of 'ENTER' key
+$("input").keypress(function (e) {
+  if (e.keyCode === 13) {
+    $("#update-btn").click();
+  }
+});
+
+// Check if user directly came by clicking the magic popup
+let params = window.location.href.split("#")[1];
+let newsletterSubscription = $("#newsletter_toggle").prop("checked");
+if (!newsletterSubscription && params) {
+  showToast(200, "Subscribe to our newsletter to get latest tech updates.");
 }

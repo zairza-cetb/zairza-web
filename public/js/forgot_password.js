@@ -14,7 +14,8 @@ function callback(res) {
   if (res === "success") {
     showToast(200, "Magic link sent to this Email! 🙌");
   } else {
-    showToast(res.status, res.responseJSON.message);
+    console.log(res)
+    showToast(400, res.message);
   }
   setTimeout(function () {
     if (res === "success") {

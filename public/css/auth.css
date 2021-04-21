@@ -352,7 +352,7 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   padding: 0.2em;
   /* position: relative; */
   box-sizing: content-box;
-  margin-right: 1.5em;
+  margin-right: 1em;
   transition: transform 0.4s cubic-bezier(.5, 0, .5, 1);
   transition-property: transform, width, background-color;
 }
