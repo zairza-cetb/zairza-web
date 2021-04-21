@@ -82,7 +82,7 @@ function ThirdPartyAuthenticate(provider_name) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorMessage);
+      // console.log(errorMessage);
       // The email of the user's account used.
       var email = error.email;
       // console.log(email)

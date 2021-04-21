@@ -30,7 +30,7 @@
   // set firebase Token
   firebase.auth().onAuthStateChanged(async function(user){
     if(user){
-      const token = await user.getIdToken();
+      const token = await user.getIdToken(true);
       $.cookie("zToken", token);
     }else{
       $.cookie("zToken",null);

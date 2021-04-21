@@ -12,7 +12,7 @@ function toggleFieldVisibility(ele) {
 }
 
 function ThirdPartyAuthenticate(provider_name, state, element) {
-  console.log(provider_name, state);
+  // console.log(provider_name, state);
 
   var provider, providerId;
   if (provider_name == "Google") {
@@ -33,7 +33,7 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             // ...
             setState("off", element);
             showToast(200, `${provider_name} account disconnected 😞`);
-            const token = await user.getIdToken();
+            const token = await user.getIdToken(true);
             $.cookie("zToken", token);
           })
           .catch((error) => {
@@ -43,7 +43,8 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             showToast(400, error.message);
           });
       } else {
-        console.log("error");
+        // console.log("error");
+        window.location.replace("/auth#signin")
       }
     });
   } else if (state) {
@@ -56,13 +57,13 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             // Accounts successfully linked.
             var credential = result.credential;
             var user = result.user;
-            console.log(user);
+            // console.log(user);
             let element = $(
               `.connect[data-provider=${provider_name.toLowerCase()}]`
             );
             setState("on", element);
             showToast(200, `${provider_name} account connected 😎`);
-            const token = await user.getIdToken();
+            const token = await user.getIdToken(true);
             $.cookie("zToken", token);
             // ...
           })
@@ -71,10 +72,10 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             // ...
             setState("off", element);
             showToast(409, error.message);
-            console.log(error);
+            // console.log(error);
           });
       } else {
-        console.log("state = definitely signed out");
+        // console.log("state = definitely signed out");
       }
     });
   }
@@ -195,7 +196,7 @@ function logout() {
     .then(() => {
       // Sign-out successful.
 
-      console.log($.cookie("zToken", null, { path: "/" }), "check");
+      // console.log($.cookie("zToken", null, { path: "/" }), "check");
       window.location.href = "/";
     })
     .catch((error) => {
@@ -241,7 +242,7 @@ function setState(state, element) {
     //   break;
     case "off":
       $($elToggle).prop("indeterminate", false);
-      $($elToggle).attr("checked", false);
+      $($elToggle).prop("checked", false);
       $($elToggle).prop("readonly ", false);
       break;
     case "pending":
@@ -250,7 +251,7 @@ function setState(state, element) {
       break;
     case "on":
       $($elToggle).prop("readonly", false);
-      $($elToggle).attr("checked", true);
+      $($elToggle).prop("checked", true);
       $($elToggle).prop("indeterminate", false);
       break;
     default:
