@@ -213,8 +213,7 @@
                     </form>
                     <form id="newsletter" class="connect flex flex-row" data-state="<%= (user.newsletterSubscription.applied)?'on':'off' %>" data-provider="newsletter">
                       <div class="toggle-wrapper flex items-center w-full justify-center">
-                        <% newsletterSubscription = (user.newsletterSubscription.applied)?'checked':'' %>
-                        <input id="newsletter_toggle" <%= newsletterSubscription %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onclick="subscribe_newsletter($(this).closest('form'),$(this).prop('checked'))">
+                        <input id="newsletter_toggle" <%= (user.newsletterSubscription.applied)?'checked':'' %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onclick="subscribe_newsletter($(this).closest('form'),$(this).prop('checked'))">
                         <label for="newsletter_toggle" class="fancy-toggle relative">
                           <div class="bg relative top-0 left-0 h-full"></div>
                           <div class="circle absolute cursor-pointer">
