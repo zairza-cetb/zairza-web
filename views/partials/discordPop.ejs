@@ -67,6 +67,10 @@
       !popupContainer.classList.contains("popup-container--show")
     )
       popupContainer.classList.add("popup-container--show");
+
+    $.cookie("zDiscord", "yes", {
+      expires: 10000, // the number of days cookie  will be effective
+    });
   }
 
   function closePopup() {
