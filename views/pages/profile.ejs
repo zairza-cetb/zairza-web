@@ -93,7 +93,7 @@
                         id="regno"
                         class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white"
                         type="text"
-                        oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"
+                        oninput="this.value=this.value.toUpperCase();"
                         <%
                         if
                         (user.registrationNo){
