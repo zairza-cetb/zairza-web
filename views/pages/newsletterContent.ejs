@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.3/tailwind.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.1/alpine.js"></script>
+
+<div class="min-w-screen h-full bg-gray-200 flex flex-col justify-around px-5 py-5">
+    <h1 class="text-center text-lg font-bold">Newsletter Content Editor for ZAIRZA</h1>
+    <input type="text" class="w-full max-w-6xl mx-auto rounded-xl bg-white shadow-lg p-5 text-black focus:outline-none" placeholder="Enter title">
+    <input type="text" class="w-full max-w-6xl mx-auto rounded-xl bg-white shadow-lg p-5 text-black focus:outline-none" placeholder="Enter link">
+    <div class="w-full max-w-6xl mx-auto rounded-xl bg-white shadow-lg p-5 text-black" x-data="app()" x-init="init($refs.wysiwyg)">
+        <div class="border border-gray-200 overflow-hidden rounded-md">
+            <div class="w-full flex border-b border-gray-200 text-xl text-gray-600">
+                <button class="outline-none focus:outline-none border-r border-gray-200 w-10 h-10 hover:text-indigo-500 active:bg-gray-50" @click="format('bold')">
+                    <i class="mdi mdi-format-bold"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-r border-gray-200 w-10 h-10 hover:text-indigo-500 active:bg-gray-50" @click="format('italic')">
+                    <i class="mdi mdi-format-italic"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-r border-gray-200 w-10 h-10 mr-1 hover:text-indigo-500 active:bg-gray-50" @click="format('underline')">
+                    <i class="mdi mdi-format-underline"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-l border-r border-gray-200 w-10 h-10 hover:text-indigo-500 active:bg-gray-50" @click="format('formatBlock','P')">
+                    <i class="mdi mdi-format-paragraph"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-r border-gray-200 w-10 h-10 hover:text-indigo-500 active:bg-gray-50" @click="format('formatBlock','H1')">
+                    <i class="mdi mdi-format-header-1"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-r border-gray-200 w-10 h-10 hover:text-indigo-500 active:bg-gray-50" @click="format('formatBlock','H2')">
+                    <i class="mdi mdi-format-header-2"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-r border-gray-200 w-10 h-10 mr-1 hover:text-indigo-500 active:bg-gray-50" @click="format('formatBlock','H3')">
+                    <i class="mdi mdi-format-header-3"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-l border-r border-gray-200 w-10 h-10 hover:text-indigo-500 active:bg-gray-50" @click="format('insertUnorderedList')">
+                    <i class="mdi mdi-format-list-bulleted"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-r border-gray-200 w-10 h-10 mr-1 hover:text-indigo-500 active:bg-gray-50" @click="format('insertOrderedList')">
+                    <i class="mdi mdi-format-list-numbered"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-l border-r border-gray-200 w-10 h-10 hover:text-indigo-500 active:bg-gray-50" @click="format('justifyLeft')">
+                    <i class="mdi mdi-format-align-left"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-r border-gray-200 w-10 h-10 hover:text-indigo-500 active:bg-gray-50" @click="format('justifyCenter')">
+                    <i class="mdi mdi-format-align-center"></i>
+                </button>
+                <button class="outline-none focus:outline-none border-r border-gray-200 w-10 h-10 hover:text-indigo-500 active:bg-gray-50" @click="format('justifyRight')">
+                    <i class="mdi mdi-format-align-right"></i>
+                </button>
+            </div>
+            <div class="w-full">
+                <iframe x-ref="wysiwyg" class="w-full h-40 overflow-y-auto"></iframe>
+            </div>
+        </div>
+    </div>
+    <button class="px-6 flex justify-center mx-auto py-3 rounded-full bg-green-400 text-white">Submit</button>
+</div>
+
+<script src="/js/newsletterContent.js"></script>
