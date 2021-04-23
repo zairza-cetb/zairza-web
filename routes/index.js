@@ -65,4 +65,9 @@ router.get("/forgot_password", function (req, res, next) {
   res.render("pages/newPassword");
 });
 
+// Tmp route to check rendered pages without middleware
+router.get("/tmp", function (req, res, next){
+  res.render("pages/403")
+})
+
 module.exports = router;
