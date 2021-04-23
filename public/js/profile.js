@@ -146,12 +146,12 @@ function updateProfile() {
   $newsletter_subscription = $("#profile_form #newsletter_toggle").prop(
     "checked"
   );
-  if (!validateEmail($email) || $email.length == 0) {
-    showToast(401, "Please enter a valid email 🚫");
-    return;
-  }
   if ($name.length == 0) {
     showToast(401, "Please enter your name 🔐");
+    return;
+  }
+  if (!validateEmail($email) || $email.length == 0) {
+    showToast(401, "Please enter a valid email 🚫");
     return;
   }
   if (
@@ -159,6 +159,14 @@ function updateProfile() {
     $registration_no.length == 0
   ) {
     showToast(401, "Please enter a valid registration number 🔐");
+    return;
+  }
+  if($branch == null) {
+    showToast(401, "Please select your branch");
+    return;
+  }
+  if($wing == null) {
+    showToast(401, "Please select your zairza wing");
     return;
   }
 
