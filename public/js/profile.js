@@ -270,9 +270,7 @@ $(document).ready(function () {
 function subscribe_newsletter(ele, state) {
   $newsletter_subscription = state;
   let data = {
-    newsletterSubscription: {
-      applied: $newsletter_subscription,
-    },
+    newsletterSubscription: $newsletter_subscription
   };
   setState("pending", ele);
   $.ajax({

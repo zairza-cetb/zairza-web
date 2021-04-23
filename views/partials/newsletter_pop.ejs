@@ -112,7 +112,7 @@
   })
     .done(function (data) {
       // console.log(data);
-      if (data.newsletterSubscription.applied) {
+      if (data.newsletterSubscription) {
         $.cookie("zNewsletter", "subscribed", {
           expires: 1000, // the number of days cookie  will be effective
         });

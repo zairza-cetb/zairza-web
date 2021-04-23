@@ -45,7 +45,6 @@ router.get("/forgot", function (req, res, next) {
 
 /* GET profile page. */
 router.get("/profile", checkIfAuthenticated, function (req, res, next) {
-  console.log(req.userInfo);
   if (!req.user) {
     return res.redirect("/");
   }
@@ -59,11 +58,6 @@ router.get("/profile", checkIfAuthenticated, function (req, res, next) {
     github = true;
   }
   res.render("pages/profile", { user: req.user, google, github });
-});
-
-/* GET temp page. */
-router.get("/tmp", function (req, res, next) {
-  res.render("pages/500");
 });
 
 /* GET newPassword page. */

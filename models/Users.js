@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema(
     email: {
       type: String,
       unique: true,
-      index: true,
+      sparse: true,
     },
     registrationNo: {
       type: String,
@@ -45,13 +45,10 @@ const UserSchema = new mongoose.Schema(
         "Chemistry",
       ],
     },
-    newsletterSubscription: {
-      applied: { type: Boolean, default: false },
-      appliedAt: Date,
-    },
+    newsletterSubscription: Boolean,
     role: {
       type: String,
-      enum: ["admin", "restricted"],
+      enum: ["admin", "user", "restricted"],
       required: true,
       default: "restricted",
     },

@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const admin = require("../firebase/firebaseService");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 
 const editableFields = new Set([
@@ -11,11 +12,14 @@ const editableFields = new Set([
   "branch",
 ]);
 
-router.get("/me", checkIfAuthenticated, function (req, res, next) {
+// Check user is authenticated or not
+router.use(checkIfAuthenticated);
+
+router.get("/me", function (req, res, next) {
   res.json(req.user);
 });
 
-router.put("/edit", checkIfAuthenticated, async function (req, res, next) {
+router.put("/edit", async function (req, res, next) {
   if (!req.user.registrationNo && !req.body.registrationNo) {
     return res
       .status(403)
@@ -49,6 +53,10 @@ router.put("/edit", checkIfAuthenticated, async function (req, res, next) {
             message: "No user found",
           });
         }
+        if (user.role == "restricted") {
+          user.role = "user";
+          user.save();
+        }
         res.status(200).json({ status: "success", user });
       })
       .catch((err) => {
@@ -57,7 +65,7 @@ router.put("/edit", checkIfAuthenticated, async function (req, res, next) {
   }
 });
 
-router.delete("/", checkIfAuthenticated, function (req, res, next) {
+router.delete("/", function (req, res, next) {
   User.findByIdAndRemove(req.user.id)
     .then((user) => {
       if (!user) {
@@ -65,8 +73,18 @@ router.delete("/", checkIfAuthenticated, function (req, res, next) {
           message: "User not found ",
         });
       }
-      req.logout();
-      res.json({ status: "success", message: "User deleted successfully!" });
+      admin
+        .auth()
+        .deleteUser(req.authId)
+        .then(() => {
+          return res.json({
+            status: "success",
+            message: "User deleted successfully!",
+          });
+        })
+        .catch((err) => {
+          return next(err);
+        });
     })
     .catch((err) => {
       return next(err);

@@ -59,7 +59,11 @@ const handleValidationErrorDB = (err) => {
 // For handling non-api errors
 
 const showErrorPage = (err, res) => {
-  res.render("pages/500");
+  if (process.env.NODE_ENV === "development") {
+    sendErrorDev(err, res);
+  } else {
+    res.render("pages/500");
+  }
 };
 
 const redirectAuthPage = (err, req, res) => {

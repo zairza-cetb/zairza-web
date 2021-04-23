@@ -41,13 +41,6 @@ module.exports = checkIfAuthenticated = (req, res, next) => {
         }
       });
     } catch (e) {
-      console.log(e);
-      // if (req.url.startsWith("api/"))
-      //   return res.status(401).send({
-      //     status: "fail",
-      //     message: "You are not authorized to make this request",
-      //   });
-      // else res.redirect(`auth?next=${req.url}`);
       next(e);
     }
   });
