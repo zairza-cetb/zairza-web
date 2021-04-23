@@ -21,10 +21,10 @@ const UserSchema = new mongoose.Schema(
       unique: true,
       sparse: true,
     },
-    wing: {
+    wing: [{
       type: String,
       enum: ["Software", "Hardware", "Design"],
-    },
+    }],
     branch: {
       type: String,
       enum: [
