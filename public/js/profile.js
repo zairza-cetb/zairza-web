@@ -121,7 +121,8 @@ function validateEmail(email) {
 //  Registration number validate
 function validateRegistrationNumber(reg_no) {
   const re = /^[0-9]{10}$/;
-  return re.test(reg_no);
+  const re2 = /^[0-9]{2}[A-Z]+[0-9]+$/; // For new registration numbers issued for 1st years
+  return re.test(reg_no) || re2.test(reg_no);
 }
 
 $("input[type='email']").on("change", function () {

@@ -15,7 +15,7 @@ module.exports = (app, mongoose_connection) => {
       {
         resource: User,
         options: {
-          listProperties: ["name", "email", "registrationNo"],
+          listProperties: ["firebaseUid", "name", "email", "registrationNo"],
         },
       },
       {
