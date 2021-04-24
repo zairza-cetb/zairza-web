@@ -32,16 +32,16 @@ module.exports = (app, mongoose_connection) => {
   });
 
   let router = express.Router();
-  router.use(checkIfAuthenticated,(req, res, next) => {
+  router.use(checkIfAuthenticated, (req, res, next) => {
     if (req.user == null) {
       res.redirect("/auth?next=/admin");
     } else if (req.user.role == "admin") {
       return next();
     } else {
-      res.json({
-        status: "fail",
-        message: "Admin role required for accessing route",
-      });
+      const error = new Error("Admin role required for accessing route");
+      error.status = "fail";
+      error.statusCode = 403;
+      next(error);
     }
   });
 
