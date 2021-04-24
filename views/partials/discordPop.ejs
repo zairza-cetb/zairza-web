@@ -87,35 +87,6 @@
   var min = 5,
     max = 10;
   var rand = Math.floor(Math.random() * (max - min + 1) + min); //Generate Random number between 5 - 10
-  // console.log("Wait for " + rand + " seconds");
-
-//   $.ajax({
-//     type: "GET",
-//     url: "/api/user/me",
-//     contentType: "application/json",
-//     dataType: "json",
-//   })
-//     .done(function (data) {
-//       // console.log(data);
-//       if (data.newsletterSubscription.applied) {
-//         $.cookie("zNewsletter", "subscribed", {
-//           expires: 1000, // the number of days cookie  will be effective
-//         });
-//       } else {
-//         $.cookie("zNewsletter", "not-subscribed", {
-//           expires: 1, // the number of days cookie  will be effective
-//         });
-//         if(!$.cookie('visited')) {
-//           setTimeout(showPopup, rand * 1000);
-//         }
-//       }
-//     })
-//     .fail(function (err) {
-//       // console.log(err);
-//       if (!$.cookie("visited")) {
-//         setTimeout(showPopup, rand * 1000);
-//       }
-//     });
 
     if(!$.cookie("zDiscord")){
         setTimeout(showPopup, rand * 1000);
