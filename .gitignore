@@ -4,3 +4,4 @@ node_modules
 .env
 firebase_service_account.json
 .adminbro
+views/pages/dashboard/template.ejs
