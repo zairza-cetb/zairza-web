@@ -28,14 +28,14 @@ router.get("/auth", function (req, res, next) {
   res.render("pages/auth");
 });
 
-/* GET profile page. */
+/* GET dashboard page. */
 router.get("/me", checkIfAuthenticated, function (req, res, next) {
-  res.render("pages/me", { user: req.user });
+  res.render("pages/dashboard/index", { user: req.user });
 });
 
 /* GET settings page. */
-router.get("/settings", checkIfAuthenticated, function (req, res, next) {
-  res.render("pages/settings");
+router.get("/projects", checkIfAuthenticated, function (req, res, next) {
+  res.render("pages/dashboard/projects");
 });
 
 /* GET forgot password page. */
@@ -65,5 +65,8 @@ router.get("/forgot_password", function (req, res, next) {
   res.render("pages/newPassword");
 });
 
+router.get("/tmp", function (req, res, next) {
+  res.render("pages/dashboard/template")
+})
 
 module.exports = router;
