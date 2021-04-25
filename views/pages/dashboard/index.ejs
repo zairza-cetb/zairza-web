@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="/css/dashboard.css">
   </head>
   <body class="flex">
+    <%- include('../../partials/firebase.ejs') %>
+    <%- include('../../partials/toast.ejs') %>
+    <%- include('../../partials/deactivate.ejs') %>
     <aside class="relative bg-sidebar h-screen w-64 hidden lg:block shadow-xl">
       <div class="h-16 flex justify-center items-center">
         <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
@@ -26,7 +29,7 @@
       <nav class="text-black text-base font-semibold pt-3 h-96">
         <a
           href="/me"
-          class="flex items-center active-nav-link text-black hover:text-white py-4 pl-6 nav-item my-4"
+          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
         >
           <i class="fas fa-tachometer-alt mr-3"></i>
           Dashboard
@@ -45,14 +48,14 @@
           <i class="fas fa-table mr-3"></i>
           Projects
         </a>
-        <!-- <a
-          href="forms.html"
+         <a
+          href="/events"
           class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
         >
           <i class="fas fa-align-left mr-3"></i>
-          Forms
+          Events
         </a>
-        <a
+        <!-- <a
           href="tabs.html"
           class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
         >
@@ -87,7 +90,7 @@
           ></button>
           <div
             x-show="isOpen"
-            class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16"
+            class="absolute bg-gray-100 rounded-lg shadow-lg py-2 mt-16"
           >
             <a href="/profile" class="block px-4 py-2 account-link hover:text-white"
               >My Profile</a
@@ -95,6 +98,12 @@
             <a href="#" class="block px-4 py-2 account-link hover:text-white"
               onclick="logout()"
               >Sign Out</a
+            >
+            <a
+              href="#"
+              onclick="toggleModal()"
+              class="block px-4 py-2 account-link hover:text-white"
+              >Deactivate account</a
             >
           </div>
         </div>
@@ -119,8 +128,8 @@
         <!-- Dropdown Nav -->
         <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
           <a
-            href="/"
-            class="flex items-center active-nav-link text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            href="/me"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
           >
             <i class="fas fa-tachometer-alt mr-3"></i>
             Dashboard
@@ -139,26 +148,12 @@
             <i class="fas fa-table mr-3"></i>
             Projects
           </a>
-          <!-- <a
-            href="forms.html"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
-          >
-            <i class="fas fa-align-left mr-3"></i>
-            Forms
-          </a>
           <a
-            href="tabs.html"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
-          >
-            <i class="fas fa-tablet-alt mr-3"></i>
-            Tabbed Content
-          </a> -->
-          <a
-            href="calendar.html"
+            href="/events"
             class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
           >
             <i class="fas fa-calendar mr-3"></i>
-            Calendar
+            Events
           </a>
           <a
             href="/profile"
@@ -174,6 +169,14 @@
           >
             <i class="fas fa-sign-out-alt mr-3"></i>
             Sign Out
+          </a>
+          <a
+            href="#"
+            onclick="toggleModal()"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-user mr-3"></i>
+            Deactivate account
           </a>
         </nav>
         <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
@@ -567,5 +570,6 @@
       integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
       crossorigin="anonymous"
     ></script>
+    <script src="/js/me.js"></script>
   </body>
 </html>
