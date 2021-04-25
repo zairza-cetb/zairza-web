@@ -33,9 +33,14 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
   res.render("pages/dashboard/index", { user: req.user });
 });
 
-/* GET settings page. */
+/* GET projects page. */
 router.get("/projects", checkIfAuthenticated, function (req, res, next) {
   res.render("pages/dashboard/projects");
+});
+
+/* GET events page. */
+router.get("/events", checkIfAuthenticated, function (req, res, next) {
+  res.render("pages/dashboard/events");
 });
 
 /* GET forgot password page. */
