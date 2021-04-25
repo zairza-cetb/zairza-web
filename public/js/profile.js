@@ -107,7 +107,7 @@ function callback(res) {
     $("#update-icon").show();
     $("#update-btn span").text("Update Profile");
     if (res === "success") {
-      window.location.replace("/profile");
+      window.location.replace("/me");
     }
   }, 1250);
 }

@@ -38,7 +38,7 @@ function callback(req, res) {
       if (nextPage) {
         window.location.replace(nextPage);
       } else {
-        window.location.replace("/profile");
+        window.location.replace("/me");
       }
     }
   }, 1250);

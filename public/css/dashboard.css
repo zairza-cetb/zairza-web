@@ -36,3 +36,7 @@
   .text-blue{
     color:#1071ff;
   }
+  .toast{
+    position: absolute;
+    left:40%;
+  }

@@ -106,3 +106,11 @@
 .toast--violet:before {
   background-color: #6A4299;
 }
+
+.toast--red .toast__icon {
+  background-color: red;
+}
+
+.toast--red:before {
+  background-color: red;
+}

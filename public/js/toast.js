@@ -59,7 +59,7 @@ function showToast(status_code, message) {
   </svg>`);
     $("#toast")
       .addClass("toast--green")
-      .removeClass("toast--yellow")
+      .removeClass("toast--red")
       .removeClass("toast--blue")
       .removeClass("toast--violet");
   } else if (status_code >= 300 && status_code < 400) {
@@ -68,18 +68,18 @@ function showToast(status_code, message) {
     );
     $("#toast")
       .removeClass("toast--green")
-      .removeClass("toast--yellow")
+      .removeClass("toast--red")
       .removeClass("toast--violet")
       .addClass("toast--blue");
   } else if (status_code >= 400 && status_code < 500) {
     $(".toast__icon").empty().html(
-      `<img src="https://img.icons8.com/emoji/48/ffffff/warning-emoji.png"/>`
+      `<img src="/images/auth/cancel.png"/>`
     );
     $("#toast")
       .removeClass("toast--green")
       .removeClass("toast--blue")
       .removeClass("toast--violet")
-      .addClass("toast--yellow");
+      .addClass("toast--red");
   } else {
     $(".toast__icon").empty().html(
       `<img src="https://img.icons8.com/windows/32/ffffff/amazon-web-services.png"/>`
@@ -87,7 +87,7 @@ function showToast(status_code, message) {
     $("#toast")
       .removeClass("toast--green")
       .removeClass("toast--blue")
-      .removeClass("toast--yellow")
+      .removeClass("toast--red")
       .addClass("toast--violet");
   }
   $("#toast").fadeIn("slow", () => {
