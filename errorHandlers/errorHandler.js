@@ -70,6 +70,10 @@ const redirectAuthPage = (err, req, res) => {
   res.redirect(`/auth?next=${req.url}`);
 };
 
+const showAccessDeniedPage = (err, req, res) => {
+  res.render("pages/403");
+};
+
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
@@ -77,6 +81,8 @@ module.exports = (err, req, res, next) => {
   if (!req.url.startsWith("/api/")) {
     if (err.codePrefix == "auth") {
       return redirectAuthPage(err, req, res);
+    } else if (err.statusCode === 403) {
+      return showAccessDeniedPage(err, req, res);
     }
     return showErrorPage(err, res);
   }

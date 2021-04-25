@@ -8,6 +8,7 @@ const errorHandler = require("./errorHandlers/errorHandler");
 
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
+const adminRoutes = require("./routes/adminRoutes");
 const adminPanel = require("./routes/adminPanel");
 
 const app = express();
@@ -21,7 +22,6 @@ const connection = mongoose
   .then(console.log(`MongoDB connected`))
   .catch((err) => console.log(err));
 
-
 app.set("view engine", "ejs");
 app.use(logger("dev"));
 app.use(express.json());
@@ -33,8 +33,8 @@ app.use(
 
 app.use("/", indexRouter);
 app.use("/api/user", userRouter);
+app.use("/protected", adminRoutes);
 adminPanel(app, connection);
-
 
 app.get("*", function (req, res) {
   res.render("pages/404");
