@@ -9,6 +9,7 @@ const errorHandler = require("./errorHandlers/errorHandler");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const adminRoutes = require("./routes/adminRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 const adminPanel = require("./routes/adminPanel");
 
 const app = express();
@@ -32,6 +33,7 @@ app.use(
 );
 
 app.use("/", indexRouter);
+app.use("/", dashboardRoutes);
 app.use("/api/user", userRouter);
 app.use("/protected", adminRoutes);
 adminPanel(app, connection);
