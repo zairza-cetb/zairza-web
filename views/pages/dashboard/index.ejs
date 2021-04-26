@@ -22,7 +22,7 @@
     <%- include('../../partials/firebase.ejs') %>
     <%- include('../../partials/toast.ejs') %>
     <%- include('../../partials/deactivate.ejs') %>
-    <aside class="relative bg-sidebar h-screen w-64 hidden lg:block shadow-xl">
+    <aside class="relative bg-sidebar h-screen w-80 hidden lg:block shadow-xl">
       <div class="h-16 flex justify-center items-center">
         <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
       </div>
@@ -38,7 +38,7 @@
           href="/projects"
           class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
         >
-          <i class="fas fa-table mr-3"></i>
+          <i class="fas fa-project-diagram mr-3"></i>
           Zairza Projects
         </a>
       </nav>
@@ -47,6 +47,13 @@
     <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
       <!-- Desktop Header -->
       <header class="w-full items-center bg-white py-2 px-6 hidden lg:flex">
+        <% if(user.role == 'restricted') {%>
+          <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Restricted User </span>
+          <% } else if(user.role == 'admin') { %>
+          <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-indigo-700 rounded"> Admin User </span>
+          <% } else { %>
+          <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-blue-700 rounded"> Member User </span>
+          <% } %>
         <div class="w-1/2"></div>
         <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
           <button
@@ -88,6 +95,13 @@
       >
         <div class="flex items-center justify-between">
           <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
+          <% if(user.role == 'restricted') {%>
+            <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Restricted User </span>
+            <% } else if(user.role == 'admin') { %>
+            <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-indigo-700 rounded"> Admin User </span>
+            <% } else { %>
+            <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-blue-700 rounded"> Member User </span>
+            <% } %>
           <button
             @click="isOpen = !isOpen"
             class="text-black text-3xl focus:outline-none"
@@ -156,15 +170,14 @@
                 <h1
                   class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900"
                 >
-                  Knausgaard typewriter readymade marfa
+                <span style="color:#FF7610">Wonder.
+                </span><span style="color:#1A1A1A">Think. </span><span style="color:#1071FF">Create.</span>
                 </h1>
                 <p class="mb-8 leading-relaxed">
-                  Chillwave portland ugh, knausgaard fam polaroid iPhone. Man
-                  braid swag typewriter affogato, hella selvage wolf narwhal
-                  dreamcatcher.
+                  We are a team of motivated individuals who love to build great things together. Working with talented and driven people is our passion. We help build meaningful brands through projects, design and collaboration. 
                 </p>
                 <p class="text-sm mt-2 text-gray-500 mb-8 w-full">
-                  Neutra shabby chic ramps, viral fixie.
+                  With the Zairza App, you can make a difference.
                 </p>
                 <div class="flex lg:flex-row md:flex-col">
                   <button
@@ -227,7 +240,8 @@
                 <h1
                   class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"
                 >
-                  Master Cleanse Reliac Heirloom
+                <span style="color:#FF7610">Wonder.
+                </span><span style="color:#1A1A1A">Think. </span><span style="color:#1071FF">Create.</span>
                 </h1>
                 <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
                   Whatever cardigan tote bag tumblr hexagon brooklyn
@@ -343,7 +357,7 @@
                       ></div>
                     </div>
                     <div
-                      class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10"
+                      class="flex-shrink-0 w-10 h-10 rounded-full bg-blue inline-flex items-center justify-center text-white relative z-10"
                     >
                       <svg
                         fill="none"
@@ -366,7 +380,7 @@
                         STEP 1
                       </h2>
                       <p class="leading-relaxed">
-                        Join Zairza
+                        Get into Zairza. 
                       </p>
                     </div>
                   </div>
@@ -379,7 +393,7 @@
                       ></div>
                     </div>
                     <div
-                      class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10"
+                      class="flex-shrink-0 w-10 h-10 rounded-full bg-blue inline-flex items-center justify-center text-white relative z-10"
                     >
                       <svg
                         fill="none"
@@ -400,7 +414,7 @@
                         STEP 2
                       </h2>
                       <p class="leading-relaxed">
-                        Learn Tech
+                        Acquire technical skills
                       </p>
                     </div>
                   </div>
@@ -413,7 +427,7 @@
                       ></div>
                     </div>
                     <div
-                      class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10"
+                      class="flex-shrink-0 w-10 h-10 rounded-full bg-blue inline-flex items-center justify-center text-white relative z-10"
                     >
                       <svg
                         fill="none"
@@ -435,7 +449,7 @@
                         STEP 3
                       </h2>
                       <p class="leading-relaxed">
-                        Make projects & collaborate
+                        Make projects and collaborate
                       </p>
                     </div>
                   </div>
@@ -448,7 +462,7 @@
                       ></div>
                     </div>
                     <div
-                      class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10"
+                      class="flex-shrink-0 w-10 h-10 rounded-full bg-blue inline-flex items-center justify-center text-white relative z-10"
                     >
                       <svg
                         fill="none"
@@ -472,13 +486,13 @@
                         STEP 4
                       </h2>
                       <p class="leading-relaxed">
-                        Get higher placement package
+                        Achieve milestones
                       </p>
                     </div>
                   </div>
                   <div class="flex relative">
                     <div
-                      class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10"
+                      class="flex-shrink-0 w-10 h-10 rounded-full bg-blue inline-flex items-center justify-center text-white relative z-10"
                     >
                       <svg
                         fill="none"
@@ -500,7 +514,7 @@
                         FINISH
                       </h2>
                       <p class="leading-relaxed">
-                        Happy married life
+                        Contribute back to the community
                       </p>
                     </div>
                   </div>
