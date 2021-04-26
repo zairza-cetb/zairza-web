@@ -7,7 +7,6 @@ const editableFields = new Set([
   "name",
   "email",
   "registrationNo",
-  "newsletterSubscription",
   "wing",
   "branch",
 ]);
@@ -56,10 +55,21 @@ router.put("/edit", checkIfAuthenticated, function (req, res, next) {
           ) {
             user.role = "user";
             user.save();
+          } else if (
+            (await req.user.checkValidRegistrationNo(
+              req.body.registrationNo
+            )) === false
+          ) {
+            user.role = "restricted";
+            user.save();
           }
         }
-
-        res.status(200).json({ status: "success", user });
+        let message = null;
+        if (user.role === "restricted") {
+          message =
+            "Your registration number is not registered at Zairza. Please contact us to register you at Zairza";
+        }
+        res.status(200).json({ status: "success", user, message });
       }
     );
   }
