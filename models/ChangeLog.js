@@ -8,7 +8,7 @@ module.exports = ChangeLog = mongoose.model(
       userId: { type: mongoose.Types.ObjectId, ref: "User" },
       resource: { type: String },
       recordId: { type: mongoose.Types.ObjectId },
-      createdAt: { type: Date, expires: "1h", default: Date.now }
+      createdAt: { type: Date, expires: "720h", default: Date.now }
     },
     { versionKey: false }
   )
