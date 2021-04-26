@@ -115,36 +115,24 @@
                           ></span>
                         </div>
                     </div>
-                    <div class="relative">
-                      <select
-                        autocomplete="off"
-                        id="branch"
-                        class="my-2 appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white"
-                      >
-                      <option disabled selected value>Select Branch</option>
-                      <% const branches = ["Computer Science & Engineering", "Information Technology","Electrical Engineering","Mechanical Engineering","Electronics & Intrumentation Engineering","Biotechnology","Civil Engineering","Textile Engineering","Fashion & Apparel Technology","Architecture","Computer Science & Application","Planning","Mathematics & Humanities","Physics","Chemistry"];
-                        let selectedBranch;  
-                      branches.forEach((branch) =>{
-                        selectedBranch = (user.branch == branch )?'selected':'';
-                        %>
-                        <option value="<%= branch %>" <%= selectedBranch %>><%= branch %></option>
+                    <select multiple data-placeholder="Select your branch" id="branch" class="w-full my-2 appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white">
+                      <option value="Computer Science & Engineering" <%= (user.branch === 'Computer Science & Engineering') ? 'selected' : ''%> >Computer Science & Engineering</option>
+                      <option value="Information Technology" <%= (user.branch === 'Information Technology') ? 'selected' : ''%> >Information Technology</option>
+                      <option value="Electrical Engineering" <%= (user.branch === 'Electrical Engineering') ? 'selected' : ''%> >Electrical Engineering</option>
+                      <option value="Mechanical Engineering" <%= (user.branch === 'Mechanical Engineering') ? 'selected' : ''%> >Mechanical Engineering</option>
+                      <option value="Electronics & Intrumentation Engineering" <%= (user.wing === 'Electronics & Intrumentation Engineering') ? 'selected' : ''%> >Electronics & Intrumentation Engineering</option>
+                      <option value="Biotechnology" <%= (user.branch === 'Biotechnology') ? 'selected' : ''%> >Biotechnology</option>
+                      <option value="Civil Engineering" <%= (user.branch === 'Civil Engineering') ? 'selected' : ''%> >Civil Engineering</option>
+                      <option value="Textile Engineering" <%= (user.branch === 'Textile Engineering') ? 'selected' : ''%> >Textile Engineering</option>
+                      <option value="Fashion & Apparel Technology" <%= (user.branch === 'Fashion & Apparel Technology') ? 'selected' : ''%> >Fashion & Apparel Technology</option>
+                      <option value="Architecture" <%= (user.branch === 'Architecture') ? 'selected' : ''%> >Architecture</option>
+                      <option value="Computer Science & Application" <%= (user.branch === 'Computer Science & Application') ? 'selected' : ''%> >Computer Science & Application</option>
+                      <option value="Planning" <%= (user.branch === 'Planning') ? 'selected' : ''%> >Planning</option>
+                      <option value="Mathematics & Humanities" <%= (user.branch === 'Mathematics & Humanities') ? 'selected' : ''%> >Mathematics & Humanities</option>
+                      <option value="Physics" <%= (user.branch === 'Physics') ? 'selected' : ''%> >Physics</option>
+                      <option value="Chemistry" <%= (user.branch === 'Chemistry') ? 'selected' : ''%> >Chemistry</option>
+                  </select>
 
-                      <% }) %>
-                      </select>
-                      <div
-                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-                      >
-                        <svg
-                          class="fill-current h-4 w-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                          />
-                        </svg>
-                      </div>
-                    </div>
                     <select multiple data-placeholder="Select your wing(s)" id="wing" class="w-full my-2 appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white">
                       <option value="Software" <%= (user.wing.includes('Software')) ? 'selected' : ''%>>Software</option>
                       <option value="Hardware" <%= (user.wing.includes('Hardware')) ? 'selected' : ''%> >Hardware</option>
@@ -219,19 +207,15 @@
                       />
                       <span class="ml-3">Update Profile</span>
                     </button>
-                    <button
-                      onclick="logout()"
+                    <a
+                      href="/me"
                       class="tracking-wide font-semibold text-gray-100 hover:text-white w-full py-4 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                     >
-                      <div class="flex justify-center mt-4" style="color: #1471ff;">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout mr-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
-                            <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
-                          </svg>
-                        Logout
+                      <div class="flex justify-around mt-4 w-36" style="color: #1471ff;">
+                        <i class='bx bx-arrow-back bx-sm'></i>
+                        Dashboard
                       </div>
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>

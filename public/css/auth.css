@@ -353,7 +353,7 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   /* position: relative; */
   box-sizing: content-box;
   margin-right: 1em;
-  transition: transform 0.4s cubic-bezier(.5, 0, .5, 1);
+  transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1);
   transition-property: transform, width, background-color;
 }
 .fancy-toggle .bg {
@@ -368,8 +368,8 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   transition: inherit;
 }
 .fancy-toggle .circle {
-  width: .8em;
-  height: .8em;
+  width: 0.8em;
+  height: 0.8em;
   background: white;
   box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
   border-radius: 50%;
@@ -383,7 +383,7 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   margin: -0.1em;
 }
 .fancy-toggle .loader {
-  stroke: #6C80F5;
+  stroke: #6c80f5;
   stroke-width: 6;
   fill: none;
   stroke-dasharray: 1 1;
@@ -405,7 +405,7 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
 }
 
 .status-text {
-  transition: transform .3s cubic-bezier(.5, 0, .5, 1);
+  transition: transform 0.3s cubic-bezier(0.5, 0, 0.5, 1);
 }
 .status-text[data-for="off"],
 .status-text[data-for="pending"] {
@@ -478,33 +478,39 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   }
 }
 
-
 /* fancy multiple select */
-.selectMultiple {
+.selectMultipleBranch,
+.selectMultipleWing {
   /* width: 240px; */
   position: relative;
+  padding: 1rem 0;
+  cursor: pointer;
 }
-.selectMultiple select {
+.selectMultipleBranch select,
+.selectMultipleWing select {
   display: none;
 }
-.selectMultiple > div {
+.selectMultipleBranch > div,
+.selectMultipleWing > div {
   position: relative;
   z-index: 2;
   /* padding: 8px 12px 2px 12px; */
-  padding:.7rem .5rem;
+  padding: 0.7rem 0.5rem;
   border-radius: 8px;
-  background: rgba(243,244,246,1);
-  border-color: rgba(229,231,235,1);
+  background: rgba(243, 244, 246, 1);
+  border-color: rgba(229, 231, 235, 1);
   border-width: 1px;
   font-size: 14px;
   min-height: 50px;
   box-shadow: 0 4px 16px 0 rgba(22, 42, 90, 0.12);
   transition: box-shadow 0.3s ease;
 }
-.selectMultiple > div:hover {
+.selectMultipleBranch > div:hover,
+.selectMultipleWing > div:hover {
   box-shadow: 0 4px 24px -1px rgba(22, 42, 90, 0.16);
 }
-.selectMultiple > div .arrow {
+.selectMultipleBranch > div .arrow,
+.selectMultipleWing > div .arrow {
   right: 1px;
   top: 0;
   bottom: 0;
@@ -512,25 +518,31 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   width: 28px;
   position: absolute;
 }
-.selectMultiple > div .arrow:before, .selectMultiple > div .arrow:after {
+.selectMultipleBranch > div .arrow:before,
+.selectMultipleBranch > div .arrow:after,
+.selectMultipleWing > div .arrow:before,
+.selectMultipleWing > div .arrow:after {
   content: "";
   position: absolute;
   display: block;
   width: 2px;
   height: 8px;
-  border-bottom: 8px solid #99A3BA;
+  border-bottom: 8px solid #99a3ba;
   top: 43%;
   transition: all 0.3s ease;
 }
-.selectMultiple > div .arrow:before {
+.selectMultipleBranch > div .arrow:before,
+.selectMultipleWing > div .arrow:before {
   right: 12px;
   transform: rotate(-130deg);
 }
-.selectMultiple > div .arrow:after {
+.selectMultipleBranch > div .arrow:after,
+.selectMultipleWing > div .arrow:after {
   left: 9px;
   transform: rotate(130deg);
 }
-.selectMultiple > div span {
+.selectMultipleBranch > div span,
+.selectMultipleWing > div span {
   color: #1071ff;
   display: block;
   position: absolute;
@@ -540,26 +552,30 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   line-height: 28px;
   transition: all 0.3s ease;
 }
-.selectMultiple > div span.hide {
+.selectMultipleBranch > div span.hide,
+.selectMultipleWing > div span.hide {
   opacity: 0;
   visibility: hidden;
   transform: translate(-4px, 0);
 }
-.selectMultiple > div a {
+.selectMultipleBranch > div a,
+.selectMultipleWing > div a {
   position: relative;
   padding: 0 24px 6px 8px;
   line-height: 28px;
-  color: #1E2330;
+  color: #1e2330;
   display: inline-block;
   vertical-align: top;
   margin: 0 6px 0 0;
 }
-.selectMultiple > div a em {
+.selectMultipleBranch > div a em,
+.selectMultipleWing > div a em {
   font-style: normal;
   display: block;
   white-space: nowrap;
 }
-.selectMultiple > div a:before {
+.selectMultipleBranch > div a:before,
+.selectMultipleWing > div a:before {
   content: "";
   left: 0;
   top: 0;
@@ -571,7 +587,8 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   z-index: -1;
   border-radius: 4px;
 }
-.selectMultiple > div a i {
+.selectMultipleBranch > div a i,
+.selectMultipleWing > div a i {
   cursor: pointer;
   position: absolute;
   top: 0;
@@ -580,7 +597,10 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   height: 28px;
   display: block;
 }
-.selectMultiple > div a i:before, .selectMultiple > div a i:after {
+.selectMultipleBranch > div a i:before,
+.selectMultipleBranch > div a i:after,
+.selectMultipleWing > div a i:before,
+.selectMultipleWing > div a i:after {
   content: "";
   display: block;
   width: 2px;
@@ -588,63 +608,78 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   position: absolute;
   left: 50%;
   top: 50%;
-  background:#ff7610 ;
+  background: #ff7610;
   border-radius: 1px;
 }
-.selectMultiple > div a i:before {
+.selectMultipleBranch > div a i:before,
+.selectMultipleWing > div a i:before {
   transform: translate(-50%, -50%) rotate(45deg);
 }
-.selectMultiple > div a i:after {
+.selectMultipleBranch > div a i:after,
+.selectMultipleWing > div a i:after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
-.selectMultiple > div a.notShown {
+.selectMultipleBranch > div a.notShown,
+.selectMultipleWing > div a.notShown {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.selectMultiple > div a.notShown:before {
+.selectMultipleBranch > div a.notShown:before,
+.selectMultipleWing > div a.notShown:before {
   width: 28px;
   transition: width 0.45s cubic-bezier(0.87, -0.41, 0.19, 1.44) 0.2s;
 }
-.selectMultiple > div a.notShown i {
+.selectMultipleBranch > div a.notShown i,
+.selectMultipleWing > div a.notShown i {
   opacity: 0;
   transition: all 0.3s ease 0.3s;
 }
-.selectMultiple > div a.notShown em {
+.selectMultipleBranch > div a.notShown em,
+.selectMultipleWing > div a.notShown em {
   opacity: 0;
   transform: translate(-6px, 0);
   transition: all 0.4s ease 0.3s;
 }
-.selectMultiple > div a.notShown.shown {
+.selectMultipleBranch > div a.notShown.shown,
+.selectMultipleWing > div a.notShown.shown {
   opacity: 1;
 }
-.selectMultiple > div a.notShown.shown:before {
+.selectMultipleBranch > div a.notShown.shown:before,
+.selectMultipleWing > div a.notShown.shown:before {
   width: 100%;
 }
-.selectMultiple > div a.notShown.shown i {
+.selectMultipleBranch > div a.notShown.shown i,
+.selectMultipleWing > div a.notShown.shown i {
   opacity: 1;
 }
-.selectMultiple > div a.notShown.shown em {
+.selectMultipleBranch > div a.notShown.shown em,
+.selectMultipleWing > div a.notShown.shown em {
   opacity: 1;
   transform: translate(0, 0);
 }
-.selectMultiple > div a.remove:before {
+.selectMultipleBranch > div a.remove:before,
+.selectMultipleWing > div a.remove:before {
   width: 28px;
   transition: width 0.4s cubic-bezier(0.87, -0.41, 0.19, 1.44) 0s;
 }
-.selectMultiple > div a.remove i {
+.selectMultipleBranch > div a.remove i,
+.selectMultipleWing > div a.remove i {
   opacity: 0;
   transition: all 0.3s ease 0s;
 }
-.selectMultiple > div a.remove em {
+.selectMultipleBranch > div a.remove em,
+.selectMultipleWing > div a.remove em {
   opacity: 0;
   transform: translate(-12px, 0);
   transition: all 0.4s ease 0s;
 }
-.selectMultiple > div a.remove.disappear {
+.selectMultipleBranch > div a.remove.disappear,
+.selectMultipleWing > div a.remove.disappear {
   opacity: 0;
   transition: opacity 0.5s ease 0s;
 }
-.selectMultiple > ul {
+.selectMultipleBranch > ul,
+.selectMultipleWing > ul {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -660,34 +695,43 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   transform: translate(0, 20px) scale(0.8);
   transform-origin: 0 0;
   filter: drop-shadow(0 12px 20px rgba(22, 42, 90, 0.08));
-  transition: all 0.4s ease, transform 0.4s cubic-bezier(0.87, -0.41, 0.19, 1.44), filter 0.3s ease 0.2s;
+  transition: all 0.4s ease,
+    transform 0.4s cubic-bezier(0.87, -0.41, 0.19, 1.44), filter 0.3s ease 0.2s;
 }
-.selectMultiple > ul li {
-  color: #1E2330;
+.selectMultipleBranch > ul li,
+.selectMultipleWing > ul li {
+  color: #1e2330;
   background: #fff;
   padding: 12px 16px;
   cursor: pointer;
   overflow: hidden;
   position: relative;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease 0.3s, opacity 0.5s ease 0.3s, border-radius 0.3s ease 0.3s;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease 0.3s,
+    opacity 0.5s ease 0.3s, border-radius 0.3s ease 0.3s;
 }
-.selectMultiple > ul li:first-child {
+.selectMultipleBranch > ul li:first-child,
+.selectMultipleWing > ul li:first-child {
   border-radius: 8px 8px 0 0;
 }
-.selectMultiple > ul li:first-child:last-child {
+.selectMultipleBranch > ul li:first-child:last-child,
+.selectMultipleWing > ul li:first-child:last-child {
   border-radius: 8px;
 }
-.selectMultiple > ul li:last-child {
+.selectMultipleBranch > ul li:last-child,
+.selectMultipleWing > ul li:last-child {
   border-radius: 0 0 8px 8px;
 }
-.selectMultiple > ul li:last-child:first-child {
+.selectMultipleBranch > ul li:last-child:first-child,
+.selectMultipleWing > ul li:last-child:first-child {
   border-radius: 8px;
 }
-.selectMultiple > ul li:hover {
+.selectMultipleBranch > ul li:hover,
+.selectMultipleWing > ul li:hover {
   background: #ff7610;
   color: #fff;
 }
-.selectMultiple > ul li:after {
+.selectMultipleBranch > ul li:after,
+.selectMultipleWing > ul li:after {
   content: "";
   position: absolute;
   top: 50%;
@@ -700,50 +744,69 @@ my-toggle-group my-toggle input[type="checkbox"]:checked ~ my-toggle-orb {
   transform: scale(1, 1) translate(-50%, -50%);
   transform-origin: 50% 50%;
 }
-.selectMultiple > ul li.beforeRemove {
+.selectMultipleBranch > ul li.beforeRemove,
+.selectMultipleWing > ul li.beforeRemove {
   border-radius: 0 0 8px 8px;
 }
-.selectMultiple > ul li.beforeRemove:first-child {
+.selectMultipleBranch > ul li.beforeRemove:first-child,
+.selectMultipleWing > ul li.beforeRemove:first-child {
   border-radius: 8px;
 }
-.selectMultiple > ul li.afterRemove {
+.selectMultipleBranch > ul li.afterRemove,
+.selectMultipleWing > ul li.afterRemove {
   border-radius: 8px 8px 0 0;
 }
-.selectMultiple > ul li.afterRemove:last-child {
+.selectMultipleBranch > ul li.afterRemove:last-child,
+.selectMultipleWing > ul li.afterRemove:last-child {
   border-radius: 8px;
 }
-.selectMultiple > ul li.remove {
+.selectMultipleBranch > ul li.remove,
+.selectMultipleWing > ul li.remove {
   transform: scale(0);
   opacity: 0;
 }
-.selectMultiple > ul li.remove:after {
+.selectMultipleBranch > ul li.remove:after,
+.selectMultipleWing > ul li.remove:after {
   -webkit-animation: ripple 0.4s ease-out;
-          animation: ripple 0.4s ease-out;
+  animation: ripple 0.4s ease-out;
 }
-.selectMultiple > ul li.notShown {
+.selectMultipleBranch > ul li.notShown,
+.selectMultipleWing > ul li.notShown {
   display: none;
   transform: scale(0);
   opacity: 0;
   transition: transform 0.35s ease, opacity 0.4s ease;
 }
-.selectMultiple > ul li.notShown.show {
+.selectMultipleBranch > ul li.notShown.show,
+.selectMultipleWing > ul li.notShown.show {
   transform: scale(1);
   opacity: 1;
 }
-.selectMultiple.open > div {
+.selectMultipleWing.open > div,
+.selectMultipleWing.open > div,
+.selectMultipleBranch.open > div,
+.selectMultipleBranch.open > div {
   box-shadow: 0 4px 20px -1px rgba(22, 42, 90, 0.12);
 }
-.selectMultiple.open > div .arrow:before {
+.selectMultipleWing.open > div .arrow:before,
+.selectMultipleBranch.open > div .arrow:before {
   transform: rotate(-50deg);
 }
-.selectMultiple.open > div .arrow:after {
+.selectMultipleWing.open > div .arrow:after,
+.selectMultipleBranch.open > div .arrow:after {
   transform: rotate(50deg);
 }
-.selectMultiple.open > ul {
+.selectMultipleWing.open > ul,
+.selectMultipleBranch.open > ul {
   transform: translate(0, 12px) scale(1);
   opacity: 1;
   visibility: visible;
   filter: drop-shadow(0 16px 24px rgba(22, 42, 90, 0.16));
+  z-index: 100;
+}
+.selectMultipleBranch.open > ul {
+  height: 25rem;
+  overflow-y: scroll;
 }
 
 @-webkit-keyframes ripple {
