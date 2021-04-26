@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema(
     },
     registrationNo: {
       type: String,
+      index: true,
       unique: true,
       sparse: true,
     },

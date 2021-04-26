@@ -20,7 +20,10 @@ module.exports = (app, mongoose_connection) => {
       },
       {
         resource: ValidRegNos,
-        options: { listProperties: ["registrationNo"] },
+        options: {
+          listProperties: ["registrationNo"],
+          actions: { edit: { isVisible: false } },
+        },
       },
     ],
     rootPath: "/admin",
