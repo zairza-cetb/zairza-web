@@ -10,10 +10,10 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
 
 /* GET projects page. */
 router.get("/projects", checkIfAuthenticated, function (req, res, next) {
-  fetch("https://api.github.com/users/zairza-cetb/repos?sort=updated")
+  fetch("https://api.github.com/users/zairza-cetb/repos?sort=updated_at")
     .then((res) => res.json())
     .then((data) => {
-      return res.render("pages/dashboard/projects", { data });
+      return res.render("pages/dashboard/projects", { projects : data , user: req.user });
     });
 });
 
