@@ -105,7 +105,7 @@ const isRoleUser = [
   checkIfAuthenticated,
   (req, res, next) => {
     if (req.user.role === "restricted") {
-      const error = new Error("User privilage required");
+      const error = new Error("You are not registered as Zairza member");
       error.status = "fail";
       error.statusCode = 403;
       return next(error);

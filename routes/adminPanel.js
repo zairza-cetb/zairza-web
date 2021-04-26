@@ -25,7 +25,7 @@ const createLog = async (originalResponse, request, context) => {
   return originalResponse;
 };
 
-if (process.env.NODE_ENV == "development") {
+if (process.env.NODE_ENV == "production") {
   ACTIONS.edit.after = createLog;
   ACTIONS.delete.after = createLog;
   ACTIONS.new.after = createLog;

@@ -12,7 +12,6 @@ function toggleFieldVisibility(ele) {
 }
 
 function ThirdPartyAuthenticate(provider_name, state, element) {
-  // console.log(provider_name, state);
 
   var provider, providerId;
   if (provider_name == "Google") {
@@ -43,7 +42,6 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             showToast(400, error.message);
           });
       } else {
-        // console.log("error");
         window.location.replace("/auth#signin");
       }
     });
@@ -57,7 +55,6 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             // Accounts successfully linked.
             var credential = result.credential;
             var user = result.user;
-            // console.log(user);
             let element = $(
               `.connect[data-provider=${provider_name.toLowerCase()}]`
             );
@@ -72,10 +69,7 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             // ...
             setState("off", element);
             showToast(409, error.message);
-            // console.log(error);
           });
-      } else {
-        // console.log("state = definitely signed out");
       }
     });
   }
@@ -84,7 +78,7 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
 function validate(res) {
   setTimeout(function () {
     $("#update-btn").removeClass("onclic");
-    if (res == "success") {
+    if (res == "success" || res == "restricted") {
       $("#update-btn").addClass("validate-success", 450, callback(res));
     } else {
       $("#update-btn").addClass("validate-fail", 450, callback(res));
@@ -95,18 +89,20 @@ function validate(res) {
 function callback(res) {
   if (res === "success") {
     showToast(200, "Profile updated successfully 🙌");
+  } else if (res == "restricted") {
+    showToast(200, "Your registration number is not registered at Zairza. Please contact us to register you at Zairza")
   } else {
-    showToast(res.status, res.responseJSON.message);
+    showToast(res.status, res.message);
   }
   setTimeout(function () {
-    if (res === "success") {
+    if (res === "success" || res == "restricted") {
       $("#update-btn").removeClass("validate-success");
     } else {
       $("#update-btn").removeClass("validate-fail");
     }
     $("#update-icon").show();
     $("#update-btn span").text("Update Profile");
-    if (res === "success") {
+    if (res === "success" || res == "restricted") {
       window.location.replace("/me");
     }
   }, 1250);
@@ -143,7 +139,6 @@ function updateProfile() {
   $branch = $("#profile_form #branch").val();
   $wing = $("#profile_form #wing").val();
   $name = $("#profile_form #name").val();
-  console.log($wing);
   $newsletter_subscription = $("#profile_form #newsletter_toggle").prop(
     "checked"
   );
@@ -182,7 +177,6 @@ function updateProfile() {
     wing: $wing,
     name: $name,
   };
-  // console.log(data);
   $.ajax({
     type: "PUT",
     url: "/api/user/edit",
@@ -190,11 +184,13 @@ function updateProfile() {
     dataType: "json",
   })
     .done(function (data) {
-      // console.log("success");
-      validate("success");
+      if (data.message) {
+        validate("restricted")
+      } else {
+        validate("success");
+      }
     })
     .fail(function (err) {
-      // console.log("error");
       validate(err);
     });
 }
@@ -206,7 +202,6 @@ function logout() {
     .then(() => {
       // Sign-out successful.
 
-      // console.log($.cookie("zToken", null, { path: "/" }), "check");
       window.location.href = "/";
     })
     .catch((error) => {
@@ -283,14 +278,13 @@ function subscribe_newsletter(ele, state) {
   };
   setState("pending", ele);
   $.ajax({
-    type: "PUT",
-    url: "/api/user/edit",
+    type: "POST",
+    url: "/api/user/newsletter",
     data: JSON.stringify(data),
     contentType: "application/json",
     dataType: "json",
   })
     .done(function (data) {
-      // console.log("success");
       if (state) {
         setState("on", ele);
         showToast(200, "Newsletter subscribed 👍");
@@ -300,7 +294,6 @@ function subscribe_newsletter(ele, state) {
       }
     })
     .fail(function (err) {
-      // console.log("error");
       setState("off", ele);
       showToast(err.status, err.responseJSON.message);
     });
