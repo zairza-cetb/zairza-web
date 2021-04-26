@@ -38,7 +38,7 @@
           href="/projects"
           class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
         >
-          <i class="fas fa-table mr-3"></i>
+          <i class="fas fa-project-diagram mr-3"></i>
           Zairza Projects
         </a>
       </nav>
@@ -100,7 +100,7 @@
         <div class="flex items-center justify-between">
           <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
           <% if(user.role == 'restricted') {%>
-            <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Restricted User </span>
+            <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Non Zairza User </span>
             <% } else if(user.role == 'admin') { %>
             <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-indigo-700 rounded"> Admin User </span>
             <% } else { %>
@@ -128,7 +128,7 @@
             href="/projects"
             class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
           >
-            <i class="fas fa-table mr-3"></i>
+            <i class="fas fa-project-diagram mr-3"></i>
             Zairza Projects
           </a>
           <a
@@ -165,14 +165,13 @@
             <div class="container px-5 py-24 mx-auto">
                 <div class="flex flex-wrap w-full mb-20">
                     <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-                      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Pitchfork Kickstarter Taxidermy</h1>
+                      <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">You can have it all. </h1>
                       <div class="h-1 w-20 bg-orange rounded"></div>
                     </div>
-                    <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+                    <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Starting from being a part of the community to honing new skills and showcasing projects, Zairza lets you monitor yourself.Here are a few projects we've worked on recently. Feel free to contact us for any project or collaboration. </p>
                   </div>
                 <div class="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 -m-4">
-                  <%  projects = projects.slice(6) %>
-                  <% projects.forEach(function(project) { %>
+                  <% projects.slice(0,18).forEach(function(project) { %>
                   <div class="p-4">
                     <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
                       <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"><%= project.language %></h2>
