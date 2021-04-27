@@ -1,8 +1,11 @@
 const express = require("express");
+const partials = require("express-partials");
 const router = express.Router();
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 const fetch = require("node-fetch");
 const ValidRegNos = require("../models/ValidRegNos");
+
+router.use(partials());
 
 /* GET dashboard page. */
 router.get("/me", checkIfAuthenticated, function (req, res, next) {
@@ -17,6 +20,7 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
           user: req.user,
           projectsCount: data.length,
           membersCount: count,
+          layout: "pages/base",
         });
       });
   });
@@ -30,6 +34,7 @@ router.get("/projects", checkIfAuthenticated, function (req, res, next) {
       return res.render("pages/dashboard/projects", {
         projects: data,
         user: req.user,
+        layout: "pages/base",
       });
     });
 });

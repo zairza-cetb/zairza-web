@@ -136,7 +136,7 @@ $("input[type='email']").on("change", function () {
 function updateProfile() {
   $email = $("#profile_form input[type='email']").val();
   $registration_no = $("#profile_form #regno").val();
-  $branch = $("#profile_form #branch").val();
+  $branch = $("#profile_form #branch").val()[0];
   $wing = $("#profile_form #wing").val();
   $name = $("#profile_form #name").val();
   $newsletter_subscription = $("#profile_form #newsletter_toggle").prop(
