@@ -50,11 +50,11 @@
       <!-- Desktop Header -->
       <header class="w-full items-center bg-white py-2 px-6 hidden lg:flex">
         <% if(user.role == 'restricted') {%>
-          <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Restricted User </span>
+          <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Restricted User </span>
           <% } else if(user.role == 'admin') { %>
-          <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-indigo-700 rounded"> Admin User </span>
+          <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-indigo-700 rounded"> Admin User </span>
           <% } else { %>
-          <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-blue-700 rounded"> Member User </span>
+          <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-blue-700 rounded"> Member User </span>
           <% } %>
         <div class="w-1/2"></div>
         <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
@@ -100,11 +100,11 @@
             <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
           </a>
           <% if(user.role == 'restricted') {%>
-            <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Restricted User </span>
+            <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Restricted User </span>
             <% } else if(user.role == 'admin') { %>
-            <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-indigo-700 rounded"> Admin User </span>
+            <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-indigo-700 rounded"> Admin User </span>
             <% } else { %>
-            <span class="inline-flex items-center justify-center w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-blue-700 rounded"> Member User </span>
+            <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-blue-700 rounded"> Member User </span>
             <% } %>
           <button
             @click="isOpen = !isOpen"
