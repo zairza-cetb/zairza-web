@@ -55,13 +55,17 @@ Follow these steps to get the api running using npm
    npm install
    ```
 
-7. Now that we have all the packages, execute the following command to run the server.
+7. Now that we have all the packages, execute the following command to run the server 
 
-   NB: You only have to execute the following command to run the server in future.
+    1. Production Mode
 
-   ```sh
-   npm run start
-   ```
+        NB: You only have to execute the following command to run the server in future.
+
+        ```sh
+        npm run start
+        ```
+
+    1. Development Mode    ```
 
 ### Testing
 
