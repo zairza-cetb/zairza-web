@@ -1,6 +1,12 @@
 // Toggle deactivate modal
-function toggleModal() {
-  $("#deactivateModal").toggleClass("hidden");
+function deleteModal() {
+  $("#deleteModal").toggleClass("hidden");
+}
+
+//  Toggle deactivate modal
+function confirmModal() {
+  deleteModal();
+  $("#confirmDeleteModal").toggleClass("hidden");
 }
 
 // Signout
@@ -22,27 +28,27 @@ function logout() {
 
 // Delete user
 function deactivateAccount() {
+  $("confirmDeactivateButton").addClass("disabled");
+  $("#confirmDeactivateButton svg").toggleClass("hidden");
   let token = $.cookie("zToken");
   $.ajax({
     type: "DELETE",
     url: "/api/user",
     beforeSend: function (xhr) {
-      xhr.setRequestHeader(
-        "Authorization",
-        `Bearer ${token}`
-      );
+      xhr.setRequestHeader("Authorization", `Bearer ${token}`);
     },
   })
     .done(function (data) {
-      toggleModal();
+      $("#confirmDeactivateButton svg").toggleClass("hidden");
+      $("#confirmDeleteModal").toggleClass("hidden");
       showToast(200, "Your account has been deleted!");
-      $.removeCookie("zToken", { path: '/' });
+      $.removeCookie("zToken", { path: "/" });
       setTimeout(function () {
         window.location.replace("/");
-      }, 2000);
+      }, 1000);
     })
     .fail(function (err) {
-      toggleModal();
+      $("#confirmDeleteModal").toggleClass("hidden");
       showToast(400, err.message);
     });
 
