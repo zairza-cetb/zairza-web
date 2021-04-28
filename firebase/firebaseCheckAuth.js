@@ -28,12 +28,22 @@ module.exports = checkIfAuthenticated = (req, res, next) => {
           return next(err);
         }
         if (!existingUser) {
-          User.create({ firebaseUid: userInfo.uid }, function (err, user) {
+          User.findOne({ email: userInfo.email }, function (err, user) {
             if (err) {
               return next(err);
             }
-            req.user = user;
-            return next();
+            let userDetails = { firebaseUid: userInfo.uid };
+
+            if (userInfo.email && !user) userDetails["email"] = userInfo.email;
+            if (userInfo.name) userDetails["name"] = userInfo.name;
+
+            User.create(userDetails, function (err, newUser) {
+              if (err) {
+                return next(err);
+              }
+              req.user = newUser;
+              return next();
+            });
           });
         } else {
           req.user = existingUser;
