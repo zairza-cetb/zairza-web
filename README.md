@@ -8,7 +8,7 @@ Founded in the year 2005, the club has ever since witnessed a synapse of creativ
 Hosted in [Here](https://zairza.in). 
 ## Installation for Developers 
 
-Talawa API can be setup to run via node's default package manager `Npm`.
+Zairza API can be setup to run via node's default package manager `Npm`.
 
 ### Standard Installation
 
@@ -66,7 +66,7 @@ Follow these steps to get the api running using npm
 npm run test
 ```
 ## Contributing to Zairza-Web
-Thank you for your interest in contributing to Talawa. Regardless of the size of the contribution you make, all contributions are welcome and are appreciated. 
+Thank you for your interest in contributing to Zairza. Regardless of the size of the contribution you make, all contributions are welcome and are appreciated. 
 
 If you are new to contributing to open source, please read the Open Source Guides on [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/).
 
@@ -75,12 +75,12 @@ If you are ready to start contributing code right away, we have a list of [good 
 
 
 ### Contributing Code
-Code contributions to Talawa come in the form of pull requests. These are done by forking the repo and making changes locally. 
+Code contributions to Zairza come in the form of pull requests. These are done by forking the repo and making changes locally. 
 
-The process of proposing a change to Talawa can be summarized as:
-1. Fork the Talawa repository and branch off `master`.
+The process of proposing a change to Zairza can be summarized as:
+1. Fork the Zairza repository and branch off `master`.
 1. The repository can be cloned locally using `git clone <forked repo url>`.
-1. Make the desired changes to the Talawa source.
+1. Make the desired changes to the  source.
 1. Run the app and test your changes.
 1. If you've added code that should be tested, write tests.
 
