@@ -9,7 +9,6 @@ Founded in the year 2005, the club has ever since witnessed a synapse of creativ
 
 Talawa API can be setup to run via node's default package manager `Npm`.
 
-
 ### Standard Installation
 
 Follow these steps to get the api running using npm
