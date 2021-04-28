@@ -5,6 +5,7 @@
 <strong>ZAIRZA</strong>, the robo-sof club of CET, a conglomeration of seasoned developers and designers. 
 Founded in the year 2005, the club has ever since witnessed a synapse of creativity and evolution.
 
+Hosted in [Here](https://zairza.in). 
 ## Installation for Developers 
 
 Talawa API can be setup to run via node's default package manager `Npm`.
@@ -64,7 +65,7 @@ Follow these steps to get the api running using npm
 ```sh
 npm run test
 ```
-## Contributing to Talawa
+## Contributing to Zairza-Web
 Thank you for your interest in contributing to Talawa. Regardless of the size of the contribution you make, all contributions are welcome and are appreciated. 
 
 If you are new to contributing to open source, please read the Open Source Guides on [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/).
