@@ -23,7 +23,7 @@ Follow these steps to get the api running using npm
 
    ```sh
    git clone https://github.com/zairza-cetb/zairza-web/
-   cd talawa-api
+   cd zairza-web
    npm install
    ```
 
