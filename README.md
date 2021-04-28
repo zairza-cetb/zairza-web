@@ -34,7 +34,7 @@ Follow these steps to get the api running using npm
    touch .env
    ```
 
-4. Copy the `.env.sample` to `.env`
+4. Copy the `.env.example` to `.env`
 
 5. Fill out the following fields:
 
