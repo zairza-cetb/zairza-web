@@ -92,26 +92,38 @@ The process of proposing a change to Zairza can be summarized as:
 ----+
     |
     |---- errorHandlers
-    |      +---- error Handlers functionalities
+    |      |
+    |      +---- error Handlers functionalities 
     |---- firebase
-    |       +---- firebase functionalities
+    |      | 
+    |      +---- firebase functionalities
     |---- models
+    |      |
     |      +---- models functionalities
     |---- public
+    |      |
     |      +---- css 
-    |              +---- css files for ejs
+    |      |      |
+    |      |       +---- css files for ejs
     |      +---- images
-    |             +---- files with should store as per sections
+    |      |      |
+    |      |      +---- files with should store as per sections
     |      +---- js
+    |             |
     |             +---- js files for ejs
     |---- routes
+    |      |
     |      +---- routes as per user roles
     |---- views
+    |      | 
     |      +---- pages
-    |             +---- Main pages
-    |                    +---- tabs/sections
-    |             +---- Other Pages
+    |      |      | 
+    |      |      +---- Main pages
+    |      |      |       |  
+    |      |      |       +---- tabs/sections
+    |      |      +---- Other Pages
     |      +---- partials
+    |             |  
     |             +---- Components 
 ```
 
