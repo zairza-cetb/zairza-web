@@ -1,9 +1,9 @@
-// Toggle deactivate modal
+// Toggle delete modal
 function deleteModal() {
   $("#deleteModal").toggleClass("hidden");
 }
 
-//  Toggle deactivate modal
+//  Toggle delete modal
 function confirmModal() {
   deleteModal();
   $("#confirmDeleteModal").toggleClass("hidden");
@@ -28,8 +28,9 @@ function logout() {
 
 // Delete user
 function deactivateAccount() {
-  $("confirmDeactivateButton").addClass("disabled");
-  $("#confirmDeactivateButton svg").toggleClass("hidden");
+  $("#confirmDeleteButton svg").toggleClass("hidden");
+  $("#confirmDeleteButton span").text("Processing");
+  $("confirmDeleteButton").addClass("disabled");
   let token = $.cookie("zToken");
   $.ajax({
     type: "DELETE",
@@ -39,7 +40,7 @@ function deactivateAccount() {
     },
   })
     .done(function (data) {
-      $("#confirmDeactivateButton svg").toggleClass("hidden");
+      $("#confirmDeleteButton svg").toggleClass("hidden");
       $("#confirmDeleteModal").toggleClass("hidden");
       showToast(200, "Your account has been deleted!");
       $.removeCookie("zToken", { path: "/" });
