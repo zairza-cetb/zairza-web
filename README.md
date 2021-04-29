@@ -27,6 +27,12 @@ Follow these steps to get the api running using npm
    npm install
    ```
 
+3. Run this command for git hooks setup
+
+   ```sh
+   git config --local core.hooksPath .githooks/
+   ```
+
 3. Create `.env` file in the root directory of the project
    `.env` file is used to store the secret or environment variables.
 

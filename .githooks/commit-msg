@@ -1,0 +1,18 @@
+#!/bin/bash
+
+MSG_FILE=$1
+FILE_CONTENT="$(cat $MSG_FILE)"
+
+# Initialize constants here
+export REGEX='^(feat:|rfac:|docs:|bfix:|chor:|ptch:|conf:) .+'
+export ERROR_MSG="Commit message should follow the format <taskType>: <Commit message>"
+
+if [[ $FILE_CONTENT =~ $REGEX ]]; then
+ echo "Good commit!"
+else
+ echo "Bad commit msg \"$FILE_CONTENT\""
+ echo $ERROR_MSG
+ exit 1
+fi
+
+exit 0
