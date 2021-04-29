@@ -53,23 +53,6 @@ function deactivateAccount() {
       showToast(400, err.message);
     });
 
-  // let user = firebase.auth().currentUser;
-
-  // user
-  //   .delete()
-  //   .then(function () {
-  //     // User deleted.
-  //     toggleModal();
-  //     showToast(200, "User deleted successfully")
-  //     setTimeout(function () {
-  //       window.location.replace("/")
-  //     },1000)
-  //   })
-  //   .catch(function (error) {
-  //     // An error happened.
-  //     toggleModal();
-  //     showToast(500, error.message);
-  //   });
 }
 
 // Add active to required nav link
@@ -80,3 +63,12 @@ $(".nav-item").each(function () {
     $(this).addClass("active-nav-link");
   }
 });
+
+// Fancy Box init
+$(document).ready(function () {
+  $("[data-fancybox='images']").fancybox({
+      arrows: false,
+      infobar: false,
+      toolbar:false
+  })
+})
