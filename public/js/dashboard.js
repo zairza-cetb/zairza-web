@@ -45,7 +45,6 @@ function deleteAccount() {
       $("#accountDeleteModal").toggleClass("hidden");
       showToast(400, err.message);
     });
-
 }
 
 // Add active to required nav link
@@ -60,8 +59,9 @@ $(".nav-item").each(function () {
 // Fancy Box init
 $(document).ready(function () {
   $("[data-fancybox='images']").fancybox({
-      arrows: false,
-      infobar: false,
-      toolbar:false
-  })
-})
+    arrows: false,
+    infobar: false,
+    toolbar: false,
+    clickContent: false
+  });
+});
