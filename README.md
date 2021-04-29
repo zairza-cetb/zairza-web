@@ -58,17 +58,18 @@ Follow these steps to get the api running using npm
 
 7. Now that we have all the packages, execute the following command to run the server.
 
-   NB: You only have to execute the following command to run the server in future.
+   1. If you are in production
+      NB: You only have to execute the following command to run the server in future.
 
-   ```sh
-   npm run start
-   ```
+      ```sh
+      npm run start
+     ```    
+   2.  If you are in development
 
-### Testing
+      ```sh
+      npm run dev
+      ```   
 
-```sh
-npm run test
-```
 ## Contributing to Zairza-Web
 Thank you for your interest in contributing to Zairza. Regardless of the size of the contribution you make, all contributions are welcome and are appreciated. 
 
