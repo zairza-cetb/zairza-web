@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#FF7610" />
+    <link rel="icon" type="image/png" href="/images/Visual.webp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Me | Zairza</title>
+    <!-- Tailwind -->
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+  />
+    <link rel="stylesheet" href="/css/dashboard.css">
+  </head>
+  <body class="flex">
+    <%- include('../../partials/firebase.ejs') %>
+    <%- include('../../partials/toast.ejs') %>
+    <%- include('../../partials/delete.ejs') %>
+    <aside class="relative bg-sidebar h-screen w-80 hidden lg:block shadow-xl">
+      <div class="h-16 flex justify-center items-center">
+        <a href="/">
+          <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
+        </a>
+      </div>
+      <nav class="text-black text-base pt-3 h-96">
+        <a
+          href="/me"
+          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+        >
+          <i class="fas fa-tachometer-alt mr-3"></i>
+          Dashboard
+        </a>
+        <a
+          href="/projects"
+          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+        >
+          <i class="fas fa-project-diagram mr-3"></i>
+          Zairza Projects
+        </a>
+      </nav>
+    </aside>
+
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+      <!-- Desktop Header -->
+      <header class="w-full items-center bg-white py-2 px-6 hidden lg:flex">
+        <% if(user.role == 'restricted') {%>
+          <span class="inline-flex items-center justify-center w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-orange rounded"> Non-Zairza Member </span>
+          <% } else if(user.role == 'admin') { %>
+          <span class="inline-flex items-center justify-center w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Admin </span>
+          <% } else { %>
+          <span class="inline-flex items-center justify-center w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Member </span>
+          <% } %>
+        <div class="w-1/2"></div>
+        <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
+          <button
+            @click="isOpen = !isOpen"
+            class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none"
+          >
+            <img src="/images/profile_icon.png" />
+          </button>
+          <button
+            x-show="isOpen"
+            @click="isOpen = false"
+            class="h-full w-full fixed inset-0 cursor-default"
+          ></button>
+          <div
+            x-show="isOpen"
+            class="absolute bg-gray-100 rounded-lg shadow-lg py-2 mt-16"
+          >
+            <a href="/profile" class="block px-4 py-2 account-link hover:text-white"
+              >My Profile</a
+            >
+            <a href="#" class="block px-4 py-2 account-link hover:text-white"
+              onclick="logout()"
+              >Sign Out</a
+            >
+            <a
+              href="#"
+              onclick="deleteModal()"
+              class="block px-4 py-2 account-link hover:text-white"
+              >Delete account</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- Mobile Header & Nav -->
+      <header
+        x-data="{ isOpen: false }"
+        class="w-full bg-sidebar py-5 px-6 lg:hidden bg-white"
+      >
+        <div class="flex items-center justify-between">
+          <a href="/">
+            <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
+          </a>
+          <button
+            @click="isOpen = !isOpen"
+            class="text-black text-3xl focus:outline-none"
+          >
+            <i x-show="!isOpen" class="fas fa-bars"></i>
+            <i x-show="isOpen" class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <!-- Dropdown Nav -->
+        <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
+          <a
+            href="/me"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-tachometer-alt mr-3"></i>
+            Dashboard
+          </a>
+          <a
+            href="/projects"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-project-diagram mr-3"></i>
+            Zairza Projects
+          </a>
+          <a
+            href="/profile"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-user mr-3"></i>
+            My Profile
+          </a>
+          <a
+            href="#"
+            onclick="logout();"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-sign-out-alt mr-3"></i>
+            Sign Out
+          </a>
+          <a
+            href="#"
+            onclick="deleteModal()"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+          <i class='bx bxs-error-circle mr-3' ></i>
+            Delete account
+          </a>
+          <% if(user.role == 'restricted') {%>
+            <span class="inline-flex items-center justify-center lg:w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-orange rounded"> Non-Zairza Member </span>
+            <% } else if(user.role == 'admin') { %>
+            <span class="inline-flex items-center justify-center lg:w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Admin </span>
+            <% } else { %>
+            <span class="inline-flex items-center justify-center lg:w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Member </span>
+            <% } %>
+        </nav>
+        <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                <i class="fas fa-plus mr-3"></i> New Report
+            </button> -->
+      </header>
+
+      <%- body %>
+
+    </div>
+
+    <!-- AlpineJS -->
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <!-- Font Awesome -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/dashboard.js"></script>
+  </body>
+</html>

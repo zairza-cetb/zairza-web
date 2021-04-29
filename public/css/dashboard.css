@@ -1,0 +1,59 @@
+.active-nav-link {
+  background: #1071ff;
+  color: #fff;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding-left: 1rem;
+}
+.nav-item:hover {
+  background: #1071ff;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding-left: 1rem;
+}
+.account-link:hover {
+  background: #1071ff;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.get-android-app {
+  background-color: #ff7610;
+}
+.get-ios-app {
+  background-color: #1071ff;
+}
+.get-app:hover {
+  transform: scale(1.04);
+  transition: transform 100ms ease-in-out;
+}
+.bg-orange {
+  background-color: #ff7610;
+}
+.text-blue {
+  color: #1071ff;
+}
+.text-orange {
+  color: #ff7610;
+}
+.toast {
+  position: absolute;
+  left: 40%;
+}
+.bg-blue {
+  background-color: #1071ff;
+}
+
+@media (max-width: 800px) {
+  .nav-item:hover {
+    margin-left: unset;
+    margin-right: unset;
+  }
+  .active-nav-link {
+    margin-left: unset;
+    margin-right: unset;
+  }
+}

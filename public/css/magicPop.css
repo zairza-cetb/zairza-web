@@ -1,0 +1,210 @@
+
+    .popup-container {
+      z-index: 99999;
+      visibility: hidden;
+      opacity: 0;
+
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      font-family: segoe ui;
+      overflow: hidden;
+
+      transition: .5s all;
+    }
+
+    .popup-container--show-modal,
+    .popup-container--show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .popup-container--show-modal {
+      background: rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+    }
+
+    .popup {
+      position: fixed;
+      left: 0;
+      top: auto;
+      bottom: 0;
+      height: 150px;
+      margin: auto;
+    }
+
+    @media(min-width: 700px) {
+      .popup {
+        top: 0;
+      }
+    }
+
+    .popup-container--show .popup {
+      animation: slideIllustrationInLeft .4s;
+    }
+
+    @keyframes slideIllustrationInLeft {
+      from {
+        transform: translateX(-100%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+  
+    .popup__illustration {
+      transform: scale(.7) translateX(-100%) rotate(-20deg);
+      transform-origin: left;
+      filter: drop-shadow(20px -30px 44px rgba(0, 0, 0, 0.15));
+      width: 120px;
+      margin-top: -44px;
+      transition: 1s;
+    }
+
+    @media(min-width: 700px) {
+      .popup__illustration {
+        transform: scale(1) translateX(-100%) rotate(-20deg);
+      }
+    }
+  
+    .popup-container--show .popup__illustration {
+      transform: scale(.7) rotate(0deg) translateX(0%);
+    }
+
+    @media(min-width: 700px) {
+      .popup-container--show .popup__illustration {
+        transform: scale(1) rotate(0deg) translateX(0%);
+      }
+    }
+  
+    .popup-prompt {
+      left: 20px;
+      right: 15px;
+      top: -158px;
+      min-width: 0;
+      max-width: 99999px;
+      width: 425px;
+      box-shadow: 0 0 30px 0 rgb(0 0 0 / 10%);
+      padding: 22px 26px;
+      border-radius: 20px;
+      position: absolute;
+      background: white;
+
+      transition: .4s all;
+      visibility: hidden;
+      transform-origin: left bottom;
+      transform: scale(.8);
+      opacity: 0;
+    }
+  
+    @media(min-width: 700px) {
+      .popup-prompt {
+        left: 150px;
+        top: 50px;
+        min-width: 300px;
+        max-width: 390px;
+        transform-origin: left top;
+      }
+    }
+  
+    .popup-prompt--show {
+      visibility: visible;
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .popup-prompt__text {
+      margin: 0;
+      margin-bottom: 15px;
+      font-size: 13px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.62;
+      letter-spacing: normal;
+      color: #000000;
+    }
+  
+    .popup-prompt__confirm-btn,
+    .popup-prompt__cancel-btn {
+      font-family: 'Segoe ui';
+      font-size: 13px;
+      font-weight: 600;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.62;
+      letter-spacing: normal;
+      text-align: left;
+      text-decoration: none;
+      color: #772df0;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      outline: none;
+      box-shadow: none;
+      cursor: pointer;
+      transition: .3s all;
+    }
+  
+    .popup-prompt__confirm-btn:hover,
+    .popup-prompt__confirm-btn:focus {
+      transform: rotate(-3deg) scale(1.1);
+    }
+
+    .popup-prompt__cancel-btn {
+      color: black;
+      padding-right: 20px;
+    }
+
+    .popup-prompt__cancel-btn:hover,
+    .popup-prompt__cancel-btn:focus {
+      transform: rotate(-2deg) scale(1.1);
+    }
+
+    .popup-prompt__tail {
+      position: absolute;
+      left: 60px;
+      bottom: -25px;
+      width: calc(47.645px / 1.8);
+      height: calc(65.664px / 1.8);
+      transform: rotate(-90deg);
+    }
+
+    @media(min-width: 700px) {
+      .popup-prompt__tail {
+        left: -47px;
+        top: 15px;
+        bottom: auto;
+        width: 47.645px;
+        height: 65.664px;
+        transform: none;
+      }
+    }
+
+    .popup-prompt__watermark-container {
+      position: absolute;
+      right: 9px;
+      bottom: -19px;
+      filter: grayscale(1);
+      opacity: .7;
+      display: flex;
+      align-items: center;
+      font-size: 10px;
+    }
+
+    .popup-prompt__watermark {
+      margin-right: 6px;
+      text-decoration: none;
+    }
+
+    .popup-prompt__watermark:hover,
+    .popup-prompt__watermark:focus {
+      text-decoration: underline;
+    }
+  

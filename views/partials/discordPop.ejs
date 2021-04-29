@@ -1,0 +1,116 @@
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+  integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+  integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+  crossorigin="anonymous"
+></script>
+<link rel="stylesheet" href="/css/magicPop.css" />
+<div class="popup-container" style="display: none">
+  <div class="popup">
+    <img
+      class="popup__illustration"
+      src="https://frontendor.com/Popup/illustration-2.png"
+    />
+    <div class="popup__prompt popup-prompt shadow-lg">
+      <p class="popup-prompt__text">
+        Hi there! Would you like to join our discord server? 😻
+      </p>
+      <div class="popup-prompt__footer">
+        <button onclick="closePopup(event)" class="popup-prompt__cancel-btn">
+          Nope, thanks 💩
+        </button>
+        <a href="https://discord.gg/4RQxuj6xKM" target="_blank" class="popup-prompt__confirm-btn">Ya sure 😍</a>
+      </div>
+      <svg
+        class="popup-prompt__tail"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 47.645 65.664"
+      >
+        <path
+          d="M-732.027,1721.712s-31.75,2.7-47.1-23.279c-.149-.252-.348-.6-.544-.949s4.251,33.712,33.232,52.045c.638.274,4.763,2.371,5.419,2.686,8.411,3.559,8.988,10.931,8.988,10.931Z"
+          transform="translate(779.673 -1697.48)"
+          fill="#fff"
+        ></path>
+      </svg>
+      <!-- <div class="popup-prompt__watermark-container">
+        <a class="popup-prompt__watermark" target="_blank" href="https://frontendor.com/magic-popup/?rs=popup">
+          by MagicPopup
+        </a>
+      </div> -->
+    </div>
+  </div>
+</div>
+<script>
+  var popupContainer = document.querySelector(".popup-container");
+  var popupPrompt = document.querySelector(".popup-prompt");
+  /* If the user close the popup, don't show it again */
+  var popupClosed = false;
+
+  popupContainer.addEventListener("animationend", function (e) {
+    if (popupContainer.classList.contains("popup-container--show")) {
+      setTimeout(function () {
+        popupPrompt.classList.add("popup-prompt--show");
+      }, 1000);
+    }
+  });
+
+  function showPopup() {
+    if (popupContainer.hasAttribute("style")) popupContainer.style.display = "";
+
+    if (
+      !popupClosed &&
+      !popupContainer.classList.contains("popup-container--show")
+    )
+      popupContainer.classList.add("popup-container--show");
+
+    $.cookie("zDiscord", "yes", {
+      expires: 10000, // the number of days cookie  will be effective
+    });
+  }
+
+  function closePopup() {
+    popupPrompt.classList.remove("popup-prompt--show");
+
+    setTimeout(function () {
+      popupContainer.classList.remove("popup-container--show");
+      // popupClosed = true
+      $.cookie("zDiscord", "yes", {
+        expires: 10000, // the number of days cookie  will be effective
+      });
+    }, 200);
+  }
+  var min = 5,
+    max = 10;
+  var rand = Math.floor(Math.random() * (max - min + 1) + min); //Generate Random number between 5 - 10
+
+    if(!$.cookie("zDiscord")){
+        setTimeout(showPopup, rand * 1000);
+    }
+
+
+  // function setupFrontendorPopup(options) {
+  //   window.addEventListener("scroll", function () {
+  //     var scrollTop = window.scrollY;
+  //     var docHeight = document.body.offsetHeight;
+  //     var winHeight = window.innerHeight;
+  //     var percentage = Math.round(scrollTop * 100 / (docHeight - winHeight));
+
+  //     if (options && options.percentage) {
+  //       var userPercentage = options.percentage.replace(/\%/gm, '').trim()
+  //       if (parseInt(userPercentage) >= percentage && parseInt(userPercentage) <= percentage + 10) {
+  //         showPopup()
+  //       }
+  //     } else {
+  //       showPopup()
+  //     }
+  //   });
+  // }
+</script>
+<script>
+  // setupFrontendorPopup({ percentage: "90" })
+</script>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#FF7610" />
+    <link rel="icon" type="image/png" href="/images/Visual.webp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Me | Zairza</title>
+    <!-- Tailwind -->
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+  </head>
+  <body class="flex">
+      <%- include('../../partials/firebase.ejs') %>
+    <%- include('../../partials/toast.ejs') %> 
+    <%- include('../../partials/deactivate.ejs') %> 
+    <aside class="relative bg-sidebar h-screen w-64 hidden lg:block shadow-xl">
+      <div class="h-16 flex justify-center items-center">
+        <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
+      </div>
+      <nav class="text-black text-base font-semibold pt-3 h-96">
+        <a
+          href="/me"
+          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+        >
+          <i class="fas fa-tachometer-alt mr-3"></i>
+          Dashboard
+        </a>
+        <a
+          href="/projects"
+          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+        >
+          <i class="fas fa-table mr-3"></i>
+          Zairza Projects
+        </a>
+      </nav>
+    </aside>
+
+    <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
+      <!-- Desktop Header -->
+      <header class="w-full items-center bg-white py-2 px-6 hidden lg:flex">
+        <div class="w-1/2"></div>
+        <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
+          <button
+            @click="isOpen = !isOpen"
+            class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none"
+          >
+            <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" />
+          </button>
+          <button
+            x-show="isOpen"
+            @click="isOpen = false"
+            class="h-full w-full fixed inset-0 cursor-default"
+          ></button>
+          <div
+            x-show="isOpen"
+            class="absolute bg-gray-100 rounded-lg shadow-lg py-2 mt-16"
+          >
+            <a
+              href="/profile"
+              class="block px-4 py-2 account-link hover:text-white"
+              >My Profile</a
+            >
+            <a
+              href="#"
+              class="block px-4 py-2 account-link hover:text-white"
+              onclick="logout()"
+              >Sign Out</a
+            >
+            <a
+              href="#"
+              onclick="toggleModal()"
+              class="block px-4 py-2 account-link hover:text-white"
+              >Delete account</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- Mobile Header & Nav -->
+      <header
+        x-data="{ isOpen: false }"
+        class="w-full bg-sidebar py-5 px-6 lg:hidden bg-white"
+      >
+        <div class="flex items-center justify-between">
+          <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
+          <button
+            @click="isOpen = !isOpen"
+            class="text-black text-3xl focus:outline-none"
+          >
+            <i x-show="!isOpen" class="fas fa-bars"></i>
+            <i x-show="isOpen" class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <!-- Dropdown Nav -->
+        <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
+          <a
+            href="/"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-tachometer-alt mr-3"></i>
+            Dashboard
+          </a>
+          <a
+            href="/projects"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-table mr-3"></i>
+            Zairza Projects
+          </a>
+          <a
+            href="/profile"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-user mr-3"></i>
+            My Profile
+          </a>
+          <a
+            href="#"
+            onclick="logout();"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-sign-out-alt mr-3"></i>
+            Sign Out
+          </a>
+          <a
+            href="#"
+            onclick="toggleModal()"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-user mr-3"></i>
+            Delete account
+          </a>
+        </nav>
+      </header>
+
+      <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+        <main class="w-full flex-grow p-6">
+          <!-- Content goes here! 😁 -->
+          <!-- Events Section -->
+          <section class="text-gray-600 body-font overflow-hidden">
+            <div class="container px-5 py-24 mx-auto">
+              <div class="-my-8 divide-y-2 divide-gray-100">
+                <div class="py-8 flex flex-wrap md:flex-nowrap">
+                  <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                    <span class="font-semibold title-font text-gray-700"
+                      >CATEGORY</span
+                    >
+                    <span class="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
+                  </div>
+                  <div class="md:flex-grow">
+                    <h2
+                      class="text-2xl font-medium text-gray-900 title-font mb-2"
+                    >
+                      Bitters hashtag waistcoat fashion axe chia unicorn
+                    </h2>
+                    <p class="leading-relaxed">
+                      Glossier echo park pug, church-key sartorial biodiesel
+                      vexillologist pop-up snackwave ramps cornhole. Marfa 3
+                      wolf moon party messenger bag selfies, poke vaporware
+                      kombucha lumbersexual pork belly polaroid hoodie portland
+                      craft beer.
+                    </p>
+                    <a class="text-indigo-500 inline-flex items-center mt-4"
+                      >Register
+                      <svg
+                        class="w-4 h-4 ml-2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="py-8 flex flex-wrap md:flex-nowrap">
+                  <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                    <span class="font-semibold title-font text-gray-700"
+                      >CATEGORY</span
+                    >
+                    <span class="mt-1 text-gray-500 text-sm">12 Jun 2019</span>
+                  </div>
+                  <div class="md:flex-grow">
+                    <h2
+                      class="text-2xl font-medium text-gray-900 title-font mb-2"
+                    >
+                      Meditation bushwick direct trade taxidermy shaman
+                    </h2>
+                    <p class="leading-relaxed">
+                      Glossier echo park pug, church-key sartorial biodiesel
+                      vexillologist pop-up snackwave ramps cornhole. Marfa 3
+                      wolf moon party messenger bag selfies, poke vaporware
+                      kombucha lumbersexual pork belly polaroid hoodie portland
+                      craft beer.
+                    </p>
+                    <a class="text-indigo-500 inline-flex items-center mt-4"
+                      >Regsiter
+                      <svg
+                        class="w-4 h-4 ml-2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                <div class="py-8 flex flex-wrap md:flex-nowrap">
+                  <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                    <span class="font-semibold title-font text-gray-700"
+                      >CATEGORY</span
+                    >
+                    <span class="text-sm text-gray-500">12 Jun 2019</span>
+                  </div>
+                  <div class="md:flex-grow">
+                    <h2
+                      class="text-2xl font-medium text-gray-900 title-font mb-2"
+                    >
+                      Woke master cleanse drinking vinegar salvia
+                    </h2>
+                    <p class="leading-relaxed">
+                      Glossier echo park pug, church-key sartorial biodiesel
+                      vexillologist pop-up snackwave ramps cornhole. Marfa 3
+                      wolf moon party messenger bag selfies, poke vaporware
+                      kombucha lumbersexual pork belly polaroid hoodie portland
+                      craft beer.
+                    </p>
+                    <a class="text-indigo-500 inline-flex items-center mt-4"
+                      >Register
+                      <svg
+                        class="w-4 h-4 ml-2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- AlpineJS -->
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+    <!-- Font Awesome -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+      integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/dashboard.js"></script>
+  </body>
+</html>

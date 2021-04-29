@@ -1,0 +1,1128 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FF7610" />
+
+  <meta name="description"
+    content="Website of our technical club, Zairza." />
+  <meta name="keywords"
+    content="Zairza CET, Technical society of CET, Zairza" />
+  <meta name="owner" content="Zairza" />
+  <meta name="author" content="Zairza" />
+  <meta name="generator" content="zairza.in" />
+  <meta name="msapplication-config" content="none" />
+
+  <meta property="og:title"
+    content="ZAIRZA" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://zairza.in/" />
+  <meta property="og:image" content="https://zairza.in/images/Visual.webp" />
+  <meta property="og:site_name" content="Zairza" />
+  <meta property="og:description"
+    content="Website of the technical club of CETB, Zairza." />
+
+  <link rel="icon" type="image/png" href="/images/Visual.webp" />
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.css" integrity="sha512-8M8By+q+SldLyFJbybaHoAPD6g07xyOcscIOQEypDzBS+sTde5d6mlK2ANIZPnSyxZUqJfCNuaIvjBUi8/RS0w==" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Zairza</title>
+</head>
+
+<body>
+  <!--js xor no-js -->
+  <%- include('../partials/newsletter_pop.ejs') %>
+
+  <%- include('../partials/firebase.ejs') %>
+
+  <main class="js mb-20 sm:mb-0">
+    <section>
+      <header class="navbar bg-white lg:flex lg:justify-between lg:items-center sm:px-16 sm:py-6">
+        <div class="flex justify-between items-center px-4 py-3 sm:p-0">
+          <div class="pt-3 sm:pt-0">
+            <img class="h-6 cursor-pointer" src="/images/Zairzalogo.webp" 
+              onclick="fullpage_api.moveTo(1);">
+          </div>
+          <div class="lg:hidden float-right">
+            <button class="menu text-gray-500 hover:text-black focus:outline-none"
+              onclick="toggleMenu(); this.classList.toggle('opened');" aria-label="Menu">
+              <svg class="h-8 w-8 fill-current" viewBox="0 0 100 100">
+                <path class="line line1"
+                  d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+                <path class="line line2" d="M 20,50 H 80" />
+                <path class="line line3"
+                  d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <ul id="mob-menu" class="lg:flex lg:justify-between lg:w-8/12 px-2 pt-2 pb-4 hidden bg-white">
+          <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded bg-focus">Home</li>
+          <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">Projects</li>
+          <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">Accolades</li>
+          <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">Blog</li>
+          <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">Our Team</li>
+          <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">Contact</li>
+          <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">FAQ</li>
+          <% if(loggedIn){ %>
+            <a href="/me" id="user">
+              <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Dashboard</li>
+            </a>
+          <% } else { %>
+            <a href="/auth#signin" id="user">
+              <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li>
+            </a>
+          <% } %>
+        </ul>
+      </header>
+    </section>
+    <div class="container px-8 mx-auto xl:max-w-none" id="fullpage">
+      <section id="home" class="pt-6 sm:pt-0 h-screen section">
+        <div class="grid flex grid-cols-1 lg:grid-cols-2">
+          <div class="flex flex-col mt-8 sm:mt-0 justify-center mx-7 sm:pt-20 lg:order-1 order-last">
+            <h1 class="lg:text-7xl md:text-5xl text-3xl leading-tight lg:text-left text-center">Innovation<br> starts here</h1>
+            <h3 class="text-sm lg:text-lg mt-7 lg:text-left text-center"><span style="color:#FF7610">Wonder.
+              </span><span style="color:#1A1A1A">Think. </span><span style="color:#1071FF">Create.</span></h3>
+            <p class="mt-4 lg:mt-7 lg:w-2/3 text-sm md:text-md lg:text-base text-gray-500 w-full lg:text-left text-justify">ZAIRZA,
+              the robo-sof club of CET, a conglomeration
+              of seasoned developers and designers. Founded in
+              the year 2005, the club has ever since witnessed a
+              synapse of creativity and evolution.</p>
+            <button class="rounded-full py-4 lg:text-lg text-md mt-6 lg:mt-10 mx-auto lg:mx-0 cta-btn">Take a tour</button>
+          </div>
+          <div class="lg:order-last order-1">
+            <img class="animated" data-src="/images/illustrations/Saly-19.webp" >
+          </div>
+        </div>
+      </section>
+      <section class="section h-screen" id="projects">
+        <div class="grid flex grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="flex flex-col justify-center mx-7 lg:order-1 order-last">
+            <h1 class="lg:text-6xl md:text-4xl text-3xl leading-tight lg:text-left text-center">Retrospect a<br> tech adventure</h1>
+            <p class="mt-7 lg:w-2/3 text-sm lg:text-base text-gray-500 w-full lg:text-left text-justify">To facilitate
+              this rendezvous we have three wings
+              each one of them being adroit at their respective
+              fields with an excellent work ethic.</p>
+            <button class="rounded-full py-4 lg:text-lg text-md mt-7 mx-auto lg:mx-0 cta-btn"
+              onclick="fullpage_api.moveSectionDown()">Look
+              Inside</button>
+          </div>
+          <div class="lg:order-last order-1 sm:mt-0 mt-5">
+            <img class="animated" data-src="/images/illustrations/Saly-12.webp" >
+          </div>
+        </div>
+      </section>
+      <section class="bg-white section h-screen">
+        <div class="mt-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="grid0">
+          <div class="card effect effect-one">
+            <img data-src="/images/Projects/2.webp" >
+            <div class="tab-text">
+              <h2 class="pt-1">Bench-routes</h2>
+              <p>Bench-routes is a monitoring tool that monitors from system/kernel level information to the application
+                level logs and performance of routes in Unix-based systems</p>
+              <div class="icons-block">
+                <a href="https://github.com/zairza-cetb/bench-routes" class="social-icon-2"><i
+                    class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img data-src="/images/Projects/lit.webp" >
+            <div class="tab-text">
+              <h2 class="pt-1">Literature</h2>
+              <p>Literature is a card game for 4 to 12 players, most commonly played with 6 or 8 players in two teams
+                powered with flutter.</p>
+              <div class="icons-block">
+                <a href="https://github.com/zairza-cetb/literature" class="social-icon-2"><i
+                    class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img data-src="/images/Projects/3.webp" >
+            <div class="tab-text">
+              <h2 class="pt-1">Insure+</h2>
+              <p>Insure+ is a mobile app which acts as an engagement tool that helps us to manage our health better.
+                This app also acts as a source for insurance sales based on the data provided by the customer. </p>
+              <div class="icons-block">
+                <!-- <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a> -->
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img data-src="/images/Projects/4.webp" >
+            <div class="tab-text">
+              <h2 class="pt-1">Hand Gesture Recognition using TOF camera</h2>
+              <p>A gesture recognition system using Picozense TOF camera and its SDK. </p>
+              <div class="icons-block">
+                <a href="https://github.com/DB11051998/RGBGesture-control" class="social-icon-2"><i
+                    class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img data-src="/images/Projects/8.webp" >
+            <div class="tab-text">
+              <h2 class="pt">Disease Reporting System</h2>
+              <p>This project deals with real-time prediction of diseases (zoonotic), alerts people of the preferable
+                location of potential outbreaks by smart Real-time notifications. </p>
+              <div class="icons-block">
+                <a href="https://disease-reporting-system.herokuapp.com/" class="social-icon-1"><i
+                    class="bx bxl-chrome"></i></a> <a href="https://github.com/biswajitpatra/Disease-Reporting-System"
+                  class="social-icon-2"><i class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img data-src="/images/Projects/1.webp" >
+            <div class="tab-text">
+              <h2 class="pt-1">RC-RoboCar</h2>
+              <p>A wired RC robocar prototype powered by a battery/AC adapter. The most basic (the 1st level)of the
+                things one encounters on his quest of reaching the everest of tech and hardware.</p>
+              <div class="icons-block">
+                <!-- <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a> -->
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img data-src="/images/Projects/5.webp" >
+            <div class="tab-text">
+              <h2 class="pt-1">Amazon Warehouse Challenge</h2>
+              <p>Integrating a Complete Robotic System i.e Pick and Place of an object for a Factory Environment using
+                State Machines.</p>
+              <div class="icons-block">
+                <!-- <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a> -->
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img data-src="/images/Projects/7.webp" >
+            <div class="tab-text">
+              <h2 class="pt-1">Wilderness Experience</h2>
+              <p>Wilderness Experience is a camping website, where we can view and add campgrounds in and around India.
+                We can add reviews and comments on individual campground pages and also spot the campgrounds on a map.
+              </p>
+              <div class="icons-block">
+                <!-- <a href="" class="social-icon-2"><i class="bx bxl-github"></i></a> -->
+              </div>
+            </div>
+          </div>
+          <div class="card effect effect-one">
+            <img data-src="/images/Projects/6.webp" >
+            <div class="tab-text">
+              <h2 class="pt-1">Avengers game</h2>
+              <p>It consists of iron man(controlled character ) which can move side ways using cursor keys and fire
+                bullets on a Thanos fleet. Every time it collides with Thanos it loses one life. After 3 lives are over
+                the player can know their high score and restart the game.</p>
+              <div class="icons-block">
+                <a href="https://github.com/RisabhKedai/Avenger-Assemble" class="social-icon-2"><i
+                    class="bx bxl-github"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
+      </section>
+      <section class="sm:mt-10 mt-0 section h-screen" id="achievements">
+        <div class="grid flex grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="flex flex-col justify-center mt-16 sm:mt-0 mx-7">
+            <h1 class="lg:text-7xl text-4xl leading-tight lg:text-left sm:mt-0 mt-3 text-center">Accolades</h1>
+          </div>
+          <div class="sm:mt-20 mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-10 mx-auto lg:mx-0">
+            <img data-src="/images/Achievements/google-summer-code-seeklogo-01.webp" style="height:16vh">
+            <img data-src="/images/Achievements/logo-01.webp" style="height:16vh">
+            <img data-src="/images/Achievements/logo-02.webp" style="height:16vh">
+            <img data-src="/images/Achievements/redhat.png" style="height:16vh;margin: auto">
+            <img data-src="/images/Achievements/Codechef-01.webp" >
+            <img data-src="/images/Achievements/Eyantra-01.webp" >
+            <img data-src="/images/Achievements/Girlscript-01.webp" >
+            <img data-src="/images/Achievements/InOut-01.webp" >
+            <img data-src="/images/Achievements/EXL2N95U4AAs-ce.webp" >
+          </div>
+        </div>
+      </section>
+      <section class="sm:mt-10 mt-0 section h-screen" id="blogs">
+        <div class="grid flex grid-cols-1 lg:grid-cols-2">
+          <div class="flex flex-col justify-center mt-16 lg:mt-0 mt-4 mx-7 lg:order-1 order-last">
+            <h1 class="lg:text-7xl text-3xl lg:text-left leading-tight text-center">Pssttt! Wanna<br> sneak peak
+            </h1>
+            <p class="mt-7 lg:w-2/3 text-sm lg:text-base w-full lg:text-left text-gray-500 text-justify">Whilst their
+              tech-explorations our excavators have jotted down their unique tech findings. And we have revealed it here
+              for you.</p>
+            <button class="rounded-full py-4 mt-7 mx-auto lg:mx-0 cta-btn" onclick="fullpage_api.moveSectionDown()">Give
+              it a
+              read</button>
+          </div>
+          <div class="lg:order-last order-1 sm:mt-0 mt-5">
+            <img class="animated" data-src="/images/illustrations/Saly-16.webp" >
+          </div>
+        </div>
+      </section>
+      <section class="bg-white section h-screen">
+        <div class="mt-40 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="grid1">
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/5.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">Overfitting and Underfitting of a ML model</h2>
+              <p class="card_text">Have you ever given a thought behind the poor performance of your ML model?</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/overfitting-and-underfitting-of-a-machine-learning-model-2e797622c3b5"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/6.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">Frequently asked Interview Questions in react-redux</h2>
+              <p class="card_text">If you guys are about to face a react-redux interview, this article is for you.</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/frequently-asked-interview-questions-in-react-redux-bc774733b449"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/3.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">Sentiment analysis of restaurant reviews</h2>
+              <p class="card_text">Hello everyone! I hope you all are doing good. In this blog...</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/sentiment-analysis-of-restaurant-reviews-dab25c69fa8"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/4.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">How ReactJS works behind the scene?</h2>
+              <p class="card_text">Hello guys! Learning react is simple. Here, in this article...</p>
+              <a target="_blank" href="https://blog.zairza.in/how-reactjs-works-behind-the-scene-e25689f4b2c5"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/1.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">CNN</h2>
+              <p class="card_text">Ever wondered, how Facebook can recognize the faces. What it uses for that. Let’s
+                reveal it.</p>
+              <a target="_blank" href="https://blog.zairza.in/covolutional-neural-networks-7e2397c49536"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/2.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">Artificial Neural Networks</h2>
+              <p class="card_text">Hello!! Are you excited about Artificial Neural Networks? Are you excited about
+                exploring a bit about the human brain?</p>
+              <a target="_blank" href="https://blog.zairza.in/artificial-neural-networks-51ed8ca49217"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/7.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">OAuth using MEVN Stack</h2>
+              <p class="card_text">If you use nodejs and you need to implement Oauth or just looking forward to learning
+                something new in the server side...</p>
+              <a target="_blank" href="https://blog.zairza.in/oauth-using-mevn-stack-4b4a383dae08"><button
+                  class="btn card_btn hover:shadow">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/8.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">A Guide to Dual Booting</h2>
+              <p class="card_text">Today, dual booting has become a go-to procedure that a lot of developers opt for, be
+                it due to having complete access over...</p>
+              <a target="_blank" href="https://blog.zairza.in/a-guide-to-dual-booting-d9dffe042ee6"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/9.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">Home Automation : Making Our Lives Easier</h2>
+              <p class="card_text">The Home Automation is a wireless home automation system that is supposed</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/home-automation-making-our-lives-easier-a782ee067ea8"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/10.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">What is “BITCOIN” and How its Mining Process Works ...</h2>
+              <p class="card_text">Before going through this article you must know about the basics of blockchain.</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/https-medium-com-pruthwirajnayak-what-is-bitcoin-and-how-its-mining-process-works-8cf5aa51d87f"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card_image"><img data-src="/images/blogs/11.webp" ></div>
+            <div class="card_content">
+              <h2 class="card_title">Modern Radios: Miles of Range and Years of ...</h2>
+              <p class="card_text">Age old definition of radios relates to ‘radios drain battery’.</p>
+              <a target="_blank"
+                href="https://blog.zairza.in/modern-radios-miles-of-range-and-years-of-battery-life-6ca1a690c4d9"><button
+                  class="btn card_btn hover:shadow-2xl">Read More</button></a>
+            </div>
+          </div>
+        </div>
+        <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
+      </section>
+      <section class="sm:mt-10 mt-0 section h-screen" id="our_team">
+        <div class="grid flex grid-cols-1 lg:grid-cols-2">
+          <div class="flex flex-col justify-center mt-16 lg:mt-0 mx-7 lg:order-1 order-last">
+            <h1 class="lg:text-7xl text-3xl leading-tight lg:text-left text-center">Our tech<br> excavators</h1>
+            <p class="mt-7 lg:w-2/3 w-full text-sm lg:text-base lg:text-left text-gray-500 text-justify">Meet our tech
+              excavators at Zairza, who have
+              succeeded in proliferating a technical hegemony in
+              the institution through numerous endeavours.</p>
+            <button class="rounded-full py-4 mt-7 mx-auto lg:mx-0 cta-btn" onclick="fullpage_api.moveSectionDown()">Know
+              them</button>
+          </div>
+          <div class="lg:order-last order-1 lg:mt-0 mt-5 ml-20 lg:ml-0">
+            <img class="animated sally-11" data-src="/images/illustrations/Saly-11.webp" >
+          </div>
+        </div>
+      </section>
+      <section class="bg-white section h-screen">
+        <div class="mt-40 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4" id="grid2" data-aos="fade-up" data-aos-duration="1000">
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/ashish.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>ASHISH MOHAPATRA <br><span>Convener</span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/ashish-mohapatra-82685961/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/amgugu111"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/amgugu111"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/binayak.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Binayak Behera <br><span>Co-ordinator</span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/binayak-behera-39a731165"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/be_binayak?s=09"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/binayakbehera999"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/pratik.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Pratik Panda<br><span>Design head</span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/pratik-panda/"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/pratikpanda98"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 3">
+                  <a href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/sarthak.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Sarthak Rout<br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/sarthak-rout-279a4919b"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/sarthakrout19?s=09"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/Sarthak-Rout"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/JibanPanda.webp" >
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Jiban Jyoti Panda <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/jiban04"><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 2">
+                  <a target="_blank" href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/MahesDwivedi.webp" >
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Mahes Dwivedi <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://in.linkedin.com/in/mahes-dwivedi-79a1b890"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/mahes_dwivedi"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/mahesdwivedi"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/PruthwirajNayak.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Pruthwiraj Nayak <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/pruthwiraj-nayak-726393169/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://mobile.twitter.com/PruthwirajNaya2"><i class="bx bxl-twitter"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/Raj2367"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/NitishChoudhary.webp" >
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Nitish Choudhary <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/nitishchoudhary/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/nitish_nkc"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/initishh/"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/JyotiRanjanSatapathy.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Jyoti Ranjan Satapathy <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/jyoti-ranjan-satapathy-51247916b"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 2">
+                  <a target="_blank" href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/BhabaniShankarMohapatra.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Bhabani Shankar Mohapatra <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/bhabani-shankar-mohapatra-021650148"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 2">
+                  <a target="_blank" href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/HarkishenSingh.webp" >
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Harkishen Singh <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/harkishen-singh"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/harkishen_singh"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/Harkishen-Singh"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/MuskanKhedia.webp" >
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Muskan Khedia <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/muskan-khedia-b5b97015a/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/khediamuskan"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/muskankhedia"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/JayashreePanda.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Jayashree Panda <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/jayashree-panda"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/JAYASHREEPanda9"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/Jayashree-panda"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/MaitriSwarup.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Maitri Swarup Tripathy <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/maitri-swarup-tripathy-63370a161"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 2">
+                  <a target="_blank" href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li> -->
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/MaitriSwarup98"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/debasishbehera.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Debasish Behera <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/debasish-behera/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 2">
+                  <a target="_blank" href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li> -->
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/DB11051998"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/PrateekMishra.webp" >
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Prateek Mishra <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <!-- <li style="--i: 1">
+                  <a target="_blank" href=""><i class="bx bxl-linkedin" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href=""><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li> -->
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/Sanjanamohapatra.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Sanjana Mohapatra <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/sanjana-mohapatraa"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 2">
+                  <a target="_blank" href="""><i class=" bx bxl-twitter" aria-hidden="true"></i></a>
+                </li> -->
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/sanjanamops8752"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/ADITYABISOI.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Aditya Bisoi <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/adityabisoi/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 2">
+                  <a target="_blank" href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li> -->
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/adityabisoi"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/SubhajitMohanty.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Subhajit Mohanty<br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://in.linkedin.com/in/subhajit-mohanty-80347a128"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 2">
+                  <a target="_blank" href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li> -->
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/Subhajitmohanty"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/PushpendraA.webp" >
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>A. Pushpendra <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/a-pushpendra/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/APushpendra08"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/APushpendra08"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/HarisUmaid.webp">
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Haris Umaid <br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/haris-umaid-99b520173/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <!-- <li style="--i: 2">
+                  <a target="_blank" href=""><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li> -->
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/harisumaid"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card">
+            <div class="imgBx fill">
+              <img data-src="/images/Team/PratyushPurohit.webp" >
+            </div>
+            <div class="content">
+              <div class="contentBx">
+                <h3>Pratyush Purohit<br><span></span></h3>
+              </div>
+              <ul class="sci">
+                <li style="--i: 1">
+                  <a target="_blank" href="https://www.linkedin.com/in/pratyushpurohit/"><i class="bx bxl-linkedin"
+                      aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 2">
+                  <a target="_blank" href="https://twitter.com/iprotweet"><i class="bx bxl-twitter" aria-hidden="true"></i></a>
+                </li>
+                <li style="--i: 3">
+                  <a target="_blank" href="https://github.com/Pratyush-05"><i class="bx bxl-github" aria-hidden="true"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <button class="px-6 flex justify-center mx-auto py-3 rounded-full showHide">Show more</button>
+      </section>
+      <section class="section bg-white h-screen" id="contact">
+        <div class="grid flex grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="flex flex-col justify-center mt-8 lg:mt-0 mx-7 lg:pt-40 lg:order-1 order-last">
+            <h1 class="lg:text-6xl text-3xl leading-tight lg:text-left lg:mt-0 mt-3 text-center">Gotta query?<br>
+              We are here</h1>
+            <p class="mt-7 lg:w-2/3 w-full text-sm lg:text-base text-gray-500 lg:text-left text-justify">We are on our
+              way for the next tech-exploration. Connect with us to ride along!!</p>
+            <button class="rounded-full py-4 mt-7 cta-btn lg:mx-0 mx-auto" onclick="sendEmail()">Drop a mail</button>
+            <div class="flex items-center cursor-pointer w-max text-gray-500 mt-10 lg:mt-20 mx-auto lg:mx-0"
+            onclick="fullpage_api.moveTo(11)">
+              <!-- <div>Reach us</div>
+              <div class="long-arrow-right"></div> -->
+              <a class='animated-arrow' href='#'>
+                <span class='the-arrow -left'>
+                  <span class='shaft'></span>
+                </span>
+                <span class='main'>
+                  <span class='text'>
+                   Reach us
+                  </span>
+                  <span class='the-arrow -right'>
+                    <span class='shaft'></span>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div class="lg:order-last order-1 sm:mt-0 mt-5">
+            <img class="animated" data-src="/images/illustrations/Saly-10.webp" >
+          </div>
+        </div>
+      </section>
+      <section class="section bg-white h-screen" id="faq">
+        <div class="grid flex grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="flex flex-col justify-center mx-7 lg:order-1 order-last">
+            <h1 class="lg:text-4xl text-3xl leading-tight lg:mt-0 mt-3 text-center my-6">FAQ</h1>
+            <div class="bg-white w-full mx-auto border rounded border-gray-200" x-data="{selected:null}">
+              <ul class="shadow-box">
+
+                <li class="relative border-b border-gray-200">
+
+                  <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
+                    @click="selected !== 1 ? selected = 1 : selected = null">
+                    <div class="flex items-center justify-between font-bold">
+                      <span>
+                        Why Zairza? </span>
+                      <span class="ico-plus"></span>
+                    </div>
+                  </button>
+
+                  <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="container1"
+                    x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''">
+                    <div class="p-6">
+                      <p>For people persuing careers in computers and/or robotics, writing code, developing software,
+                        and
+                        creating exceptional things. That's what we do here. We do things and we help people who are
+                        really
+                        interested in them.</p>
+                    </div>
+                  </div>
+
+                </li>
+
+
+                <li class="relative border-b border-gray-200">
+
+                  <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
+                    @click="selected !== 2 ? selected = 2 : selected = null">
+                    <div class="flex items-center justify-between font-bold">
+                      <span>
+                        How can I join? </span>
+                      <span class="ico-plus"></span>
+                    </div>
+                  </button>
+
+                  <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="container2"
+                    x-bind:style="selected == 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
+                    <div class="p-6">
+                      <p>Zairza conducts formal events for recruitment into the club. The pre-requisite includes a
+                        passion
+                        for technology and an inquisitive mind. Please contact the club administration for the exact
+                        procedures.</p>
+                    </div>
+                  </div>
+
+                </li>
+
+
+                <li class="relative border-b border-gray-200">
+
+                  <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
+                    @click="selected !== 3 ? selected = 3 : selected = null">
+                    <div class="flex items-center justify-between font-bold">
+                      <span>
+                        What is the scope of Zairza? </span>
+                      <span class="ico-plus"></span>
+                    </div>
+                  </button>
+
+                  <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="container3"
+                    x-bind:style="selected == 3 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
+                    <div class="p-6">
+                      <p>The talent pool of the club is widely ranged. We have members working on Web Development,
+                        Android
+                        Development, Embedded Systems, IoT, Robotics, Machine Learning, Computer Vision and Artificial
+                        Intelligence. Our Alumni are placed in many prestigious organizations around the globe.</p>
+                    </div>
+                  </div>
+
+                </li>
+                <li class="relative border-b border-gray-200">
+
+                  <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
+                    @click="selected !== 4 ? selected = 4 : selected = null">
+                    <div class="flex items-center justify-between font-bold">
+                      <span>
+                        I have a Tech project. How can Zairza help me? </span>
+                      <span class="ico-plus"></span>
+                    </div>
+                  </button>
+
+                  <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="container3"
+                    x-bind:style="selected == 4 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
+                    <div class="p-6">
+                      <p>Zairza can provide you with space and an environment to work on your project. We have a stable
+                        fast
+                        internet connection and all the tools, components and other required resources for your project.
+                        Given the proper report, we can also fund your project. Apart from this, we have senior
+                        experienced
+                        mentors who will be more than happy to guide you throughout your project.</p>
+                    </div>
+                  </div>
+
+                </li>
+                <li class="relative border-b border-gray-200">
+
+                  <button type="button" class="w-full px-8 py-6 text-left focus:outline-none"
+                    @click="selected !== 5 ? selected = 5 : selected = null">
+                    <div class="flex items-center justify-between font-bold">
+                      <span>
+                        What are the club timings? </span>
+                      <span class="ico-plus"></span>
+                    </div>
+                  </button>
+
+                  <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="container3"
+                    x-bind:style="selected == 5 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
+                    <div class="p-6">
+                      <p>Zairza is open 24 hours per day. Just co-ordinate with the members for the key.</p>
+                    </div>
+                  </div>
+
+                </li>
+
+              </ul>
+            </div>
+          </div>
+          <div class="lg:order-last order-1 lg:-mt-20 lg:block hidden">
+            <img class="animated" data-src="/images/illustrations/Saly-6.webp" >
+          </div>
+        </div>
+      </section>
+      <section class="section bg-white h-screen" id="footer">
+        <div class="grid flex grid-cols-1 lg:grid-cols-2 gap-4">
+          <div class="flex flex-col justify-center mt-12 lg:mt-0 mx-7 lg:order-1 order-last">
+            <h1 class="lg:text-7xl text-3xl lg:text-left text-center">Google us</h1>
+            <p class="mt-7 lg:w-2/3 w-full lg:text-left text-center">CET, Kalinga Nagar, Ghatikia, Bhubaneswar, Odisha.<br>
+              +91 7205883336</p>
+            <div class="flex justify-between w-full lg:w-3/6 w-5/6 mt-12 lg:mt-32 mx-auto sm:mx-0">
+              <a target="_blank" href="https://www.facebook.com/zairza.cetb"><i
+                  class="bx bxl-facebook-circle bx-md icon bx-tada-hover"></i></a>
+              <a target="_blank" href="https://github.com/zairza-cetb"><i
+                  class="bx bxl-github bx-md icon bx-tada-hover"></i></a>
+              <a target="_blank" href="https://www.linkedin.com/company/zairza"><i
+                  class="bx bxl-linkedin bx-md icon bx-tada-hover"></i></a>
+              <a target="_blank" href="https://instagram.com/zairza.cetb"><i
+                  class="bx bxl-instagram bx-md icon bx-tada-hover"></i></a>
+              <!-- <i class="bx"><img src="https://img.icons8.com/plumpy/50/000000/medium-logo.illustrations"/></i> -->
+              <a target="_blank" href="https://blog.zairza.in/"><i
+                  class="bx bxl-medium bx-md icon bx-tada-hover"></i></a>
+              <a target="_blank" href="https://twitter.com/zairza_cetb"><i
+                  class="bx bxl-twitter bx-md icon bx-tada-hover"></i></a>
+                  <a target="_blank" href="https://discord.gg/4RQxuj6xKM"><i
+                    class="bx bxl-discord bx-md icon bx-tada-hover"></i></a>
+            </div>
+          </div>
+          <div class="lg:order-last order-1 lg:mt-0 mt-5">
+            <img class="animated footer-img mx-auto lg:mx-0" data-src="/images/illustrations/Saly-15.webp" >
+          </div>
+        </div>
+      </section>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/vendors/scrolloverflow.min.js"
+    integrity="sha512-pYyQWhzi2lV+RM4GmaUA56VPL48oLVvsHmP9tuQ8MaZMDHomVEDjXXnfSVKXayy+wLclKPte0KbsuVoFImtE7w=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js"
+    integrity="sha512-Gx/C4x1qubng2MWpJIxTPuWch9O88dhFFfpIl3WlqH0jPHtCiNdYsmJBFX0q5gIzFHmwkPzzYTlZC/Q7zgbwCw=="
+    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="/js/script.js"></script>
+  	<!--Start of Tawk.to Script-->
+	<script type="text/javascript">
+		var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+		(function(){
+		var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+		s1.async=true;
+		s1.src='https://embed.tawk.to/5ddd3cef43be710e1d1f32e8/default';
+		s1.charset='UTF-8';
+		s1.setAttribute('crossorigin','*');
+		s0.parentNode.insertBefore(s1,s0);
+		})();
+	</script>
+<!--End of Tawk.to Script-->
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>

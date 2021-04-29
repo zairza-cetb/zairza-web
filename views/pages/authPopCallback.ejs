@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head><title>Authentication Window</title></head>
+<script>
+	if (window.opener) {
+		console.log("pop before")
+		window.opener.postMessage(`{\"redirect_from\":\"${window.location.href}\"}`, "*"); 
+		console.log("pop after")
+		setTimeout(function() {window.close()}, 0);
+	}
+</script>
+</head>
+<body>
+</body>
+</html>

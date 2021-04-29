@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FF7610" />
+    <link rel="icon" type="image/png" href="/images/Visual.webp" />
+    <title>My Profile | Zairza</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/auth.css" />
+  </head>
+  <body>
+    <section>
+      <%- include('../partials/firebase.ejs') %>
+      <%- include('../partials/toast.ejs') %>
+      <% if(user.role != 'restricted') {%>
+        <%- include('../partials/discordPop.ejs') %>
+      <% } %>
+      <div class="container rounded-lg" style="height:900px">
+        <div class="user signinBx">
+          <div class="formBx">
+            <div class="form w-full" id="profile_form">
+              <div class="mt-12 flex flex-col items-center">
+                <h1 class="text-2xl xl:text-3xl font-bold">My Profile</h1>
+                <div class="w-full flex-1 mt-8">
+                  <div class="mx-auto max-w-md">
+                    <div class="relative">
+                      <input
+                        id="name"
+                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white"
+                        type="text"
+                        <%
+                        if
+                        (user.name){
+                        %>
+                      value="<%= user.name %>" 
+                      readonly
+                      <% } else { %>
+                      placeholder="Name"
+                       <% } %> 
+                      />
+                      <div
+                          class="absolute inset-y-0 right-0 flex items-center px-2"
+                        >
+                        <% myClass = (user.name)?'bxs-lock':'bxs-lock-open'; %>
+                          <span
+                            class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label"
+                            onclick="toggleFieldVisibility($(this))"
+                            ><i class="bx <%= myClass %>" style="color: #1471ff"></i
+                          ></span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                      <input
+                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white"
+                        type="email"
+                        <%
+                        if
+                        (user.email){
+                        %>
+                      value="<%= user.email %>" 
+                      readonly
+                      <% } else { %>
+                      placeholder="Email Address"
+                       <% } %> 
+                      />
+                      <div
+                        class="absolute inset-y-0 right-0 flex items-center px-2"
+                      >
+                      <% myClass = (user.email)?'bxs-lock':'bxs-lock-open'; %>
+                        <span
+                          class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label"
+                          onclick="toggleFieldVisibility($(this))"
+                          ><i class="bx <%= myClass %>" style="color: #1471ff"></i
+                        ></span>
+                      </div>
+                    </div>
+                    <small class="text-custom-blue primary_email ml-1"
+                      >Primary Email which will be used to send
+                      newsletter</small
+                    ><br>
+                    <small class="text-red-500 hidden invalid_email"
+                        >Invalid Email Address</small
+                      >
+                    <div class="relative">
+                      <input
+                        id="regno"
+                        class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white"
+                        type="text"
+                        oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);"
+                        <%
+                        if
+                        (user.registrationNo){
+                        %>
+                      value="<%= user.registrationNo %>" 
+                      readonly
+                      <% } else { %>
+                      placeholder="Registration number"
+                       <% } %> 
+                      />
+                      <div
+                          class="absolute inset-y-0 right-0 flex items-center px-2"
+                        >
+                        <% myClass = (user.registrationNo)?'bxs-lock':'bxs-lock-open'; %>
+                          <span
+                            class="bg-gray-200 hover:bg-gray-300 rounded px-2 py-1 text-sm text-gray-600 font-mono cursor-pointer js-password-label"
+                            onclick="toggleFieldVisibility($(this))"
+                            ><i class="bx <%= myClass %>" style="color: #1471ff"></i
+                          ></span>
+                        </div>
+                    </div>
+                    <select multiple data-placeholder="Select your branch" id="branch" class="w-full my-2 appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white">
+                      <option value="Computer Science & Engineering" <%= (user.branch === 'Computer Science & Engineering') ? 'selected' : ''%> >Computer Science & Engineering</option>
+                      <option value="Information Technology" <%= (user.branch === 'Information Technology') ? 'selected' : ''%> >Information Technology</option>
+                      <option value="Electrical Engineering" <%= (user.branch === 'Electrical Engineering') ? 'selected' : ''%> >Electrical Engineering</option>
+                      <option value="Mechanical Engineering" <%= (user.branch === 'Mechanical Engineering') ? 'selected' : ''%> >Mechanical Engineering</option>
+                      <option value="Electronics & Intrumentation Engineering" <%= (user.wing === 'Electronics & Intrumentation Engineering') ? 'selected' : ''%> >Electronics & Intrumentation Engineering</option>
+                      <option value="Biotechnology" <%= (user.branch === 'Biotechnology') ? 'selected' : ''%> >Biotechnology</option>
+                      <option value="Civil Engineering" <%= (user.branch === 'Civil Engineering') ? 'selected' : ''%> >Civil Engineering</option>
+                      <option value="Textile Engineering" <%= (user.branch === 'Textile Engineering') ? 'selected' : ''%> >Textile Engineering</option>
+                      <option value="Fashion & Apparel Technology" <%= (user.branch === 'Fashion & Apparel Technology') ? 'selected' : ''%> >Fashion & Apparel Technology</option>
+                      <option value="Architecture" <%= (user.branch === 'Architecture') ? 'selected' : ''%> >Architecture</option>
+                      <option value="Computer Science & Application" <%= (user.branch === 'Computer Science & Application') ? 'selected' : ''%> >Computer Science & Application</option>
+                      <option value="Planning" <%= (user.branch === 'Planning') ? 'selected' : ''%> >Planning</option>
+                      <option value="Mathematics & Humanities" <%= (user.branch === 'Mathematics & Humanities') ? 'selected' : ''%> >Mathematics & Humanities</option>
+                      <option value="Physics" <%= (user.branch === 'Physics') ? 'selected' : ''%> >Physics</option>
+                      <option value="Chemistry" <%= (user.branch === 'Chemistry') ? 'selected' : ''%> >Chemistry</option>
+                  </select>
+
+                    <select multiple data-placeholder="Select your wing(s)" id="wing" class="w-full my-2 appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white">
+                      <option value="Software" <%= (user.wing.includes('Software')) ? 'selected' : ''%>>Software</option>
+                      <option value="Hardware" <%= (user.wing.includes('Hardware')) ? 'selected' : ''%> >Hardware</option>
+                      <option value="Design" <%= (user.wing.includes('Design')) ? 'selected' : ''%> >Design</option>
+                  </select>
+                  
+                    <form id="connect_github" class="connect flex flex-row" data-state="<%= (github)?'on':'off' %>" data-provider="github">
+                      <div class="toggle-wrapper flex items-center w-full justify-center">
+                        <input id="github_toggle" <%= (github)?'checked':'' %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onchange="ThirdPartyAuthenticate('Github',$(this).prop('checked'),$(this).closest('form'))">
+                        <label for="github_toggle" class="fancy-toggle relative">
+                          <div class="bg relative top-0 left-0 h-full"></div>
+                          <div class="circle absolute cursor-pointer">
+                            <svg viewBox="0 0 100 100">
+                              <circle class="loader" cx="50" cy="50" r="45" pathLength="1" />
+                            </svg>
+                          </div>
+                        </label>
+                        <output class="status overflow-hidden">
+                          <div class="status-text text-custom-orange flex items-center justify-around" data-for="off">Connect <i class='bx bxl-github bx-md'></i></div>
+                          <div class="status-text" data-for="pending">Connecting...</div>
+                          <div class="status-text text-custom-blue flex items-center justify-around" data-for="on">Disconnect <i class='bx bxl-github bx-md ml-2'></i></div>
+                        </output>
+                      </div>
+                    </form>
+                    
+                    <form id="connect_google" class="connect flex flex-row" data-state="<%= (google)?'on':'off' %>" data-provider="google">
+                      <div class="toggle-wrapper flex items-center w-full justify-center">
+                        <input id="google_toggle" <%= (google)?'checked':'' %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onchange="ThirdPartyAuthenticate('Google',$(this).prop('checked'),$(this).closest('form'))">
+                        <label for="google_toggle" class="fancy-toggle relative">
+                          <div class="bg relative top-0 left-0 h-full"></div>
+                          <div class="circle absolute cursor-pointer">
+                            <svg viewBox="0 0 100 100">
+                              <circle class="loader" cx="50" cy="50" r="45" pathLength="1" />
+                            </svg>
+                          </div>
+                        </label>
+                        <output class="status overflow-hidden">
+                          <div class="status-text text-custom-orange flex items-center justify-around" data-for="off">Connect <i class='bx bxl-google bx-md'></i></div>
+                          <div class="status-text" data-for="pending">Connecting...</div>
+                          <div class="status-text text-custom-blue flex items-center justify-around" data-for="on">Disconnect <i class='bx bxl-google bx-md ml-2'></i></div>
+                        </output>
+                      </div>
+                    </form>
+                    <form id="newsletter" class="connect flex flex-row" data-state="<%= (user.newsletterSubscription)?'on':'off' %>" data-provider="newsletter">
+                      <div class="toggle-wrapper flex items-center w-full justify-center">
+                        <input id="newsletter_toggle" <%= (user.newsletterSubscription)?'checked':'' %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onclick="subscribe_newsletter($(this).closest('form'),$(this).prop('checked'))">
+                        <label for="newsletter_toggle" class="fancy-toggle relative">
+                          <div class="bg relative top-0 left-0 h-full"></div>
+                          <div class="circle absolute cursor-pointer">
+                            <svg viewBox="0 0 100 100">
+                              <circle class="loader" cx="50" cy="50" r="45" pathLength="1" />
+                            </svg>
+                          </div>
+                        </label>
+                        <output class="status overflow-hidden">
+                          <div class="status-text text-custom-orange flex items-center justify-around" data-for="off">Subscribe <i class='bx bx-news bx-md'></i></div>
+                          <div class="status-text" data-for="pending">Connecting...</div>
+                          <div class="status-text text-custom-blue flex items-center justify-around" data-for="on">Unsubscribe <i class='bx bx-news bx-md ml-2'></i></div>
+                        </output>
+                      </div>
+                    </form>
+
+                    <button
+                      id="update-btn"
+                      onclick="updateProfile()"
+                      class="mt-5 tracking-wide font-semibold register-btn text-gray-100 hover:text-white w-full py-4 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                    >
+                      <img
+                        src="/images/auth/update.png"
+                        id="update-icon"
+                        alt=""
+                      />
+                      <span class="ml-3">Update Profile</span>
+                    </button>
+                    <a
+                      href="/me"
+                      class="tracking-wide font-semibold text-gray-100 hover:text-white w-full py-4 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                    >
+                      <div class="flex justify-around mt-4 w-36" style="color: #1471ff;">
+                        <i class='bx bx-arrow-back bx-sm'></i>
+                        Dashboard
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="imgBx">
+            <img src="/images/auth/profile.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="/js/profile.js"></script>
+</html>
