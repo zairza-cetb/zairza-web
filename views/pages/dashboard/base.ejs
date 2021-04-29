@@ -29,7 +29,7 @@
           <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
         </a>
       </div>
-      <nav class="text-black text-base font-semibold pt-3 h-96">
+      <nav class="text-black text-base pt-3 h-96">
         <a
           href="/me"
           class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
@@ -51,11 +51,11 @@
       <!-- Desktop Header -->
       <header class="w-full items-center bg-white py-2 px-6 hidden lg:flex">
         <% if(user.role == 'restricted') {%>
-          <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Restricted User </span>
+          <span class="inline-flex items-center justify-center w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-orange rounded"> Non-Zairza Member </span>
           <% } else if(user.role == 'admin') { %>
-          <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-indigo-700 rounded"> Admin User </span>
+          <span class="inline-flex items-center justify-center w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Admin </span>
           <% } else { %>
-          <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-blue-700 rounded"> Member User </span>
+          <span class="inline-flex items-center justify-center w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Member </span>
           <% } %>
         <div class="w-1/2"></div>
         <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
@@ -100,13 +100,6 @@
           <a href="/">
             <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
           </a>
-          <% if(user.role == 'restricted') {%>
-            <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-red-700 rounded"> Restricted User </span>
-            <% } else if(user.role == 'admin') { %>
-            <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-indigo-700 rounded"> Admin User </span>
-            <% } else { %>
-            <span class="inline-flex items-center justify-center sm:w-40 px-4 py-2 text-sm font-bold leading-none text-white bg-blue-700 rounded"> Member User </span>
-            <% } %>
           <button
             @click="isOpen = !isOpen"
             class="text-black text-3xl focus:outline-none"
@@ -155,6 +148,13 @@
           <i class='bx bxs-error-circle mr-3' ></i>
             Delete account
           </a>
+          <% if(user.role == 'restricted') {%>
+            <span class="inline-flex items-center justify-center lg:w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-orange rounded"> Non-Zairza Member </span>
+            <% } else if(user.role == 'admin') { %>
+            <span class="inline-flex items-center justify-center lg:w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Admin </span>
+            <% } else { %>
+            <span class="inline-flex items-center justify-center lg:w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Member </span>
+            <% } %>
         </nav>
         <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> New Report
