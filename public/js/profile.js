@@ -102,9 +102,6 @@ function callback(res) {
     }
     $("#update-icon").show();
     $("#update-btn span").text("Update Profile");
-    if (res === "success" || res == "restricted") {
-      window.location.replace("/me");
-    }
   }, 1250);
 }
 
