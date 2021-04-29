@@ -35,6 +35,10 @@ Follow these steps to get the api running using npm
    ```
 
 4. Copy the `.env.example` to `.env`
+   
+   ```sh
+   cp .env.example .env
+   ```
 
 5. Fill out the following fields:
 
