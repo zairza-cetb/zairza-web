@@ -3,12 +3,6 @@ function deleteModal() {
   $("#deleteModal").toggleClass("hidden");
 }
 
-//  Toggle delete modal
-function confirmModal() {
-  deleteModal();
-  $("#confirmDeleteModal").toggleClass("hidden");
-}
-
 // Signout
 function logout() {
   firebase
@@ -27,10 +21,10 @@ function logout() {
 }
 
 // Delete user
-function deactivateAccount() {
-  $("#confirmDeleteButton svg").toggleClass("hidden");
-  $("#confirmDeleteButton span").text("Processing");
-  $("confirmDeleteButton").addClass("disabled");
+function deleteAccount() {
+  $("#accountDeleteButton svg").toggleClass("hidden");
+  $("#accountDeleteButton span").text("Processing");
+  $("#accountDeleteButton").addClass("disabled");
   let token = $.cookie("zToken");
   $.ajax({
     type: "DELETE",
@@ -40,8 +34,7 @@ function deactivateAccount() {
     },
   })
     .done(function (data) {
-      $("#confirmDeleteButton svg").toggleClass("hidden");
-      $("#confirmDeleteModal").toggleClass("hidden");
+      deleteModal();
       showToast(200, "Your account has been deleted!");
       $.removeCookie("zToken", { path: "/" });
       setTimeout(function () {
@@ -49,27 +42,9 @@ function deactivateAccount() {
       }, 1000);
     })
     .fail(function (err) {
-      $("#confirmDeleteModal").toggleClass("hidden");
+      $("#accountDeleteModal").toggleClass("hidden");
       showToast(400, err.message);
     });
-
-  // let user = firebase.auth().currentUser;
-
-  // user
-  //   .delete()
-  //   .then(function () {
-  //     // User deleted.
-  //     toggleModal();
-  //     showToast(200, "User deleted successfully")
-  //     setTimeout(function () {
-  //       window.location.replace("/")
-  //     },1000)
-  //   })
-  //   .catch(function (error) {
-  //     // An error happened.
-  //     toggleModal();
-  //     showToast(500, error.message);
-  //   });
 }
 
 // Add active to required nav link
@@ -79,4 +54,14 @@ $(".nav-item").each(function () {
   if ($(this).attr("href").indexOf(link) !== -1) {
     $(this).addClass("active-nav-link");
   }
+});
+
+// Fancy Box init
+$(document).ready(function () {
+  $("[data-fancybox='images']").fancybox({
+    arrows: false,
+    infobar: false,
+    toolbar: false,
+    clickContent: false
+  });
 });

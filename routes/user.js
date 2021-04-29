@@ -106,8 +106,9 @@ const isRoleUser = [
   (req, res, next) => {
     if (req.user.role === "restricted") {
       const error = new Error("You are not registered as Zairza member");
-      error.status = "fail";
+      error.status = "restricted";
       error.statusCode = 403;
+      error.isOperational = true;
       return next(error);
     }
     next();

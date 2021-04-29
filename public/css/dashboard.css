@@ -36,6 +36,9 @@
 .text-blue {
   color: #1071ff;
 }
+.text-orange {
+  color: #ff7610;
+}
 .toast {
   position: absolute;
   left: 40%;
