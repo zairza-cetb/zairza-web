@@ -52,6 +52,10 @@ Follow these steps to get the api running using npm
    - FIREBASE_PROJECT_ID
    - FIREBASE_CLIENT_EMAIL
    - FIREBASE_PRIVATE_KEY
+   - FIREBASE_API_KEY
+   - FIREBASE_MESSAGING_SENDER_ID
+   - FIREBASE_APP_ID
+   - FIREBASE_MEASUREMENT_ID
    - MONGO_URI
 
      Follow instructions in the comments at the top of `.env`
