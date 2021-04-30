@@ -69,7 +69,8 @@ Follow these steps to get the api running using npm
 
       ```sh
       npm run start
-     ```    
+      ```   
+
    2.  If you are in development
 
       ```sh
