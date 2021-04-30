@@ -7,6 +7,7 @@ const User = require("../models/Users");
 const ValidRegNos = require("../models/ValidRegNos");
 const ChangeLog = require("../models/ChangeLog");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
+const admin = require("../firebase/firebaseService");
 
 const createLog = async (originalResponse, request, context) => {
   if (
@@ -40,13 +41,75 @@ module.exports = (app, mongoose_connection) => {
         resource: User,
         options: {
           listProperties: ["firebaseUid", "name", "email", "registrationNo"],
+          actions: {
+            delete: { isVisible: false },
+            bulkDelete: { isVisible: false },
+            deleteUser: {
+              actionType: "record",
+              guard: "confirmDelete",
+              icon: "Delete",
+              component: false,
+              variant: "danger",
+              handler: async (request, response, data) => {
+                const {
+                  record,
+                  resource,
+                  currentAdmin,
+                  h,
+                  translateMessage,
+                } = data;
+
+                let successMsg = "Removed user from database and firebase";
+
+                if (!request.params.recordId || !record) {
+                  throw new NotFoundError(
+                    ['You have to pass "recordId" to Delete Action'].join("\n"),
+                    "Action#handler"
+                  );
+                }
+                try {
+                  await admin
+                    .auth()
+                    .deleteUser(record.params.firebaseUid)
+                    .catch((err) => {
+                      successMsg = "Removed user from database only";
+                    });
+                  await resource.delete(request.params.recordId);
+                } catch (error) {
+                  if (error instanceof ValidationError && error.baseError) {
+                    return {
+                      record: record.toJSON(currentAdmin),
+                      notice: {
+                        message: error.baseError.message,
+                        type: "error",
+                      },
+                    };
+                  }
+                  throw error;
+                }
+                return {
+                  record: record.toJSON(currentAdmin),
+                  redirectUrl: h.resourceUrl({
+                    resourceId: resource._decorated?.id() || resource.id(),
+                  }),
+                  notice: {
+                    message: successMsg,
+                    type: "success",
+                  },
+                };
+              },
+            },
+          },
         },
       },
       {
         resource: ValidRegNos,
         options: {
           listProperties: ["registrationNo"],
-          actions: { edit: { isVisible: false } },
+          actions: {
+            edit: { isVisible: false },
+            bulkDelete: { isVisible: false },
+          },
         },
       },
     ],
