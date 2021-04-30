@@ -62,7 +62,7 @@ Follow these steps to get the api running using npm
    npm install
    ```
 
-7. Now that we have all the packages, execute the following command to run the server.
+7. Now that we have all the packages, execute the following command to run the server 
 
    1. If you are in production
       NB: You only have to execute the following command to run the server in future.
