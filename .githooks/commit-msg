@@ -4,7 +4,7 @@ MSG_FILE=$1
 FILE_CONTENT="$(cat $MSG_FILE)"
 
 # Initialize constants here
-export REGEX='^(feat:|rfac:|docs:|bfix:|chor:|ptch:|conf:) .+'
+export REGEX='^(feat:|rfac:|docs:|bfix:|chor:|ptch:|conf:|Merge) .+'
 export ERROR_MSG="Commit message should follow the format <taskType>: <Commit message>"
 
 if [[ $FILE_CONTENT =~ $REGEX ]]; then
