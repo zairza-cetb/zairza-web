@@ -87,10 +87,18 @@ module.exports = (app, mongoose_connection) => {
                   }
                   throw error;
                 }
+
+                let resourceId = null;
+                if (resource._decorated) {
+                  resourceId = resource._decorated.id();
+                } else {
+                  resourceId = resource.id();
+                }
+
                 return {
                   record: record.toJSON(currentAdmin),
                   redirectUrl: h.resourceUrl({
-                    resourceId: resource._decorated?.id() || resource.id(),
+                    resourceId: resourceId,
                   }),
                   notice: {
                     message: successMsg,
