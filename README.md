@@ -1,6 +1,6 @@
 # ZAIRZA WEBSITE 2020
 
-![Zairza Github](https://raw.githubusercontent.com/zairza-cetb/zairza-web/main/assets/images/Zairzalogo.webp)
+![Zairza Github](https://raw.githubusercontent.com/zairza-cetb/zairza-web/main/public/images/Zairzalogo.webp)
 
 <strong>ZAIRZA</strong>, the robo-sof club of CET, a conglomeration of seasoned developers and designers. 
 Founded in the year 2005, the club has ever since witnessed a synapse of creativity and evolution.
