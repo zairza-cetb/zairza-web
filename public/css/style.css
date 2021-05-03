@@ -11,6 +11,11 @@ body {
   display: none;
 }
 
+@font-face {
+  font-family: Scout;
+  src: url("../fonts/beyond_the_mountains.ttf");
+}
+
 .navbar {
   top: 0;
   z-index: 100;
@@ -799,7 +804,48 @@ body {
   background-position: center;
 }
 
-#zairzest > bottom-row {
-  transform: scale(0.8);
+#zairzest > middle-row > #timer {
+
 }
 
+
+#zairzest > last-row > img {
+  transform: scale(1);
+}
+
+#timer {
+  font-size: 3em;
+  font-weight: 100;
+  color: #4C6E4E;
+  font-family: Scout;
+  text-shadow: 0 0 20px white;
+  align-self: center;
+}
+#timer div {
+  display: inline-block;
+  min-width: 90px;
+}
+#timer div span {
+  color: #4C6E4E;
+  display: block;
+  font-size: 0.35em;
+  font-weight: 400;
+}
+@media screen and (max-width: 767px) {
+  #timer {
+  font-size: 1em;
+  font-weight: 100;
+  color: #4C6E4E;
+  text-shadow: 0 0 20px white;
+  align-self: center;
+  }
+  #timer div { 
+    min-width: 70px;
+  }
+  #timer div span {
+    color: #4C6E4E;
+    display: block;
+    font-size: 0.35em;
+    
+  }  
+}
