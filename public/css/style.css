@@ -814,7 +814,6 @@ body {
 }
 
 #timer {
-  font-size: 3em;
   font-weight: 100;
   color: #4C6E4E;
   font-family: Scout;
@@ -828,12 +827,10 @@ body {
 #timer div span {
   color: #4C6E4E;
   display: block;
-  font-size: 0.35em;
   font-weight: 400;
 }
 @media screen and (max-width: 767px) {
   #timer {
-  font-size: 1em;
   font-weight: 100;
   color: #4C6E4E;
   text-shadow: 0 0 20px white;
@@ -844,8 +841,6 @@ body {
   }
   #timer div span {
     color: #4C6E4E;
-    display: block;
-    font-size: 0.35em;
-    
+    display: block;    
   }  
 }

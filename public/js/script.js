@@ -121,10 +121,10 @@ $(document).ready(function () {
       }
       document.getElementById("timer")
         .innerHTML =
-          '<div>' + d + '<span>days</span></div>' +
-          '<div>' + h + '<span>hours</span></div>' +
-          '<div>' + m + '<span>minutes</span></div>' +
-          '<div>' + s + '<span>seconds</span></div>' ;
+          '<div>' + d + '<span class="px-4 sm:px-2">days</span></div>' +
+          '<div>' + h + '<span class="px-4 sm:px-2">hours</span></div>' +
+          '<div>' + m + '<span class="px-4 sm:px-2">minutes</span></div>' +
+          '<div>' + s + '<span class="px-4 sm:px-2">seconds</span></div>' ;
     }   
     setInterval(updateTimer(), 1000 );
   });
