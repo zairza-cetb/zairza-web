@@ -792,3 +792,14 @@ body {
 .animated-arrow > .main > .the-arrow {
   position: relative;
 }
+
+#zairzest {
+  background-image: url("../images/event/event-bg.png");
+  background-size: cover;
+  background-position: center;
+}
+
+#zairzest > bottom-row {
+  transform: scale(0.8);
+}
+
