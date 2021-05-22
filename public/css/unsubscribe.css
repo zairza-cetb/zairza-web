@@ -5,9 +5,9 @@ body {
   color: #373737;
   margin: 0;
   padding: 0;
-  background: #543093;
-  background: linear-gradient(45deg, #543093 32%, #d960ae 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( 			startColorstr="#543093", 			endColorstr="#d960ae", 			GradientType=1 		);
+  background: #1071FF;
+  background: linear-gradient(45deg, #1071FF 32%, #FF7610 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( 			startColorstr="#1071FF", 			endColorstr="#FF7610", 			GradientType=1 		);
 }
 
 * {
@@ -76,7 +76,7 @@ svg {
 .buttons button {
   padding: 10px 30px;
   font-size: 20px;
-  background-color: #d960ae;
+  background-color: #FF7610;
   border: 0;
   cursor: pointer;
   border-radius: 4px;
@@ -87,7 +87,7 @@ svg {
   transition: all 0.25s ease-in-out;
 }
 .buttons button:hover {
-  background-color: #cf3799;
+  background-color: #fd7f1fd3;
 }
 .buttons button#cancel {
   margin-right: 0;

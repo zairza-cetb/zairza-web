@@ -9,6 +9,7 @@
   "dependencies": {
     "@admin-bro/express": "^3.1.0",
     "@admin-bro/mongoose": "^1.1.0",
+    "@sendgrid/mail": "^7.4.4",
     "admin-bro": "^3.4.0",
     "connect-mongo": "^4.4.0",
     "cookie-parser": "~1.4.4",

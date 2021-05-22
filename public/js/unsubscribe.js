@@ -210,11 +210,11 @@ var animate = function () {
 
     var speed = 0.1;
     TweenMax.to(eyeLeft, speed, { morphSVG: eyeLaughingLeft, ease: Power0.easeNone });
-    TweenMax.to(eyeLeft, speed, { stroke: '#543093', fill: 'none', ease: Power0.easeNone });
+    TweenMax.to(eyeLeft, speed, { stroke: '#1071FF', fill: 'none', ease: Power0.easeNone });
     TweenMax.to(eyeRight, speed, { morphSVG: eyeLaughingRight, ease: Power0.easeNone });
-    TweenMax.to(eyeRight, speed, { stroke: '#543093', fill: 'none', ease: Power0.easeNone });
+    TweenMax.to(eyeRight, speed, { stroke: '#1071FF', fill: 'none', ease: Power0.easeNone });
     TweenMax.to(mouthWorry, speed, { morphSVG: openMouth, ease: Power0.easeNone });
-    TweenMax.to(mouthWorry, speed, { fill: '#543093', stroke: 'none', ease: Power0.easeNone });
+    TweenMax.to(mouthWorry, speed, { fill: '#1071FF', stroke: 'none', ease: Power0.easeNone });
     TweenMax.to(tongue, speed, { css: { display: 'block' }, ease: Power0.easeNone });
     TweenMax.to(eyeGroup, speed, { y: 10 });
     TweenMax.to(eyebrowSadLeft, speed, { y: 0 });
@@ -234,19 +234,19 @@ var animate = function () {
       var speed = 0.1;
 
       TweenMax.to(mouthWorry, speed, { morphSVG: mouthWorry, ease: Power0.easeNone });
-      TweenMax.to(mouthWorry, speed, { fill: 'none', stroke: '#543093', ease: Power0.easeNone });
+      TweenMax.to(mouthWorry, speed, { fill: 'none', stroke: '#1071FF', ease: Power0.easeNone });
       TweenMax.to(tongue, speed, { css: { display: 'none' }, ease: Power0.easeNone });
-      TweenMax.to(eyebrowSadLeft, speed, { morphSVG: eyebrowSadLeft, ease: Power0.easeNone });
-      TweenMax.to(eyebrowSadRight, speed, { morphSVG: eyebrowSadRight, ease: Power0.easeNone });
+      TweenMax.to(eyebrowSadLeft, speed, { morphSVG: eyebrowSadLeft, stroke: '#1071FF', ease: Power0.easeNone });
+      TweenMax.to(eyebrowSadRight, speed, { morphSVG: eyebrowSadRight, stroke: '#1071FF', ease: Power0.easeNone });
       TweenMax.to(paper, speed, { y: 0 });
       TweenMax.to(eyeGroup, speed, { y: 0 });
       TweenMax.to(mouth, speed, { y: 0 });
       TweenMax.to(eyebrowSadLeft, speed, { y: 0 });
       TweenMax.to(eyebrowSadRight, speed, { y: 0 });
       TweenMax.to(eyeLeft, speed, { morphSVG: eyeLeft, ease: Power0.easeNone });
-      TweenMax.to(eyeLeft, speed, { stroke: 'none', fill: '#543093', ease: Power0.easeNone });
+      TweenMax.to(eyeLeft, speed, { stroke: 'none', fill: '#1071FF', ease: Power0.easeNone });
       TweenMax.to(eyeRight, speed, { morphSVG: eyeRight, ease: Power0.easeNone });
-      TweenMax.to(eyeRight, speed, { stroke: 'none', fill: '#543093', ease: Power0.easeNone });
+      TweenMax.to(eyeRight, speed, { stroke: 'none', fill: '#1071FF', ease: Power0.easeNone });
     }
   };
 
@@ -293,3 +293,25 @@ function random(min, max) {
   }
   return Math.random() * (max - min) + min;
 }
+
+// Unsubscribe newsletter
+$("#unsubscribe").on("click", function () {
+  let userId = window.location.hash.split("#")[1];
+  let data = {
+    userId: userId,
+    newsletterSubscription: false,
+  };
+  $.ajax({
+    type: "POST",
+    url: "/api/user/unsubscribe_newsletter",
+    data: JSON.stringify(data),
+    contentType: "application/json",
+    dataType: "json",
+  })
+    .done(function (data) {
+      console.log("Success")
+    })
+    .fail(function (err) {
+      console.log("Error")
+    });
+})

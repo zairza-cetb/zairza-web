@@ -40,7 +40,7 @@ module.exports = (app, mongoose_connection) => {
       {
         resource: User,
         options: {
-          listProperties: ["firebaseUid", "name", "email", "registrationNo"],
+          listProperties: ["name", "email", "registrationNo", "createdAt"],
           actions: {
             delete: { isVisible: false },
             bulkDelete: { isVisible: false },

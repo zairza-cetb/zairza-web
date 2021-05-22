@@ -46,6 +46,22 @@
           <i class="fas fa-project-diagram mr-3"></i>
           Zairza Projects
         </a>
+        <% if (user.role == 'admin') { %>
+          <a
+          href="/admin"
+          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+        >
+          <i class="fas fa-user-shield mr-3"></i>
+          Admin Dashboard
+        </a>
+        <a
+          href="/protected/newsletterEditor"
+          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+        >
+          <i class="fas fa-newspaper mr-3"></i>
+          Newsletter Editor
+        </a>
+        <% } %>
       </nav>
     </aside>
 
@@ -134,6 +150,22 @@
             <i class="fas fa-user mr-3"></i>
             My Profile
           </a>
+          <% if (user.role == 'admin') { %>
+            <a
+            href="/admin"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-user-shield mr-3"></i>
+            Admin Dashboard
+          </a>
+          <a
+            href="/protected/newsletterEditor"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-newspaper mr-3"></i>
+            Newsletter Editor
+          </a>
+          <% } %>
           <a
             href="#"
             onclick="logout();"

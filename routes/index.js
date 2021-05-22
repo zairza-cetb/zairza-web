@@ -22,10 +22,19 @@ router.get("/", function (req, res, next) {
 
 /* GET auth page. */
 router.get("/auth", function (req, res, next) {
-  if (req.user) {
-    return res.redirect("/");
+  if (req.cookies["zToken"] != null) {
+    admin
+      .auth()
+      .verifyIdToken(req.cookies["zToken"])
+      .then((decodedToken) => {
+        res.redirect("/me");
+      })
+      .catch((err) => {
+        res.render("pages/auth");
+      });
+  } else {
+    res.render("pages/auth");
   }
-  res.render("pages/auth");
 });
 
 /* GET events page. */
