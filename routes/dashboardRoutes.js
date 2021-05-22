@@ -20,7 +20,7 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
           user: req.user,
           projectsCount: data.length,
           membersCount: count,
-          layout: "pages/base",
+          layout: "pages/dashboard/base",
         });
       });
   });
@@ -34,7 +34,7 @@ router.get("/projects", checkIfAuthenticated, function (req, res, next) {
       return res.render("pages/dashboard/projects", {
         projects: data,
         user: req.user,
-        layout: "pages/base",
+        layout: "pages/dashboard/base",
       });
     });
 });
