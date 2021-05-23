@@ -81,7 +81,11 @@
             @click="isOpen = !isOpen"
             class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none"
           >
+          <% if(userPicture) { %>
             <img src="<%= userPicture %>" />
+          <% } else { %>
+              <img src="/images/profile_icon.png">
+          <% } %>
           </button>
           <button
             x-show="isOpen"
