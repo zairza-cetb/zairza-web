@@ -25,6 +25,25 @@ function app() {
   };
 }
 
+function newsletterState(state) {
+  if (state === "success") {
+    showToast(200, "All newsletters sent successfully");
+    $("#sendNewsletterBtn svg").toggleClass("hidden");
+    $("#sendNewsletterBtn span").text("Newsletters sent");
+  } else if (state === "reset") {
+    $("#sendNewsletterBtn svg").toggleClass("hidden");
+  $("#sendNewsletterBtn span").text("Send Newsletter");
+  $("#sendNewsletterBtn")
+    .removeClass("disabled:opacity-50")
+    .prop("disabled", false);
+  }
+  else {
+    showToast(400, state.message);
+    $("#sendNewsletterBtn svg").toggleClass("hidden");
+    $("#sendNewsletterBtn span").text("Could not send");
+  }
+}
+
 // Send Newsletter
 
 function sendNewsletter() {
@@ -33,11 +52,15 @@ function sendNewsletter() {
   $("#sendNewsletterBtn")
     .addClass("disabled:opacity-50")
     .prop("disabled", true);
-    let token = $.cookie("zToken");
-    console.log(token);
+  let templateId = $("#templateId").val();
+  if (templateId.length === 0) {
+    showToast(400, "Please enter the templateId");
+    newsletterState("reset");
+    return;
+  }
+  let token = $.cookie("zToken");
   let data = {
-    subject: "Test",
-    templateId: "d-3d6e6167434a4b33b19119db21a6eb85"
+    templateId: templateId
   };
   $.ajax({
     type: "POST",
@@ -46,16 +69,12 @@ function sendNewsletter() {
     data: data,
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Authorization", `Bearer ${token}`);
-    }
+    },
   })
     .done(function (data) {
-      showToast(200, "All newsletters sent successfully");
-      $("#sendNewsletterBtn svg").toggleClass("hidden");
-      $("#sendNewsletterBtn span").text("Newsletters sent");
+      newsletterState("success");
     })
     .fail(function (err) {
-      showToast(400, err.message);
-      $("#sendNewsletterBtn svg").toggleClass("hidden");
-      $("#sendNewsletterBtn span").text("Could not send");
+      newsletterState(err);
     });
 }
