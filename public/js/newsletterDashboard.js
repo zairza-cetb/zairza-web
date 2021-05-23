@@ -59,14 +59,10 @@ function sendNewsletter() {
     return;
   }
   let token = $.cookie("zToken");
-  let data = {
-    templateId: templateId
-  };
   $.ajax({
     type: "POST",
     url: "/protected/send-newsletter/",
     dataType: "json",
-    data: data,
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Authorization", `Bearer ${token}`);
     },

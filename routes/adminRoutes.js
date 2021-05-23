@@ -18,8 +18,8 @@ router.get("/create-newsletter/", function (req, res, next) {
 });
 
 /* GET editor page. */
-router.get("/newsletterEditor", function (req, res, next) {
-  res.render("pages/newsletterEditor");
+router.get("/newsletterDashboard", function (req, res, next) {
+  res.render("pages/newsletterDashboard");
 });
 
 router.post("/send-newsletter/", function (req, res, next) {
