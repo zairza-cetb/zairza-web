@@ -39,6 +39,7 @@ router.post("/send-newsletter/", function (req, res, next) {
         {
           email: users[i].email,
           ...req.body,
+          templateId:process.env.TEMPLATE_ID,
           dynamic_template_data: {
             name: users[i].name.split(" ")[0],
             unsubscribeLink:
@@ -53,6 +54,9 @@ router.post("/send-newsletter/", function (req, res, next) {
           if (err && i==0) {
             errorOccured = true;
             return next(err);
+          }
+          if (err) {
+            console.error(err);
           }
         }
       );

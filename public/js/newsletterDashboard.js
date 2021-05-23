@@ -52,25 +52,19 @@ function sendNewsletter() {
   $("#sendNewsletterBtn")
     .addClass("disabled:opacity-50")
     .prop("disabled", true);
-  let templateId = $("#templateId").val();
-  if (templateId.length === 0) {
-    showToast(400, "Please enter the templateId");
-    newsletterState("reset");
-    return;
-  }
   let token = $.cookie("zToken");
-  $.ajax({
-    type: "POST",
-    url: "/protected/send-newsletter/",
-    dataType: "json",
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader("Authorization", `Bearer ${token}`);
-    },
-  })
-    .done(function (data) {
-      newsletterState("success");
-    })
-    .fail(function (err) {
-      newsletterState(err);
-    });
+  // $.ajax({
+  //   type: "POST",
+  //   url: "/protected/send-newsletter/",
+  //   dataType: "json",
+  //   beforeSend: function (xhr) {
+  //     xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+  //   },
+  // })
+  //   .done(function (data) {
+  //     newsletterState("success");
+  //   })
+  //   .fail(function (err) {
+  //     newsletterState(err);
+  //   });
 }
