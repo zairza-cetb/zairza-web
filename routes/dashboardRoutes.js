@@ -35,6 +35,7 @@ router.get("/projects", checkIfAuthenticated, function (req, res, next) {
       return res.render("pages/dashboard/projects", {
         projects: data,
         user: req.user,
+        userPicture: req.userInfo.picture,
         layout: "pages/dashboard/base",
       });
     });
