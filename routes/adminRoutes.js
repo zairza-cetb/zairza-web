@@ -23,7 +23,7 @@ router.get("/newsletterDashboard", function (req, res, next) {
 });
 
 router.post("/send-newsletter/", function (req, res, next) {
-  User.find({ newsletterSubscription: true }, function (err, users) {
+  User.find({newsletterSubscription: {$ne:true},role:{$ne:"restricted"}}, function (err, users) {
     if (err) {
       return next(err);
     }
@@ -34,7 +34,10 @@ router.post("/send-newsletter/", function (req, res, next) {
     // Returns the function if error occurs on the first send
     let errorOccured = false;
 
-    for (let i=0; i < users.length ; i++){
+    for (let i = 0; i < users.length; i++){
+      if (users[i].name === undefined) {
+        users[i].name = "";
+      }
       sendMail(
         {
           email: users[i].email,

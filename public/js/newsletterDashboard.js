@@ -53,18 +53,18 @@ function sendNewsletter() {
     .addClass("disabled:opacity-50")
     .prop("disabled", true);
   let token = $.cookie("zToken");
-  // $.ajax({
-  //   type: "POST",
-  //   url: "/protected/send-newsletter/",
-  //   dataType: "json",
-  //   beforeSend: function (xhr) {
-  //     xhr.setRequestHeader("Authorization", `Bearer ${token}`);
-  //   },
-  // })
-  //   .done(function (data) {
-  //     newsletterState("success");
-  //   })
-  //   .fail(function (err) {
-  //     newsletterState(err);
-  //   });
+  $.ajax({
+    type: "POST",
+    url: "/protected/send-newsletter/",
+    dataType: "json",
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+    },
+  })
+    .done(function (data) {
+      newsletterState("success");
+    })
+    .fail(function (err) {
+      newsletterState(err);
+    });
 }
