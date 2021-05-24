@@ -23,7 +23,7 @@ router.get("/newsletterDashboard", function (req, res, next) {
 });
 
 router.post("/send-newsletter/", function (req, res, next) {
-  User.find({newsletterSubscription: {$ne:true},role:{$ne:"restricted"}}, function (err, users) {
+  User.find({newsletterSubscription: {$ne:true},role:{$ne:"restricted"}},async function (err, users) {
     if (err) {
       return next(err);
     }
@@ -31,14 +31,13 @@ router.post("/send-newsletter/", function (req, res, next) {
       return res.json({ status: "success" });
     }
 
-    // Returns the function if error occurs on the first send
-    let errorOccured = false;
+    let mailErrors = [];
 
     for (let i = 0; i < users.length; i++){
       if (users[i].name === undefined) {
         users[i].name = "";
       }
-      sendMail(
+      const err = await sendMail(
         {
           email: users[i].email,
           ...req.body,
@@ -52,22 +51,19 @@ router.post("/send-newsletter/", function (req, res, next) {
               "/unsubscribe#" +
               users[i]._id,
           },
-        },
-        function (err) {
-          if (err && i==0) {
-            errorOccured = true;
-            return next(err);
-          }
-          if (err) {
-            console.error(err);
-          }
         }
       );
 
-      if (errorOccured === true)
-        return;
+      if(err){
+        console.log(err);
+        mailErrors.push({ email: users[i].email, userId: users[i]._id, message: err.response.body.errors[0].message});
+      }
     }
-    return res.json({ status: "success" });
+    if (mailErrors.length === 0){
+      return res.json({ status: "success", sent: users.length, notSent:0});
+    } else {
+      return res.status(500).json({ status:"fail", message: mailErrors[0].message, sent:users.length - mailErrors.length, notSent: mailErrors.length});
+    }
   });
 });
 

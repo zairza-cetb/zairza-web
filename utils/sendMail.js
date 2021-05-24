@@ -7,9 +7,8 @@ sgMail.setApiKey(process.env.ZAIRZA_SENDGRID_API);
 //    templateId : template ID for template in Sendgrid
 //    dynamic_template_data : Extra variables for templates
 //    cb : Callback function with one argument as error
-function sendMail(
+async function sendMail(
   { email, subject = "Zairza", templateId, dynamic_template_data = {} } = {},
-  cb
 ) {
   const msg = {
     to: email,
@@ -18,19 +17,11 @@ function sendMail(
     templateId,
     dynamic_template_data
   };
-  sgMail.send(msg).then(
-    () => {
-      cb();
-    },
-    (error) => {
-      console.error(error);
-
-      if (error.response) {
-        console.error(error.response.body);
-      }
-      cb(error);
-    }
-  );
+  try {
+    await sgMail.send(msg);
+  }catch (error) {
+    return error;
+  } 
 }
 
 module.exports = sendMail;
