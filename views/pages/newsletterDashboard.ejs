@@ -64,7 +64,7 @@
                       leading-normal
                     "
                   >
-                    <th class="py-3 px-6 text-center">Date : Time</th>
+                    <th class="py-3 px-6 text-center">Schedule Date</th>
                     <th class="py-3 px-6 text-center">Total Subscription</th>
                     <th class="py-3 px-6 text-center">Success</th>
                     <th class="py-3 px-6 text-center">Failed</th>
@@ -72,6 +72,7 @@
                   </tr>
                 </thead>
                 <tbody class="text-gray-600 text-sm font-light">
+                  <% for(newsletter of newsletters){ %>
                   <tr class="border-b border-gray-200">
                     <td class="py-3 px-6 text-center whitespace-nowrap">
                       <span
@@ -81,12 +82,14 @@
                           py-1
                           px-3
                           rounded-full
-                          text-xs
+                          text-sm
                         "
-                        >May 23 2021 : 10 am</span
+                      >
+                        <%= newsletter.scheduleDate.toLocaleString() %></span
                       >
                     </td>
                     <td class="py-3 px-6 text-center">
+                      <% if(newsletter.subscribed) { %>
                       <span
                         class="
                           bg-yellow-200
@@ -94,12 +97,14 @@
                           py-1
                           px-3
                           rounded-full
-                          text-xs
+                          text-sm
                         "
-                        >30</span
+                        ><%= newsletter.subscribed %></span
                       >
+                      <% } %>
                     </td>
                     <td class="py-3 px-6 text-center">
+                      <% if(newsletter.subscribed) { %>
                       <span
                         class="
                           bg-green-200
@@ -107,12 +112,14 @@
                           py-1
                           px-3
                           rounded-full
-                          text-xs
+                          text-sm
                         "
-                        >20</span
+                        ><%= newsletter.sent %></span
                       >
+                      <% } %>
                     </td>
                     <td class="py-3 px-6 text-center">
+                      <% if(newsletter.subscribed) { %>
                       <span
                         class="
                           bg-red-200
@@ -120,12 +127,27 @@
                           py-1
                           px-3
                           rounded-full
-                          text-xs
+                          text-sm
                         "
-                        >2</span
+                        ><%= newsletter.notSent %></span
                       >
+                      <% } %>
                     </td>
                     <td class="py-3 px-6 text-center">
+                      <% if(newsletter.status == undefined){
+                      if(newsletter.scheduleDate > new Date()) { %>
+                      <span
+                        class="
+                          bg-blue-200
+                          text-blue-600
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                        "
+                        >Disabled</span
+                      >
+                      <% } else {%>
                       <button
                         class="
                           px-10
@@ -139,6 +161,7 @@
                           hover:bg-blue-900
                         "
                         id="sendNewsletterBtn"
+                        onclick="sendNewsletter()"
                       >
                         <svg
                           class="
@@ -170,8 +193,36 @@
                         </svg>
                         <span>Send Newsletter</span>
                       </button>
+                      <% } %> <%} else { %>
+                      <span
+                        class="
+                          <%
+                          if(newsletter.status
+                          ==
+                          'Success'){
+                          %>
+                          bg-green-200
+                          text-green-600
+                          <%
+                          }
+                          else
+                          {%>
+                          bg-red-200
+                          text-red-600
+                          <%
+                          }
+                          %>
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                        "
+                        ><%= newsletter.status %></span
+                      >
+                      <% } %>
                     </td>
                   </tr>
+                  <% } %>
                 </tbody>
               </table>
             </div>
