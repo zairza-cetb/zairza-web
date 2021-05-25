@@ -4,6 +4,7 @@ const AdminBroExpress = require("@admin-bro/express");
 const AdminBroMongoose = require("@admin-bro/mongoose");
 const express = require("express");
 const User = require("../models/Users");
+const Newsletter = require("../models/Newsletter");
 const ValidRegNos = require("../models/ValidRegNos");
 const ChangeLog = require("../models/ChangeLog");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
@@ -112,6 +113,16 @@ module.exports = (app, mongoose_connection) => {
           },
         },
       },
+      {
+        resource: Newsletter,
+        options: {
+          listProperties: ["scheduleDate", "subscribed", "sent", "notSent", "status"],
+          editProperties: ["scheduleDate"],
+          actions: {
+            bulkDelete: { isVisible: false },
+          },
+        }
+      }
     ],
     rootPath: "/admin",
     branding: {

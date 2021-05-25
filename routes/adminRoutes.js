@@ -19,9 +19,15 @@ router.get("/create-newsletter/", function (req, res, next) {
 
 /* GET editor page. */
 router.get("/newsletterDashboard", function (req, res, next) {
-  res.render("pages/newsletterDashboard");
-});
+  Newsletter.find((err, newsletters) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("pages/newsletterDashboard", { newsletters: newsletters });
+  });
+})
 
+// Send Newsletter API
 router.post("/send-newsletter/", function (req, res, next) {
   User.find({newsletterSubscription: {$ne:true},role:{$ne:"restricted"}},async function (err, users) {
     if (err) {
