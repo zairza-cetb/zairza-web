@@ -21,6 +21,7 @@ const NewsletterSchema = new mongoose.Schema(
 );
 
 NewsletterSchema.pre("save", function (next) {
+  console.log(this.isNew,"saving");
   agenda.schedule(this.scheduleDate, "send newsletter", { newsletterId: this._id }).then((job)=>{
     this.agendaJobId = job.attrs._id;
     next();

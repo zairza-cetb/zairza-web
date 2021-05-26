@@ -58,6 +58,8 @@ agenda.define("send newsletter", async function(job, done){
                 console.log(err);
             }
         });
+
+        done();
       });
 });
 
