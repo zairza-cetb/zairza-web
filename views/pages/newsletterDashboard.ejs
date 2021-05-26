@@ -89,7 +89,7 @@
                       >
                     </td>
                     <td class="py-3 px-6 text-center">
-                      <% if(newsletter.subscribed) { %>
+                      <% if(typeof newsletter.sent !== undefined) { %>
                       <span
                         class="
                           bg-yellow-200
@@ -99,12 +99,12 @@
                           rounded-full
                           text-sm
                         "
-                        ><%= newsletter.subscribed %></span
+                        ><%= newsletter.sent + newsletter.notSent %></span
                       >
                       <% } %>
                     </td>
                     <td class="py-3 px-6 text-center">
-                      <% if(newsletter.subscribed) { %>
+                      <% if(typeof newsletter.sent !== undefined) { %>
                       <span
                         class="
                           bg-green-200
@@ -119,7 +119,7 @@
                       <% } %>
                     </td>
                     <td class="py-3 px-6 text-center">
-                      <% if(newsletter.subscribed) { %>
+                      <% if(newsletter.notSent) { %>
                       <span
                         class="
                           bg-red-200
@@ -144,34 +144,33 @@
                           rounded-full
                           text-sm
                         "
-                        >To be sent</span
+                        >Scheduled</span
                       >
-                      <% } else { %>
+                      <% } else if(newsletter.notSent === 0) { %>
                       <span
                         class="
-                          <%
-                          if(newsletter.status
-                          ==
-                          'success'){
-                          %>
                           bg-green-200
                           text-green-600
-                          <%
-                          }
-                          else
-                          {%>
-                          bg-red-200
-                          text-red-600
-                          <%
-                          }
-                          %>
                           py-1
                           px-3
                           rounded-full
                           text-sm
                           text-uppercase
                         "
-                        ><%= newsletter.status %></span
+                        >Success</span
+                      >
+                      <% } else { %>
+                        <span
+                        class="
+                          bg-red-200
+                          text-red-600
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                          text-uppercase
+                        "
+                        ><%= newsletter.message.split('.')[0] %></span
                       >
                       <% } %>
                     </td>

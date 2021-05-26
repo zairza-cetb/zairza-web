@@ -50,6 +50,7 @@ module.exports = (app, mongoose_connection) => {
               guard: "confirmDelete",
               icon: "Delete",
               component: false,
+              after:createLog,
               variant: "danger",
               handler: async (request, response, data) => {
                 const {
@@ -116,9 +117,10 @@ module.exports = (app, mongoose_connection) => {
       {
         resource: Newsletter,
         options: {
-          listProperties: ["scheduleDate", "subscribed", "sent", "notSent", "status"],
+          listProperties: ["scheduleDate", "sent", "notSent"],
           editProperties: ["scheduleDate"],
           actions: {
+            edit: { isVisible: false },
             bulkDelete: { isVisible: false },
           },
         }
