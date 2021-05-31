@@ -1,6 +1,5 @@
 const Agenda = require('agenda');
 const mongoose = require('mongoose');
-// const Newsletter = ;
 const sendMail = require('./sendMail');
 
 const agenda = new Agenda({ db: {address: process.env.MONGO_URI, collection: "agendaJobs"}});
@@ -8,7 +7,7 @@ const agenda = new Agenda({ db: {address: process.env.MONGO_URI, collection: "ag
 
 
 agenda.define("send newsletter", async function(job, done){
-    User.find({role:"admin"},async function (err, users) {
+  User.find({ role: { $ne:"restricted"} },async function (err, users) {
         if (err) {
           return done(err);
         }
