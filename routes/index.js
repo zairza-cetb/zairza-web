@@ -61,7 +61,7 @@ router.get("/forgot_password", function (req, res, next) {
 });
 
 router.get("/tmp", function (req, res, next) {
-  res.render("pages/dashboard/template")
-})
+  res.render("pages/dashboard/template");
+});
 
 module.exports = router;

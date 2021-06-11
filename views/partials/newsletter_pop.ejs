@@ -43,7 +43,11 @@
         <button onclick="closePopup(event)" class="popup-prompt__cancel-btn">
           Nope, thanks 💩
         </button>
-        <a href="/profile#subscribe_newsletter" class="popup-prompt__confirm-btn">Ok, show me</a>
+        <a
+          href="/profile#subscribe_newsletter"
+          class="popup-prompt__confirm-btn"
+          >Ok, show me</a
+        >
       </div>
       <svg
         class="popup-prompt__tail"
@@ -120,7 +124,7 @@
         $.cookie("zNewsletter", "not-subscribed", {
           expires: 1, // the number of days cookie  will be effective
         });
-        if(!$.cookie('visited')) {
+        if (!$.cookie("visited")) {
           setTimeout(showPopup, rand * 1000);
         }
       }
