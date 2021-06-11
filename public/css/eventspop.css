@@ -14,7 +14,6 @@
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: 400ms ease-in-out;
-  border: 1px solid black;
   z-index: 99999;
   width: 40%;
   height: 50%;
@@ -44,4 +43,11 @@
 
 .modal-img {
   width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .modal {
+    width: 70%;
+    height: auto;
+  }
 }
