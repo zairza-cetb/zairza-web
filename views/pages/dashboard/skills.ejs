@@ -21,10 +21,10 @@
 								clip-rule="evenodd" />
 						</svg>
 
-						<h2 class="text-2xl mb-4 text-gray-800 text-center font-bold">Registration Success</h2>
+						<h2 class="text-2xl mb-4 text-gray-800 text-center font-bold">Registration Success for Skills++</h2>
 
 						<div class="text-gray-600 mb-8">
-							Thank you. We have sent you an email to demo@demo.test. Please click the link in the message
+							Thank you. We have sent you an email. Please click the link in the message
 							to activate your account.
 						</div>
 
@@ -158,7 +158,7 @@
 								<label
 									class="flex justify-start items-center text-truncate rounded-lg bg-white pl-4 pr-6 py-3 shadow-sm mr-4">
 									<div class="text-teal-600 mr-3">
-										<input type="radio" x-model="gender" value="Male"
+										<input type="radio" x-model="gender" value="Web dev"
 											class="form-radio focus:outline-none focus:shadow-outline" />
 									</div>
 									<div class="select-none text-gray-700">Web dev</div>
@@ -167,26 +167,43 @@
 								<label
 									class="flex justify-start items-center text-truncate rounded-lg bg-white pl-4 pr-6 py-3 shadow-sm">
 									<div class="text-teal-600 mr-3">
-										<input type="radio" x-model="gender" value="Female"
+										<input type="radio" x-model="gender" value="App dev"
 											class="form-radio focus:outline-none focus:shadow-outline" />
 									</div>
 									<div class="select-none text-gray-700">App dev</div>
+								</label>
+								<label class="flex justify-start items-center text-truncate rounded-lg bg-white pl-4 pr-6 py-3 shadow-sm">
+									<div class="text-teal-600 mr-3">
+										<input type="radio" x-model="gender" value="Machine Learning"
+											class="form-radio focus:outline-none focus:shadow-outline" />
+									</div>
+									<div class="select-none text-gray-700">Machine Learning</div>
 								</label>
 							</div>
 						</div>
 
 						<div class="mb-5">
-							<label for="profession" class="font-bold mb-1 text-gray-700 block">Skills</label>
-							<input type="profession"
-								class="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-600 font-medium"
-								placeholder="eg. HTML,CSS,C++" list="skills-required-recent">
-								<datalist id="skills-required-recent">
-									<option value="html">
-									<option value="css">
-									<option value="javascript">
-									<option value="c++">
-									<option value="java">
-								</datalist>
+							<div class="container">
+								<label for="profession" class="font-bold mb-1 text-gray-700 block">Skills</label>
+								
+								<div class="tag-container ">
+									<input class="" list="skills-required" />
+									<datalist id="skills-required">
+									<option value="HTML">HTML</option>
+									<option value="CSS">CSS</option>
+									<option value="Javascript">Javascript</option>
+									<option value="C++">C++</option>
+									<option value="Java">Java</option>
+										<option value="Python">Python</option>
+											<option value="C">C</option>
+											<option value="PHP">PHP</option>
+											<option value="Ruby">Ruby</option>
+										</datalist>
+								</div>
+							
+							</div>
+							
+								
 						</div>
 					</div>
 				</div>
@@ -214,6 +231,9 @@
 			</div>
 		</div>
 		<!-- / Bottom Navigation https://placehold.co/300x300/e2e8f0/cccccc -->
+	</div>
+    
+	</main>
 	</div>
 
 	<script>
@@ -243,6 +263,9 @@
 				}
 			}
 		}
+		
+   
+
+
 	</script>
-	</main>
-	</div>
+	

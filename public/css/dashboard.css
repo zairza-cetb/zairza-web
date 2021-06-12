@@ -1,3 +1,5 @@
+@import url('https://kodhus.com/kodhus-ui/kodhus-0.1.0.min.css');
+
 .active-nav-link {
   background: #1071ff;
   color: #fff;
@@ -115,3 +117,54 @@
 			background-repeat: no-repeat;
 		}
 		
+
+.tag-container {
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  border-radius: 10px;
+  background: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 6px;
+  overflow-x: hidden;
+}
+
+.tag-container .tag {
+  height: 30px;
+  margin: 5px;
+  padding: 5px 6px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  background: rgb(55, 119, 240);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: rgb(230, 238, 247);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgb(119, 169, 243);
+  cursor: default;
+}
+.tag i {
+  font-size: 16px;
+  color: rgb(199, 225, 247);
+  margin-left: 5px;
+  font-weight: bold;
+}
+.tag-container input {
+  padding: 5px;
+  font-size: 16px;
+  border: 0;
+  outline: none;
+  font-family: 'Rubik';
+  color: #333;
+  flex: 1;
+}
+.tag-container:focus-within {
+  
+  border: 2px solid rgb(46, 125, 243);
+}
+
+input::-webkit-calendar-picker-indicator {
+  opacity:0;
+}
+
