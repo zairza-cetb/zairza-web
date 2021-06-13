@@ -5,19 +5,7 @@ const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  if (req.cookies["zToken"] != null) {
-    admin
-      .auth()
-      .verifyIdToken(req.cookies["zToken"])
-      .then((decodedToken) => {
-        res.render("pages/index", { loggedIn: true });
-      })
-      .catch((err) => {
-        res.render("pages/index", { loggedIn: false });
-      });
-  } else {
-    res.render("pages/index", { loggedIn: false });
-  }
+    res.render("pages/index");
 });
 
 /* GET auth page. */
