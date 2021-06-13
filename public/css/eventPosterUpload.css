@@ -1,0 +1,142 @@
+#aks-file-upload {
+  width: 310px;
+  display: block;
+  margin: 0 auto;
+  /* margin-top: 4rem; */
+}
+#uploadfile {
+  width: 80%;
+  /* margin: 0 auto; */
+  color: #1071FF;
+  line-height: 1.5;
+  /* margin-top: 2rem;
+  margin-bottom: 2rem; */
+}
+
+:root {
+	--bg: #e3e4e8;
+	--fg: #17181c;
+	--stroke: #1071FF;
+	--success: #25f42f;
+	/* font-size: calc(20px + (40 - 20) * (100vw - 320px) / (1280 - 320)); */
+}
+.upload-btn {
+	--dur: 0.25s;
+	background: #1071FF;
+	border-radius: 1.25em;
+	color: #fff;
+	cursor: pointer;
+	padding: 0.5em 1em;
+	position: relative;
+	text-align: center;
+	transition: all 0.1s linear;
+	width: 6em;
+	-webkit-tap-highlight-color: #0000;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.upload-btn:disabled {
+	cursor: not-allowed;
+}
+.upload-btn:not(:disabled):focus,
+.upload-btn:not(:disabled):hover {
+	background: #1071FF;
+}
+.upload-btn:focus {
+	outline: transparent;
+}
+.upload-btn-border {
+	display: block;
+	overflow: visible;
+	pointer-events: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+}
+.upload-btn-border rect {
+	stroke: var(--stroke);
+}
+.upload-btn-text {
+	display: inline-block;
+}
+.upload-btn-running {
+	text-align: right;
+}
+.upload-btn-running .upload-btn-text {
+	animation: flyIn2 var(--dur) ease-in forwards;
+}
+.upload-btn-done .upload-btn-border {
+	animation: sinkInA var(--dur) ease-in forwards;
+}
+.upload-btn-done .upload-btn-border rect {
+	animation: sinkInB var(--dur) ease-in forwards;
+}
+.upload-btn-done .upload-btn-text {
+	animation: pulseIn var(--dur) linear forwards;
+	color: var(--success);
+}
+.upload-btn-ready .upload-btn-text {
+	animation: flyIn1 var(--dur) ease-in forwards;
+}
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #17181c;
+		--fg: #e3e4e8;
+	}
+}
+/* Animations */
+@keyframes flyIn1 {
+	from {
+		opacity: 0;
+		transform: translateY(33%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes flyIn2 {
+	from {
+		opacity: 0;
+		/* (buttonWidth / 2 - rightPadding) + (lastDigit + "%") */
+		transform: translate(calc(-2em + 2ch),33%);
+	}
+	to {
+		opacity: 1;
+		transform: translate(calc(-2em + 2ch),0);
+	}
+}
+@keyframes pulseIn {
+	from {
+		transform: scale(0);
+	}
+	33% {
+		transform: scale(2.17,2.17);
+	}
+	67% {
+		transform: scale(1.17,1.17);
+	}
+	to {
+		transform: scale(1.5);
+	}
+}
+@keyframes sinkInA {
+	from {
+		transform: scale(1,1);
+	}
+	25%, to {
+		/* 120/124, 50/54 */
+		transform: scale(0.968,0.925);
+	}
+}
+@keyframes sinkInB {
+	from {
+		stroke-width: 4;
+	}
+	25%, to {
+		stroke-width: 0;
+	}
+}
