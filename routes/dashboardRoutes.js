@@ -39,4 +39,17 @@ router.get("/projects", checkIfAuthenticated, function (req, res, next) {
     });
 });
 
+/* GET skills page. */
+router.get("/skills", checkIfAuthenticated, function (req, res, next) {
+  fetch("https://api.github.com/users/zairza-cetb/repos?sort=updated_at")
+    .then((res) => res.json())
+    .then((data) => {
+      return res.render("pages/dashboard/skills", {
+        projects: data,
+        user: req.user,
+        layout: "pages/base",
+      });
+    });
+});
+
 module.exports = router;
