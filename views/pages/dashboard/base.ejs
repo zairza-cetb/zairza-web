@@ -63,7 +63,7 @@
           Skills++
         </a>
         <% } %>
-        <% if(user.role == 'restricted') { %>
+        <% if(user.role == 'admin') { %>
           <a
           href="/eventPosterUpload"
           class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
@@ -169,7 +169,7 @@
               Skills++
             </a>
             <% } %>
-            <% if(user.role == 'restricted') { %>
+            <% if(user.role == 'admin') { %>
               <a
               href="/eventPosterUpload"
               class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
