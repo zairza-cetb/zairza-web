@@ -62,6 +62,6 @@ $(document).ready(function () {
     arrows: false,
     infobar: false,
     toolbar: false,
-    clickContent: false
+    clickContent: false,
   });
 });

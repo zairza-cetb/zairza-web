@@ -110,3 +110,16 @@ $(document).ready(function () {
   //     $("main").toggleClass("opacity-10");
   //   });
 });
+
+//for events link in navbar
+const eventlink = document.getElementById("eventlink");
+eventlink.addEventListener("mouseover", () => {
+  eventlink.classList.remove("animate-bounce");
+  eventlink.classList.remove("bg-yellow-500");
+  eventlink.classList.add("bg-blue");
+});
+eventlink.addEventListener("mouseout", () => {
+  eventlink.classList.add("animate-bounce");
+  eventlink.classList.remove("bg-blue");
+  eventlink.classList.add("bg-yellow-500");
+});

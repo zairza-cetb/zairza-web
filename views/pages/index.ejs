@@ -42,7 +42,7 @@
 <body>
   <!--js xor no-js -->
   <%- include('../partials/newsletter_pop.ejs') %>
-
+  <%- include('../partials/eventspop.ejs'); %>
   <%- include('../partials/firebase.ejs') %>
 
   <main class="js mb-20 sm:mb-0">
@@ -83,6 +83,7 @@
               <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li>
             </a>
           <% } %>
+          <a href="/me"><li class="transition duration-200 ease-in-out block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 bg-yellow-500 rounded  font-normal transform animate-bounce" id="eventlink">Event</li></a>
         </ul>
       </header>
     </section>
