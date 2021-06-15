@@ -73,16 +73,7 @@
           <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">Our Team</li>
           <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">Contact</li>
           <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">FAQ</li>
-          <% if(loggedIn){ %>
-            <a href="/me" id="user">
-              <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Dashboard</li>
-            </a>
-          <% } else { %>
-            <a href="/auth#signin" id="user">
-              <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li>
-            </a>
-          <% } %>
-          <a href="/me"><li class="transition duration-700 ease-in-out block text-white hover:text-black px-4 py-2 lg:my-0 my-1 lg:ml-2 bg-yellow-500 rounded-full font-normal transform animate-bounce" id="eventlink">Skills++</li></a>
+          
         </ul>
       </header>
     </section>
@@ -98,7 +89,7 @@
               of seasoned developers and designers. Founded in
               the year 2005, the club has ever since witnessed a
               synapse of creativity and evolution.</p>
-            <button class="rounded-full py-4 lg:text-lg text-md mt-6 lg:mt-10 mx-auto lg:mx-0 cta-btn">Take a tour</button>
+            <button class="rounded-full py-4 lg:text-lg text-md mt-6 lg:mt-10 mx-auto lg:mx-0 cta-btn" onclick="window.location.href='/auth'">Take a tour</button>
           </div>
           <div class="lg:order-last order-1">
             <img class="animated" data-src="/images/illustrations/Saly-19.webp" >

@@ -1,0 +1,188 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FF7610" />
+    <link rel="icon" type="image/png" href="/images/Visual.webp" />
+    <title>Newsletter Editor | Zairza</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.3/tailwind.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css"
+    />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+      integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.1/alpine.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <section>
+      <%- include('../partials/toast.ejs') %>
+      <!-- component -->
+      <div class="flex flex-col px-5 py-5">
+        <h1 class="text-center text-xl font-bold mt-10">
+          Newsletter Statistics
+        </h1>
+        <div
+          class="
+            min-w-screen
+            flex
+            items-center
+            justify-center
+            font-sans
+            overflow-hidden
+          "
+        >
+          <div class="w-full lg:w-5/6 overflow-x-auto">
+            <div class="bg-white shadow-md rounded my-6">
+              <table class="min-w-max w-full table-auto">
+                <thead>
+                  <tr
+                    class="
+                      bg-gray-200
+                      text-gray-600
+                      uppercase
+                      text-sm
+                      leading-normal
+                    "
+                  >
+                    <th class="py-3 px-6 text-center">Schedule Date</th>
+                    <th class="py-3 px-6 text-center">Total Subscription</th>
+                    <th class="py-3 px-6 text-center">Success</th>
+                    <th class="py-3 px-6 text-center">Failed</th>
+                    <th class="py-3 px-6 text-center">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                  <% for(newsletter of newsletters){ %>
+                  <tr class="border-b border-gray-200">
+                    <td class="py-3 px-6 text-center whitespace-nowrap">
+                      <span
+                        class="
+                          bg-purple-200
+                          text-purple-600
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                        "
+                      >
+                        <%= newsletter.scheduleDate.toLocaleString() %></span
+                      >
+                    </td>
+                    <td class="py-3 px-6 text-center">
+                      <% if(typeof newsletter.sent !== undefined) { %>
+                      <span
+                        class="
+                          bg-yellow-200
+                          text-yellow-600
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                        "
+                        ><%= newsletter.sent + newsletter.notSent %></span
+                      >
+                      <% } %>
+                    </td>
+                    <td class="py-3 px-6 text-center">
+                      <% if(typeof newsletter.sent !== undefined) { %>
+                      <span
+                        class="
+                          bg-green-200
+                          text-green-600
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                        "
+                        ><%= newsletter.sent %></span
+                      >
+                      <% } %>
+                    </td>
+                    <td class="py-3 px-6 text-center">
+                      <% if(newsletter.notSent !== undefined) { %>
+                      <span
+                        class="
+                          bg-red-200
+                          text-red-600
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                        "
+                        ><%= newsletter.notSent %></span
+                      >
+                      <% } %>
+                    </td>
+                    <td class="py-3 px-6 text-center">
+                      <% if(newsletter.scheduleDate > new Date()) { %>
+                      <span
+                        class="
+                          bg-yellow-200
+                          text-yellow-600
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                        "
+                        >Scheduled</span
+                      >
+                      <% } else if(newsletter.notSent === 0) { %>
+                      <span
+                        class="
+                          bg-green-200
+                          text-green-600
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                          text-uppercase
+                        "
+                        >Success</span
+                      >
+                      <% } else { %>
+                        <span
+                        class="
+                          bg-red-200
+                          text-red-600
+                          py-1
+                          px-3
+                          rounded-full
+                          text-sm
+                          text-uppercase
+                        "
+                        ><%= newsletter.message.split('.')[0] %></span
+                      >
+                      <% } %>
+                    </td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="/js/newsletterDashboard.js"></script>
+</html>

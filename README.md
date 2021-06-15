@@ -1,6 +1,6 @@
 # ZAIRZA WEBSITE 2020
 
-![Zairza Github](https://raw.githubusercontent.com/zairza-cetb/zairza-web/main/assets/images/Zairzalogo.webp)
+![Zairza Github](https://raw.githubusercontent.com/zairza-cetb/zairza-web/main/public/images/Zairzalogo.webp)
 
 <strong>ZAIRZA</strong>, the robo-sof club of CET, a conglomeration of seasoned developers and designers. 
 Founded in the year 2005, the club has ever since witnessed a synapse of creativity and evolution.
@@ -66,14 +66,14 @@ Follow these steps to get the api running using npm
    npm install
    ```
 
-7. Now that we have all the packages, execute the following command to run the server 
+7. Now that we have all the packages, execute the following command to run the server.
 
    1. If you are in production
       NB: You only have to execute the following command to run the server in future.
 
       ```sh
-      npm run start
-     ```    
+      npm run start```   
+      
    2.  If you are in development
 
       ```sh

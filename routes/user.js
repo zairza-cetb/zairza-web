@@ -125,6 +125,26 @@ router.post("/newsletter", isRoleUser, function (req, res, next) {
       }
       if (!user) {
         return res.status(404).json({
+          status: "fail",
+          message: "No user found",
+        });
+      }
+      return res.json({ status: "success" });
+    }
+  );
+});
+
+router.post("/unsubscribe_newsletter", function(req, res, next) {
+  User.findByIdAndUpdate(
+    req.body.userId,
+    { newsletterSubscription: false },
+    function (err, user) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.status(404).json({
+          status: "fail",
           message: "No user found",
         });
       }
