@@ -39,4 +39,20 @@ router.get("/projects", checkIfAuthenticated, function (req, res, next) {
     });
 });
 
+/* GET skills page. */
+router.get("/skills", checkIfAuthenticated, function (req, res, next) {
+  res.render("pages/dashboard/skills", {
+    user: req.user,
+    layout: "pages/base",
+  });
+});
+
+/* GET poster uplaod page. */
+router.get("/eventPosterUpload", checkIfAuthenticated, function (req, res, next) {
+  res.render("pages/dashboard/eventPosterUpload", {
+    user: req.user,
+    layout: "pages/base",
+  });
+});
+
 module.exports = router;

@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="https://unpkg.com/aksfileupload@1.0.0/dist/aksFileUpload.min.css">
+<script src="https://unpkg.com/aksfileupload@1.0.0/dist/aksFileUpload.min.js"></script>
+<link rel="stylesheet" href="/css/eventPosterUpload.css">
+
+<div class="flex flex-col justify-around my-auto items-center h-3/4">
+    <div id="aks-file-upload"></div>
+	<input type="text" name="eventName" placeholder="Enter event name" class="w-1/2 px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white">
+	<label for="startTime">Enter event start time :</label>
+	<input type="date" name="startTime" id="startTime" class="w-1/2 px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white">
+	<label for="endTime">Enter event end time :</label>
+	<input type="date" name="endTime" id="endTime" class="w-1/2 px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white">
+    <button id="upload" class="upload-btn mx-auto" type="button">
+    	<svg class="upload-btn-border" xmlns="http://www.w3.org/2000/svg" width="120px" height="50px" viewBox="0 0 120 50" role="presentation">
+    		<rect x="-2" y="-2" width="124" height="54" rx="27" ry="27" fill="none" stroke="#000" stroke-width="4" stroke-dasharray="0 310" opacity="0" />
+    	</svg>
+    	<span class="upload-btn-text">Upload</span>
+    </button>
+</div>
+<script src="/js/eventPosterUpload.js"></script>

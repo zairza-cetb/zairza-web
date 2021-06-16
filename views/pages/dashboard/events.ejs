@@ -19,9 +19,9 @@
     <link rel="stylesheet" href="/css/dashboard.css" />
   </head>
   <body class="flex">
-      <%- include('../../partials/firebase.ejs') %>
-    <%- include('../../partials/toast.ejs') %> 
-    <%- include('../../partials/deactivate.ejs') %> 
+    <%- include('../../partials/firebase.ejs') %> <%-
+    include('../../partials/toast.ejs') %>
+    <%-include('../../partials/deactivate.ejs') %>
     <aside class="relative bg-sidebar h-screen w-64 hidden lg:block shadow-xl">
       <div class="h-16 flex justify-center items-center">
         <img class="h-8 cursor-pointer" src="/images/Zairzalogo.webp" />
@@ -29,14 +29,32 @@
       <nav class="text-black text-base font-semibold pt-3 h-96">
         <a
           href="/me"
-          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+          class="
+            flex
+            items-center
+            text-black
+            hover:text-white
+            py-4
+            pl-6
+            nav-item
+            my-4
+          "
         >
           <i class="fas fa-tachometer-alt mr-3"></i>
           Dashboard
         </a>
         <a
           href="/projects"
-          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+          class="
+            flex
+            items-center
+            text-black
+            hover:text-white
+            py-4
+            pl-6
+            nav-item
+            my-4
+          "
         >
           <i class="fas fa-table mr-3"></i>
           Zairza Projects
@@ -51,7 +69,18 @@
         <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
           <button
             @click="isOpen = !isOpen"
-            class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none"
+            class="
+              realtive
+              z-10
+              w-12
+              h-12
+              rounded-full
+              overflow-hidden
+              border-4 border-gray-400
+              hover:border-gray-300
+              focus:border-gray-300
+              focus:outline-none
+            "
           >
             <img src="https://source.unsplash.com/uJ8LNVCBjFQ/400x400" />
           </button>
@@ -105,21 +134,54 @@
         <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
           <a
             href="/"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-tachometer-alt mr-3"></i>
             Dashboard
           </a>
           <a
             href="/projects"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-table mr-3"></i>
             Zairza Projects
           </a>
           <a
             href="/profile"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-user mr-3"></i>
             My Profile
@@ -127,7 +189,18 @@
           <a
             href="#"
             onclick="logout();"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-sign-out-alt mr-3"></i>
             Sign Out
@@ -135,7 +208,18 @@
           <a
             href="#"
             onclick="toggleModal()"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-user mr-3"></i>
             Delete account
