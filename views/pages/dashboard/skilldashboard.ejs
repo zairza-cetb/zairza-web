@@ -1,0 +1,551 @@
+<style>
+  .max-h-0 {
+    max-height: 0;
+  }
+  .inputborder {
+    border: none;
+    border-bottom: 2px solid grey;
+  }
+
+  .custom-btn {
+    margin: 10px;
+    width: 100px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: "Lato", sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+      7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+    outline: none;
+  }
+
+  .btn-2 {
+    background: rgb(16, 113, 255);
+    background: linear-gradient(
+      0deg,
+      rgb(16, 113, 255) 0%,
+      rgb(16, 113, 255) 100%
+    );
+    border: none;
+  }
+  .btn-2:before {
+    height: 0%;
+    width: 2px;
+  }
+  .btn-2:hover {
+    box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+      -4px -4px 6px 0 rgba(116, 125, 136, 0.5),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+      inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
+  }
+
+  .bg-zairza-orange {
+    background-color: #ff7610;
+  }
+</style>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+<script src="/js/skilldashboard.js"></script>
+
+<div
+  class="bg-gray-100 md:px-4 md:px-0 pb-10 h-screen my-auto overflow-y-scroll"
+>
+  <!-- Highlight Badge -->
+
+  <div class="text-center pt-8 lg:px-4 w-1/2 mx-auto">
+    <div
+      class="
+        rounded-full
+        p-2
+        md:py-2
+        md:mx-4
+        bg-indigo-800
+        items-center
+        text-indigo-100
+        leading-none
+        flex flex-row
+        justify-center
+      "
+      role="alert"
+    >
+      <span
+        class="
+          flex
+          rounded-full
+          bg-indigo-500
+          uppercase
+          px-2
+          py-1
+          text-xs
+          font-bold
+          mr-3
+          animate-bounce
+        "
+        >New</span
+      >
+      <a href="#"
+        ><span class="font-semibold mr-2 text-left flex-auto"
+          >Join the Q/A forum.</span
+        ></a
+      >
+      <svg
+        class="fill-current opacity-75 h-4 w-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"
+        />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Accordion -->
+
+  <div
+    class="my-10 max-w-3/5 mx-auto space-y-4 lg:space-y-6 p-8"
+    x-data="{ faq, faq_selected: null }"
+  >
+    <template x-for="(item, index) in faq" :key="`item-{$index}`">
+      <div class="item bg-white shadow-md rounded-md p-3">
+        <div
+          class="flex items-center cursor-pointer"
+          @click="faq_selected !== index ? faq_selected = index : faq_selected = null"
+        >
+          <div
+            class="
+              bg-blue-100
+              text-blue-400
+              w-8
+              h-8
+              md:w-10
+              md:h-10
+              rounded-md
+              flex flex-col
+              items-center
+              justify-center
+              font-bold
+              text-lg
+              font-display
+            "
+          >
+            <span x-text="index + 1"></span>
+          </div>
+          <div
+            class="
+              ml-3
+              md:ml-4
+              lg:ml-6
+              md:text-lg
+              text-blue-500
+              flex flex-row
+              justify-between
+              items-center
+              w-full
+            "
+          >
+            <span x-text="item.question"></span>
+            <i class="fa fa-check text-green-500" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div
+          class="relative overflow-hidden transition-all max-h-0 duration-700"
+          x-bind:style="faq_selected === index ? `max-height:  ${ $el.scrollHeight }px` : ``"
+        >
+          <div class="text-gray-700 py-2 px-8 space-y-3">
+            <template
+              x-for="(ans, index) in item.answer"
+              :key="`item-ans-{$index}`"
+            >
+              <p x-text="ans"></p>
+            </template>
+            <form action="" method="">
+              <div class="flex flex-row justify-start">
+                <input
+                  class="
+                    border
+                    py-2
+                    px-3
+                    text-grey-darkest
+                    w-3/5
+                    focus:outline-none
+                    inputborder
+                  "
+                  type="text"
+                  name="link"
+                  id="password"
+                  placeholder="Submit your tasks here"
+                />
+                <button class="custom-btn mx-4 btn-2">Submit</button>
+              </div>
+            </form>
+
+            <!-- Wrong Submission -->
+            <div
+              class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
+              role="alert"
+            >
+              <p class="font-bold">Wrong Submission!</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab,
+                tempora.
+              </p>
+            </div>
+            <!-- Info On Correct Submission -->
+            <!-- <div
+              class="flex flex-col bg-blue-500 text-white px-4 py-3"
+              role="alert"
+            >
+              <h4 class="text-md font-bold">
+                Great job! but there's always room for more!
+              </h4>
+              <p>Something happened that you should know about.</p>
+            </div> -->
+            <div
+              class="
+                bg-green-100
+                border-l-4 border-green-500
+                text-green-700
+                p-4
+              "
+              role="alert"
+            >
+              <p class="font-bold">
+                Great job! but there's always room for more!
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
+                accusantium!
+              </p>
+            </div>
+            <div
+              class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4"
+              role="alert"
+            >
+              <p class="font-bold">
+                Have Pateince we are working on your tasks!!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+  <!-- 2nd List of Accordion for implementing X -->
+  <div
+    class="my-10 max-w-3/5 mx-auto space-y-4 lg:space-y-6 p-8"
+    x-data="{ faq, faq_selected: null }"
+  >
+    <template x-for="(item, index) in faq" :key="`item-{$index}`">
+      <div class="item bg-white shadow-md rounded-md p-3">
+        <div
+          class="flex items-center cursor-pointer"
+          @click="faq_selected !== index ? faq_selected = index : faq_selected = null"
+        >
+          <div
+            class="
+              bg-blue-100
+              text-blue-400
+              w-8
+              h-8
+              md:w-10
+              md:h-10
+              rounded-md
+              flex flex-col
+              items-center
+              justify-center
+              font-bold
+              text-lg
+              font-display
+            "
+          >
+            <span x-text="index + 1"></span>
+          </div>
+          <div
+            class="
+              ml-3
+              md:ml-4
+              lg:ml-6
+              md:text-lg
+              text-blue-500
+              flex flex-row
+              justify-between
+              items-center
+              w-full
+            "
+          >
+            <span x-text="item.question"></span>
+            <i class="fas fa-times text-red-500"></i>
+          </div>
+        </div>
+        <div
+          class="relative overflow-hidden transition-all max-h-0 duration-700"
+          x-bind:style="faq_selected === index ? `max-height:  ${ $el.scrollHeight }px` : ``"
+        >
+          <div class="text-gray-700 py-2 px-8 space-y-3">
+            <template
+              x-for="(ans, index) in item.answer"
+              :key="`item-ans-{$index}`"
+            >
+              <p x-text="ans"></p>
+            </template>
+            <form action="" method="">
+              <div class="flex flex-row justify-start">
+                <input
+                  class="
+                    border
+                    py-2
+                    px-3
+                    text-grey-darkest
+                    w-3/5
+                    focus:outline-none
+                    inputborder
+                  "
+                  type="text"
+                  name="link"
+                  id="password"
+                  placeholder="Submit your tasks here"
+                />
+                <button class="custom-btn mx-4 btn-2">Submit</button>
+              </div>
+            </form>
+
+            <!-- Wrong Submission -->
+            <div
+              class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
+              role="alert"
+            >
+              <p class="font-bold">Wrong Submission!</p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab,
+                tempora.
+              </p>
+            </div>
+            <!-- Info On Correct Submission -->
+            <!-- <div
+              class="flex flex-col bg-blue-500 text-white px-4 py-3"
+              role="alert"
+            >
+              <h4 class="text-md font-bold">
+                Great job! but there's always room for more!
+              </h4>
+              <p>Something happened that you should know about.</p>
+            </div> -->
+            <div
+              class="
+                bg-green-100
+                border-l-4 border-green-500
+                text-green-700
+                p-4
+              "
+              role="alert"
+            >
+              <p class="font-bold">
+                Great job! but there's always room for more!
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
+                accusantium!
+              </p>
+            </div>
+            <div
+              class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4"
+              role="alert"
+            >
+              <p class="font-bold">
+                Have Pateince we are working on your tasks!!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <!-- Mentor Card -->
+  <div class="grid grid-flow-row md:grid-cols-2 grid-cols-1 gap-4 p-16">
+    <div
+      class="
+        flex flex-row
+        justify-center
+        bg-white
+        w-4/5
+        p-8
+        rounded-lg
+        shadow-lg
+        mx-auto
+      "
+    >
+      <!-- Photo and Name Of Profile Card -->
+      <div class="flex flex-col md:flex-row gap-2 justify-between items-center">
+        <img
+          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png"
+          alt="..."
+          class="
+            justify-start
+            shadow-lg
+            rounded-full
+            w-28
+            align-middle
+            border-yellow-500 border-4
+          "
+        />
+        <!-- Details Section of Profile Card -->
+        <div>
+          <h6>Mentor Name</h6>
+          <p>Mentor Year, Mentor Branch</p>
+          <div class="flex flex-row items-center gap-2">
+            <i class="fas fa-phone"></i>
+            <p>1234567890</p>
+          </div>
+          <div class="flex flex-row items-center gap-2">
+            <i class="fas fa-envelope"></i>
+            <p>test@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2nd Mentor -->
+
+    <div
+      class="
+        flex flex-row
+        justify-center
+        bg-white
+        w-4/5
+        p-8
+        rounded-lg
+        shadow-lg
+        mx-auto
+      "
+    >
+      <!-- Photo and Name Of Profile Card -->
+      <div class="flex flex-col md:flex-row gap-2 justify-between items-center">
+        <img
+          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png"
+          alt="..."
+          class="
+            justify-start
+            shadow-lg
+            rounded-full
+            w-28
+            align-middle
+            border-yellow-500 border-4
+          "
+        />
+        <!-- Details Section of Profile Card -->
+        <div>
+          <h6>Mentor Name</h6>
+          <p>Mentor Year, Mentor Branch</p>
+          <div class="flex flex-row items-center gap-2">
+            <i class="fas fa-phone"></i>
+            <p>1234567890</p>
+          </div>
+          <div class="flex flex-row items-center gap-2">
+            <i class="fas fa-envelope"></i>
+            <p>test@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3rd Mentor -->
+    <div
+      class="
+        flex flex-row
+        justify-center
+        bg-white
+        w-4/5
+        p-8
+        rounded-lg
+        shadow-lg
+        mx-auto
+      "
+    >
+      <!-- Photo and Name Of Profile Card -->
+      <div class="flex flex-col md:flex-row gap-2 justify-between items-center">
+        <img
+          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png"
+          alt="..."
+          class="
+            justify-start
+            shadow-lg
+            rounded-full
+            w-28
+            align-middle
+            border-yellow-500 border-4
+          "
+        />
+        <!-- Details Section of Profile Card -->
+        <div>
+          <h6>Mentor Name</h6>
+          <p>Mentor Year, Mentor Branch</p>
+          <div class="flex flex-row items-center gap-2">
+            <i class="fas fa-phone"></i>
+            <p>1234567890</p>
+          </div>
+          <div class="flex flex-row items-center gap-2">
+            <i class="fas fa-envelope"></i>
+            <p>test@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="
+        flex flex-row
+        justify-center
+        bg-white
+        w-4/5
+        p-8
+        rounded-lg
+        shadow-lg
+        mx-auto
+      "
+    >
+      <!-- Photo and Name Of Profile Card -->
+      <div class="flex flex-col md:flex-row gap-2 justify-between items-center">
+        <img
+          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png"
+          alt="..."
+          class="
+            justify-start
+            shadow-lg
+            rounded-full
+            w-28
+            align-middle
+            border-yellow-500 border-4
+          "
+        />
+        <!-- Details Section of Profile Card -->
+        <div>
+          <h6>Mentor Name</h6>
+          <p>Mentor Year, Mentor Branch</p>
+          <div class="flex flex-row items-center gap-2">
+            <i class="fas fa-phone"></i>
+            <p>1234567890</p>
+          </div>
+          <div class="flex flex-row items-center gap-2">
+            <i class="fas fa-envelope"></i>
+            <p>test@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

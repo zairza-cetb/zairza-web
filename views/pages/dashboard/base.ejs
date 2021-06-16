@@ -15,17 +15,20 @@
     <link
       href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
       rel="stylesheet"
-  />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/css/dashboard.css">
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+
+    <link rel="stylesheet" href="/css/dashboard.css" />
   </head>
   <body class="flex">
-    <%- include('../../partials/firebase.ejs') %>
-    <%- include('../../partials/toast.ejs') %>
-    <%- include('../../partials/delete.ejs') %>
-    <% if(!user.registrationNo) { %>
-      <%- include('../../partials/profileUpdatePop.ejs') %>
-    <% } %>  
+    <%- include('../../partials/firebase.ejs') %> <%-
+    include('../../partials/toast.ejs') %> <%-
+    include('../../partials/delete.ejs') %> <% if(!user.registrationNo) { %> <%-
+    include('../../partials/profileUpdatePop.ejs') %> <% } %>
     <aside class="relative bg-sidebar h-screen w-80 hidden lg:block shadow-xl">
       <div class="h-16 flex justify-center items-center">
         <a href="/">
@@ -35,43 +38,236 @@
       <nav class="text-black text-base pt-3 h-96">
         <a
           href="/me"
-          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+          class="
+            flex
+            items-center
+            text-black
+            hover:text-white
+            py-4
+            pl-6
+            nav-item
+            my-4
+          "
         >
           <i class="fas fa-tachometer-alt mr-3"></i>
           Dashboard
         </a>
         <a
           href="/projects"
-          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+          class="
+            flex
+            items-center
+            text-black
+            hover:text-white
+            py-4
+            pl-6
+            nav-item
+            my-4
+          "
         >
           <i class="fas fa-project-diagram mr-3"></i>
           Zairza Projects
         </a>
         <% if(user.registrationNo) { %>
-        <a href="/skills" 
-          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
-         >
-          <i class="fas fa-user-graduate mr-3"></i>
-          Skills++
-        </a>
-        <% } else { %>
-          <a href="#"
-          onclick="showToast(400,'Please fillup your zairza profile inorder to register.')" 
-          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
-         >
-          <i class="fas fa-user-graduate mr-3"></i>
-          Skills++
-        </a>
-        <% } %>
-        <% if(user.role == 'admin') { %>
+        <div
+          class="
+            b
+            relative
+            mx-auto
+            h-16
+            w-64
+            flex
+            justify-start
+            items-center
+            z-50
+          "
+        >
+          <div
+            class="
+              i
+              h-16
+              w-64
+              bg-zairza-blue
+              items-center
+              rounded-xl
+              shadow-lg
+              cursor-pointer
+              absolute
+              overflow-hidden
+              transform
+              hover:scale-x-110 hover:scale-y-105
+              transition
+              duration-300
+              ease-out
+            "
+          ></div>
           <a
+            href="/skills"
+            class="
+              text-center text-white
+              z-50
+              pointer-events-none
+              flex
+              items-center
+              p-6
+            "
+            ><i class="fas fa-user-graduate mr-3"></i>Skill++</a
+          >
+          <span
+            class="
+              absolute
+              flex
+              h-6
+              w-6
+              top-0
+              right-0
+              transform
+              translate-x-2.5
+              -translate-y-2.5
+            "
+          >
+            <span
+              class="
+                animate-ping
+                absolute
+                inline-flex
+                h-full
+                w-full
+                rounded-full
+                bg-zairza-orange-400
+                opacity-75
+              "
+            ></span>
+            <span
+              class="absolute inline-flex rounded-full h-6 w-6 bg-zairza-orange"
+            ></span>
+          </span>
+        </div>
+        <!-- <a
+          href="/skills"
+          class="
+            flex
+            items-center
+            text-black
+            hover:text-white
+            py-4
+            pl-6
+            nav-item
+            my-4
+          "
+        >
+          <i class="fas fa-user-graduate mr-3"></i>
+          Skills++
+        </a> -->
+        <% } else { %>
+        <div
+          class="
+            ab
+            relative
+            mx-auto
+            h-16
+            w-64
+            flex
+            justify-start
+            items-center
+            z-50
+          "
+        >
+          <div
+            class="
+              i
+              h-16
+              w-64
+              bg-zairza-blue
+              items-center
+              rounded-xl
+              shadow-lg
+              cursor-pointer
+              absolute
+              overflow-hidden
+              transform
+              hover:scale-x-110 hover:scale-y-105
+              transition
+              duration-300
+              ease-out
+            "
+          ></div>
+          <a
+            href="/skills"
+            class="
+              text-center text-white
+              z-50
+              pointer-events-none
+              flex
+              items-center
+              p-6
+            "
+            ><i class="fas fa-user-graduate mr-3"></i>Skill++</a
+          >
+          <span
+            class="
+              absolute
+              flex
+              h-6
+              w-6
+              top-0
+              right-0
+              transform
+              translate-x-2.5
+              -translate-y-2.5
+            "
+          >
+            <span
+              class="
+                animate-ping
+                absolute
+                inline-flex
+                h-full
+                w-full
+                rounded-full
+                bg-zairza-orange-400
+                opacity-75
+              "
+            ></span>
+            <span
+              class="absolute inline-flex rounded-full h-6 w-6 bg-zairza-orange"
+            ></span>
+          </span>
+        </div>
+        <% } %> <% if(user.role == 'admin') { %>
+        <a
           href="/eventPosterUpload"
-          class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
+          class="
+            flex
+            items-center
+            text-black
+            hover:text-white
+            py-4
+            pl-6
+            nav-item
+            my-4
+          "
         >
           <i class="fas fa-file-upload mr-3"></i>
           Event poster upload
         </a>
         <% } %>
+        <a
+          href="/skilldashboard"
+          class="
+            flex
+            items-center
+            text-black
+            hover:text-white
+            py-4
+            pl-6
+            nav-item
+            my-4
+          "
+        >
+          <i class="fas fa-tachometer-alt mr-3"></i>
+          Skills++ Dashboard
+        </a>
       </nav>
     </aside>
 
@@ -79,17 +275,79 @@
       <!-- Desktop Header -->
       <header class="w-full items-center bg-white py-2 px-6 hidden lg:flex">
         <% if(user.role == 'restricted') {%>
-          <span class="inline-flex items-center justify-center w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-orange rounded"> Non-Zairza Member </span>
-          <% } else if(user.role == 'admin') { %>
-          <span class="inline-flex items-center justify-center w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Admin </span>
-          <% } else { %>
-          <span class="inline-flex items-center justify-center w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Member </span>
-          <% } %>
+        <span
+          class="
+            inline-flex
+            items-center
+            justify-center
+            w-48
+            px-4
+            py-2
+            text-sm
+            font-bold
+            leading-none
+            text-white
+            bg-orange
+            rounded
+          "
+        >
+          Non-Zairza Member
+        </span>
+        <% } else if(user.role == 'admin') { %>
+        <span
+          class="
+            inline-flex
+            items-center
+            justify-center
+            w-48
+            px-4
+            py-2
+            text-sm
+            font-bold
+            leading-none
+            text-white
+            bg-blue
+            rounded
+          "
+        >
+          Zairza Admin
+        </span>
+        <% } else { %>
+        <span
+          class="
+            inline-flex
+            items-center
+            justify-center
+            w-48
+            px-4
+            py-2
+            text-sm
+            font-bold
+            leading-none
+            text-white
+            bg-blue
+            rounded
+          "
+        >
+          Zairza Member
+        </span>
+        <% } %>
         <div class="w-1/2"></div>
         <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
           <button
             @click="isOpen = !isOpen"
-            class="realtive z-10 w-12 h-12 rounded-full overflow-hidden border-4 border-gray-400 hover:border-gray-300 focus:border-gray-300 focus:outline-none"
+            class="
+              realtive
+              z-10
+              w-12
+              h-12
+              rounded-full
+              overflow-hidden
+              border-4 border-gray-400
+              hover:border-gray-300
+              focus:border-gray-300
+              focus:outline-none
+            "
           >
             <img src="/images/profile_icon.png" />
           </button>
@@ -102,10 +360,14 @@
             x-show="isOpen"
             class="absolute bg-gray-100 rounded-lg shadow-lg py-2 mt-16"
           >
-            <a href="/profile" class="block px-4 py-2 account-link hover:text-white"
+            <a
+              href="/profile"
+              class="block px-4 py-2 account-link hover:text-white"
               >My Profile</a
             >
-            <a href="#" class="block px-4 py-2 account-link hover:text-white"
+            <a
+              href="#"
+              class="block px-4 py-2 account-link hover:text-white"
               onclick="logout()"
               >Sign Out</a
             >
@@ -141,46 +403,107 @@
         <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
           <a
             href="/me"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-tachometer-alt mr-3"></i>
             Dashboard
           </a>
           <a
             href="/projects"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-project-diagram mr-3"></i>
             Zairza Projects
           </a>
           <% if(user.registrationNo) { %>
-            <a href="/skills" 
-              class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
-             >
-              <i class="fas fa-user-graduate mr-3"></i>
-              Skills++
-            </a>
-            <% } else { %>
-              <a href="#"
-              onclick="showToast(400,'Please fillup your zairza profile inorder to register.')" 
-              class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
-             >
-              <i class="fas fa-user-graduate mr-3"></i>
-              Skills++
-            </a>
-            <% } %>
-            <% if(user.role == 'admin') { %>
-              <a
-              href="/eventPosterUpload"
-              class="flex items-center text-black hover:text-white py-4 pl-6 nav-item my-4"
-            >
-              <i class="fas fa-file-upload mr-3"></i>
-              Event poster upload
-            </a>
-            <% } %>
+          <a
+            href="/skills"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              py-4
+              pl-6
+              nav-item
+              my-4
+            "
+          >
+            <i class="fas fa-user-graduate mr-3"></i>
+            Skills++
+          </a>
+          <% } else { %>
+          <a
+            href="#"
+            onclick="showToast(400,'Please fillup your zairza profile inorder to register.')"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              py-4
+              pl-6
+              nav-item
+              my-4
+            "
+          >
+            <i class="fas fa-user-graduate mr-3"></i>
+            Skills++
+          </a>
+          <% } %> <% if(user.role == 'admin') { %>
+          <a
+            href="/eventPosterUpload"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              py-4
+              pl-6
+              nav-item
+              my-4
+            "
+          >
+            <i class="fas fa-file-upload mr-3"></i>
+            Event poster upload
+          </a>
+          <% } %>
           <a
             href="/profile"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-user mr-3"></i>
             My Profile
@@ -188,7 +511,18 @@
           <a
             href="#"
             onclick="logout();"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-sign-out-alt mr-3"></i>
             Sign Out
@@ -196,18 +530,80 @@
           <a
             href="#"
             onclick="deleteModal()"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
-          <i class='bx bxs-error-circle mr-3' ></i>
+            <i class="bx bxs-error-circle mr-3"></i>
             Delete account
           </a>
           <% if(user.role == 'restricted') {%>
-            <span class="inline-flex items-center justify-center lg:w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-orange rounded"> Non-Zairza Member </span>
-            <% } else if(user.role == 'admin') { %>
-            <span class="inline-flex items-center justify-center lg:w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Admin </span>
-            <% } else { %>
-            <span class="inline-flex items-center justify-center lg:w-48 px-4 py-2 text-sm font-bold leading-none text-white bg-blue rounded"> Zairza Member </span>
-            <% } %>
+          <span
+            class="
+              inline-flex
+              items-center
+              justify-center
+              lg:w-48
+              px-4
+              py-2
+              text-sm
+              font-bold
+              leading-none
+              text-white
+              bg-orange
+              rounded
+            "
+          >
+            Non-Zairza Member
+          </span>
+          <% } else if(user.role == 'admin') { %>
+          <span
+            class="
+              inline-flex
+              items-center
+              justify-center
+              lg:w-48
+              px-4
+              py-2
+              text-sm
+              font-bold
+              leading-none
+              text-white
+              bg-blue
+              rounded
+            "
+          >
+            Zairza Admin
+          </span>
+          <% } else { %>
+          <span
+            class="
+              inline-flex
+              items-center
+              justify-center
+              lg:w-48
+              px-4
+              py-2
+              text-sm
+              font-bold
+              leading-none
+              text-white
+              bg-blue
+              rounded
+            "
+          >
+            Zairza Member
+          </span>
+          <% } %>
         </nav>
         <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> New Report
@@ -215,8 +611,28 @@
       </header>
 
       <%- body %>
-
     </div>
+    <script>
+      const buttons = document.querySelectorAll(".b");
+      const button = document.querySelectorAll(".ab");
+      buttons.forEach(function (btn) {
+        btn.addEventListener("click", bbuttonClick);
+      });
+      button.forEach(function (btn) {
+        btn.addEventListener("click", abbuttonClick);
+      });
+
+      function bbuttonClick() {
+        window.location.href = "/skills";
+      }
+      function abbuttonClick() {
+        window.location.href = "#";
+        showToast(
+          400,
+          "Please fillup your zairza profile inorder to register."
+        );
+      }
+    </script>
 
     <!-- AlpineJS -->
     <script
@@ -229,7 +645,7 @@
       integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs="
       crossorigin="anonymous"
     ></script>
-    
+
     <script src="/js/dashboard.js"></script>
   </body>
 </html>
