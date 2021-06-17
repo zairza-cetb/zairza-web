@@ -36,6 +36,11 @@
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .bg-zairza-orange {
+  background-color: #ff7610;
+}
+  </style>
   <title>Zairza</title>
 </head>
 
@@ -73,16 +78,6 @@
           <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">Our Team</li>
           <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">Contact</li>
           <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded">FAQ</li>
-          <% if(loggedIn){ %>
-            <a href="/me" id="user">
-              <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Dashboard</li>
-            </a>
-          <% } else { %>
-            <a href="/auth#signin" id="user">
-              <li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li>
-            </a>
-          <% } %>
-          <a href="/me"><li class="transition duration-700 ease-in-out block text-white hover:text-black px-4 py-2 lg:my-0 my-1 lg:ml-2 bg-yellow-500 rounded-full font-normal transform animate-bounce" id="eventlink">Skills++</li></a>
         </ul>
       </header>
     </section>

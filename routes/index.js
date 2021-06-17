@@ -64,6 +64,9 @@ router.get("/forgot_password", function (req, res, next) {
   res.render("pages/newPassword");
 });
 
+router.get("/tmp", function (req, res, next) {
+  res.render("pages/dashboard/template");
+});
 /* GET unsubscribe page. */
 router.get("/unsubscribe", function (req, res, next) {
   res.render("pages/unsubscribe")

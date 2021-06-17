@@ -50,8 +50,18 @@ router.get("/skills", checkIfAuthenticated, function (req, res, next) {
 });
 
 /* GET poster uplaod page. */
-router.get("/eventPosterUpload", checkIfAuthenticated, function (req, res, next) {
-  res.render("pages/dashboard/eventPosterUpload", {
+router.get(
+  "/eventPosterUpload",
+  checkIfAuthenticated,
+  function (req, res, next) {
+    res.render("pages/dashboard/eventPosterUpload", {
+      user: req.user,
+      layout: "pages/base",
+    });
+  }
+);
+router.get("/skilldashboard", checkIfAuthenticated, function (req, res, next) {
+  res.render("pages/dashboard/skilldashboard", {
     user: req.user,
     layout: "pages/base",
   });

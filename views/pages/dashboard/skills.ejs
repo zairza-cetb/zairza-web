@@ -5,13 +5,14 @@
     -webkit-appearance: none;
     margin: 0;
   }
+  
 
   /* Firefox */
   input[type="number"] {
     -moz-appearance: textfield;
   }
 </style>
-<div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+<div class="w-full h-screen overflow-x-auto border-t flex flex-col">
   <main class="w-full flex-grow p-6">
     <div x-data="app()" x-cloak>
       <div class="max-w-3xl mx-auto px-4 py-10">
@@ -229,14 +230,14 @@
                 <div
                   class="flex flex-col justify-around mt-10 items-center h-16"
                 >
-                  <label for="phone"
+                  <label for="phone" class="font-bold mb-1 text-gray-700 block pb-3"
                     >Enter your mobile number preferablly whatsapp</label
                   >
                   <input
                     name="phone"
                     id="phone"
                     type="number"
-                    class="w-1/2 px-4 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white"
+                    class="w-1/2 px-4 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500  text-gray-600 font-medium"
                   />
                 </div>
               </div>
@@ -296,7 +297,7 @@
                   >
 
                   <div class="tag-container">
-                    <input class="" list="skills-required" />
+                    <input class="tag-input" list="skills-required" />
                     <datalist id="skills-required">
                       <option value="HTML">HTML</option>
                       <option value="CSS">CSS</option>
@@ -314,11 +315,11 @@
             </div>
             <div x-show.transition.in="step === 3">
               <div class="mb-5">
-                <label for="" class="font-bold mb-1 text-gray-700 block"
+                <label for="" class="font-bold mb-1 text-gray-700 block text-center"
                   >Domain</label
                 >
 
-                <div class="flex">
+                <div class="grid md:grid-cols-4 grid-rows-12 gap-x-8 gap-y-3">
                   <label
                     class="
                       flex
@@ -331,8 +332,7 @@
                       pr-6
                       py-3
                       shadow-sm
-                      mr-4
-                    "
+                      "
                   >
                     <div class="text-teal-600 mr-3">
                       <input
@@ -351,6 +351,7 @@
 
                   <label
                     class="
+                      labels
                       flex
                       justify-start
                       items-center
@@ -361,6 +362,8 @@
                       pr-6
                       py-3
                       shadow-sm
+                      
+                      
                     "
                   >
                     <div class="text-teal-600 mr-3">
@@ -377,6 +380,8 @@
                     </div>
                     <div class="select-none text-gray-700">App dev</div>
                   </label>
+                  
+
                   <label
                     class="
                       flex
@@ -389,13 +394,14 @@
                       pr-6
                       py-3
                       shadow-sm
+                      
                     "
                   >
                     <div class="text-teal-600 mr-3">
                       <input
                         type="radio"
                         x-model="gender"
-                        value="Machine Learning"
+                        value="AI/ML"
                         class="
                           form-radio
                           focus:outline-none
@@ -404,9 +410,267 @@
                       />
                     </div>
                     <div class="select-none text-gray-700">
-                      Machine Learning
+                      AI/ML
                     </div>
                   </label>
+
+                  
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        labels
+                                        shadow-sm
+                                         
+                                      ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="Competitive Coding" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700 ">
+                      Competitive 
+                      Coding
+                    </div>
+                  </label>
+                   
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        shadow-sm
+                                        
+                                        
+                                      ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="Microcontroller & Embedded Systems" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700">
+                      Microcontroller & Embedded Systems
+                    </div>
+                  </label>
+
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        shadow-sm
+                                        
+                                        
+                                      ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="IOT" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700">
+                      IOT
+                    </div>
+                  </label>
+
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        shadow-sm
+                                        mr-4
+                                        
+                                      ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="Cloud Computing" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700">
+                      Cloud Computing
+                    </div>
+                  </label>
+
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        shadow-sm
+                                        
+                                        
+                                      ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="DevOps" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700">
+                      DevOps
+                    </div>
+                  </label>
+
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        shadow-sm
+                                        
+                                        
+                                      ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="Blockchain" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700">
+                      Blockchain
+                    </div>
+                  </label>
+
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        shadow-sm
+                                        
+                                        
+                                      ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="UI" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700">
+                      UI
+                    </div>
+                  </label>
+
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        shadow-sm
+                                        
+                                        
+                                      ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="Graphic Designing" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700">
+                      Graphic Designing
+                    </div>
+                  </label>
+
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        shadow-sm
+                                        
+                                        
+                                      ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="Videography & Editing" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700">
+                      Videography & Editing
+                    </div>
+                  </label>
+
+                  <label class="
+                                        flex
+                                        justify-start
+                                        items-center
+                                        text-truncate
+                                        rounded-lg
+                                        bg-white
+                                        pl-4
+                                        pr-6
+                                        py-3
+                                        shadow-sm
+                                        ">
+                    <div class="text-teal-600 mr-3">
+                      <input type="radio" x-model="gender" value="ROS" class="
+                                            form-radio
+                                            focus:outline-none
+                                            focus:shadow-outline
+                                          " />
+                    </div>
+                    <div class="select-none text-gray-700">ROS</div>
+
                 </div>
               </div>
             </div>

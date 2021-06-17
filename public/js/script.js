@@ -95,34 +95,7 @@ $(document).ready(function () {
     $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
   });
 
-  // Newsletter cookie
-  //   let visited = $.cookie("visited");
-  //   if (visited != "yes") {
-  //     $("#newsletter_pop").toggleClass("hidden");
-  //     $("main").toggleClass("opacity-10");
-  //   }
-  //   $.cookie("visited", "yes", {
-  //     expires: 1, // the number of days cookie  will be effective
-  //   });
-
-  //   $("#newsletter-close-icon").on("click", function () {
-  //     $("#newsletter_pop").toggleClass("hidden");
-  //     $("main").toggleClass("opacity-10");
-  //   });
 });
-
-//for events link in navbar
-// const eventlink = document.getElementById("eventlink");
-// eventlink.addEventListener("mouseover", () => {
-//   eventlink.classList.remove("animate-bounce");
-//   eventlink.classList.remove("bg-yellow-500");
-//   eventlink.classList.add("bg-blue");
-// });
-// eventlink.addEventListener("mouseout", () => {
-//   eventlink.classList.add("animate-bounce");
-//   eventlink.classList.remove("bg-blue");
-//   eventlink.classList.add("bg-yellow-500");
-// });
 firebase.auth().onAuthStateChanged((user) => {
   let userRoute;
   if (user) {
