@@ -7,6 +7,12 @@ const User = require("../models/Users");
 const Newsletter = require("../models/Newsletter");
 const ValidRegNos = require("../models/ValidRegNos");
 const ChangeLog = require("../models/ChangeLog");
+const Events = require("../models/Events");
+
+// Skills ++
+
+
+
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 const admin = require("../firebase/firebaseService");
 
@@ -131,6 +137,14 @@ module.exports = (app, mongoose_connection) => {
             edit: { isVisible: false },
             bulkDelete: { isVisible: false },
           },
+        }
+      },
+      { resource: Events,
+        options: { 
+          editProperties: ["name", "imageURL", "startTime", "endTime"],
+          actions: {
+            new: {isVisible: false}
+          }
         }
       }
     ],

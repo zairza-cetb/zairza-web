@@ -2,10 +2,17 @@ const express = require("express");
 const router = express.Router();
 const admin = require("../firebase/firebaseService");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
+const Events = require("../models/Events");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-    res.render("pages/index");
+  const today = new Date();
+  Events.findOne({startTime:{$lte: today}, endTime:{$gte: today}}, function(err, event){
+    if(err){
+      return next(err);
+    }
+    res.render("pages/index", {event:event});
+  });
 });
 
 /* GET auth page. */

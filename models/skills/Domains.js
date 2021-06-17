@@ -14,7 +14,6 @@ const DomainSchema = new mongoose.Schema(
     tasks: [{ 
         weekNo: Number,
         description: String,
-        points: [String],
         resources: [String]
     }],
     mentors: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],

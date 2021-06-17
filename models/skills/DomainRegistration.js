@@ -1,16 +1,31 @@
 const mongoose = require("mongoose");
 
 const DomainRegistrationSchema = new mongoose.Schema(
-  {
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
-    domain: { type: mongoose.Schema.Types.ObjectId, ref: "domains" },
-    taskStatus: [{ 
-      status: Boolean,
-      reviewed: Boolean,
-      comments: String
-    }]
-  },
-  { strict: true, versionKey: false }
+	{
+		user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+		domain: { type: mongoose.Schema.Types.ObjectId, ref: "domains" },
+		submissions: [
+			{
+				weekNo: Number,
+				status: {
+					type: String,
+					enum: ["submitted", "reviewed"],
+					default: "submitted",
+				},
+				approved: { type: Boolean, default: null },
+				comment: String,
+				mark: { type: Integer, default: null },
+			},
+		],
+	},
+	{
+		strict: true,
+		versionKey: false,
+		timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
+	}
 );
 
-module.exports = DomainRegistrations = mongoose.model("domainRegistrations", DomainRegistrationSchema);
+module.exports = DomainRegistrations = mongoose.model(
+	"domainRegistrations",
+	DomainRegistrationSchema
+);

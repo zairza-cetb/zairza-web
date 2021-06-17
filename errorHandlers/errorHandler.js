@@ -78,7 +78,7 @@ module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
 
-  if (!req.url.startsWith("/api/")) {
+  if (!req.url.includes("/api/")) {
     if (err.codePrefix == "auth") {
       return redirectAuthPage(err, req, res);
     } else if (err.statusCode === 403) {
