@@ -2,11 +2,15 @@ const express = require("express");
 const router = express.Router();
 const admin = require("../firebase/firebaseService");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
+const { uploadProfilePhoto } = require("../utils/multer.js");
 
 const editableFields = new Set([
   "name",
   "email",
   "registrationNo",
+  "profileImage",
+  "phoneNo",
+  "skills",
   "wing",
   "branch",
 ]);
@@ -15,7 +19,7 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
   res.json(req.user);
 });
 
-router.put("/edit", checkIfAuthenticated, function (req, res, next) {
+router.put("/edit", checkIfAuthenticated, uploadProfilePhoto.single("profile"), function (req, res, next) {
   if (!req.user.registrationNo && !req.body.registrationNo) {
     return res
       .status(403)
@@ -31,6 +35,10 @@ router.put("/edit", checkIfAuthenticated, function (req, res, next) {
         .status(401)
         .json({ status: "fail", message: "Accessing unknown fields" });
     }
+
+    console.log(req.file);
+    if (req.file)
+      req.body.profileImage = req.file.location;
 
     User.findByIdAndUpdate(
       req.user.id,

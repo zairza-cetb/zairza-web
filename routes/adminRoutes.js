@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 const sendMail = require("../utils/sendMail.js");
-const upload = require("../utils/multer.js");
+const { upload } = require("../utils/multer.js");
 
 router.use(checkIfAuthenticated, function (req, res, next) {
 	if (req.user.role === "admin") {

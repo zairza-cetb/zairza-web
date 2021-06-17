@@ -29,4 +29,24 @@ const upload = multer({
 	}),
 });
 
-module.exports = upload;
+const uploadProfilePhoto = multer({
+	storage: multerS3({
+		s3: s3,
+		bucket: "zairza-website",
+		metadata: function (req, file, cb) {
+			cb(null, { fieldName: file.fieldname });
+		},
+		key: function (req, file, cb) {
+			cb(
+				null,
+				"profile-photos/" +
+					file.fieldname +
+					"-" +
+					Date.now() +
+					path.extname(file.originalname)
+			);
+		},
+	}),
+});
+
+module.exports = { upload, uploadProfilePhoto };

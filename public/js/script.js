@@ -96,6 +96,7 @@ $(document).ready(function () {
   });
 
 });
+// Check user logged in or not
 firebase.auth().onAuthStateChanged((user) => {
   let userRoute;
   if (user) {

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const DomainRegistrationSchema = new mongoose.Schema(
 	{
-		user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
+		user: { type: mongoose.Schema.Types.ObjectId, ref: "users", unique: true},
 		domain: { type: mongoose.Schema.Types.ObjectId, ref: "domains" },
 		submissions: [
 			{
@@ -14,7 +14,7 @@ const DomainRegistrationSchema = new mongoose.Schema(
 				},
 				approved: { type: Boolean, default: null },
 				comment: String,
-				mark: { type: Integer, default: null },
+				mark: { type: Number, default: null },
 			},
 		],
 	},
@@ -25,7 +25,7 @@ const DomainRegistrationSchema = new mongoose.Schema(
 	}
 );
 
-DomainRegistrationSchema.index({ user: 1, domain: 1 }, { unique: true });
+// DomainRegistrationSchema.index({ user: 1, domain: 1 }, { unique: true });
 module.exports = DomainRegistrations = mongoose.model(
 	"domainRegistrations",
 	DomainRegistrationSchema

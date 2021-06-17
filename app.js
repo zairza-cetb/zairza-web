@@ -11,7 +11,9 @@ const userRouter = require("./routes/user");
 const adminRoutes = require("./routes/adminRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const adminPanel = require("./routes/adminPanel");
-const agenda = require("./utils/agendaJobs");
+
+// Skill ++ routes
+const skillRoutes = require("./routes/skills/routes.js");
 
 const app = express();
 
@@ -37,6 +39,10 @@ app.use("/", indexRouter);
 app.use("/", dashboardRoutes);
 app.use("/api/user", userRouter);
 app.use("/protected", adminRoutes);
+
+// SKill ++
+app.use("/skills", skillRoutes);
+
 adminPanel(app, connection);
 
 app.get("*", function (req, res) {

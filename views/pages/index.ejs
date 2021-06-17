@@ -36,19 +36,16 @@
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
-  <style>
-    .bg-zairza-orange {
-  background-color: #ff7610;
-}
-  </style>
   <title>Zairza</title>
 </head>
 
 <body>
   <!--js xor no-js -->
-  <%- include('../partials/eventspop.ejs', { poster:poster }); %>
   <%- include('../partials/firebase.ejs') %>
-
+  <% if(poster) { %>
+  <%- include('../partials/eventspop.ejs', { poster:poster }) %>
+  <% } %>
+  
   <main class="js mb-20 sm:mb-0">
     <section>
       <header class="navbar bg-white lg:flex lg:justify-between lg:items-center sm:px-16 sm:py-6">
