@@ -36,7 +36,6 @@ router.put("/edit", checkIfAuthenticated, uploadProfilePhoto.single("profile"), 
         .json({ status: "fail", message: "Accessing unknown fields" });
     }
 
-    console.log(req.file);
     if (req.file)
       req.body.profileImage = req.file.location;
 
