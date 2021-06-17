@@ -6,7 +6,7 @@ const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 /* GET home page. */
 router.get("/", function (req, res, next) {
   const poster = 'https://images.unsplash.com/photo-1623491351896-073b656b4205?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80';
-    res.render("pages/index");
+    res.render("pages/index", { poster: poster });
 });
 
 /* GET auth page. */
