@@ -95,31 +95,16 @@ $(document).ready(function () {
     $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
   });
 
-  // Newsletter cookie
-  //   let visited = $.cookie("visited");
-  //   if (visited != "yes") {
-  //     $("#newsletter_pop").toggleClass("hidden");
-  //     $("main").toggleClass("opacity-10");
-  //   }
-  //   $.cookie("visited", "yes", {
-  //     expires: 1, // the number of days cookie  will be effective
-  //   });
-
-  //   $("#newsletter-close-icon").on("click", function () {
-  //     $("#newsletter_pop").toggleClass("hidden");
-  //     $("main").toggleClass("opacity-10");
-  //   });
 });
-
-//for events link in navbar
-// const eventlink = document.getElementById("eventlink");
-// eventlink.addEventListener("mouseover", () => {
-//   eventlink.classList.remove("animate-bounce");
-//   eventlink.classList.remove("bg-yellow-500");
-//   eventlink.classList.add("bg-blue");
-// });
-// eventlink.addEventListener("mouseout", () => {
-//   eventlink.classList.add("animate-bounce");
-//   eventlink.classList.remove("bg-blue");
-//   eventlink.classList.add("bg-yellow-500");
-// });
+firebase.auth().onAuthStateChanged((user) => {
+  let userRoute;
+  if (user) {
+    // User is signed in
+    userRoute = `<a href="/me" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Dashboard</li></a>`
+    // ...
+  } else {
+    // User is signed out
+    userRoute = `<a href="/auth#signin" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li></a>`
+  }
+  $("#mob-menu").append(userRoute);
+});

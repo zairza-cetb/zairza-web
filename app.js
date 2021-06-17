@@ -11,6 +11,7 @@ const userRouter = require("./routes/user");
 const adminRoutes = require("./routes/adminRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const adminPanel = require("./routes/adminPanel");
+const agenda = require("./utils/agendaJobs");
 
 const app = express();
 

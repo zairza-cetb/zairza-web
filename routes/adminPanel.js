@@ -4,6 +4,7 @@ const AdminBroExpress = require("@admin-bro/express");
 const AdminBroMongoose = require("@admin-bro/mongoose");
 const express = require("express");
 const User = require("../models/Users");
+const Newsletter = require("../models/Newsletter");
 const ValidRegNos = require("../models/ValidRegNos");
 const ChangeLog = require("../models/ChangeLog");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
@@ -40,7 +41,7 @@ module.exports = (app, mongoose_connection) => {
       {
         resource: User,
         options: {
-          listProperties: ["firebaseUid", "name", "email", "registrationNo"],
+          listProperties: ["name", "email", "registrationNo", "createdAt"],
           actions: {
             delete: { isVisible: false },
             bulkDelete: { isVisible: false },
@@ -49,6 +50,7 @@ module.exports = (app, mongoose_connection) => {
               guard: "confirmDelete",
               icon: "Delete",
               component: false,
+              after:createLog,
               variant: "danger",
               handler: async (request, response, data) => {
                 const {
@@ -120,6 +122,17 @@ module.exports = (app, mongoose_connection) => {
           },
         },
       },
+      {
+        resource: Newsletter,
+        options: {
+          listProperties: ["scheduleDate", "sent", "notSent"],
+          editProperties: ["scheduleDate"],
+          actions: {
+            edit: { isVisible: false },
+            bulkDelete: { isVisible: false },
+          },
+        }
+      }
     ],
     rootPath: "/admin",
     branding: {
