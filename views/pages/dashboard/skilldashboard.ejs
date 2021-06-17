@@ -39,15 +39,24 @@
     height: 0%;
     width: 2px;
   }
-  .btn-2:hover {
+  /* .btn-2:hover {
     box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.5),
       -4px -4px 6px 0 rgba(116, 125, 136, 0.5),
       inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
       inset 4px 4px 6px 0 rgba(0, 0, 0, 0.4);
-  }
+  } */
 
   .bg-zairza-orange {
     background-color: #ff7610;
+  }
+  .text-zairza-orange {
+    color: #ff7610;
+  }
+  .text-zairza-blue {
+    color: rgb(16, 113, 255);
+  }
+  .border-zairza-orange {
+    border-color: #ffe9da;
   }
 </style>
 <link
@@ -63,7 +72,7 @@
 <div
   class="bg-gray-100 md:px-4 md:px-0 pb-10 h-screen my-auto overflow-y-scroll"
 >
-  <!-- Highlight Badge -->
+  <!-- Highlight Badge For Piazza -->
 
   <div class="text-center pt-8 lg:px-4 w-1/2 mx-auto">
     <div
@@ -111,6 +120,48 @@
         />
       </svg>
     </div>
+  </div>
+
+  <!-- Rules and Regulations Section -->
+
+  <div
+    class="
+      rounded-lg
+      shadow-lg
+      bg-white
+      p-4
+      mx-8
+      mt-8
+      border-2 border-zairza-orange
+      flex flex-col
+      justify-center
+      items-center
+    "
+  >
+    <div class="font-bold text-xl mb-2">
+      <span class="text-zairza-blue">Rules</span>
+      <span class="text-zairza-orange"> & </span
+      ><span class="text-zairza-blue">Regulations</span>
+    </div>
+    <ol class="list-inside list-decimal leading-loose break-words w-11/12">
+      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+      <li>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente
+        minima quis doloribus reprehenderit magni. Saepe commodi non quod atque
+        possimus?
+      </li>
+      <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+      <li>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
+        reprehenderit tenetur, maxime quae odio at architecto velit ratione
+        provident harum. Esse quod deleniti nulla possimus totam cupiditate
+        nesciunt fuga quia.
+      </li>
+      <li>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos
+        corporis deleniti voluptatum, eaque illum consequatur?
+      </li>
+    </ol>
   </div>
 
   <!-- Accordion -->
@@ -373,179 +424,5 @@
         </div>
       </div>
     </template>
-  </div>
-
-  <!-- Mentor Card -->
-  <div class="grid grid-flow-row md:grid-cols-2 grid-cols-1 gap-4 p-16">
-    <div
-      class="
-        flex flex-row
-        justify-center
-        bg-white
-        w-4/5
-        p-8
-        rounded-lg
-        shadow-lg
-        mx-auto
-      "
-    >
-      <!-- Photo and Name Of Profile Card -->
-      <div class="flex flex-col md:flex-row gap-2 justify-between items-center">
-        <img
-          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png"
-          alt="..."
-          class="
-            justify-start
-            shadow-lg
-            rounded-full
-            w-28
-            align-middle
-            border-yellow-500 border-4
-          "
-        />
-        <!-- Details Section of Profile Card -->
-        <div>
-          <h6>Mentor Name</h6>
-          <p>Mentor Year, Mentor Branch</p>
-          <div class="flex flex-row items-center gap-2">
-            <i class="fas fa-phone"></i>
-            <p>1234567890</p>
-          </div>
-          <div class="flex flex-row items-center gap-2">
-            <i class="fas fa-envelope"></i>
-            <p>test@gmail.com</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2nd Mentor -->
-
-    <div
-      class="
-        flex flex-row
-        justify-center
-        bg-white
-        w-4/5
-        p-8
-        rounded-lg
-        shadow-lg
-        mx-auto
-      "
-    >
-      <!-- Photo and Name Of Profile Card -->
-      <div class="flex flex-col md:flex-row gap-2 justify-between items-center">
-        <img
-          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png"
-          alt="..."
-          class="
-            justify-start
-            shadow-lg
-            rounded-full
-            w-28
-            align-middle
-            border-yellow-500 border-4
-          "
-        />
-        <!-- Details Section of Profile Card -->
-        <div>
-          <h6>Mentor Name</h6>
-          <p>Mentor Year, Mentor Branch</p>
-          <div class="flex flex-row items-center gap-2">
-            <i class="fas fa-phone"></i>
-            <p>1234567890</p>
-          </div>
-          <div class="flex flex-row items-center gap-2">
-            <i class="fas fa-envelope"></i>
-            <p>test@gmail.com</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3rd Mentor -->
-    <div
-      class="
-        flex flex-row
-        justify-center
-        bg-white
-        w-4/5
-        p-8
-        rounded-lg
-        shadow-lg
-        mx-auto
-      "
-    >
-      <!-- Photo and Name Of Profile Card -->
-      <div class="flex flex-col md:flex-row gap-2 justify-between items-center">
-        <img
-          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png"
-          alt="..."
-          class="
-            justify-start
-            shadow-lg
-            rounded-full
-            w-28
-            align-middle
-            border-yellow-500 border-4
-          "
-        />
-        <!-- Details Section of Profile Card -->
-        <div>
-          <h6>Mentor Name</h6>
-          <p>Mentor Year, Mentor Branch</p>
-          <div class="flex flex-row items-center gap-2">
-            <i class="fas fa-phone"></i>
-            <p>1234567890</p>
-          </div>
-          <div class="flex flex-row items-center gap-2">
-            <i class="fas fa-envelope"></i>
-            <p>test@gmail.com</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="
-        flex flex-row
-        justify-center
-        bg-white
-        w-4/5
-        p-8
-        rounded-lg
-        shadow-lg
-        mx-auto
-      "
-    >
-      <!-- Photo and Name Of Profile Card -->
-      <div class="flex flex-col md:flex-row gap-2 justify-between items-center">
-        <img
-          src="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-4-470x470.png"
-          alt="..."
-          class="
-            justify-start
-            shadow-lg
-            rounded-full
-            w-28
-            align-middle
-            border-yellow-500 border-4
-          "
-        />
-        <!-- Details Section of Profile Card -->
-        <div>
-          <h6>Mentor Name</h6>
-          <p>Mentor Year, Mentor Branch</p>
-          <div class="flex flex-row items-center gap-2">
-            <i class="fas fa-phone"></i>
-            <p>1234567890</p>
-          </div>
-          <div class="flex flex-row items-center gap-2">
-            <i class="fas fa-envelope"></i>
-            <p>test@gmail.com</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
