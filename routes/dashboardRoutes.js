@@ -45,6 +45,7 @@ router.get("/projects", checkIfAuthenticated, function (req, res, next) {
 router.get("/skills", checkIfAuthenticated, function (req, res, next) {
   res.render("pages/dashboard/skills", {
     user: req.user,
+    userPicture: req.userInfo.picture,
     layout: "pages/base",
   });
 });
@@ -56,6 +57,7 @@ router.get(
   function (req, res, next) {
     res.render("pages/dashboard/eventPosterUpload", {
       user: req.user,
+      userPicture: req.userInfo.picture,
       layout: "pages/base",
     });
   }
@@ -63,6 +65,7 @@ router.get(
 router.get("/skilldashboard", checkIfAuthenticated, function (req, res, next) {
   res.render("pages/dashboard/skilldashboard", {
     user: req.user,
+    userPicture: req.userInfo.picture,
     layout: "pages/base",
   });
 });

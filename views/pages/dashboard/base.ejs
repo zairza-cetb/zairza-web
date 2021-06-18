@@ -25,10 +25,12 @@
     <link rel="stylesheet" href="/css/dashboard.css" />
   </head>
   <body class="flex">
-    <%- include('../../partials/firebase.ejs') %> <%-
-    include('../../partials/toast.ejs') %> <%-
-    include('../../partials/delete.ejs') %> <% if(!user.registrationNo) { %> <%-
-    include('../../partials/profileUpdatePop.ejs') %> <% } %>
+    <%- include('../../partials/firebase.ejs') %> 
+    <%- include('../../partials/toast.ejs') %> 
+    <%- include('../../partials/delete.ejs') %>
+    <% if(!user.registrationNo) { %> 
+    <%- include('../../partials/profileUpdatePop.ejs') %>
+    <% } %>
     <aside class="relative bg-sidebar h-screen w-80 hidden lg:block shadow-xl">
       <div class="h-16 flex justify-center items-center">
         <a href="/">
@@ -68,52 +70,23 @@
           <i class="fas fa-project-diagram mr-3"></i>
           Zairza Projects
         </a>
-        <% if(user.registrationNo) { %>
         <div
           class="
-            b
             relative
-            h-20
-            w-68
+            mx-auto
             flex
             justify-start
             items-center
-            z-50
-            -my-4
+            hover:text-white
           "
         >
-          <!-- <div
-            class="
-              i
-              h-16
-              w-60
-              bg-zairza-blue
-              items-center
-              shadow-lg
-              cursor-pointer
-              absolute
-              overflow-hidden
-              transform
-              hover:scale-x-110 hover:scale-y-105
-              transition
-              duration-300
-              ease-out
-            "
-          ></div>
           <a
+            <% if (user.registrationNo){ %>
             href="/skills"
-            class="
-              text-center text-white
-              z-50
-              pointer-events-none
-              flex
-              items-center
-              p-6
-            "
-            ><i class="fas fa-user-graduate mr-3"></i>Skill++</a
-          > -->
-          <a
-            href="/skills"
+            <% } else { %>
+            href="#"
+            onclick="showToast(400,'Please fillup your zairza profile inorder to register.')"
+            <% } %>
             class="
               flex
               items-center
@@ -123,109 +96,9 @@
               pl-6
               nav-item
               w-full
-              my-4
+
             "
-          >
-            <i class="fas fa-user-graduate mr-3"></i>Skill++</a
-          >
-          <span
-            class="
-              absolute
-              flex
-              h-6
-              w-6
-              top-0
-              right-0
-              transform
-              translate-x-2.5
-              -translate-y-2.5
-            "
-          >
-            <span
-              class="
-                animate-ping
-                absolute
-                inline-flex
-                h-full
-                w-full
-                rounded-full
-                bg-zairza-orange-400
-                opacity-75
-                mt-2
-              "
-            ></span>
-            <span
-              class="
-                mt-2
-                absolute
-                inline-flex
-                rounded-full
-                h-6
-                w-6
-                bg-zairza-orange
-              "
-            ></span>
-          </span>
-        </div>
-        <!-- <a
-          href="/skills"
-          class="
-            flex
-            items-center
-            text-black
-            hover:text-white
-            py-4
-            pl-6
-            nav-item
-            my-4
-          "
-        >
-          <i class="fas fa-user-graduate mr-3"></i>
-          Skills++
-        </a> -->
-        <% } else { %>
-        <div
-          class="
-            ab
-            relative
-            mx-auto
-            h-16
-            w-64
-            flex
-            justify-start
-            items-center
-            z-50
-          "
-        >
-          <div
-            class="
-              i
-              h-16
-              w-64
-              bg-zairza-blue
-              items-center
-              shadow-lg
-              cursor-pointer
-              absolute
-              overflow-hidden
-              transform
-              hover:scale-x-110 hover:scale-y-105
-              transition
-              duration-300
-              ease-out
-            "
-          ></div>
-          <a
-            href="/skills"
-            class="
-              text-center text-white
-              z-50
-              pointer-events-none
-              flex
-              items-center
-              p-6
-            "
-            ><i class="fas fa-user-graduate mr-3"></i>Skill++</a
+            ><i class="fas fa-user-graduate mr-3"></i>Skills++</a
           >
           <span
             class="
@@ -234,7 +107,7 @@
               h-6
               w-6
               top-0
-              right-0
+              right-1
               transform
               translate-x-2.5
               -translate-y-2.5
@@ -257,7 +130,7 @@
             ></span>
           </span>
         </div>
-        <% } %> <% if(user.role == 'admin') { %>
+        <% if(user.role == 'admin') { %>
         <a
           href="/eventPosterUpload"
           class="
@@ -274,9 +147,8 @@
           <i class="fas fa-file-upload mr-3"></i>
           Event poster upload
         </a>
-        <% } %>
         <a
-          href="/skilldashboard"
+          href="/admin"
           class="
             flex
             items-center
@@ -288,170 +160,11 @@
             my-4
           "
         >
-          <i class="fas fa-tachometer-alt mr-3"></i>
-          Skills++ Dashboard
+          <i class="fas fa-user-shield mr-3"></i>
+          Admin Panel
         </a>
-        <% if (user.role == 'admin') { %>
-          <a
-            href="/skills"
-            class="
-              text-center text-white
-              z-50
-              pointer-events-none
-              flex
-              items-center
-              p-6
-            "
-            ><i class="fas fa-user-graduate mr-3"></i>Skill++</a
-          > -->
-          <a
-            href="/skills"
-            class="
-              flex
-              items-center
-              text-black
-              hover:text-white
-              py-4
-              pl-6
-              nav-item
-              w-full
-              my-4
-            "
-          >
-            <i class="fas fa-user-graduate mr-3"></i>Skill++</a
-          >
-          <span
-            class="
-              absolute
-              flex
-              h-6
-              w-6
-              top-0
-              right-0
-              transform
-              translate-x-2.5
-              -translate-y-2.5
-            "
-          >
-            <span
-              class="
-                animate-ping
-                absolute
-                inline-flex
-                h-full
-                w-full
-                rounded-full
-                bg-zairza-orange-400
-                opacity-75
-                mt-2
-              "
-            ></span>
-            <span
-              class="
-                mt-2
-                absolute
-                inline-flex
-                rounded-full
-                h-6
-                w-6
-                bg-zairza-orange
-              "
-            ></span>
-          </span>
-        </div>
-        <!-- <a
-          href="/skills"
-          class="
-            flex
-            items-center
-            text-black
-            hover:text-white
-            py-4
-            pl-6
-            nav-item
-            my-4
-          "
-        >
-          <i class="fas fa-user-graduate mr-3"></i>
-          Skills++
-        </a> -->
-        <% } else { %>
-        <div
-          class="
-            ab
-            relative
-            mx-auto
-            h-16
-            w-64
-            flex
-            justify-start
-            items-center
-            z-50
-          "
-        >
-          <div
-            class="
-              i
-              h-16
-              w-64
-              bg-zairza-blue
-              items-center
-              shadow-lg
-              cursor-pointer
-              absolute
-              overflow-hidden
-              transform
-              hover:scale-x-110 hover:scale-y-105
-              transition
-              duration-300
-              ease-out
-            "
-          ></div>
-          <a
-            href="/skills"
-            class="
-              text-center text-white
-              z-50
-              pointer-events-none
-              flex
-              items-center
-              p-6
-            "
-            ><i class="fas fa-user-graduate mr-3"></i>Skill++</a
-          >
-          <span
-            class="
-              absolute
-              flex
-              h-6
-              w-6
-              top-0
-              right-0
-              transform
-              translate-x-2.5
-              -translate-y-2.5
-            "
-          >
-            <span
-              class="
-                animate-ping
-                absolute
-                inline-flex
-                h-full
-                w-full
-                rounded-full
-                bg-zairza-orange-400
-                opacity-75
-              "
-            ></span>
-            <span
-              class="absolute inline-flex rounded-full h-6 w-6 bg-zairza-orange"
-            ></span>
-          </span>
-        </div>
-        <% } %> <% if(user.role == 'admin') { %>
         <a
-          href="/eventPosterUpload"
+          href="/protected/newsletterDashboard"
           class="
             flex
             items-center
@@ -656,57 +369,83 @@
             <i class="fas fa-project-diagram mr-3"></i>
             Zairza Projects
           </a>
-          <% if(user.registrationNo) { %>
-          <a
-            href="/skills"
+          <div
             class="
+              relative
+              mx-auto
               flex
+              justify-start
               items-center
-              text-black
-              hover:text-white
-              py-4
-              pl-6
-              nav-item
-              my-4
+              w-full
             "
           >
-            <i class="fas fa-user-graduate mr-3"></i>
-            Skills++
-          </a>
-          <% } else { %>
           <a
+            <% if (user.registrationNo){ %>
+            href="/skills"
+            <% } else { %>
             href="#"
             onclick="showToast(400,'Please fillup your zairza profile inorder to register.')"
+            <% } %>
             class="
-              flex
-              items-center
-              text-black
-              hover:text-white
-              py-4
-              pl-6
-              nav-item
-              my-4
+            w-full flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item
             "
           >
             <i class="fas fa-user-graduate mr-3"></i>
             Skills++
           </a>
-          <% } %> <% if(user.role == 'admin') { %>
+          <span
+            class="
+              absolute
+              flex
+              h-4
+              w-4
+              top-2
+              right-0
+              transform
+              translate-x-2.5
+              -translate-y-2.5
+            "
+          >
+            <span
+              class="
+                animate-ping
+                absolute
+                inline-flex
+                h-full
+                w-full
+                rounded-full
+                bg-zairza-orange-400
+                opacity-75
+              "
+            ></span>
+            <span
+              class="absolute inline-flex rounded-full h-4 w-4 bg-zairza-orange"
+            ></span>
+          </span>
+        </div>
+         <% if(user.role == 'admin') { %>
           <a
             href="/eventPosterUpload"
             class="
-              flex
-              items-center
-              text-black
-              hover:text-white
-              py-4
-              pl-6
-              nav-item
-              my-4
+            flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item
             "
           >
             <i class="fas fa-file-upload mr-3"></i>
             Event poster upload
+          </a>
+          <a
+            href="/admin"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-user-shield mr-3"></i>
+            Admin Dashboard
+          </a>
+          <a
+            href="/protected/newsletterDashboard"
+            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+          >
+            <i class="fas fa-newspaper mr-3"></i>
+            Newsletter Dashboard
           </a>
           <% } %>
           <a
@@ -727,22 +466,6 @@
             <i class="fas fa-user mr-3"></i>
             My Profile
           </a>
-          <% if (user.role == 'admin') { %>
-            <a
-            href="/admin"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
-          >
-            <i class="fas fa-user-shield mr-3"></i>
-            Admin Dashboard
-          </a>
-          <a
-            href="/protected/newsletterDashboard"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
-          >
-            <i class="fas fa-newspaper mr-3"></i>
-            Newsletter Dashboard
-          </a>
-          <% } %>
           <a
             href="#"
             onclick="logout();"
@@ -845,25 +568,6 @@
       <%- body %>
     </div>
     <script>
-      const buttons = document.querySelectorAll(".b");
-      const button = document.querySelectorAll(".ab");
-      buttons.forEach(function (btn) {
-        btn.addEventListener("click", bbuttonClick);
-      });
-      button.forEach(function (btn) {
-        btn.addEventListener("click", abbuttonClick);
-      });
-
-      function bbuttonClick() {
-        window.location.href = "/skills";
-      }
-      function abbuttonClick() {
-        window.location.href = "#";
-        showToast(
-          400,
-          "Please fillup your zairza profile inorder to register."
-        );
-      }
     </script>
 
     <!-- AlpineJS -->

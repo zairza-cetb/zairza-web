@@ -128,3 +128,6 @@ document.addEventListener("click", (e) => {
 });
 
 input.focus();
+
+// Check user registration and intent accordingly
+
