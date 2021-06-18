@@ -201,7 +201,7 @@
 
     <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
       <!-- Desktop Header -->
-      <header class="w-full items-center bg-white py-2 px-6 hidden lg:flex">
+      <header class="w-full items-center bg-white py-2 px-6 hidden lg:flex shadow-md">
         <% if(user.role == 'restricted') {%>
         <span
           class="
@@ -316,7 +316,7 @@
       <!-- Mobile Header & Nav -->
       <header
         x-data="{ isOpen: false }"
-        class="w-full bg-sidebar py-5 px-6 lg:hidden bg-white"
+        class="shadow-md z-10 w-full bg-sidebar py-5 px-6 lg:hidden bg-white"
       >
         <div class="flex items-center justify-between">
           <a href="/">

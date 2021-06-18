@@ -28,9 +28,6 @@ router.get("/newsletterDashboard", function (req, res, next) {
 	});
 });
 
-router.get("/create-event", function (req, res, next) {
-	res.render("pages/dashboard/eventPosterUpload");
-});
 
 /* APIs */
 

@@ -1,12 +1,3 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
-
-[data-modal-target] {
-  display: none;
-}
 
 .modal {
   position: fixed;

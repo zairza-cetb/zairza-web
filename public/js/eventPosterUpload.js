@@ -9,85 +9,52 @@ $(function () {
     maxSize: "100 KB",
   });
 });
-// let upload;
-// $("#upload").on("click", function () {
-//     let uploadFile = $("#aksfileupload").val();
-//     if (!uploadFile) {
-//         showToast(400,"Please add a file to upload")
-//     } else {
-//         upload = document.getElementById("upload");
-//     }
-// })
-document.addEventListener("DOMContentLoaded", function () {
-  let upload = document.getElementById("upload");
 
-  if (upload) {
-    let progress = 0,
-      strokeLen = 310,
-      startUpload = function (progressRect, elText) {
-        progress = 0;
-
-        let btnText = this.querySelector(elText);
-        if (btnText) btnText.innerHTML = "0%";
-
-        this.disabled = true;
-        this.classList.remove("upload-btn-ready");
-        this.classList.add("upload-btn-running");
-
-        setTimeout(incProgress.bind(this, progressRect, elText), 500);
-      },
-      incProgress = function (progressRect, elText) {
-        let btnProgress = this.querySelector(progressRect),
-          btnText = this.querySelector(elText);
-
-        if (progress < 1) {
-          if (btnProgress) {
-            let strokeVal = progress * strokeLen,
-              dashVal = strokeLen - strokeVal;
-            btnProgress.setAttribute(
-              "stroke-dasharray",
-              `${strokeVal} ${dashVal}`
-            );
-            btnProgress.setAttribute("opacity", "1");
-          }
-          if (btnText) {
-            let displayVal = Math.round(progress * 100);
-            btnText.innerHTML = `${displayVal}%`;
-          }
-          progress += 0.005;
-
-          let interval = 17;
-          setTimeout(incProgress.bind(this, progressRect, elText), interval);
-        } else {
-          this.classList.remove("upload-btn-running");
-          this.classList.add("upload-btn-done");
-
-          if (btnProgress)
-            btnProgress.setAttribute("stroke-dasharray", `${strokeLen} 0`);
-          if (btnText) btnText.innerHTML = "&#10003;";
-
-          let timeout = 1500;
-          setTimeout(resetUpload.bind(this, progressRect, elText), timeout);
-        }
-      },
-      resetUpload = function (progressRect, elText) {
-        this.classList.remove("upload-btn-done");
-        this.classList.add("upload-btn-ready");
-        this.disabled = false;
-
-        let btnProgress = this.querySelector(progressRect),
-          btnText = this.querySelector(elText);
-
-        if (btnProgress) {
-          btnProgress.setAttribute("stroke-dasharray", `0 ${strokeLen}`);
-          btnProgress.setAttribute("opacity", "0");
-        }
-        if (btnText) btnText.innerHTML = "Upload";
-      };
-
-      upload.addEventListener(
-        "click",
-        startUpload.bind(upload, ".upload-btn-border rect", ".upload-btn-text")
-      );
-    }
-});
+// API call to upload event poster
+$("#aks-file-upload").on("change", function() {
+  const poster = document.getElementById("aksfileupload").files[0];
+  if(poster.size>110000){
+    showToast(400, "File size limit is 100KB 😑");
+  }
+  $(".aks-file-upload-error").css("display","none");
+})
+function uploadPoster(){
+  const poster = document.getElementById("aksfileupload").files[0];
+  if(poster.size<11000){
+    $("#uploadBtn svg").toggleClass("hidden");
+    $("#uploadBtn span").text("Processing");
+    $("#uploadBtn").addClass("disabled");
+  }
+  $eventName = $("#eventName").val();
+  $eventStart = $("#eventStart").val();
+  $eventEnd = $("#eventEnd").val();
+  if(poster == undefined || $eventName == '' || $eventStart == '' || $eventEnd == ''){
+    showToast(401, "Please provide all neccessary details!");
+    return;
+  }
+  if(poster.size>110000){
+    showToast(400, "File size limit is 100KB 😑");
+    return;
+  }
+  const data = new FormData();
+  data.append('name', $eventName);
+  data.append('image',poster);
+  data.append('startTime', $eventStart);
+  data.append('endTime', $eventEnd);
+  $.ajax({
+    type: "POST",
+    url: "/protected/api/create-event",
+    data: data,
+    processData: false, 
+    contentType: false, 
+  })
+  .done(function (data) {
+    $("#uploadBtn svg").toggleClass("hidden");
+    $("#uploadBtn span").text("Uploaded");
+    $("#uploadBtn").removeClass("disabled");
+      showToast(200, `${data.event.name} event created successfully 🤗`)
+  })
+  .fail(function (err) {
+    showToast(500, err.message)
+  });
+}
