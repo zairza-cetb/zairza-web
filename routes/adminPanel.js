@@ -10,7 +10,8 @@ const ChangeLog = require("../models/ChangeLog");
 const Events = require("../models/Events");
 
 // Skills ++
-
+const Domains = require("../models/skills/Domains");
+const DomainRegistrations = require("../models/skills/DomainRegistrations");
 
 
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
@@ -146,7 +147,10 @@ module.exports = (app, mongoose_connection) => {
             new: {isVisible: false}
           }
         }
-      }
+      },
+      //SKill++
+      Domains,
+      DomainRegistrations
     ],
     rootPath: "/admin",
     branding: {

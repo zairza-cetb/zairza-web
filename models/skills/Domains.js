@@ -10,6 +10,10 @@ const DomainSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		weekZero: {
+			description: String,
+			resources: [String],
+		},
 		tasks: [
 			{
 				weekNo: Number,
@@ -20,6 +24,7 @@ const DomainSchema = new mongoose.Schema(
 		additionalResources: [String],
 		mentors: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
 		discussionLink: String,
+		submissionDescription: String,
 	},
 	{ strict: true, versionKey: false }
 );
