@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { s3 } = require("../utils/multer");
 
 const EventSchema = new mongoose.Schema(
 	{
@@ -25,5 +26,20 @@ const EventSchema = new mongoose.Schema(
 		timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
 	}
 );
+
+EventSchema.post("findOneAndRemove", function (data) {
+	s3.deleteObject(
+		{
+			Bucket: process.env.AWS_BUCKET_NAME,
+			Key: data.imageURL.replace(/^.*\/\/[^\/]+\//, ""),
+		},
+		function (err, data) {
+			if (err) {
+				throw err;
+			}
+			console.log(data);
+		}
+	);
+});
 
 module.exports = Events = mongoose.model("events", EventSchema);

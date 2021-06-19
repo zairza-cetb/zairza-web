@@ -19,12 +19,12 @@ const DomainSchema = new mongoose.Schema(
 				weekNo: Number,
 				description: String,
 				resources: [String],
+				submissionDescription: String,
 			},
 		],
 		additionalResources: [String],
 		mentors: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
 		discussionLink: String,
-		submissionDescription: String,
 	},
 	{ strict: true, versionKey: false }
 );

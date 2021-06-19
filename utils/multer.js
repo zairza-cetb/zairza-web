@@ -12,7 +12,7 @@ const s3 = new aws.S3({
 const upload = multer({
 	storage: multerS3({
 		s3: s3,
-		bucket: "zairza-website",
+		bucket: process.env.AWS_BUCKET_NAME,
 		metadata: function (req, file, cb) {
 			cb(null, { fieldName: file.fieldname });
 		},
@@ -32,7 +32,8 @@ const upload = multer({
 const uploadProfilePhoto = multer({
 	storage: multerS3({
 		s3: s3,
-		bucket: "zairza-website",
+		bucket: process.env.AWS_BUCKET_NAME,
+		contentType: multerS3.AUTO_CONTENT_TYPE,
 		metadata: function (req, file, cb) {
 			cb(null, { fieldName: file.fieldname });
 		},
@@ -49,4 +50,4 @@ const uploadProfilePhoto = multer({
 	}),
 });
 
-module.exports = { upload, uploadProfilePhoto };
+module.exports = { upload, uploadProfilePhoto, s3 };

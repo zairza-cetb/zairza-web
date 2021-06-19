@@ -3,7 +3,6 @@ const Domains = require("../../models/skills/Domains");
 const DomainRegistrations = require("../../models/skills/DomainRegistrations");
 const checkIfAuthenticated = require("../../firebase/firebaseCheckAuth");
 const config = require("./configDates");
-const { extraTime } = require("./configDates");
 
 const router = express.Router();
 const apiRouter = express.Router();
@@ -12,22 +11,129 @@ router.use(checkIfAuthenticated);
 router.use("/api", apiRouter);
 
 isMentor = function (req, res, next) {
-	Domains.findById(req.body.domainId, function (err, domain) {
-		if (err) {
-			return next(err);
-		}
-		if (!domain || !domain.mentors.includes(req.user._id)) {
-			const error = new Error("You are not a mentor for this domain");
-			error.status = "restricted";
-			error.statusCode = 403;
-			error.isOperational = true;
-			return next(error);
-		}
-		next();
-	});
+	if (req.method == "POST") {
+		Domains.findById(req.body.domainId, function (err, domain) {
+			if (err) {
+				return next(err);
+			}
+			if (!domain || !domain.mentors.includes(req.user._id)) {
+				const error = new Error("You are not a mentor for this domain");
+				error.status = "restricted";
+				error.statusCode = 403;
+				error.isOperational = true;
+				return next(error);
+			}
+			return next();
+		});
+	} else if (req.method == "GET") {
+		Domains.find(
+			{ mentors: req.user._id },
+			{ _id: 1, name: 1 },
+			function (err, domains) {
+				if (err) {
+					return next(err);
+				}
+				if (domains.length === 0) {
+					const error = new Error("You are not a Mentor");
+					error.status = "restricted";
+					error.statusCode = 403;
+					error.isOperational = true;
+					return next(error);
+				}
+				req.domains = domains;
+				return next();
+			}
+		);
+	} else {
+		return res.status(404).send({ status: "fail", message: "Method not supported" });
+	}
 };
 
-// router.get("/mentor-dashboard", isMentor, function (req, res, next) {});
+router.get("/mentor-dashboard", isMentor, function (req, res, next) {
+	res.send({ domains: req.domains });
+});
+
+router.get("/user-dashboard", function (req, res, next) {
+	DomainRegistrations.aggregate(
+		[
+			{
+				$lookup: {
+					from: "domains",
+					localField: "domain",
+					foreignField: "_id",
+					as: "domain",
+				},
+			},
+			{
+				$set: {
+					domain: {
+						$arrayElemAt: ["$domain", 0],
+					},
+				},
+			},
+			{
+				$unwind: {
+					path: "$domain.tasks",
+				},
+			},
+			{
+				$project: {
+					user: 1,
+					domain: 1,
+					task: "$domain.tasks",
+					submission: {
+						$filter: {
+							input: "$submissions",
+							as: "submission",
+							cond: {
+								$eq: ["$$submission.weekNo", "$domain.tasks.weekNo"],
+							},
+						},
+					},
+				},
+			},
+			{
+				$set: {
+					"task.submission": {
+						$arrayElemAt: ["$submission", 0],
+					},
+				},
+			},
+			{
+				$unset: ["domain.mentors", "domain.tasks", "submission"],
+			},
+			{
+				$group: {
+					_id: {
+						_id: "$_id",
+						user: "$user",
+						domain: "$domain",
+					},
+					tasks: {
+						$push: "$task",
+					},
+				},
+			},
+			{
+				$project: {
+					_id: 0,
+					registrationId: "$_id._id",
+					domain: "$_id.domain",
+					tasks: 1,
+				},
+			},
+		],
+		function (err, result) {
+			if (err) {
+				return next(err);
+			}
+			if (result.length == 0) {
+				return res.status(404).send("Not registered");
+			}
+			res.send(result[0]);
+		}
+	);
+});
 
 apiRouter.post("/register", function (req, res, next) {
 	Domains.findById(req.body.domainId, function (err, domain) {
@@ -114,10 +220,10 @@ apiRouter.post("/mentor-submit", isMentor, function (req, res, next) {
 	if (1 > weekNo || weekNo > config.maxWeekNos)
 		return res.status(500).send({ status: "fail", message: "Invalid week number" });
 
-	if (!approved && !req.body.comment) {
+	if (!req.body.comment) {
 		return res.status(500).send({
 			status: "fail",
-			message: "Comment required for unapproved submissions",
+			message: "Comment required",
 		});
 	}
 

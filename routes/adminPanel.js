@@ -142,9 +142,10 @@ module.exports = (app, mongoose_connection) => {
       },
       { resource: Events,
         options: { 
-          editProperties: ["name", "imageURL", "startTime", "endTime"],
+          editProperties: ["name", "startTime", "endTime"],
           actions: {
-            new: {isVisible: false}
+            new: {isVisible: false},
+            bulkDelete: { isVisible: false },
           }
         }
       },
