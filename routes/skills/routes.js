@@ -50,7 +50,41 @@ isMentor = function (req, res, next) {
 };
 
 router.get("/mentor-dashboard", isMentor, function (req, res, next) {
-	res.send({ domains: req.domains });
+	DomainRegistrations.aggregate(
+		[
+			{
+				$lookup: {
+					from: "domains",
+					localField: "domain",
+					foreignField: "_id",
+					as: "domainObject",
+				},
+			},
+			{
+				$unwind: {
+					path: "$submissions",
+				},
+			},
+			{
+				$project: {
+					_id: 0,
+					registrationId: "$_id",
+					submission: "$submissions",
+					domain: 1,
+					domainName: {
+						$arrayElemAt: ["$domainObject.name", 0],
+					},
+				},
+			},
+		],
+		function (err, submissions) {
+			if (err) {
+				return next(err);
+			}
+			return res.send({ submissions });
+		}
+	);
+	// res.send({ domains: req.domains });
 });
 
 router.get("/user-dashboard", function (req, res, next) {
