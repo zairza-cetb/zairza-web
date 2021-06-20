@@ -94,11 +94,11 @@ $(document).ready(function () {
   $("#mob-menu li").each((index, element) => {
     $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
   });
-  // Show event poster 
+  // Show event poster
   const openModalButtons = document.querySelectorAll("[data-modal-target]");
   const closeModalButtons = document.querySelectorAll("[data-close-button]");
   const overlay = document.getElementById("overlay");
-  
+
   // openModalButtons.forEach((button) => {
   //   button.addEventListener("click", () => {
   //     const modal = document.querySelector(button.dataset.modalTarget);
@@ -114,7 +114,7 @@ $(document).ready(function () {
       });
     });
   }
-  
+
   closeModalButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const modal = document.querySelector(
@@ -123,7 +123,7 @@ $(document).ready(function () {
       closeModal(modal);
     });
   });
-  
+
   function openModal(modal) {
     if (modal == null) return;
     modal.classList.add("active");
@@ -134,20 +134,19 @@ $(document).ready(function () {
     modal.classList.remove("active");
     overlay.classList.remove("active");
   }
-  
 });
 // Check user logged in or not
 firebase.auth().onAuthStateChanged((user) => {
   let userRoute;
+  const event = `<a href="/me"><li class="transition block text-white hover:text-black px-4 py-1 lg:py-2 lg:my-0 my-1 lg:ml-2 font-normal bg-zairza-orange duration-300 ease-in-out rounded-full lg:animate-bounce">Skill++</li></a>`;
   if (user) {
     // User is signed in
-    userRoute = `<a href="/me" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Dashboard</li></a>`
+    userRoute = `<a href="/me" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Dashboard</li></a>`;
     // ...
   } else {
     // User is signed out
-    userRoute = `<a href="/auth#signin" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li></a>`
+    userRoute = `<a href="/auth#signin" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li></a>`;
   }
   $("#mob-menu").append(userRoute);
+  $("#mob-menu").append(event);
 });
-
-
