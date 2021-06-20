@@ -33,7 +33,7 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             setState("off", element);
             showToast(200, `${provider_name} account disconnected 😞`);
             const token = await user.getIdToken(true);
-            $.cookie("zToken", token);
+            $.cookie("zToken", token, {path: "/"});
           })
           .catch((error) => {
             // An error happened
@@ -61,7 +61,7 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             setState("on", element);
             showToast(200, `${provider_name} account connected 😎`);
             const token = await user.getIdToken(true);
-            $.cookie("zToken", token);
+            $.cookie("zToken", token, {path: "/"});
             // ...
           })
           .catch((error) => {

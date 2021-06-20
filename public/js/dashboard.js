@@ -25,7 +25,7 @@ function deleteAccount() {
     $("#accountDeleteButton svg").toggleClass("hidden");
     $("#accountDeleteButton span").text("Processing");
     $("#accountDeleteButton").addClass("disabled");
-    let token = $.cookie("zToken");
+    let token = $.cookie("zToken", {path: "/"});
     $.ajax({
         type: "DELETE",
         url: "/api/user",
