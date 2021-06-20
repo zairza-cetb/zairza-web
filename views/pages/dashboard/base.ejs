@@ -82,7 +82,7 @@
         >
           <a
             <% if (user.registrationNo){ %>
-            href="/skills"
+            href="/skills/user-dashboard"
             <% } else { %>
             href="#"
             onclick="showToast(400,'Please fillup your zairza profile inorder to register.')"
@@ -180,22 +180,6 @@
           Newsletter Dashboard
         </a>
         <% } %>
-        <a
-          href="/skills/user-dashboard"
-          class="
-            flex
-            items-center
-            text-black
-            hover:text-white
-            py-4
-            pl-6
-            nav-item
-            my-4
-          "
-        >
-          <i class="fas fa-tachometer-alt mr-3"></i>
-          Skills++ Dashboard
-        </a>
       </nav>
     </aside>
 
@@ -381,7 +365,7 @@
           >
           <a
             <% if (user.registrationNo){ %>
-            href="/skills"
+            href="/skills/user-dashboard"
             <% } else { %>
             href="#"
             onclick="showToast(400,'Please fillup your zairza profile inorder to register.')"

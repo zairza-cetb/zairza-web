@@ -41,14 +41,6 @@ router.get("/projects", checkIfAuthenticated, function (req, res, next) {
     });
 });
 
-/* GET skills page. */
-router.get("/skills", checkIfAuthenticated, function (req, res, next) {
-  res.render("pages/dashboard/skills", {
-    user: req.user,
-    userPicture: req.userInfo.picture,
-    layout: "pages/base",
-  });
-});
 
 /* GET poster uplaod page. */
 router.get(
@@ -62,12 +54,6 @@ router.get(
     });
   }
 );
-router.get("/skilldashboard", checkIfAuthenticated, function (req, res, next) {
-  res.render("pages/dashboard/skilldashboard", {
-    user: req.user,
-    userPicture: req.userInfo.picture,
-    layout: "pages/base",
-  });
-});
+
 
 module.exports = router;

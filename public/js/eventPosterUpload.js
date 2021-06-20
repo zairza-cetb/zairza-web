@@ -20,10 +20,10 @@ $("#aks-file-upload").on("change", function() {
 })
 function uploadPoster(){
   const poster = document.getElementById("aksfileupload").files[0];
-  if(poster.size<11000){
-    $("#uploadBtn svg").toggleClass("hidden");
-    $("#uploadBtn span").text("Processing");
-    $("#uploadBtn").addClass("disabled");
+  if(poster && poster.size>110000){
+      $("#uploadBtn svg").toggleClass("hidden");
+      $("#uploadBtn span").text("Processing");
+      $("#uploadBtn").addClass("disabled");
   }
   $eventName = $("#eventName").val();
   $eventStart = $("#eventStart").val();
@@ -55,6 +55,6 @@ function uploadPoster(){
       showToast(200, `${data.event.name} event created successfully 🤗`)
   })
   .fail(function (err) {
-    showToast(500, err.message)
+    showToast(500, err.responseJSON.message)
   });
 }

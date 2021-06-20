@@ -87,112 +87,129 @@ router.get("/mentor-dashboard", isMentor, function (req, res, next) {
 		// res.send({ domains: req.domains });
 	});
 	
-router.get("/user-dashboard", function (req, res, next) {
+router.get("/user-dashboard",async function (req, res, next) {
 	const now = Date.now();
-	const maxWeeks = Math.floor((now - config.weekStart.getTime())/config.weekInterval) + 1;
-	DomainRegistrations.aggregate(
-		[
-			{
-				$lookup: {
-					from: "domains",
-					localField: "domain",
-					foreignField: "_id",
-					as: "domain",
-				},
-			},
-			{
-				$set: {
-					domain: {
-						$arrayElemAt: ["$domain", 0],
+	isRegistered = await DomainRegistrations.findOne({user:req.user._id}).exec();
+	if (now < config.eventStart.getTime() || !isRegistered){
+		domains = await Domains.find({},{name:1}).exec();
+		res.render("pages/dashboard/skills", {
+			user: req.user,
+			userPicture: req.userInfo.picture,
+			layout: "pages/base",
+			domains,
+			isRegistered
+		});
+	} else {
+		const maxWeeks = Math.floor((now - config.weekStart.getTime())/config.weekInterval) + 1;
+		DomainRegistrations.aggregate(
+			[
+				{
+					$lookup: {
+						from: "domains",
+						localField: "domain",
+						foreignField: "_id",
+						as: "domain",
 					},
 				},
-			},
-			{
-				$unwind: {
-					path: "$domain.tasks",
+				{
+					$set: {
+						domain: {
+							$arrayElemAt: ["$domain", 0],
+						},
+					},
 				},
-			},
-			{
-				$project: {
-					user: 1,
-					domain: 1,
-					task: "$domain.tasks",
-					submission: {
-						$filter: {
-							input: "$submissions",
-							as: "submission",
-							cond: {
-								$eq: ["$$submission.weekNo", "$domain.tasks.weekNo"],
+				{
+					$unwind: {
+						path: "$domain.tasks",
+					},
+				},
+				{
+					$project: {
+						user: 1,
+						domain: 1,
+						task: "$domain.tasks",
+						submission: {
+							$filter: {
+								input: "$submissions",
+								as: "submission",
+								cond: {
+									$eq: ["$$submission.weekNo", "$domain.tasks.weekNo"],
+								},
 							},
 						},
 					},
 				},
-			},
-			{
-				$set: {
-					"task.submission": {
-						$arrayElemAt: ["$submission", 0],
+				{
+					$set: {
+						"task.submission": {
+							$arrayElemAt: ["$submission", 0],
+						},
 					},
 				},
-			},
-			{
-				$unset: ["domain.mentors", "domain.tasks", "submission"],
-			},
-			{
-				$addFields: {
-				  "task.subtasks": {
-					$cond: [
-					  {
-						$gt: [
-						  '$task.weekNo', maxWeeks
+				{
+					$unset: ["domain.mentors", "domain.tasks", "submission"],
+				},
+				{
+					$addFields: {
+					"task.subtasks": {
+						$cond: [
+						{
+							$gt: [
+							'$task.weekNo', maxWeeks
+							]
+						}, '$$REMOVE', '$task.subtasks'
 						]
-					  }, '$$REMOVE', '$task.subtasks'
-					]
-				  }
+					}
+					}
+				},
+				{
+					$group: {
+						_id: {
+							_id: "$_id",
+							user: "$user",
+							domain: "$domain",
+						},
+						tasks: {
+							$push: "$task",
+						},
+					},
+				},
+				{
+					$project: {
+						_id: 0,
+						registrationId: "$_id._id",
+						domain: "$_id.domain",
+						tasks: 1
+					},
+				},
+			],
+			function (err, result) {
+				if (err) {
+					return next(err);
 				}
-			},
-			{
-				$group: {
-					_id: {
-						_id: "$_id",
-						user: "$user",
-						domain: "$domain",
-					},
-					tasks: {
-						$push: "$task",
-					},
-				},
-			},
-			{
-				$project: {
-					_id: 0,
-					registrationId: "$_id._id",
-					domain: "$_id.domain",
-					tasks: 1
-				},
-			},
-		],
-		function (err, result) {
-			if (err) {
-				return next(err);
-			}
-			if (result.length == 0) {
-				return res.status(404).send("Not registered");
-			}
-			// console.log(result[0]);
+				if (result.length == 0) {
+					return res.status(404).send("Not registered");
+				}
+				// console.log(result[0]);
 
 
-			res.render("pages/dashboard/skilldashboard", {
-				user: req.user,
-				userPicture: req.userInfo.picture,
-				layout: "pages/base",
-				eventData: result[0],
-			});
-		}
-	);
+				res.render("pages/dashboard/skilldashboard", {
+					user: req.user,
+					userPicture: req.userInfo.picture,
+					layout: "pages/base",
+					eventData: result[0],
+				});
+			}
+		);
+	}
 });
 
 apiRouter.post("/register", function (req, res, next) {
+	const now = Date.now();
+	if (now >= config.registrationEnd) {
+		return res.status(400).send({status: "fail", message: "Sorry! The registration deadline has passed"});
+	}
+
 	Domains.findById(req.body.domainId, function (err, domain) {
 		if (err) {
 			return next(err);
