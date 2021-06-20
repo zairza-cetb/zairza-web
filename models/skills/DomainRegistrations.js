@@ -6,8 +6,8 @@ const DomainRegistrationSchema = new mongoose.Schema(
 		domain: { type: mongoose.Schema.Types.ObjectId, ref: "domains" },
 		submissions: [
 			{
-				weekNo: Number,
-				submissionLink: { type: String, default: null },
+				weekNo: { type: Number, required: true},
+				submissionLink: { type: String, required:true },
 				approved: { type: Boolean, default: null },
 				comment: String,
 				mark: { type: Number, default: null },
@@ -26,7 +26,6 @@ const DomainRegistrationSchema = new mongoose.Schema(
 	}
 );
 
-// DomainRegistrationSchema.index({ user: 1, domain: 1 }, { unique: true });
 module.exports = DomainRegistrations = mongoose.model(
 	"domainRegistrations",
 	DomainRegistrationSchema

@@ -83,11 +83,13 @@ router.get("/mentor-dashboard", isMentor, function (req, res, next) {
 			}
 			return res.send({ submissions });
 		}
-	);
-	// res.send({ domains: req.domains });
-});
-
+		);
+		// res.send({ domains: req.domains });
+	});
+	
 router.get("/user-dashboard", function (req, res, next) {
+	const now = Date.now();
+	const maxWeeks = Math.floor((now - config.weekStart.getTime())/config.weekInterval) + 1;
 	DomainRegistrations.aggregate(
 		[
 			{
@@ -137,6 +139,19 @@ router.get("/user-dashboard", function (req, res, next) {
 				$unset: ["domain.mentors", "domain.tasks", "submission"],
 			},
 			{
+				$addFields: {
+				  "task.subtasks": {
+					$cond: [
+					  {
+						$gt: [
+						  '$task.weekNo', maxWeeks
+						]
+					  }, '$$REMOVE', '$task.subtasks'
+					]
+				  }
+				}
+			},
+			{
 				$group: {
 					_id: {
 						_id: "$_id",
@@ -153,7 +168,7 @@ router.get("/user-dashboard", function (req, res, next) {
 					_id: 0,
 					registrationId: "$_id._id",
 					domain: "$_id.domain",
-					tasks: 1,
+					tasks: 1
 				},
 			},
 		],
@@ -164,7 +179,15 @@ router.get("/user-dashboard", function (req, res, next) {
 			if (result.length == 0) {
 				return res.status(404).send("Not registered");
 			}
-			res.send(result[0]);
+			// console.log(result[0]);
+
+
+			res.render("pages/dashboard/skilldashboard", {
+				user: req.user,
+				userPicture: req.userInfo.picture,
+				layout: "pages/base",
+				eventData: result[0],
+			});
 		}
 	);
 });
@@ -195,7 +218,7 @@ apiRouter.post("/user-submit", function (req, res, next) {
 	const diff = today - config.weekStart + 1;
 	const weekNo = req.body.weekNo;
 
-	if (1 > weekNo || weekNo > config.maxWeekNos)
+	if ( (!weekNo) || 1 > weekNo || weekNo > config.maxWeekNos)
 		return res.status(500).send({ status: "fail", message: "Invalid week number" });
 
 	const weekStartTime = (weekNo - 1) * config.weekInterval;
@@ -203,7 +226,7 @@ apiRouter.post("/user-submit", function (req, res, next) {
 	if (diff < weekStartTime || diff >= weekEndTime) {
 		return res
 			.status(500)
-			.send({ status: "fail", message: "Cannot submit for this Week number" });
+			.send({ status: "fail", message: "Submission deadline has passed" });
 	}
 	DomainRegistrations.findOneAndUpdate(
 		{ user: req.user._id, "submissions.weekNo": { $nin: [weekNo] } },

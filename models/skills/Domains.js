@@ -17,12 +17,19 @@ const DomainSchema = new mongoose.Schema(
 		tasks: [
 			{
 				weekNo: Number,
+				weekInterval: String,
 				description: String,
+				subtasks: [
+					{
+						description: String, 
+						resource: String
+					}
+				],
 				resources: [String],
 				submissionDescription: String,
 			},
 		],
-		additionalResources: [String],
+		// additionalResources: [String],
 		mentors: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
 		discussionLink: String,
 	},
