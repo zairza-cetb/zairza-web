@@ -261,8 +261,8 @@
               focus:outline-none
             "
           >
-          <% if(userPicture) { %>
-            <img src="<%= userPicture %>" />
+          <% if(user.profileImage) { %>
+            <img src="<%= user.profileImage %>" />
           <% } else { %>
               <img src="/images/profile_icon.png">
           <% } %>

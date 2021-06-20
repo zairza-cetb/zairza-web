@@ -53,6 +53,11 @@ router.get("/mentor-dashboard", isMentor, function (req, res, next) {
 	DomainRegistrations.aggregate(
 		[
 			{
+				$match:{
+					domain: req.body.domainId
+				}
+			},
+			{
 				$lookup: {
 					from: "domains",
 					localField: "domain",
@@ -94,7 +99,6 @@ router.get("/user-dashboard",async function (req, res, next) {
 		domains = await Domains.find({},{name:1}).exec();
 		res.render("pages/dashboard/skills", {
 			user: req.user,
-			userPicture: req.userInfo.picture,
 			layout: "pages/base",
 			domains,
 			isRegistered
@@ -103,6 +107,11 @@ router.get("/user-dashboard",async function (req, res, next) {
 		const maxWeeks = Math.floor((now - config.weekStart.getTime())/config.weekInterval) + 1;
 		DomainRegistrations.aggregate(
 			[
+				{
+					$match: {
+						user: req.user._id
+					}
+				},
 				{
 					$lookup: {
 						from: "domains",
@@ -195,7 +204,6 @@ router.get("/user-dashboard",async function (req, res, next) {
 
 				res.render("pages/dashboard/skilldashboard", {
 					user: req.user,
-					userPicture: req.userInfo.picture,
 					layout: "pages/base",
 					eventData: result[0],
 				});
