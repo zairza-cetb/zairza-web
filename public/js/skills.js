@@ -3,12 +3,13 @@ $("#fakeNextBtn").on("click", function () {
   const data = new FormData();
   const profileImg = document.getElementById("fileInput").files[0];
   $phoneNo = $("#phone").val();
+  $regNo = $("#regNo").val();
   let skills = [];
   $(".tag-container .tag span").each(function (index, element) {
     skills.push(element.innerHTML);
   });
   // console.log(profileImg);
-  if (profileImg == undefined || $phoneNo == "" || skills.length == 0) {
+  if (profileImg == undefined || $phoneNo == "" || skills.length == 0 || $regNo == "" ) {
     showToast(400, "Please add your details!");
     return;
   }
@@ -18,6 +19,7 @@ $("#fakeNextBtn").on("click", function () {
   data.append("profileImage", profileImg);
   skills.forEach((skill)=>{data.append("skills[]",skill)});
   data.append("phoneNo", $phoneNo);
+  data.append("registrationNo", $regNo);
   $.ajax({
     type: "PUT",
     url: "/api/user/edit",
@@ -69,3 +71,8 @@ $("#fakeCompleteBtn").on("click", function () {
       showToast(err.status, err.responseJSON.message);
     });
 });
+
+// Event handler for previous button
+$("#prevBtn").on("click", function (){
+  self.location.reload();
+})

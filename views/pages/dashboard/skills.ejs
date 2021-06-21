@@ -40,6 +40,7 @@
                   clip-rule="evenodd"
                 />
               </svg>
+            
 
               <h2 class="text-2xl mb-4 text-gray-800 text-center font-bold">
                 Registration successful for Skills++
@@ -52,7 +53,6 @@
 
               <button
                 class="
-                  w-40
                   block
                   mx-auto
                   focus:outline-none
@@ -238,6 +238,19 @@
                     class="w-1/2 px-4 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500  text-gray-600 font-medium"
                   />
                 </div>
+                <div
+                  class="flex flex-col justify-around mt-10 items-center h-16"
+                >
+                  <label for="phone" class="font-bold mb-1 text-gray-700 block pb-3"
+                    >Enter your registration number</label
+                  >
+                  <input
+                    name="regNo"
+                    id="regNo"
+                    type="text"
+                    class="w-1/2 px-4 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500  text-gray-600 font-medium"
+                  />
+                </div>
               </div>
               <div class="mb-5">
                 <div class="container">
@@ -267,7 +280,7 @@
             <div x-show.transition.in="step === 2">
               <div class="mb-5">
                 <label for="" class="font-bold mb-1 text-gray-700 block text-center"
-                  >Domain</label
+                  >Domains</label
                 >
 
                 <div class="grid md:grid-cols-4 grid-rows-12 gap-x-8 gap-y-3">
@@ -328,6 +341,7 @@
                     font-medium
                     border
                   "
+                  id="prevBtn"
                 >
                   Previous
                 </button>
