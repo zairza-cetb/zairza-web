@@ -40,9 +40,10 @@
                   clip-rule="evenodd"
                 />
               </svg>
+            
 
               <h2 class="text-2xl mb-4 text-gray-800 text-center font-bold">
-                Registration Success for Skills++
+                Registration successful for Skills++
               </h2>
 
               <div class="text-gray-600 mb-8">
@@ -51,9 +52,7 @@
               </div>
 
               <button
-                @click="step = 1"
                 class="
-                  w-40
                   block
                   mx-auto
                   focus:outline-none
@@ -68,14 +67,18 @@
                   border
                 "
               >
-                Back to home
+                Download brochure
               </button>
             </div>
           </div>
         </div>
-
+        <% if(isRegistered) {%>
+        <div x-show.transition="step = 'complete'">
+        <% } else {%>
         <div x-show.transition="step != 'complete'">
+        <% } %>
           <!-- Top Navigation -->
+          <% if(!isRegistered) {%>
           <div class="border-b-2 py-4">
             <div
               class="
@@ -87,7 +90,7 @@
                 mb-1
                 leading-tight
               "
-              x-text="`Step: ${step} of 3`"
+              x-text="`Step: ${step} of 2`"
             ></div>
             <div
               class="
@@ -106,12 +109,6 @@
 
                 <div x-show="step === 2">
                   <div class="text-lg font-bold text-gray-700 leading-tight">
-                    Add your skills
-                  </div>
-                </div>
-
-                <div x-show="step === 3">
-                  <div class="text-lg font-bold text-gray-700 leading-tight">
                     Choose domain for skills++
                   </div>
                 </div>
@@ -128,16 +125,17 @@
                       h-2
                       text-center text-white
                     "
-                    :style="'width: '+ parseInt(step / 3 * 100) +'%'"
+                    :style="'width: '+ parseInt(step / 2 * 100) +'%'"
                   ></div>
                 </div>
                 <div
                   class="text-xs w-10 text-gray-600"
-                  x-text="parseInt(step / 3 * 100) +'%'"
+                  x-text="parseInt(step / 2 * 100) +'%'"
                 ></div>
               </div>
             </div>
           </div>
+          <% } %>
           <!-- /Top Navigation -->
 
           <!-- Step Content -->
@@ -240,9 +238,20 @@
                     class="w-1/2 px-4 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500  text-gray-600 font-medium"
                   />
                 </div>
+                <div
+                  class="flex flex-col justify-around mt-10 items-center h-16"
+                >
+                  <label for="phone" class="font-bold mb-1 text-gray-700 block pb-3"
+                    >Enter your registration number</label
+                  >
+                  <input
+                    name="regNo"
+                    id="regNo"
+                    type="text"
+                    class="w-1/2 px-4 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500  text-gray-600 font-medium"
+                  />
+                </div>
               </div>
-            </div>
-            <div x-show.transition.in="step === 2">
               <div class="mb-5">
                 <div class="container">
                   <label
@@ -250,9 +259,9 @@
                     class="font-bold mb-1 text-gray-700 block"
                     >Your skills</label
                   >
-
+  
                   <div class="tag-container">
-                    <input class="tag-input" list="skills-required" />
+                    <input name="userSkills" class="tag-input" list="skills-required" placeholder="Add your skills" id="userSkills"/>
                     <datalist id="skills-required">
                       <option value="HTML">HTML</option>
                       <option value="CSS">CSS</option>
@@ -262,19 +271,37 @@
                       <option value="Python">Python</option>
                       <option value="C">C</option>
                       <option value="PHP">PHP</option>
-                      <option value="Ruby">Ruby</option>
+                      <option value="Flutter">Flutter</option>
+                      <option value="ReactJS">ReactJS</option>
+                      <option value="NodeJS">NodeJS</option>
+                      <option value="Android">Android</option>
+                      <option value="Kotlin">Kotlin</option>
+                      <option value="Graphic Designing">Graphic Designing</option>
+                      <option value="Video Editing">Video Editing</option>
+                      <option value="UI">UI</option>
+                      <option value="Competitive Coding">Competitive Coding</option>
+                      <option value="Data Science">Data Science</option>
+                      <option value="Machine Learning">Machine Learning</option>
+                      <option value="Devops">Devops</option>
+                      <option value="Blockchain">Blockchain</option>
+                      <option value="Microcontrollers">Microcontrollers</option>
+                      <option value="Embedded Systems">Embedded Systems</option>
+                      <option value="IOT">IOT</option>
+                      <option value="ROS">ROS</option>
+                      <option value="Cloud Computing">Cloud Computing</option>
                     </datalist>
                   </div>
                 </div>
               </div>
             </div>
-            <div x-show.transition.in="step === 3">
+            <div x-show.transition.in="step === 2">
               <div class="mb-5">
                 <label for="" class="font-bold mb-1 text-gray-700 block text-center"
-                  >Domain</label
+                  >Domains</label
                 >
 
                 <div class="grid md:grid-cols-4 grid-rows-12 gap-x-8 gap-y-3">
+                  <% for (domain of domains){ %>
                   <label
                     class="
                       flex
@@ -292,8 +319,8 @@
                     <div class="text-teal-600 mr-3">
                       <input
                         type="radio"
-                        x-model="gender"
-                        value="Web dev"
+                        name="domain"
+                        value="<%= domain._id  %>"
                         class="
                           form-radio
                           focus:outline-none
@@ -301,331 +328,9 @@
                         "
                       />
                     </div>
-                    <div class="select-none text-gray-700">Web dev</div>
+                    <div class="select-none text-gray-700"><%= domain.name %></div>
                   </label>
-
-                  <label
-                    class="
-                      labels
-                      flex
-                      justify-start
-                      items-center
-                      text-truncate
-                      rounded-lg
-                      bg-white
-                      pl-4
-                      pr-6
-                      py-3
-                      shadow-sm
-                      
-                      
-                    "
-                  >
-                    <div class="text-teal-600 mr-3">
-                      <input
-                        type="radio"
-                        x-model="gender"
-                        value="App dev"
-                        class="
-                          form-radio
-                          focus:outline-none
-                          focus:shadow-outline
-                        "
-                      />
-                    </div>
-                    <div class="select-none text-gray-700">App dev</div>
-                  </label>
-                  
-
-                  <label
-                    class="
-                      flex
-                      justify-start
-                      items-center
-                      text-truncate
-                      rounded-lg
-                      bg-white
-                      pl-4
-                      pr-6
-                      py-3
-                      shadow-sm
-                      
-                    "
-                  >
-                    <div class="text-teal-600 mr-3">
-                      <input
-                        type="radio"
-                        x-model="gender"
-                        value="AI/ML"
-                        class="
-                          form-radio
-                          focus:outline-none
-                          focus:shadow-outline
-                        "
-                      />
-                    </div>
-                    <div class="select-none text-gray-700">
-                      AI/ML
-                    </div>
-                  </label>
-
-                  
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        labels
-                                        shadow-sm
-                                         
-                                      ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="Competitive Coding" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700 ">
-                      Competitive 
-                      Coding
-                    </div>
-                  </label>
-                   
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        shadow-sm
-                                        
-                                        
-                                      ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="Microcontroller & Embedded Systems" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700">
-                      Microcontroller & Embedded Systems
-                    </div>
-                  </label>
-
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        shadow-sm
-                                        
-                                        
-                                      ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="IOT" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700">
-                      IOT
-                    </div>
-                  </label>
-
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        shadow-sm
-                                        mr-4
-                                        
-                                      ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="Cloud Computing" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700">
-                      Cloud Computing
-                    </div>
-                  </label>
-
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        shadow-sm
-                                        
-                                        
-                                      ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="DevOps" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700">
-                      DevOps
-                    </div>
-                  </label>
-
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        shadow-sm
-                                        
-                                        
-                                      ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="Blockchain" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700">
-                      Blockchain
-                    </div>
-                  </label>
-
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        shadow-sm
-                                        
-                                        
-                                      ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="UI" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700">
-                      UI
-                    </div>
-                  </label>
-
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        shadow-sm
-                                        
-                                        
-                                      ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="Graphic Designing" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700">
-                      Graphic Designing
-                    </div>
-                  </label>
-
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        shadow-sm
-                                        
-                                        
-                                      ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="Videography & Editing" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700">
-                      Videography & Editing
-                    </div>
-                  </label>
-
-                  <label class="
-                                        flex
-                                        justify-start
-                                        items-center
-                                        text-truncate
-                                        rounded-lg
-                                        bg-white
-                                        pl-4
-                                        pr-6
-                                        py-3
-                                        shadow-sm
-                                        ">
-                    <div class="text-teal-600 mr-3">
-                      <input type="radio" x-model="gender" value="ROS" class="
-                                            form-radio
-                                            focus:outline-none
-                                            focus:shadow-outline
-                                          " />
-                    </div>
-                    <div class="select-none text-gray-700">ROS</div>
-
+                  <% } %>
                 </div>
               </div>
             </div>
@@ -653,6 +358,7 @@
                     font-medium
                     border
                   "
+                  id="prevBtn"
                 >
                   Previous
                 </button>
@@ -660,9 +366,36 @@
 
               <div class="w-1/2 text-right">
                 <button
-                  x-show="step < 3"
+                  x-show="step < 2"
+                  class="
+                    w-40
+                    md:w-48
+                    inline-flex 
+                    justify-center
+                    focus:outline-none
+                    border border-transparent
+                    py-2
+                    px-5
+                    rounded-lg
+                    shadow-sm
+                    text-center text-white
+                    bg-blue-500
+                    hover:bg-blue-600
+                    font-medium
+                  "
+                  id="fakeNextBtn"
+                >
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Submit</span>
+                </button>
+                <button
+                  x-show="step < 2"
                   @click="step++"
                   class="
+                    hidden
                     w-32
                     focus:outline-none
                     border border-transparent
@@ -675,14 +408,42 @@
                     hover:bg-blue-600
                     font-medium
                   "
+                  id="realNextBtn"
                 >
                   Next
                 </button>
 
                 <button
-                  @click="step = 'complete'"
-                  x-show="step === 3"
+                  x-show="step === 2"
                   class="
+                    w-48
+                    inline-flex 
+                    justify-center
+                    focus:outline-none
+                    border border-transparent
+                    py-2
+                    px-5
+                    rounded-lg
+                    shadow-sm
+                    text-center text-white
+                    bg-blue-500
+                    hover:bg-blue-600
+                    font-medium
+                  "
+                  id="fakeCompleteBtn"
+                >
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Complete</span>
+                </button>
+
+                <button
+                  @click="step = 'complete'"
+                  x-show="step === 2"
+                  class="
+                    hidden
                     w-32
                     focus:outline-none
                     border border-transparent
@@ -695,6 +456,7 @@
                     hover:bg-blue-600
                     font-medium
                   "
+                  id="realCompleteBtn"
                 >
                   Complete
                 </button>
@@ -707,7 +469,7 @@
     </div>
   </main>
 </div>
-<script src="/js/skills++.js"></script>
+<script src="/js/skills.js"></script>
 <script>
   function app() {
     return {

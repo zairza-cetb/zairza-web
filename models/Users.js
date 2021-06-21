@@ -28,7 +28,7 @@ const UserSchema = new mongoose.Schema(
 		wing: [
 			{
 				type: String,
-				enum: ["Software", "Hardware", "Design"],
+				enum: ["Software", "Robotics", "Design"],
 			},
 		],
 		branch: {

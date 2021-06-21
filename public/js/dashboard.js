@@ -22,17 +22,21 @@ function logout() {
 
 // Delete user
 function deleteAccount() {
+    let token;
     $("#accountDeleteButton svg").toggleClass("hidden");
     $("#accountDeleteButton span").text("Processing");
-    $("#accountDeleteButton").addClass("disabled");
-    let token = $.cookie("zToken");
-    $.ajax({
-        type: "DELETE",
-        url: "/api/user",
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader("Authorization", `Bearer ${token}`);
-        },
-    })
+    $("#accountDeleteButton").addClass("cursor-not-allowed");
+    firebase.auth().onAuthStateChanged(async function(user){
+        if(user){
+            token = await user.getIdToken(true);
+        }
+        $.ajax({
+            type: "DELETE",
+            url: "/api/user",
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", `Bearer ${token}`);
+            },
+        })
         .done(function (data) {
             deleteModal();
             showToast(200, "Your account has been deleted!");
@@ -45,6 +49,8 @@ function deleteAccount() {
             $("#accountDeleteModal").toggleClass("hidden");
             showToast(400, err.message);
         });
+    })
+    // console.log(token);
 }
 
 // Add active to required nav link
@@ -117,7 +123,7 @@ input.addEventListener("keyup", (e) => {
     }
 });
 document.addEventListener("click", (e) => {
-    console.log(e.target.tagName);
+    // console.log(e.target.tagName);
     if (e.target.tagName === "I") {
         const tagLabel = e.target.getAttribute("data-item");
         const index = tags.indexOf(tagLabel);

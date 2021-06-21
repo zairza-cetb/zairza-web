@@ -20,7 +20,6 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
           user: req.user,
           projectsCount: data.length,
           membersCount: count,
-          userPicture: req.userInfo.picture,
           layout: "pages/dashboard/base",
         });
       });
@@ -35,20 +34,11 @@ router.get("/projects", checkIfAuthenticated, function (req, res, next) {
       return res.render("pages/dashboard/projects", {
         projects: data,
         user: req.user,
-        userPicture: req.userInfo.picture,
         layout: "pages/dashboard/base",
       });
     });
 });
 
-/* GET skills page. */
-router.get("/skills", checkIfAuthenticated, function (req, res, next) {
-  res.render("pages/dashboard/skills", {
-    user: req.user,
-    userPicture: req.userInfo.picture,
-    layout: "pages/base",
-  });
-});
 
 /* GET poster uplaod page. */
 router.get(
@@ -57,17 +47,10 @@ router.get(
   function (req, res, next) {
     res.render("pages/dashboard/eventPosterUpload", {
       user: req.user,
-      userPicture: req.userInfo.picture,
       layout: "pages/base",
     });
   }
 );
-router.get("/skilldashboard", checkIfAuthenticated, function (req, res, next) {
-  res.render("pages/dashboard/skilldashboard", {
-    user: req.user,
-    userPicture: req.userInfo.picture,
-    layout: "pages/base",
-  });
-});
+
 
 module.exports = router;

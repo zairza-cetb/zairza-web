@@ -1,44 +1,34 @@
-const faq = [
-  {
-    question: "Week 1: Resources",
-    answer: [
-      "Bacon ipsum dolor amet boudin hamburger jerky spare ribs, bacon leberkas beef ribs sausage turkey pancetta tenderloin chicken.",
-      "Meatball landjaeger turducken. Bacon bresaola tenderloin cow rump pork chop.",
-    ],
-  },
-  {
-    question: "Week 1: Task ",
-    answer: [
-      "Boudin sausage hamburger tenderloin beef chislic prosciutto pancetta. Beef tongue pork meatloaf.",
-      "Chicken pork chop turducken ground round. Shank bresaola burgdoggen short loin ham hock ham. Boudin tri-tip swine drumstick strip steak tail.",
-    ],
-  },
-  {
-    question: "Week 2: Resources",
-    answer: [
-      "Salami filet mignon strip steak venison rump chicken bresaola. Shank flank tongue ribeye. Beef pork chop sirloin venison chicken jowl.",
-      "Doner corned beef kielbasa beef ribs ground round cow salami swine.",
-    ],
-  },
-  {
-    question: "Week 2: Task",
-    answer: [
-      "Bacon ipsum dolor amet boudin hamburger jerky spare ribs, bacon leberkas beef ribs sausage turkey pancetta tenderloin chicken.",
-      "Meatball landjaeger turducken. Bacon bresaola tenderloin cow rump pork chop.",
-    ],
-  },
-  {
-    question: "Week 3: Resources",
-    answer: [
-      "Boudin sausage hamburger tenderloin beef chislic prosciutto pancetta. Beef tongue pork meatloaf.",
-      "Chicken pork chop turducken ground round. Shank bresaola burgdoggen short loin ham hock ham. Boudin tri-tip swine drumstick strip steak tail.",
-    ],
-  },
-  {
-    question: "Week 3: Task",
-    answer: [
-      "Salami filet mignon strip steak venison rump chicken bresaola. Shank flank tongue ribeye. Beef pork chop sirloin venison chicken jowl.",
-      "Doner corned beef kielbasa beef ribs ground round cow salami swine.",
-    ],
-  },
-];
+$("#taskSubmissionBtn").on("click", function () {
+  $submission = $("#taskSubmission").val();
+  $weekNo = $("#taskSubmissionBtn").attr("data-weekNo");
+  console.log($weekNo);
+  if ($submission.length == 0) {
+    showToast(401, "Please submit your task!");
+    return;
+  }
+  $("#taskSubmissionBtn svg").toggleClass("hidden");
+  $("#taskSubmissionBtn span").text("Processing");
+  $("#taskSubmissionBtn").addClass("cursor-not-allowed");
+  const data = {
+    weekNo: $weekNo,
+    submissionLink: $submission,
+  };
+  $.ajax({
+    method: "POST",
+    url: "/skills/api/user-submit",
+    data: data,
+  })
+    .done(function (data) {
+      $("#taskSubmissionBtn svg").toggleClass("hidden");
+      $("#taskSubmissionBtn span").text("Submitted");
+      $("#taskSubmissionBtn").removeClass("cursor-not-allowed");
+      showToast(200, "Submitted successfully!");
+      self.location.reload();
+    })
+    .fail(function (err) {
+      $("#taskSubmissionBtn svg").toggleClass("hidden");
+      $("#taskSubmissionBtn span").text("Submit");
+      $("#taskSubmissionBtn").removeClass("cursor-not-allowed");
+      showToast(400, err.responseJSON.message);
+    });
+});

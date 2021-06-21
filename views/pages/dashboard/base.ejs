@@ -78,15 +78,20 @@
             hover:text-white
           "
         >
-          <a <% if (user.registrationNo){ %>
-            href="/skills" <% } else { %> href="#"
-            onclick="showToast(400,'Please fillup your zairza profile inorder to
-            register.')" <% } %> class=" flex items-center text-black
-            hover:text-white py-4 pl-6 nav-item w-full " ><i
-              class="fas fa-user-graduate mr-3"
-            ></i
-            >Skills++</a
-          >
+          <a
+            href="/skills/user-dashboard"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              py-4
+              pl-6
+              nav-item
+              w-full
+
+            "
+            ><i class="fas fa-user-graduate mr-3"></i>Skills++</a
           <span
             class="
               absolute
@@ -169,22 +174,6 @@
           Newsletter Dashboard
         </a>
         <% } %>
-        <a
-          href="/skilldashboard"
-          class="
-            flex
-            items-center
-            text-black
-            hover:text-white
-            py-4
-            pl-6
-            nav-item
-            my-4
-          "
-        >
-          <i class="fas fa-tachometer-alt mr-3"></i>
-          Skills++ Dashboard
-        </a>
       </nav>
     </aside>
 
@@ -268,11 +257,12 @@
               focus:outline-none
             "
           >
-            <% if(userPicture) { %>
-            <img src="<%= userPicture %>" />
-            <% } else { %>
-            <img src="/images/profile_icon.png" />
-            <% } %>
+          <% if(user.profileImage) { %>
+            <img src="<%= user.profileImage %>" />
+          <% } else { %>
+              <img src="/images/profile_icon.png">
+          <% } %>
+
           </button>
           <button
             x-show="isOpen"
@@ -360,15 +350,47 @@
             <i class="fas fa-project-diagram mr-3"></i>
             Zairza Projects
           </a>
+
           <div class="relative mx-auto flex justify-start items-center w-full">
-            <a <% if (user.registrationNo){ %>
-              href="/skills" <% } else { %> href="#"
-              onclick="showToast(400,'Please fillup your zairza profile inorder to register.')" <% } %> class=" w-full flex items-center
+            <a
+              href="/skills" class=" w-full flex items-center
               text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2
               pl-4 nav-item " >
               <i class="fas fa-user-graduate mr-3"></i>
               Skills++
             </a>
+          <div
+            class="
+              relative
+              mx-auto
+              flex
+              justify-start
+              items-center
+              w-full
+            "
+          >
+          <a
+            href="/skills/user-dashboard"
+            class="
+            w-full flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item
+            "
+          >
+            <i class="fas fa-user-graduate mr-3"></i>
+            Skills++
+          </a>
+          <span
+            class="
+              absolute
+              flex
+              h-4
+              w-4
+              top-2
+              right-0
+              transform
+              translate-x-2.5
+              -translate-y-2.5
+            "
+          >
             <span
               class="
                 absolute
