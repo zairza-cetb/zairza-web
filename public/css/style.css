@@ -793,3 +793,6 @@ body {
 .animated-arrow > .main > .the-arrow {
   position: relative;
 }
+.bg-zairza-orange {
+  background-color: #ff7610;
+}
