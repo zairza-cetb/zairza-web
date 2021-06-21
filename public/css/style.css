@@ -796,3 +796,6 @@ body {
 .bg-zairza-orange {
   background-color: #ff7610;
 }
+.skillsBtn:hover{
+  color: #ff7610;
+}

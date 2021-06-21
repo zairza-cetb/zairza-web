@@ -138,7 +138,6 @@ $(document).ready(function () {
 // Check user logged in or not
 firebase.auth().onAuthStateChanged((user) => {
   let userRoute;
-  const event = `<a href="/me"><li class="transition block text-white hover:text-black px-4 py-1 lg:py-2 lg:my-0 my-1 lg:ml-2 font-normal bg-zairza-orange duration-300 ease-in-out rounded-full lg:animate-bounce">Skill++</li></a>`;
   if (user) {
     // User is signed in
     userRoute = `<a href="/me" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Dashboard</li></a>`;
@@ -148,5 +147,6 @@ firebase.auth().onAuthStateChanged((user) => {
     userRoute = `<a href="/auth#signin" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li></a>`;
   }
   $("#mob-menu").append(userRoute);
-  $("#mob-menu").append(event);
+  const eventBtn = `<a href="/me"><li class="skillsBtn lg:w-28 text-center transition block text-white hover:text-blue-500 hover:shadow-md px-4 py-1 lg:py-2 lg:my-0 my-1 lg:ml-2 font-normal bg-zairza-orange hover:bg-white duration-300 ease-in-out rounded-full lg:animate-bounce">Skill++</li></a>`;
+  $("#mob-menu").append(eventBtn);
 });
