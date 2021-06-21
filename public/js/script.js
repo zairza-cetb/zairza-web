@@ -147,6 +147,6 @@ firebase.auth().onAuthStateChanged((user) => {
     userRoute = `<a href="/auth#signin" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li></a>`;
   }
   $("#mob-menu").append(userRoute);
-  const eventBtn = `<a href="/me"><li class="skillsBtn lg:w-28 text-center transition block text-white hover:text-blue-500 hover:shadow-md px-4 py-1 lg:py-2 lg:my-0 my-1 lg:ml-2 font-normal bg-zairza-orange hover:bg-white duration-300 ease-in-out rounded-full lg:animate-bounce">Skill++</li></a>`;
+  const eventBtn = `<a href="/skills/user-dashboard"><li class="skillsBtn lg:w-28 text-center transition block text-white hover:text-blue-500 hover:shadow-md px-4 py-1 lg:py-2 lg:my-0 my-1 lg:ml-2 font-normal bg-zairza-orange hover:bg-white duration-300 ease-in-out rounded-full lg:animate-bounce">Skill++</li></a>`;
   $("#mob-menu").append(eventBtn);
 });
