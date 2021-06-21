@@ -31,7 +31,7 @@ $("#fakeNextBtn").on("click", function () {
     })
     .fail(function (err) {
       $("#fakeNextBtn svg").toggleClass("hidden");
-      $("#fakeNextBtn span").text("Next");
+      $("#fakeNextBtn span").text("Submit");
       $("#fakeNextBtn").removeClass("cursor-not-allowed");
       showToast(err.responseJSON.statusCode, err.responseJSON.message);
     });
