@@ -62,9 +62,10 @@
 
   <body>
     <!--js xor no-js -->
-    <%- include('../partials/firebase.ejs') %> <% if(event) { %> <%-
-    include('../partials/eventspop.ejs', { poster:event.imageURL }) %> <% } %>
-
+    <%- include('../partials/firebase.ejs') %> 
+    <% if(event) { %> 
+    <%- include('../partials/eventspop.ejs', { poster:event.imageURL }) %> 
+    <% } %>
     <main class="js mb-20 sm:mb-0">
       <section>
         <header
