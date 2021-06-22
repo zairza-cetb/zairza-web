@@ -71,6 +71,7 @@ const input = document.querySelector(".tag-container input");
 
 let tags = [];
 let tagsMap = new Map();
+let acceptedTags = ["HTML", "CSS", "Javascript", "C++", "Java", "Python", "C", "PHP", "Flutter", "ReactJS", "NodeJS", "Android", "Kotlin", "Graphic Designing", "Video Editing", "UI", "Competitive Coding", "Data Science", "Machine Learning", "Devops", "Blockchain", "Microcontrollers", "Embedded Systems", "IOT", "ROS", "Cloud Computing"];
 
 function createTag(label) {
     const div = document.createElement("div");
@@ -104,7 +105,7 @@ function addTags() {
 input.addEventListener("keyup", (e) => {
     if (e.key === "Enter") {
         e.target.value.split(",").forEach((tag) => {
-            if (tagsMap.has(tag.trim())) {
+            if (tagsMap.has(tag.trim()) || !acceptedTags.includes(tag)) {
                 return;
             }
             tag = tag.trim();
