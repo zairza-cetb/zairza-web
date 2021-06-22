@@ -1,7 +1,7 @@
 module.exports = {
-	registrationEnd: new Date("2021-05-11 00:00:00"), // Registration stops for skills++
-	eventStart: new Date("2021-05-12 00:00:00"), // Skills++ event starts
-	weekStart: new Date("2021-06-14 00:00:00"), // Week 1 starts for skills++
+	registrationEnd: new Date("2021-06-28 00:00:00"), // Registration stops for skills++
+	eventStart: new Date("2021-07-01 00:00:00"), // Skills++ event starts
+	weekStart: new Date("2021-07-05 00:00:00"), // Week 1 starts for skills++
 	weekInterval: 7 * 24 * 60 * 60 * 1000,
 	maxWeekNos: 4,
 	extraTime: 2 * 24 * 60 * 60 * 1000,
