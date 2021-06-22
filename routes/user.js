@@ -19,7 +19,7 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
   res.json(req.user);
 });
 
-router.put("/edit", checkIfAuthenticated, uploadProfilePhoto.single("profile"), function (req, res, next) {
+router.put("/edit", checkIfAuthenticated, uploadProfilePhoto.single("profileImage"), function (req, res, next) {
   if (!req.user.registrationNo && !req.body.registrationNo) {
     return res
       .status(403)

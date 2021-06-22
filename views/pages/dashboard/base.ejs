@@ -25,12 +25,10 @@
     <link rel="stylesheet" href="/css/dashboard.css" />
   </head>
   <body class="flex">
-    <%- include('../../partials/firebase.ejs') %> 
-    <%- include('../../partials/toast.ejs') %> 
-    <%- include('../../partials/delete.ejs') %>
-    <% if(!user.registrationNo) { %> 
-    <%- include('../../partials/profileUpdatePop.ejs') %>
-    <% } %>
+    <%- include('../../partials/firebase.ejs') %> <%-
+    include('../../partials/toast.ejs') %> <%-
+    include('../../partials/delete.ejs') %> <% if(!user.registrationNo) { %> <%-
+    include('../../partials/profileUpdatePop.ejs') %> <% } %>
     <aside class="relative bg-sidebar h-screen w-80 hidden lg:block shadow-xl">
       <div class="h-16 flex justify-center items-center">
         <a href="/">
@@ -81,12 +79,7 @@
           "
         >
           <a
-            <% if (user.registrationNo){ %>
-            href="/skills"
-            <% } else { %>
-            href="#"
-            onclick="showToast(400,'Please fillup your zairza profile inorder to register.')"
-            <% } %>
+            href="/skills/user-dashboard"
             class="
               flex
               items-center
@@ -98,8 +91,7 @@
               w-full
 
             "
-            ><i class="fas fa-user-graduate mr-3"></i>Skills++</a
-          >
+            ><i class="fas fa-user-graduate mr-3"></i>Skills++</a>
           <span
             class="
               absolute
@@ -111,6 +103,7 @@
               transform
               translate-x-2.5
               -translate-y-2.5
+              z-40
             "
           >
             <span
@@ -123,6 +116,7 @@
                 rounded-full
                 bg-zairza-orange-400
                 opacity-75
+                z-40
               "
             ></span>
             <span
@@ -180,28 +174,14 @@
           Newsletter Dashboard
         </a>
         <% } %>
-        <a
-          href="/skills/user-dashboard"
-          class="
-            flex
-            items-center
-            text-black
-            hover:text-white
-            py-4
-            pl-6
-            nav-item
-            my-4
-          "
-        >
-          <i class="fas fa-tachometer-alt mr-3"></i>
-          Skills++ Dashboard
-        </a>
       </nav>
     </aside>
 
     <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
       <!-- Desktop Header -->
-      <header class="w-full items-center bg-white py-2 px-6 hidden lg:flex shadow-md">
+      <header
+        class="w-full items-center bg-white py-2 px-6 hidden lg:flex shadow-md"
+      >
         <% if(user.role == 'restricted') {%>
         <span
           class="
@@ -277,11 +257,12 @@
               focus:outline-none
             "
           >
-          <% if(userPicture) { %>
-            <img src="<%= userPicture %>" />
+          <% if(user.profileImage) { %>
+            <img src="<%= user.profileImage %>" />
           <% } else { %>
               <img src="/images/profile_icon.png">
           <% } %>
+
           </button>
           <button
             x-show="isOpen"
@@ -369,6 +350,15 @@
             <i class="fas fa-project-diagram mr-3"></i>
             Zairza Projects
           </a>
+
+          <div class="relative mx-auto flex justify-start items-center w-full">
+            <a
+              href="/skills" class=" w-full flex items-center
+              text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2
+              pl-4 nav-item " >
+              <i class="fas fa-user-graduate mr-3"></i>
+              Skills++
+            </a>
           <div
             class="
               relative
@@ -380,12 +370,7 @@
             "
           >
           <a
-            <% if (user.registrationNo){ %>
-            href="/skills"
-            <% } else { %>
-            href="#"
-            onclick="showToast(400,'Please fillup your zairza profile inorder to register.')"
-            <% } %>
+            href="/skills/user-dashboard"
             class="
             w-full flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item
             "
@@ -408,26 +393,55 @@
           >
             <span
               class="
-                animate-ping
                 absolute
-                inline-flex
-                h-full
-                w-full
-                rounded-full
-                bg-zairza-orange-400
-                opacity-75
+                flex
+                h-4
+                w-4
+                top-2
+                right-0
+                transform
+                translate-x-2.5
+                -translate-y-2.5
               "
-            ></span>
-            <span
-              class="absolute inline-flex rounded-full h-4 w-4 bg-zairza-orange"
-            ></span>
-          </span>
-        </div>
-         <% if(user.role == 'admin') { %>
+            >
+              <span
+                class="
+                  animate-ping
+                  absolute
+                  inline-flex
+                  h-full
+                  w-full
+                  rounded-full
+                  bg-zairza-orange-400
+                  opacity-75
+                "
+              ></span>
+              <span
+                class="
+                  absolute
+                  inline-flex
+                  rounded-full
+                  h-4
+                  w-4
+                  bg-zairza-orange
+                "
+              ></span>
+            </span>
+          </div>
+          <% if(user.role == 'admin') { %>
           <a
             href="/eventPosterUpload"
             class="
-            flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
             "
           >
             <i class="fas fa-file-upload mr-3"></i>
@@ -435,14 +449,36 @@
           </a>
           <a
             href="/admin"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-user-shield mr-3"></i>
             Admin Dashboard
           </a>
           <a
             href="/protected/newsletterDashboard"
-            class="flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item"
+            class="
+              flex
+              items-center
+              text-black
+              hover:text-white
+              my-2
+              opacity-75
+              hover:opacity-100
+              py-2
+              pl-4
+              nav-item
+            "
           >
             <i class="fas fa-newspaper mr-3"></i>
             Newsletter Dashboard
@@ -567,8 +603,7 @@
 
       <%- body %>
     </div>
-    <script>
-    </script>
+    <script></script>
 
     <!-- AlpineJS -->
     <script
