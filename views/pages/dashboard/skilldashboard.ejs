@@ -207,6 +207,7 @@
         "
       >
         <span class="font-bold">Week 0</span>
+        <span class="font-bold uppercase text-right mr-3">1st July - 5th July</span>
       </div>
     </div>
     <div
@@ -265,16 +266,19 @@
               w-full
             "
           >
-            <span class="font-bold">Week <%= task.weekNo  %></span>
-            <% if(task.submission) {%>
-              <% if(task.submission.mark){ %>
-                <% if(task.submission.approved) {%>
-                  <i class="fa fa-check text-green-500" aria-hidden="true"></i>
-                <% } else { %>
-                  <i class="fa fa-times text-red-500" aria-hidden="true"></i>
-                <% } %>  
+            <span class="font-bold">Week <%= task.weekNo  %> </span>
+            <div>
+              <span class="font-bold uppercase text-right mr-3"><%= task.weekInterval %></span>
+              <% if(task.submission) {%>
+                <% if(task.submission.mark){ %>
+                  <% if(task.submission.approved) {%>
+                    <i class="fa fa-check text-green-500" aria-hidden="true"></i>
+                  <% } else { %>
+                    <i class="fa fa-times text-red-500" aria-hidden="true"></i>
+                  <% } %>  
+                <% } %>
               <% } %>
-            <% } %>
+            </div>
           </div>
         </div>
         <div
