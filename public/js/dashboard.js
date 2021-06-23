@@ -77,6 +77,7 @@ const input = document.querySelector(".tag-container input");
 
 let tags = [];
 let tagsMap = new Map();
+let acceptedTags = ["html", "css", "javascript", "c++", "java", "python", "c", "php", "flutter", "reactjs", "nodejs", "android", "kotlin", "graphic designing", "video editing", "ui", "competitive coding", "data science", "machine learning", "devops", "blockchain", "microcontrollers", "embedded systems", "iot", "ros", "cloud computing"];
 
 function createTag(label) {
     const div = document.createElement("div");
@@ -108,20 +109,30 @@ function addTags() {
 }
 
 input.addEventListener("keyup", (e) => {
-    if (e.key === "Enter") {
-        e.target.value.split(",").forEach((tag) => {
-            if (tagsMap.has(tag.trim())) {
-                return;
-            }
-            tag = tag.trim();
+    var tag = e.target.value; 
+    if (e.code === "Enter") {
+        if (!tagsMap.has(tag.trim().toLowerCase()) && acceptedTags.includes(tag.toLowerCase())) {
+            tag = tag.trim().toLowerCase();
             tagsMap.set(tag, 0);
-            return tags.push(tag);
-        });
-
-        addTags();
-        input.value = "";
+            tags.push(tag);
+            e.target.value = ""; 
+        } else if (tagsMap.has(tag.trim())) {
+            e.target.value = ""; 
+        }
+    } else if (e.code === undefined) {
+        if (!tagsMap.has(tag.trim().toLowerCase()) && acceptedTags.includes(tag.toLowerCase())) {
+            tag = tag.trim().toLowerCase();
+            tagsMap.set(tag, 0);
+            tags.push(tag);
+            e.target.value = ""; 
+        } else if (tagsMap.has(tag.trim())) {
+            e.target.value = ""; 
+        }
     }
+
+    addTags();
 });
+
 document.addEventListener("click", (e) => {
     // console.log(e.target.tagName);
     if (e.target.tagName === "I") {
