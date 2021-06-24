@@ -3,8 +3,6 @@ const Domains = require("./Domains");
 const Users = require("../Users");
 const sendMail = require("../../utils/sendMail");
 const fs = require("fs");
-pathToAttachment = "./utils/skills/sample.pdf";
-attachment = fs.readFileSync(pathToAttachment).toString("base64");
 
 const DomainRegistrationSchema = new mongoose.Schema(
 	{
