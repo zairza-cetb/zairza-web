@@ -1,5 +1,5 @@
 module.exports = {
-	registrationStart: new Date("2021-06-25 19:00:00"), // Registration starts for skills++
+	registrationStart: new Date("2021-06-25 19:30:00"), // Registration starts for skills++
 	registrationEnd: new Date("2021-06-28 00:00:00"), // Registration stops for skills++
 	eventStart: new Date("2021-07-01 00:00:00"), // Skills++ event starts
 	weekStart: new Date("2021-07-05 00:00:00"), // Week 1 starts for skills++
