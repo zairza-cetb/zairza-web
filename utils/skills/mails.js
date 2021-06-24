@@ -1,9 +1,16 @@
 const DomainRegistrations = require("../../models/skills/DomainRegistrations");
 const Users = require("../../models/Users");
 const sendMail = require("../sendMail");
-const mongoose = require("mongoose");
+
+const http = require('http');
 const fs = require("fs");
-pathToAttachment = `${__dirname}/sample.pdf`;
+
+const file = fs.createWriteStream("temp/brochure.pdf");
+const request = http.get("http://zairza-website.s3.ap-south-1.amazonaws.com/miscellaneous/Skills%2B%2B+Brochure.pdf", function(response) {
+  response.pipe(file);
+});
+
+pathToAttachment = `./temp/brochure.pdf`;
 attachment = fs.readFileSync(pathToAttachment).toString("base64");
 
 module.exports = (agenda) => {
@@ -56,7 +63,7 @@ module.exports = (agenda) => {
 					attachments: [
 						{
 							content: attachment,
-							filename: "my_resume_final_.pdf",
+							filename: "brochure.pdf",
 							type: "application/pdf",
 							disposition: "attachment",
 						},
