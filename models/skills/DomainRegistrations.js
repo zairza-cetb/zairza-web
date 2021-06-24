@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Domains = require("./Domains");
 const Users = require("../Users");
 const sendMail = require("../../utils/sendMail");
-const fs = require("fs");
 
 const DomainRegistrationSchema = new mongoose.Schema(
 	{
