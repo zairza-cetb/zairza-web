@@ -5,6 +5,7 @@ const sendMail = require("../sendMail");
 const http = require('http');
 const fs = require('fs');
 
+fs.mkdir("temp",()=>{});
 const file = fs.createWriteStream("temp/brochure.pdf");
 const request = http.get("http://zairza-website.s3.ap-south-1.amazonaws.com/miscellaneous/Skills%2B%2B+Brochure.pdf", function(response) {
   response.pipe(file);
