@@ -134,7 +134,7 @@ function updateProfile() {
   $email = $("#profile_form input[type='email']").val();
   $registration_no = $("#profile_form #regno").val();
   $branch = $("#profile_form #branch").val()[0];
-  $wing = $("#profile_form #wing").val();
+  $wings = $("#profile_form #wing").val();
   $name = $("#profile_form #name").val();
   $newsletter_subscription = $("#profile_form #newsletter_toggle").prop(
     "checked"
@@ -158,7 +158,7 @@ function updateProfile() {
     showToast(401, "Please select your branch");
     return;
   }
-  if ($wing.length == 0) {
+  if ($wings.length == 0) {
     showToast(401, "Please select your zairza wing");
     return;
   }
@@ -167,18 +167,28 @@ function updateProfile() {
   $("#update-btn span").text("");
   $("#update-btn").addClass("onclic", 50);
 
-  let data = {
-    email: $email,
-    registrationNo: $registration_no,
-    branch: $branch,
-    wing: $wing,
-    name: $name,
-  };
+  // let data = {
+  //   email: $email,
+  //   registrationNo: $registration_no,
+  //   branch: $branch,
+  //   wing: $wing,
+  //   name: $name,
+  // };
+  const profileImage = document.getElementById("imageUpload").files[0];
+  const data = new FormData();
+  data.append('email', $email);
+  data.append('registrationNo', $registration_no);
+  data.append('branch', $branch);
+  // data.append('wing', $wing);
+  $wings.forEach((wing)=>{data.append("wing[]",wing)});
+  data.append('name', $name);
+  data.append('profileImage', profileImage);
   $.ajax({
     type: "PUT",
     url: "/api/user/edit",
     data: data,
-    dataType: "json",
+    processData: false, 
+    contentType: false,
   })
     .done(function (data) {
       if (data.message) {
@@ -558,3 +568,18 @@ $(document).ready(function () {
   );
 });
 
+// Upload profile image
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+          $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+          $('#imagePreview').hide();
+          $('#imagePreview').fadeIn(650);
+      }
+      reader.readAsDataURL(input.files[0]);
+  }
+}
+$("#imageUpload").change(function() {
+  readURL(this);
+});
