@@ -53,6 +53,7 @@ DomainRegistrationSchema.post("save", async function (doc) {
 			dynamic_template_data: {
 				domain: domain.name,
 				name: user.name.split(" ")[0],
+				discussionLink: domain.discussionLink,
 				process: "Sending for successful registration",
 			},
 		});
