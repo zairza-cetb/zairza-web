@@ -27,7 +27,7 @@ function getMulter(dirName, keyFunc) {
 		});
 	}
 
-	return multer({ dest: `temp/multer/${dirName}/` });
+	return multer({ dest: `public/uploads/multer/${dirName}/` });
 }
 
 const uploadEventPoster = getMulter("event-posters", function (req, file, cb) {

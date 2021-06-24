@@ -94,6 +94,14 @@ router.post(
 	"/api/create-event",
 	uploadEventPoster.single("image"),
 	function (req, res, next) {
+		let imageURL;
+		if(process.env.NODE_ENV === "production"){
+			imageURL = req.file.location;
+		}else{
+			imageURL = req.protocol + "://" + req.get('host') + "/" + req.file.path.substring(7);
+		}
+
+		console.log(req.file);
 		Events.findOneAndUpdate(
 			{
 				name: req.body.name,
@@ -101,7 +109,7 @@ router.post(
 				endTime: req.body.endTime,
 			},
 			{
-				imageURL: req.file.location,
+				imageURL: imageURL,
 			},
 			{
 				upsert: true,
