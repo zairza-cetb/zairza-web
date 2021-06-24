@@ -28,18 +28,20 @@ const EventSchema = new mongoose.Schema(
 );
 
 EventSchema.post("findOneAndRemove", function (data) {
-	s3.deleteObject(
-		{
-			Bucket: process.env.AWS_BUCKET_NAME,
-			Key: data.imageURL.replace(/^.*\/\/[^\/]+\//, ""),
-		},
-		function (err, data) {
-			if (err) {
-				throw err;
+	if (process.env.NODE_ENV === "production") {
+		s3.deleteObject(
+			{
+				Bucket: process.env.AWS_BUCKET_NAME,
+				Key: data.imageURL.replace(/^.*\/\/[^\/]+\//, ""),
+			},
+			function (err, data) {
+				if (err) {
+					throw err;
+				}
+				console.log(data);
 			}
-			console.log(data);
-		}
-	);
+		);
+	}
 });
 
 module.exports = Events = mongoose.model("events", EventSchema);
