@@ -163,7 +163,7 @@ function updateProfile() {
     return;
   }
   const profileImage = document.getElementById("imageUpload").files[0];
-  if(profileImage.size>1100000){
+  if(profileImage.size>1000000){
     showToast(400, "File size limit is 1MB 😑");
     return;
   }
