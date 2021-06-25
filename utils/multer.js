@@ -24,18 +24,30 @@ function getMulter(dirName, keyFunc) {
 				},
 				key: keyFunc,
 			}),
+			// onError: function (err, next) {
+			// 	console.log("error", err);
+			// 	next(err);
+			// },
+			limits: { fileSize: 20*1000*1000 }
 		});
 	}
 
-	return multer({ dest: `public/uploads/multer/${dirName}/` });
+	return multer({
+		dest: `public/uploads/multer/${dirName}/`,
+		// onError: function (err, next) {
+		// 	console.log("error", err);
+		// 	next(err);
+		// },
+		limits: { fileSize: 20*1000*1000 }
+	});
 }
 
 const uploadEventPoster = getMulter("event-posters", function (req, file, cb) {
 	cb(null, "event-posters/" + req.body.name + path.extname(file.originalname));
 });
 
-const uploadProfileImage = getMulter("profile-photos", function(req, file, cb){
+const uploadProfileImage = getMulter("profile-photos", function (req, file, cb) {
 	cb(null, "profile-photos/" + req.user._id + path.extname(file.originalname));
-})
+});
 
 module.exports = { uploadEventPoster, uploadProfileImage, s3 };
