@@ -1,22 +1,25 @@
 // Edit User Profile
 $("#fakeNextBtn").on("click", function () {
   const data = new FormData();
-  const profileImg = document.getElementById("fileInput").files[0];
+  const profileImage = document.getElementById("fileInput").files[0];
+  if(profileImage.size>1100000){
+    showToast(400, "File size limit is 1MB 😑");
+    return;
+  }
   $phoneNo = $("#phone").val();
   $regNo = $("#regNo").val();
   let skills = [];
   $(".tag-container .tag span").each(function (index, element) {
     skills.push(element.innerHTML);
   });
-  // console.log(profileImg);
-  if (profileImg == undefined || $phoneNo == "" || skills.length == 0 || $regNo == "" ) {
+  if (profileImage == undefined || $phoneNo == "" || skills.length == 0 || $regNo == "" ) {
     showToast(400, "Please add your details!");
     return;
   }
   $("#fakeNextBtn svg").toggleClass("hidden");
   $("#fakeNextBtn span").text("Processing");
   $("#fakeNextBtn").addClass("cursor-not-allowed");
-  data.append("profileImage", profileImg);
+  data.append("profileImage", profileImage);
   skills.forEach((skill)=>{data.append("skills[]",skill)});
   data.append("phoneNo", $phoneNo);
   data.append("registrationNo", $regNo);

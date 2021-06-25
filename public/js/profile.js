@@ -162,6 +162,11 @@ function updateProfile() {
     showToast(401, "Please select your zairza wing");
     return;
   }
+  const profileImage = document.getElementById("imageUpload").files[0];
+  if(profileImage.size>1100000){
+    showToast(400, "File size limit is 1MB 😑");
+    return;
+  }
 
   $("#update-icon").hide();
   $("#update-btn span").text("");
@@ -174,7 +179,6 @@ function updateProfile() {
   //   wing: $wing,
   //   name: $name,
   // };
-  const profileImage = document.getElementById("imageUpload").files[0];
   const data = new FormData();
   data.append('email', $email);
   data.append('registrationNo', $registration_no);
