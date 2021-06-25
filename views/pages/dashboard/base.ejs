@@ -6,6 +6,9 @@
     <meta name="theme-color" content="#FF7610" />
     <link rel="icon" type="image/png" href="/images/Visual.webp" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
     <title>Me | Zairza</title>
     <!-- Tailwind -->
     <link
@@ -257,7 +260,7 @@
               focus:outline-none
             "
           >
-          <% if(user.profileImage) { %>
+          <% if(user.profileImage != undefined) { %>
             <img src="<%= user.profileImage %>" />
           <% } else { %>
               <img src="/images/profile_icon.png">

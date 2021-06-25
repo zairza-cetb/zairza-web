@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 const sendMail = require("../utils/sendMail.js");
-const { upload } = require("../utils/multer.js");
+const { uploadEventPoster } = require("../utils/multer.js");
 
 router.use(checkIfAuthenticated, function (req, res, next) {
 	if (req.user.role === "admin") {
@@ -27,7 +27,6 @@ router.get("/newsletterDashboard", function (req, res, next) {
 		res.render("pages/newsletterDashboard", { newsletters: newsletters });
 	});
 });
-
 
 /* APIs */
 
@@ -91,21 +90,39 @@ router.post("/send-newsletter/", function (req, res, next) {
 	);
 });
 
-router.post("/api/create-event", upload.single("image"), function (req, res, next) {
-	Events.create(
-		{
-			name: req.body.name,
-			imageURL: req.file.location,
-			startTime: req.body.startTime,
-			endTime: req.body.endTime,
-		},
-		function (err, newevent) {
-			if (err) {
-				return next(err);
-			}
-			res.send({ status: "success", event: newevent });
+router.post(
+	"/api/create-event",
+	uploadEventPoster.single("image"),
+	function (req, res, next) {
+		let imageURL;
+		if(process.env.NODE_ENV === "production"){
+			imageURL = req.file.location;
+		}else{
+			imageURL = req.protocol + "://" + req.get('host') + "/" + req.file.path.substring(7);
 		}
-	);
-});
+
+		console.log(req.file);
+		Events.findOneAndUpdate(
+			{
+				name: req.body.name,
+				startTime: req.body.startTime,
+				endTime: req.body.endTime,
+			},
+			{
+				imageURL: imageURL,
+			},
+			{
+				upsert: true,
+				new: true,
+			},
+			function (err, newevent) {
+				if (err) {
+					return next(err);
+				}
+				res.send({ status: "success", event: newevent });
+			}
+		);
+	}
+);
 
 module.exports = router;

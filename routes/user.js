@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const admin = require("../firebase/firebaseService");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
-const { uploadProfilePhoto } = require("../utils/multer.js");
+const { uploadProfileImage } = require("../utils/multer.js");
 
 const editableFields = new Set([
   "name",
@@ -19,7 +19,7 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
   res.json(req.user);
 });
 
-router.put("/edit", checkIfAuthenticated, uploadProfilePhoto.single("profileImage"), function (req, res, next) {
+router.put("/edit", checkIfAuthenticated, uploadProfileImage.single("profileImage"), function (req, res, next) {
   if (!req.user.registrationNo && !req.body.registrationNo) {
     return res
       .status(403)
