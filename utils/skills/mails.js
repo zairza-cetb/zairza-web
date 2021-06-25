@@ -2,12 +2,12 @@ const DomainRegistrations = require("../../models/skills/DomainRegistrations");
 const Users = require("../../models/Users");
 const sendMail = require("../sendMail");
 
-const http = require("http");
+const https = require("https");
 const fs = require("fs");
 
 fs.mkdir("temp", () => {});
 const file = fs.createWriteStream("temp/brochure.pdf");
-const request = http.get(
+const request = https.get(
 	"https://zairza-website.s3.ap-south-1.amazonaws.com/miscellaneous/Skills%2B%2B+Brochure+(1).pdf",
 	function (response) {
 		response.pipe(file);
