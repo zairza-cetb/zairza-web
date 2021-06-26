@@ -46,7 +46,7 @@ module.exports = checkIfAuthenticated = (req, res, next) => {
 								if (userInfo.picture)
 									userDetails["profileImage"] =
 										userInfo.picture;
-
+								
 								User.create(
 									userDetails,
 									function (err, newUser) {

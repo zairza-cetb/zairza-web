@@ -163,37 +163,39 @@ function updateProfile() {
     return;
   }
   const profileImage = document.getElementById("imageUpload").files[0];
-  if(profileImage.size>1000000){
-    showToast(400, "File size limit is 1MB 😑");
-    return;
-  }
-
+  
   $("#update-icon").hide();
   $("#update-btn span").text("");
   $("#update-btn").addClass("onclic", 50);
-
+  
   // let data = {
-  //   email: $email,
-  //   registrationNo: $registration_no,
-  //   branch: $branch,
-  //   wing: $wing,
-  //   name: $name,
-  // };
-  const data = new FormData();
-  data.append('email', $email);
-  data.append('registrationNo', $registration_no);
-  data.append('branch', $branch);
-  // data.append('wing', $wing);
-  $wings.forEach((wing)=>{data.append("wing[]",wing)});
-  data.append('name', $name);
-  data.append('profileImage', profileImage);
-  $.ajax({
-    type: "PUT",
-    url: "/api/user/edit",
-    data: data,
-    processData: false, 
-    contentType: false,
-  })
+    //   email: $email,
+    //   registrationNo: $registration_no,
+    //   branch: $branch,
+    //   wing: $wing,
+    //   name: $name,
+    // };
+    const data = new FormData();
+    data.append('email', $email);
+    data.append('registrationNo', $registration_no);
+    data.append('branch', $branch);
+    // data.append('wing', $wing);
+    $wings.forEach((wing)=>{data.append("wing[]",wing)});
+    data.append('name', $name);
+    if(profileImage){
+      data.append('profileImage', profileImage);
+      if(profileImage.size>1000000){
+        showToast(400, "File size limit is 1MB 😑");
+        return;
+      }
+    }
+    $.ajax({
+      type: "PUT",
+      url: "/api/user/edit",
+      data: data,
+      processData: false, 
+      contentType: false,
+    })
     .done(function (data) {
       if (data.message) {
         validate("restricted")

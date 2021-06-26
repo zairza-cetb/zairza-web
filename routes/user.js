@@ -36,9 +36,13 @@ router.put("/edit", checkIfAuthenticated, uploadProfileImage.single("profileImag
         .json({ status: "fail", message: "Accessing unknown fields" });
     }
 
-    if (req.file)
-      req.body.profileImage = req.file.location;
-
+    if (req.file){
+      if(process.env.NODE_ENV === "production"){
+        req.body.profileImage = req.file.location;
+      }else{
+        req.body.profileImage = req.protocol + "://" + req.get('host') + "/" + req.file.path.substring(7);
+      }
+    }
     User.findByIdAndUpdate(
       req.user.id,
       req.body,
