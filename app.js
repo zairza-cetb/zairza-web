@@ -46,7 +46,7 @@ app.use("/skills", skillRoutes);
 adminPanel(app, connection);
 
 app.get("*", function (req, res) {
-  res.render("pages/404");
+  res.status(404).render("pages/404");
 });
 
 app.use(errorHandler);
