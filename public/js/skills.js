@@ -1,22 +1,19 @@
 // Edit User Profile
 $("#fakeNextBtn").on("click", function () {
   const data = new FormData();
-  const profileImg = document.getElementById("fileInput").files[0];
   $phoneNo = $("#phone").val();
   $regNo = $("#regNo").val();
   let skills = [];
   $(".tag-container .tag span").each(function (index, element) {
     skills.push(element.innerHTML);
   });
-  // console.log(profileImg);
-  if (profileImg == undefined || $phoneNo == "" || skills.length == 0 || $regNo == "" ) {
+  if ($phoneNo == "" || skills.length == 0 || $regNo == "" ) {
     showToast(400, "Please add your details!");
     return;
   }
   $("#fakeNextBtn svg").toggleClass("hidden");
   $("#fakeNextBtn span").text("Processing");
   $("#fakeNextBtn").addClass("cursor-not-allowed");
-  data.append("profileImage", profileImg);
   skills.forEach((skill)=>{data.append("skills[]",skill)});
   data.append("phoneNo", $phoneNo);
   data.append("registrationNo", $regNo);
@@ -35,7 +32,7 @@ $("#fakeNextBtn").on("click", function () {
       $("#fakeNextBtn svg").toggleClass("hidden");
       $("#fakeNextBtn span").text("Submit");
       $("#fakeNextBtn").removeClass("cursor-not-allowed");
-      showToast(err.responseJSON.statusCode, err.responseJSON.message);
+      showToast(400, err.responseJSON.message);
     });
 });
 
@@ -68,7 +65,7 @@ $("#fakeCompleteBtn").on("click", function () {
       $("#fakeCompleteBtn svg").toggleClass("hidden");
       $("#fakeCompleteBtn span").text("Complete");
       $("#fakeCompleteBtn").removeClass("cursor-not-allowed");
-      showToast(err.status, err.responseJSON.message);
+      showToast(400, err.responseJSON.message);
     });
 });
 

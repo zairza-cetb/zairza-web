@@ -48,13 +48,15 @@ DomainRegistrationSchema.post("save", async function (doc) {
 		}
 		const err = await sendMail({
 			email: user.email,
-			from: "info@zairza.in",
-			templateId: "d-adca85aca55c44f4bf8287beb4870490",
+			templateFile: "welcomeMail.ejs",
+			subject: "Skills++ | Registration Successful",
 			dynamic_template_data: {
 				domain: domain.name,
 				name: user.name.split(" ")[0],
+				discussionLink: domain.discussionLink,
 				process: "Sending for successful registration",
 			},
+			sendgrid: false,
 		});
 		if (err) {
 			throw err;
