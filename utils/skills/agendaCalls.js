@@ -2,9 +2,7 @@ const config = require("../../routes/skills/configDates");
 
 module.exports = async (agenda) => {
 	const now = Date.now();
-	agenda.cancel({ name: { $in: ["skill++ registration start", "week start"] } });
-	if (now < config.registrationStart)
-		await agenda.schedule(config.registrationStart, "skill++ registration start", {});
+	agenda.cancel({ name: { $in: ["week start"] } });
 	if (now < config.eventStart)
 		await agenda.schedule(config.eventStart, "week start", { weekNo: 0 });
 	for (let i = 0; i < config.maxWeekNos; i++) {

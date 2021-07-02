@@ -18,18 +18,11 @@ const DomainSchema = new mongoose.Schema(
 			{
 				weekNo: Number,
 				weekInterval: String,
-				description: String,
-				subtasks: [
-					{
-						description: String, 
-						resource: String
-					}
-				],
-				resources: [String],
-				submissionDescription: String,
+				resource: String,
+				submissionDeadline: Date,
+				finalSubmissionDeadline:Date,
 			},
 		],
-		// additionalResources: [String],
 		mentors: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
 		discussionLink: String,
 	},
