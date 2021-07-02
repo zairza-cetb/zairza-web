@@ -160,13 +160,13 @@ router.get("/user-dashboard",async function (req, res, next) {
 				},
 				{
 					$addFields: {
-					"task.subtasks": {
+					"task.resource": {
 						$cond: [
 						{
 							$gt: [
 							'$task.weekNo', maxWeeks
 							]
-						}, '$$REMOVE', '$task.subtasks'
+						}, '$$REMOVE', '$task.resource'
 						]
 					}
 					}
