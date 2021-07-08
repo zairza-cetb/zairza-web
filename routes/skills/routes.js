@@ -12,6 +12,7 @@ router.use(checkIfAuthenticated);
 router.use("/api", apiRouter);
 
 isMentor = function (req, res, next) {
+  console.log(req.user._id);
   if (req.method == "POST") {
     Domains.findById(req.body.domainId, function (err, domain) {
       if (err) {
@@ -71,6 +72,11 @@ router.get("/mentor-dashboard", isMentor, function (req, res, next) {
       {
         $unwind: {
           path: "$submissions",
+        },
+      },
+      {
+        $match: {
+          "submissions.mentor": null,
         },
       },
       {

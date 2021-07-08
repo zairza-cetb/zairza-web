@@ -232,7 +232,9 @@
                                   focus:outline-none
                                   focus:border-2
                                   focus:border-green-600
+                                  resize-none
                                 "
+                                id="text-area"
                                 rows="3"
                                 placeholder="Enter your review."
                               ></textarea>
@@ -248,6 +250,7 @@
                             <button
                               @click="open = false"
                               class="
+                                submit-btn
                                 inline-flex
                                 font-medium
                                 justify-center
@@ -258,7 +261,12 @@
                                 bg-green-500
                                 rounded
                                 hover:bg-green-600
+                                
                               "
+                              weekNo = "<%= user.submission.weekNo %>"
+                              approved="true"
+                              regdId = "<%= user.registrationId %>"
+                              presentDomain = <%= selectedDomain%>
                             >
                               Submit
                             </button>
@@ -372,7 +380,9 @@
                                   focus:outline-none
                                   focus:border-2
                                   focus:border-red-600
+                                  resize-none
                                 "
+                                id="text-space"
                                 rows="3"
                                 placeholder="Enter your reviews."
                               ></textarea>
@@ -388,6 +398,7 @@
                             <button
                               @click="open = false"
                               class="
+                                reject-btn
                                 inline-flex
                                 justify-center
                                 w-full
@@ -398,6 +409,11 @@
                                 rounded
                                 hover:bg-red-500
                               "
+                              weekNo = "<%= user.submission.weekNo %>"
+
+                              regdId = "<%= user.registrationId %>"
+                              presentDomain = <%= selectedDomain%>
+                              approved="false"
                             >
                               Submit
                             </button>
@@ -441,4 +457,6 @@
       `?domainId=` +
       `${value}`;
   }
+
 </script>
+<script src="/js/mentorsdashboard.js"></script>
