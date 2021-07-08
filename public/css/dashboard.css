@@ -92,11 +92,8 @@
   border-radius: 0.25rem;
 }
 
-
-
 .form-radio {
   border-radius: 50%;
-  
 }
 
 .form-checkbox:checked {
@@ -107,7 +104,6 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-
 
 .form-radio:checked {
   background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
@@ -213,5 +209,8 @@ input::-webkit-calendar-picker-indicator {
 .bg-zairza-blue {
   background-color: #1071ff;
 }
-
-
+@media (max-width: 1024px) {
+  .blink {
+    display: none;
+  }
+}

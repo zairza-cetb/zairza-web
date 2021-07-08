@@ -130,19 +130,7 @@
             ></span>
           </span>
         </div>
-        <a href="/mentorsdashboard" class="
-                            flex
-                            items-center
-                            text-black
-                            hover:text-white
-                            py-4
-                            pl-6
-                            nav-item
-                            my-4
-                          ">
-          <i class="fas fa-digital-tachograph mr-3"></i>
-          Skills++ Mentors
-        </a>
+        
         <% if(user.role == 'admin') { %>
         <a
           href="/eventPosterUpload"
@@ -175,6 +163,22 @@
         >
           <i class="fas fa-user-shield mr-3"></i>
           Admin Panel
+        </a>
+        <a
+          href="/skills/mentor-dashboard"
+          class="
+            flex
+            items-center
+            text-black
+            hover:text-white
+            py-4
+            pl-6
+            nav-item
+            my-4
+          "
+        >
+          <i class="fas fa-user-shield mr-3"></i>
+          Skill++ Mentors
         </a>
         <a
           href="/protected/newsletterDashboard"
@@ -317,7 +321,7 @@
       <!-- Mobile Header & Nav -->
       <header
         x-data="{ isOpen: false }"
-        class="shadow-md z-10 w-full bg-sidebar py-5 px-6 lg:hidden bg-white"
+        class="shadow-md z-10 w-full bg-sidebar py-5 px-6 lg:hidden bg-white "
       >
         <div class="flex items-center justify-between">
           <a href="/">
@@ -333,7 +337,7 @@
         </div>
 
         <!-- Dropdown Nav -->
-        <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
+        <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4 overflow-y-auto overflow-x-hidden h-screen pb-16">
           <a
             href="/me"
             class="
@@ -370,6 +374,9 @@
             <i class="fas fa-project-diagram mr-3"></i>
             Zairza Projects
           </a>
+
+          
+            
           <div
             class="
               relative
@@ -389,6 +396,7 @@
             <i class="fas fa-user-graduate mr-3"></i>
             Skills++
           </a>
+          
           <span
             class="
               absolute
@@ -400,8 +408,25 @@
               transform
               translate-x-2.5
               -translate-y-2.5
+              blink
             "
           >
+            <span
+              class="
+                absolute
+                flex
+                h-4
+                w-4
+                top-2
+                right-0
+                transform
+                translate-x-2.5
+                -translate-y-2.5
+                
+                
+                
+              "
+            >
               <span
                 class="
                   animate-ping
@@ -616,7 +641,7 @@
       </header>
 
       <%- body %>
-    </div>
+    
     <script></script>
 
     <!-- AlpineJS -->
