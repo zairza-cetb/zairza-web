@@ -61,6 +61,23 @@ module.exports = checkIfAuthenticated = (req, res, next) => {
 						);
 					} else {
 						req.user = existingUser;
+						
+						//SKills++
+						Domains.find(
+							{ mentors: req.user._id },
+							function (err, domains) {
+							  if (err) {
+								return next(err);
+							  }
+							  if (domains.length === 0) {
+								req.user.isMentor = false;
+							  } else {
+							  	req.user.isMentor = true;
+							  }
+							}
+						);
+
+
 						return next();
 					}
 				}
