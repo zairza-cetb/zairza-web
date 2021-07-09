@@ -2,7 +2,7 @@
 <div class="overflow-x-auto">
   <div class="grid grid-cols-3 gap-2 ...">
     <div></div>
-    <div class="place-self-center m-3 w-55">
+    <div class="place-self-center m-3  w-max">
       <label class="block text-center">
         <span class="text-gray-700 font-medium">Domain</span>
         <select
@@ -453,7 +453,7 @@
 <script>
   function redirectURL(value) {
     window.location.href =
-      `http://localhost:3000/skills/mentor-dashboard` +
+      window.location.pathname +
       `?domainId=` +
       `${value}`;
   }
