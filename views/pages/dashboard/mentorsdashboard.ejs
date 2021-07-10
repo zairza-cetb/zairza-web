@@ -1,6 +1,6 @@
 <!-- component -->
 <div class="overflow-x-auto">
-  <div class="grid grid-cols-3 gap-2 ...">
+  <div class="grid grid-cols-3 gap-2">
     <div></div>
     <div class="place-self-center m-3  w-max">
       <label class="block text-center">
@@ -55,7 +55,7 @@
     "
   >
     <div class="w-full">
-      <div class="bg-white h-screen rounded my-6 overflow-auto">
+      <div class="bg-white h-screen rounded m-6 overflow-auto">
         <table class="min-w-max w-full table-auto">
           <thead>
             <tr
@@ -79,7 +79,7 @@
                 </div>
               </td>
               <td class="py-3 px-6 text-left">
-                <div class="flex items-center">
+                <div class="flex items-center ">
                   <a
                     href="<%= user.submission.submissionLink  %> "
                     class="
@@ -87,8 +87,11 @@
                       font-medium
                       cursor-pointer
                       text-blue-400
-                    "
-                    target="blank"
+                      max-w-sm
+                      md:max-w-xl
+                      overflow-hidden
+/                    "
+                    target="_blank"
                     ><%= user.submission.submissionLink %>
                   </a>
                 </div>
@@ -201,6 +204,7 @@
                             justify-center
                             sm:mt-0 sm:ml-4 sm:text-left
                           "
+                          id="accept"
                         >
                           <h3
                             class="text-lg font-medium leading-6 text-gray-900"
@@ -349,6 +353,7 @@
                             text-center
                             sm:mt-0 sm:ml-4 sm:text-left
                           "
+                          id="reject"
                         >
                           <h3
                             class="text-lg font-medium leading-6 text-gray-900"
@@ -453,7 +458,7 @@
 <script>
   function redirectURL(value) {
     window.location.href =
-      window.location.pathname +
+      window.location.href +
       `?domainId=` +
       `${value}`;
   }

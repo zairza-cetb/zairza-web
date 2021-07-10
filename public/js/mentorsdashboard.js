@@ -1,5 +1,10 @@
 $(".submit-btn").on("click", function () {
-  $review = $("#text-area").val();
+  $review = $(this)
+    .parent()
+    .parent()
+    .siblings("#accept")
+    .find("#text-area")
+    .val();
   $approved = $(this).attr("approved");
   $weekNo = $(this).attr("weekNo");
   $regdId = $(this).attr("regdId");
@@ -29,7 +34,12 @@ $(".submit-btn").on("click", function () {
     });
 });
 $(".reject-btn").on("click", function () {
-  $review = $("#text-space").val();
+  $review = $(this)
+    .parent()
+    .parent()
+    .siblings("#reject")
+    .find("#text-space")
+    .val();
   $approved = $(this).attr("approved");
   $weekNo = $(this).attr("weekNo");
   $regdId = $(this).attr("regdId");
