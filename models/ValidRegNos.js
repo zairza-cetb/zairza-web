@@ -9,7 +9,9 @@ const ValidRegNosSchema = new mongoose.Schema(
 
 ValidRegNosSchema.post("save", function (data) {
   User.findOne({ registrationNo: data.registrationNo }, function (err, user) {
+    if (!user) return;
     if (user.role === "restricted") {
+      user.newsletterSubscription = true;
       user.role = "user";
       user.save();
     }
@@ -18,6 +20,8 @@ ValidRegNosSchema.post("save", function (data) {
 
 ValidRegNosSchema.post("findOneAndRemove", function (data) {
   User.findOne({ registrationNo: data.registrationNo }, function (err, user) {
+    if (!user) return;
+    user.newsletterSubscription = false;
     user.role = "restricted";
     user.save();
   });

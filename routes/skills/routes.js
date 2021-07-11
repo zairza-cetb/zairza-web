@@ -319,7 +319,7 @@ apiRouter.post("/user-submit", function (req, res, next) {
 });
 
 apiRouter.post("/mentor-submit", isMentor, function (req, res, next) {
-  const weekNo = req.body.weekNo;
+  const weekNo = parseInt(req.body.weekNo);
   const registrationId = req.body.registrationId;
   const approved = req.body.approved;
 
