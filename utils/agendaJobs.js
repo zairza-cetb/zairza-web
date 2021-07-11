@@ -7,7 +7,7 @@ const agenda = new Agenda({
 });
 
 agenda.define("send newsletter", async function (job, done) {
-	User.find({ role: { $ne: "restricted" } }, async function (err, users) {
+	User.find({ newsletterSubscription: true }, async function (err, users) {
 		if (err) {
 			return done(err);
 		}
