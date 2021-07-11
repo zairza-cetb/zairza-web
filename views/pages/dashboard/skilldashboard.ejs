@@ -398,26 +398,90 @@
               </button>
             </div>
           </div>
-          <% } %> <% } %> <% if(task.submission) {%> <% if(task.submission.mark
-          !=null) { %> <% if(! task.submission.approved) { %>
-          <!-- Wrong Submission -->
-          <div
-            class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
-            role="alert"
-          >
-            <p class="font-bold">Wrong Submission!</p>
-            <p><%= task.submission.comment %></p>
-          </div>
-          <% } else { %>
-          <!-- Info On Correct Submission -->
-          <div
-            class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4"
-            role="alert"
-          >
-            <p class="font-bold">
-              Great job! but there's always room for more!
-            </p>
-            <p><%= task.submission.comment %></p>
+        </div>
+        <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="container<%= index + 1 %>"
+          x-bind:style="week_selected === <%= index + 1 %> ? 'max-height: ' + $refs.container<%= index + 1 %>.scrollHeight + 'px' : ''">
+          <div class="text-gray-700 py-2 px-14 space-y-3">
+            <% if(task.resource) {%>
+                <h4 class="md:text-lg text-zairza-orange"><span class="font-bold">Your this week's tasks :</span> <a href="<%= task.resource %>" target="_blank" class="w-full text-blue-500">Click here to view all tasks</a></h4>
+                <h4 class="md:text-lg text-zairza-blue font-bold">Submission Deadline :<span class="text-red-500"><%= task.submissionDeadline.toLocaleString('en-GB') %></span></h4>
+                <% if (task.finalSubmissionDeadline > new Date()) { %>
+                <div id="taskSubmissionForm">
+                  <div class="flex md:flex-row flex-col justify-around gap-y-6">
+                    <input class="
+                        border
+                        py-2
+                        px-3
+                        w-full
+                        text-grey-darkest
+                        focus:outline-none
+                        inputborder
+                      " type="text" name="taskSubmission" id="taskSubmission" placeholder="Submit your tasks here" />
+                    <button data-weekNo="<%= task.weekNo %>" type="button" id="taskSubmissionBtn"
+                      class="w-full inline-flex justify-center rounded-full border border-transparent shadow-sm px-6 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                      <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                        </circle>
+                        <path class="opacity-75" fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                      </svg>
+                      <span>Submit</span>
+                    </button>
+                  </div>
+                </div>
+                <% } %>
+                  <% } %>
+                    <% if(task.submission) {%>
+                      <% if(task.submission.mark !=null) { %>
+                        <% if(! task.submission.approved) { %>
+                          <!-- Wrong Submission -->
+                          <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+                            <p class="font-bold">Wrong Submission!</p>
+                            <p>
+                              <%= task.submission.comment %>
+                            </p>
+                          </div>
+                          <% } else { %>
+                            <!-- Info On Correct Submission -->
+                            <div class="
+                bg-green-100
+                border-l-4 border-green-500
+                text-green-700
+                p-4
+              " role="alert">
+                              <p class="font-bold">
+                                Great job! but there's always room for more!
+                              </p>
+                              <p>
+                                <%= task.submission.comment %>
+                              </p>
+                            </div>
+                            <% } %>
+                              <% } else { %>
+                                <!-- Submission accepted -->
+                                <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
+                                  <p class="font-bold">
+                                    We have received your submission and it will be reviewed soon!
+                                  </p>
+                                </div>
+                                <% } %>
+                                  <% } else if(!task.resource){ %>
+                                    <!-- Tasks to be revealed -->
+                                    <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
+                                      <p class="font-bold">
+                                        Have Pateince we are working on your tasks!
+                                      </p>
+                                    </div>
+                                    <% } else if(task.finalSubmissionDeadline < new Date()) { %>
+                                      <!-- Submission deadline passed -->
+                                      <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+                                        <p class="font-bold">
+                                          Sorry the submission deadline has passed!
+                                        </p>
+                                      </div>
+                                      <% } %>
           </div>
           <% } %> <% } else { %>
           <!-- Submission accepted -->
