@@ -73,7 +73,7 @@ function ThirdPartyAuthenticate(provider_name) {
         if (nextPage) {
           window.location.replace(nextPage);
         } else {
-          window.location.replace("/me");
+          window.location.replace("/home");
         }
       }, 2000);
       // ...
