@@ -192,7 +192,7 @@
             <span class="font-bold">Your this week's tasks :</span>
             <a href="<%= task.resource %>" target="_blank" class="w-full text-blue-500">Click here to view all tasks</a>
           </h4>
-          <h4 class="md:text-lg text-zairza-blue font-bold">Submission Deadline :<span class="text-red-500"><%= task.submissionDeadline.toLocaleString() %></span>
+          <h4 class="md:text-lg text-zairza-blue font-bold">Submission Deadline :<span class="text-red-500"><%= task.submissionDeadline.toLocaleString('en-GB') %></span>
           </h4>
     <% if (task.finalSubmissionDeadline> new Date()) { %>
           <div id="taskSubmissionForm">
