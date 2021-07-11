@@ -83,72 +83,22 @@
   <!-- Highlight Badge For Piazza -->
 
   <div class="pt-8 px-4 md:w-1/2 mx-auto">
-    <div
-      class="
-        rounded-full
-        p-2
-        bg-indigo-800
-        items-center
-        text-indigo-100
-        leading-none
-        flex flex-row
-        justify-center
-        min-w-max
-      "
-      role="alert"
-    >
-      <span
-        class="
-          flex
-          rounded-full
-          bg-indigo-500
-          uppercase
-          px-2
-          py-1
-          text-xs
-          font-bold
-          mr-3
-          animate-bounce
-        "
-        >New</span
-      >
-      <a href="<%= eventData.domain.discussionLink %>" target="_blank"
-        ><span class="font-semibold mr-2 text-left flex-auto"
-          >Join the Q/A forum.</span
-        ></a
-      >
-      <svg
-        class="fill-current opacity-75 h-4 w-4"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-      >
-        <path
-          d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"
-        />
+    <div class="rounded-full p-2 bg-indigo-800 items-center text-indigo-100 leading-none flex flex-row justify-center min-w-max" role="alert">
+      <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3 animate-bounce">New</span>
+      <a href="<%= eventData.domain.discussionLink %>" target="_blank"><span class="font-semibold mr-2 text-left flex-auto">Join the Q/A forum.</span></a>
+      <svg class="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
       </svg>
     </div>
   </div>
 
   <!-- Rules and Regulations Section -->
 
-  <div
-    class="
-      rounded-lg
-      shadow-lg
-      bg-white
-      p-4
-      mx-8
-      mt-8
-      border-2 border-zairza-orange
-      flex flex-col
-      justify-center
-      items-center
-    "
-  >
+  <div class="rounded-lg shadow-lg bg-white p-4 mx-8 mt-8 border-2 border-zairza-orange flex flex-col justify-center items-center">
     <div class="font-bold text-xl mb-2">
       <span class="text-zairza-blue">Rules</span>
-      <span class="text-zairza-orange"> & </span
-      ><span class="text-zairza-blue">Regulations</span>
+      <span class="text-zairza-orange"> & </span>
+      <span class="text-zairza-blue">Regulations</span>
     </div>
     <ol class="list-inside list-decimal leading-loose break-words w-11/12">
       <li>
@@ -187,333 +137,114 @@
 
   <!-- Accordion -->
 
-  <div
-    class="my-10 max-w-3/5 mx-auto space-y-4 lg:space-y-6 p-8"
-    x-data="{week_selected: null }"
-  >
+  <div class="my-10 max-w-3/5 mx-auto space-y-4 lg:space-y-6 p-8" x-data="{week_selected: null }">
     <div class="item bg-white shadow-md rounded-md p-3">
-      <div
-        class="flex items-center cursor-pointer"
-        @click="week_selected !== 0 ? week_selected = 0 : week_selected = null"
-      >
-        <div
-          class="
-            bg-blue-100
-            text-blue-400
-            w-8
-            h-8
-            md:w-10 md:h-10
-            rounded-md
-            flex flex-col
-            items-center
-            justify-center
-            font-bold
-            text-lg
-            font-display
-          "
-        >
+      <div class="flex items-center cursor-pointer" @click="week_selected !== 0 ? week_selected = 0 : week_selected = null">
+        <div class="bg-blue-100 text-blue-400 w-8 h-8 md:w-10 md:h-10 rounded-md flex flex-col items-center justify-center font-bold text-lg font-display">
           <span>0</span>
         </div>
-        <div
-          class="
-            ml-3
-            md:ml-4
-            lg:ml-6
-            md:text-lg
-            text-blue-500
-            flex flex-row
-            justify-between
-            items-center
-            w-full
-          "
-        >
+        <div class="ml-3 md:ml-4 lg:ml-6 md:text-lg text-blue-500 flex flex-row justify-between items-center w-full">
           <span class="font-bold">Week 0</span>
-          <span class="font-bold uppercase text-right mr-3"
-            >1st July - 4th July</span
-          >
+          <span class="font-bold uppercase text-right mr-3">1st July - 4th July</span>
         </div>
       </div>
-      <div
-        class="relative overflow-hidden transition-all max-h-0 duration-700"
-        x-ref="container0"
-        x-bind:style="week_selected === 0 ? 'max-height: ' + $refs.container0.scrollHeight + 'px' : ''"
-      >
+      <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="container0" x-bind:style="week_selected === 0 ? 'max-height: ' + $refs.container0.scrollHeight + 'px' : ''">
         <div class="text-gray-700 py-2 px-14 space-y-3">
           <h4 class="md:text-lg text-zairza-orange font-bold">Objective</h4>
           <p><%= eventData.domain.weekZero.description %></p>
-          <h4 class="md:text-lg text-zairza-blue font-bold">
-            Learning Resource
-          </h4>
-          <% for ( resource of eventData.domain.weekZero.resources ) { %>
+          <h4 class="md:text-lg text-zairza-blue font-bold">Learning Resource</h4>
+<% for ( resource of eventData.domain.weekZero.resources ) { %>
           <ul style="list-style-type: disc">
             <li>
-              <a
-                href="<%= resource %>"
-                target="_blank"
-                class="w-full text-blue-500"
-                >Click here to view</a
-              >
+              <a href="<%= resource %>" target="_blank" class="w-full text-blue-500">Click here to view</a>
             </li>
           </ul>
-          <% } %>
+<% } %>
         </div>
       </div>
     </div>
-    <% eventData.tasks.forEach(function(task,index) { %>
+<% eventData.tasks.forEach(function(task,index) { %>
     <div class="item bg-white shadow-md rounded-md p-3">
-      <div
-        class="flex items-center cursor-pointer"
-        @click="week_selected !== <%= index + 1 %> ? week_selected = <%= index + 1 %> : week_selected = null"
-      >
-        <div
-          class="
-            bg-blue-100
-            text-blue-400
-            w-8
-            h-8
-            md:w-10 md:h-10
-            rounded-md
-            flex flex-col
-            items-center
-            justify-center
-            font-bold
-            text-lg
-            font-display
-          "
-        >
+      <div class="flex items-center cursor-pointer" @click="week_selected !== <%= index + 1 %> ? week_selected = <%= index + 1 %> : week_selected = null">
+        <div class="bg-blue-100 text-blue-400 w-8 h-8 md:w-10 md:h-10 rounded-md flex flex-col items-center justify-center font-bold text-lg font-display">
           <span> <%= index + 1 %> </span>
         </div>
-        <div
-          class="
-            ml-3
-            md:ml-4
-            lg:ml-6
-            md:text-lg
-            text-blue-500
-            flex flex-row
-            justify-between
-            items-center
-            w-full
-          "
-        >
+        <div class="ml-3 md:ml-4 lg:ml-6 md:text-lg text-blue-500 flex flex-row justify-between items-center w-full">
           <span class="font-bold">Week <%= task.weekNo %> </span>
           <div>
-            <span class="font-bold uppercase text-right mr-3">
-              <%= task.weekInterval %>
-            </span>
-            <% if(task.submission) {%> <% if(task.submission.mark !=null){ %> <%
-            if(task.submission.approved) {%>
+            <span class="font-bold uppercase text-right mr-3"><%= task.weekInterval %></span>
+  <% if(task.submission) {%> 
+    <% if(task.submission.mark !=null){ %> 
+      <%if(task.submission.approved) {%>
             <i class="fa fa-check text-green-500" aria-hidden="true"></i>
-            <% } else { %>
+      <% } else { %>
             <i class="fa fa-times text-red-500" aria-hidden="true"></i>
-            <% } %> <% } %> <% } %>
+      <% } %> 
+    <% } %> 
+  <% } %>
           </div>
         </div>
       </div>
-      <div
-        class="relative overflow-hidden transition-all max-h-0 duration-700"
-        x-ref="container<%= index + 1 %>"
-        x-bind:style="week_selected === <%= index + 1 %> ? 'max-height: ' + $refs.container<%= index + 1 %>.scrollHeight + 'px' : ''"
-      >
+      <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="container<%= index + 1 %>" x-bind:style="week_selected === <%= index + 1 %> ? 'max-height: ' + $refs.container<%= index + 1 %>.scrollHeight + 'px' : ''">
         <div class="text-gray-700 py-2 px-14 space-y-3">
-          <% if(task.resource) {%>
+<% if(task.resource) {%>
           <h4 class="md:text-lg text-zairza-orange">
             <span class="font-bold">Your this week's tasks :</span>
-            <a
-              href="<%= task.resource %>"
-              target="_blank"
-              class="w-full text-blue-500"
-              >Click here to view all tasks</a
-            >
+            <a href="<%= task.resource %>" target="_blank" class="w-full text-blue-500">Click here to view all tasks</a>
           </h4>
-          <h4 class="md:text-lg text-zairza-blue font-bold">
-            Submission Deadline :<span class="text-red-500">
-              <%= task.submissionDeadline.toLocaleString() %>
-            </span>
+          <h4 class="md:text-lg text-zairza-blue font-bold">Submission Deadline :<span class="text-red-500"><%= task.submissionDeadline.toLocaleString() %></span>
           </h4>
-          <% if (task.finalSubmissionDeadline> new Date()) { %>
+    <% if (task.finalSubmissionDeadline> new Date()) { %>
           <div id="taskSubmissionForm">
             <div class="flex md:flex-row flex-col justify-around gap-y-6">
-              <input
-                class="
-                  border
-                  py-2
-                  px-3
-                  w-full
-                  text-grey-darkest
-                  focus:outline-none
-                  inputborder
-                "
-                type="text"
-                name="taskSubmission"
-                id="taskSubmission"
-                placeholder="Submit your tasks here"
-              />
-              <button
-                data-weekNo="<%= task.weekNo %>"
-                type="button"
-                id="taskSubmissionBtn"
-                class="
-                  w-full
-                  inline-flex
-                  justify-center
-                  rounded-full
-                  border border-transparent
-                  shadow-sm
-                  px-6
-                  py-2
-                  bg-green-600
-                  text-base
-                  font-medium
-                  text-white
-                  hover:bg-green-800
-                  focus:outline-none
-                  focus:ring-2
-                  focus:ring-offset-2
-                  focus:ring-green-500
-                  sm:ml-3 sm:w-auto sm:text-sm
-                "
-              >
-                <svg
-                  class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    class="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    stroke-width="4"
-                  ></circle>
-                  <path
-                    class="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
+              <input class="border py-2 px-3 w-full text-grey-darkest focus:outline-none inputborder" type="text" name="taskSubmission" id="taskSubmission" placeholder="Submit your tasks here"/>
+              <button data-weekNo="<%= task.weekNo %>" type="button" id="taskSubmissionBtn" class="w-full inline-flex justify-center rounded-full border border-transparent shadow-sm px-6 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
                 <span>Submit</span>
               </button>
             </div>
           </div>
-        </div>
-        <div class="relative overflow-hidden transition-all max-h-0 duration-700" x-ref="container<%= index + 1 %>"
-          x-bind:style="week_selected === <%= index + 1 %> ? 'max-height: ' + $refs.container<%= index + 1 %>.scrollHeight + 'px' : ''">
-          <div class="text-gray-700 py-2 px-14 space-y-3">
-            <% if(task.resource) {%>
-                <h4 class="md:text-lg text-zairza-orange"><span class="font-bold">Your this week's tasks :</span> <a href="<%= task.resource %>" target="_blank" class="w-full text-blue-500">Click here to view all tasks</a></h4>
-                <h4 class="md:text-lg text-zairza-blue font-bold">Submission Deadline :<span class="text-red-500"><%= task.submissionDeadline.toLocaleString('en-GB') %></span></h4>
-                <% if (task.finalSubmissionDeadline > new Date()) { %>
-                <div id="taskSubmissionForm">
-                  <div class="flex md:flex-row flex-col justify-around gap-y-6">
-                    <input class="
-                        border
-                        py-2
-                        px-3
-                        w-full
-                        text-grey-darkest
-                        focus:outline-none
-                        inputborder
-                      " type="text" name="taskSubmission" id="taskSubmission" placeholder="Submit your tasks here" />
-                    <button data-weekNo="<%= task.weekNo %>" type="button" id="taskSubmissionBtn"
-                      class="w-full inline-flex justify-center rounded-full border border-transparent shadow-sm px-6 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                      <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                        </circle>
-                        <path class="opacity-75" fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                        </path>
-                      </svg>
-                      <span>Submit</span>
-                    </button>
-                  </div>
-                </div>
-                <% } %>
-                  <% } %>
-                    <% if(task.submission) {%>
-                      <% if(task.submission.mark !=null) { %>
-                        <% if(! task.submission.approved) { %>
-                          <!-- Wrong Submission -->
-                          <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
-                            <p class="font-bold">Wrong Submission!</p>
-                            <p>
-                              <%= task.submission.comment %>
-                            </p>
-                          </div>
-                          <% } else { %>
-                            <!-- Info On Correct Submission -->
-                            <div class="
-                bg-green-100
-                border-l-4 border-green-500
-                text-green-700
-                p-4
-              " role="alert">
-                              <p class="font-bold">
-                                Great job! but there's always room for more!
-                              </p>
-                              <p>
-                                <%= task.submission.comment %>
-                              </p>
-                            </div>
-                            <% } %>
-                              <% } else { %>
-                                <!-- Submission accepted -->
-                                <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
-                                  <p class="font-bold">
-                                    We have received your submission and it will be reviewed soon!
-                                  </p>
-                                </div>
-                                <% } %>
-                                  <% } else if(!task.resource){ %>
-                                    <!-- Tasks to be revealed -->
-                                    <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
-                                      <p class="font-bold">
-                                        Have Pateince we are working on your tasks!
-                                      </p>
-                                    </div>
-                                    <% } else if(task.finalSubmissionDeadline < new Date()) { %>
-                                      <!-- Submission deadline passed -->
-                                      <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
-                                        <p class="font-bold">
-                                          Sorry the submission deadline has passed!
-                                        </p>
-                                      </div>
-                                      <% } %>
+      <% } %> 
+<% } %> 
+<% if(task.submission) {%> 
+  <% if(task.submission.mark!=null) { %> 
+    <% if(!task.submission.approved) { %>
+          <!-- Wrong Submission -->
+          <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+            <p class="font-bold">Wrong Submission!</p>
+            <p><%= task.submission.comment %></p>
           </div>
-          <% } %> <% } else { %>
+    <% } else { %>
+          <!-- Info On Correct Submission -->
+          <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
+            <p class="font-bold">Great job! but there's always room for more!</p>
+            <p><%= task.submission.comment %></p>
+          </div>
+    <% } %> 
+  <% } else { %>
           <!-- Submission accepted -->
-          <div
-            class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4"
-            role="alert"
-          >
-            <p class="font-bold">
-              We have received your submission and it will be reviewed soon!
-            </p>
+          <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
+            <p class="font-bold">We have received your submission and it will be reviewed soon!</p>
           </div>
-          <% } %> <% } else if(!task.resource){ %>
+  <% } %> 
+<% } else if(!task.resource){ %>
           <!-- Tasks to be revealed -->
-          <div
-            class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4"
-            role="alert"
-          >
+          <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4" role="alert">
             <p class="font-bold">Have Pateince we are working on your tasks!</p>
           </div>
-          <% } else if(task.finalSubmissionDeadline < new Date()) { %>
+<% } else if(task.finalSubmissionDeadline < new Date()) { %>
           <!-- Submission deadline passed -->
-          <div
-            class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4"
-            role="alert"
-          >
+          <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
             <p class="font-bold">Sorry the submission deadline has passed!</p>
           </div>
-          <% } %>
+<% } %>
         </div>
       </div>
     </div>
-    <% }) %>
+<% }) %>
   </div>
   <script src="/js/skilldashboard.js"></script>
 </div>
