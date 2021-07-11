@@ -1,4 +1,3 @@
-
 function validate(req, res) {
   setTimeout(function () {
     $(`#${req}-btn`).removeClass("onclic");
@@ -38,7 +37,7 @@ function callback(req, res) {
       if (nextPage) {
         window.location.replace(nextPage);
       } else {
-        window.location.replace("/me");
+        window.location.replace("/home");
       }
     }
   }, 1250);
@@ -60,7 +59,8 @@ function matchPassword(password, confirm_password) {
 
 // Email validate through regex
 function validateEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
 
