@@ -204,7 +204,7 @@
                         </output>
                       </div>
                     </form>
-                    <form id="newsletter" class="connect flex flex-row" data-state="<%= (user.newsletterSubscription)?'on':'off' %>" data-provider="newsletter">
+                    <!-- <form id="newsletter" class="connect flex flex-row" data-state="<%= (user.newsletterSubscription)?'on':'off' %>" data-provider="newsletter">
                       <div class="toggle-wrapper flex items-center w-full justify-center">
                         <input id="newsletter_toggle" <%= (user.newsletterSubscription)?'checked':'' %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onclick="subscribe_newsletter($(this).closest('form'),$(this).prop('checked'))">
                         <label for="newsletter_toggle" class="fancy-toggle relative">
@@ -221,7 +221,7 @@
                           <div class="status-text text-custom-blue flex items-center justify-around" data-for="on">Unsubscribe <i class='bx bx-news bx-md ml-2'></i></div>
                         </output>
                       </div>
-                    </form>
+                    </form> -->
 
                     <button
                       id="update-btn"
@@ -236,7 +236,7 @@
                       <span class="ml-3">Update Profile</span>
                     </button>
                     <a
-                      href="/me"
+                      href="/home"
                       class="tracking-wide font-semibold text-gray-100 hover:text-white w-full py-4 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                     >
                       <div class="flex justify-around mt-4 w-36" style="color: #1471ff;">

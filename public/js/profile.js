@@ -284,33 +284,33 @@ $(document).ready(function () {
 });
 
 // Subscribe to newsletter
-function subscribe_newsletter(ele, state) {
-  $newsletter_subscription = state;
-  let data = {
-    newsletterSubscription: $newsletter_subscription,
-  };
-  setState("pending", ele);
-  $.ajax({
-    type: "POST",
-    url: "/api/user/newsletter",
-    data: JSON.stringify(data),
-    contentType: "application/json",
-    dataType: "json",
-  })
-    .done(function (data) {
-      if (state) {
-        setState("on", ele);
-        showToast(200, "Newsletter subscribed 👍");
-      } else {
-        setState("off", ele);
-        showToast(200, "Newsletter unsubscribed 🥺");
-      }
-    })
-    .fail(function (err) {
-      setState("off", ele);
-      showToast(err.status, err.responseJSON.message);
-    });
-}
+// function subscribe_newsletter(ele, state) {
+//   $newsletter_subscription = state;
+//   let data = {
+//     newsletterSubscription: $newsletter_subscription,
+//   };
+//   setState("pending", ele);
+//   $.ajax({
+//     type: "POST",
+//     url: "/api/user/newsletter",
+//     data: JSON.stringify(data),
+//     contentType: "application/json",
+//     dataType: "json",
+//   })
+//     .done(function (data) {
+//       if (state) {
+//         setState("on", ele);
+//         showToast(200, "Newsletter subscribed 👍");
+//       } else {
+//         setState("off", ele);
+//         showToast(200, "Newsletter unsubscribed 🥺");
+//       }
+//     })
+//     .fail(function (err) {
+//       setState("off", ele);
+//       showToast(err.status, err.responseJSON.message);
+//     });
+// }
 
 // Submit forms on click of 'ENTER' key
 $("input").keypress(function (e) {

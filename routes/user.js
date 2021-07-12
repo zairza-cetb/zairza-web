@@ -43,6 +43,11 @@ router.put("/edit", checkIfAuthenticated, uploadProfileImage.single("profileImag
         req.body.profileImage = req.protocol + "://" + req.get('host') + "/" + req.file.path.substring(7);
       }
     }
+
+    if(req.body.registrationNo === req.user.registrationNo){
+      delete req.body.registrationNo;
+    }
+
     User.findByIdAndUpdate(
       req.user.id,
       req.body,
@@ -64,6 +69,7 @@ router.put("/edit", checkIfAuthenticated, uploadProfileImage.single("profileImag
               req.body.registrationNo
             )) === true
           ) {
+            user.newsletterSubscription = true;
             user.role = "user";
             user.save();
           } else if (
@@ -71,6 +77,7 @@ router.put("/edit", checkIfAuthenticated, uploadProfileImage.single("profileImag
               req.body.registrationNo
             )) === false
           ) {
+            user.newsletterSubscription = false;
             user.role = "restricted";
             user.save();
           }
