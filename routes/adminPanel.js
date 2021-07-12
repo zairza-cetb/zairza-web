@@ -51,6 +51,7 @@ module.exports = (app, mongoose_connection) => {
           listProperties: ["name", "email", "registrationNo", "createdAt"],
           actions: {
             delete: { isVisible: false },
+            new: { isVisible: false },
             bulkDelete: { isVisible: false },
             deleteUser: {
               actionType: "record",
