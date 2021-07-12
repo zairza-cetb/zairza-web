@@ -397,7 +397,7 @@
 
                         <!-- One big close button.  --->
                         <div class="mt-5 sm:mt-6 flex flex-row gap-2">
-                          <span class="flex w-full rounded-md shadow-sm">
+                          <span class="flex w-full rounded-md">
                           </span>
                           <span class="flex w-full rounded-md shadow-sm">
                             <button
@@ -457,10 +457,12 @@
 </div>
 <script>
   function redirectURL(value) {
-    window.location.href =
-      window.location.href +
-      `?domainId=` +
-      `${value}`;
+      if(window.location.hostname == "localhost"){
+        window.location.href = window.location.protocol + `//` + window.location.hostname + `:3000` + window.location.pathname + `?domainId=` + `${value}`;
+      }
+      else{
+        window.location.href = window.location.protocol + `//` + window.location.hostname  + window.location.pathname + `?domainId=` + `${value}`;
+      }
   }
 
 </script>
