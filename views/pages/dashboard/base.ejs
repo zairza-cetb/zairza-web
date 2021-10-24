@@ -72,65 +72,6 @@
           Zairza Projects
         </a>
         
-       
-        <div
-          class="
-            relative
-            mx-auto
-            flex
-            justify-start
-            items-center
-            hover:text-white
-          "
-        >
-          <a
-            href="/skills/user-dashboard"
-            class="
-              flex
-              items-center
-              text-black
-              hover:text-white
-              py-4
-              pl-6
-              nav-item
-              w-full
-
-            "
-            ><i class="fas fa-user-graduate mr-3"></i>Skills++</a>
-            
-          <span
-            class="
-              absolute
-              flex
-              h-6
-              w-6
-              top-0
-              right-1
-              transform
-              translate-x-2.5
-              -translate-y-2.5
-              z-40
-            "
-          >
-            <span
-              class="
-                animate-ping
-                absolute
-                inline-flex
-                h-full
-                w-full
-                rounded-full
-                bg-zairza-orange-400
-                opacity-75
-                z-40
-              "
-            ></span>
-            <span
-              class="absolute inline-flex rounded-full h-6 w-6 bg-zairza-orange"
-            ></span>
-          </span>
-        </div>
-        
         <% if(user.role == 'admin') { %>
         <a
           href="/eventPosterUpload"
@@ -181,25 +122,6 @@
           Newsletter Dashboard
         </a>
         <% } %>
-
-        <% if(user.isMentor == true) { %>
-          <a
-          href="/skills/mentor-dashboard"
-          class="
-            flex
-            items-center
-            text-black
-            hover:text-white
-            py-4
-            pl-6
-            nav-item
-            my-4
-          "
-        >
-          <i class="fas fa-user-shield mr-3"></i>
-          Skills++ Mentors
-        </a>
-      <% } %>
 
 
       </nav>
@@ -381,80 +303,7 @@
 
           
             
-          <div
-            class="
-              relative
-              mx-auto
-              flex
-              justify-start
-              items-center
-              w-full
-            "
-          >
-          <a
-            href="/skills/user-dashboard"
-            class="
-            w-full flex items-center text-black hover:text-white my-2 opacity-75 hover:opacity-100 py-2 pl-4 nav-item
-            "
-          >
-            <i class="fas fa-user-graduate mr-3"></i>
-            Skills++
-          </a>
           
-          <span
-            class="
-              absolute
-              flex
-              h-4
-              w-4
-              top-2
-              right-0
-              transform
-              translate-x-2.5
-              -translate-y-2.5
-              blink
-            "
-          >
-            <span
-              class="
-                absolute
-                flex
-                h-4
-                w-4
-                top-2
-                right-0
-                transform
-                translate-x-2.5
-                -translate-y-2.5
-                
-                
-                
-              "
-            >
-              <span
-                class="
-                  animate-ping
-                  absolute
-                  inline-flex
-                  h-full
-                  w-full
-                  rounded-full
-                  bg-zairza-orange-400
-                  opacity-75
-                "
-              ></span>
-              <span
-                class="
-                  absolute
-                  inline-flex
-                  rounded-full
-                  h-4
-                  w-4
-                  bg-zairza-orange
-                "
-              ></span>
-            </span>
-          </div>
           <% if(user.role == 'admin') { %>
           <a
             href="/eventPosterUpload"
@@ -509,23 +358,6 @@
           >
             <i class="fas fa-newspaper mr-3"></i>
             Newsletter Dashboard
-          </a>
-          <% } %>
-          <% if(user.isMentor == true) { %>
-          <a href="/skills/mentor-dashboard" class="
-                                  flex
-                                  items-center
-                                  text-black
-                                  hover:text-white
-                                  my-2
-                                  opacity-75
-                                  hover:opacity-100
-                                  py-2
-                                  pl-4
-                                  nav-item
-                                ">
-            <i class="fas fa-user-shield mr-3"></i>
-            Skills++ Mentors
           </a>
           <% } %>
           <a
