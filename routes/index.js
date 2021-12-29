@@ -10,14 +10,23 @@ router.get("/", function (req, res, next) {
       .auth()
       .verifyIdToken(req.cookies["zToken"])
       .then((decodedToken) => {
-        res.render("pages/index", { loggedIn: true });
+        res.render("pages/newIndex", { loggedIn: true });
       })
       .catch((err) => {
-        res.render("pages/index", { loggedIn: false });
+        res.render("pages/newIndex", { loggedIn: false });
       });
   } else {
-    res.render("pages/index", { loggedIn: false });
+    res.render("pages/newIndex", { loggedIn: false });
   }
+  //     .then((decodedToken) => {
+  //       res.render("pages/index", { loggedIn: true });
+  //     })
+  //     .catch((err) => {
+  //       res.render("pages/index", { loggedIn: false });
+  //     });
+  // } else {
+  //   res.render("pages/index", { loggedIn: false });
+  // }
 });
 
 /* GET auth page. */
@@ -61,7 +70,7 @@ router.get("/forgot_password", function (req, res, next) {
 });
 
 router.get("/tmp", function (req, res, next) {
-  res.render("pages/dashboard/template")
-})
+  res.render("pages/dashboard/template");
+});
 
 module.exports = router;

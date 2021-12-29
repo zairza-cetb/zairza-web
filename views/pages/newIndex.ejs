@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FF7610" />
+
+    <meta name="description" content="Website of our technical club, Zairza." />
+    <meta
+      name="keywords"
+      content="Zairza CET, Technical society of CET, Zairza"
+    />
+    <meta name="owner" content="Zairza" />
+    <meta name="author" content="Zairza" />
+    <meta name="generator" content="zairza.in" />
+    <meta name="msapplication-config" content="none" />
+
+    <meta property="og:title" content="ZAIRZA" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://zairza.in/" />
+    <meta property="og:image" content="https://zairza.in/images/Visual.webp" />
+    <meta property="og:site_name" content="Zairza" />
+    <meta
+      property="og:description"
+      content="Website of the technical club of CETB, Zairza."
+    />
+
+    <link rel="icon" type="image/png" href="/images/Visual.webp" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.css"
+      integrity="sha512-8M8By+q+SldLyFJbybaHoAPD6g07xyOcscIOQEypDzBS+sTde5d6mlK2ANIZPnSyxZUqJfCNuaIvjBUi8/RS0w=="
+      crossorigin="anonymous"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css"
+      integrity="sha512-wnea99uKIC3TJF7v4eKk4Y+lMz2Mklv18+r4na2Gn1abDRPPOeef95xTzdwGD9e6zXJBteMIhZ1+68QC5byJZw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    /> -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Zairza</title>
+  </head>
+  <body id="main">
+    <main class="relative">
+      <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
+        <div class="w-1/2 h-screen layer"></div>
+        <ul
+          class="
+            list-none
+            p-12
+            text-white
+            pt-32
+            pl-24
+            text-2xl
+            bg-blue-500
+            h-screen
+            w-1/2
+          "
+        >
+          <li class="py-4"><a href="">Home</a></li>
+          <li class="py-4"><a href="">Projects</a></li>
+          <li class="py-4"><a href="">Blogs</a></li>
+          <li class="py-4"><a href="">About Us</a></li>
+          <li class="py-4"><a href="">Members</a></li>
+          <li class="py-4"><a href="">Log In</a></li>
+          <li class="py-4"><a href="">Sign Up</a></li>
+          <li class="flex mt-5">
+            <a
+              rel="”noreferrer”"
+              target="_blank"
+              href="mailto:cet.sac.zairza@gmail.com"
+              class="pr-4 bx-tada-hover"
+              ><img src="/images/new-landing/mail.png" alt=""
+            /></a>
+            <a
+              rel="”noreferrer”"
+              target="_blank"
+              href="https://github.com/zairza-cetb"
+              class="pr-4 bx-tada-hover"
+              ><img src="/images/new-landing/git.png" alt=""
+            /></a>
+            <a
+              rel="”noreferrer”"
+              target="_blank"
+              href="https://www.instagram.com/zairza.cetb"
+              class="pr-4 bx-tada-hover"
+              ><img src="/images/new-landing/insta.png" alt=""
+            /></a>
+            <a
+              rel="”noreferrer”"
+              target="_blank"
+              href="https://twitter.com/zairza_cetb"
+              class="pr-4 bx-tada-hover"
+              ><img src="/images/new-landing/twitter.png" alt=""
+            /></a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <header class="navbar lg:flex lg:justify-between lg:items-center z-40">
+          <div
+            class="flex justify-between items-center px-4 py-3 sm:p-0 w-full"
+          >
+            <div class="flex items-center justify-end w-full">
+              <div
+                class="menu-container ml-20 flex items-center justify-center"
+              >
+                <div class="flex rounded-full flex-col justify-center">
+                  <div class="relative rounded-full sm:max-w-xl mx-auto">
+                    <nav x-data="{ open: false }">
+                      <button
+                        class="
+                          w-10
+                          h-10
+                          relative
+                          focus:outline-none
+                          bg-white
+                          rounded-full
+                          menu-button
+                        "
+                        onclick="this.classList.toggle('opened'); toggleMenu()"
+                        @click="open = !open"
+                      >
+                        <!-- <span class="sr-only">Open main menu</span> -->
+                        <div
+                          class="
+                            block
+                            w-5
+                            absolute
+                            left-1/2
+                            top-1/2
+                            transform
+                            -translate-x-1/2 -translate-y-1/2
+                          "
+                        >
+                          <span
+                            aria-hidden="true"
+                            class="
+                              block
+                              absolute
+                              h-0.5
+                              w-5
+                              bg-current
+                              transform
+                              transition
+                              duration-500
+                              ease-in-out
+                            "
+                            :class="{'rotate-45': open,' -translate-y-1.5': !open }"
+                          ></span>
+                          <span
+                            aria-hidden="true"
+                            class="
+                              block
+                              absolute
+                              h-0.5
+                              w-5
+                              bg-current
+                              transform
+                              transition
+                              duration-500
+                              ease-in-out
+                            "
+                            :class="{'opacity-0': open } "
+                          ></span>
+                          <span
+                            aria-hidden="true"
+                            class="
+                              block
+                              absolute
+                              h-0.5
+                              w-5
+                              bg-current
+                              transform
+                              transition
+                              duration-500
+                              ease-in-out
+                            "
+                            :class="{'-rotate-45': open, ' translate-y-1.5': !open}"
+                          ></span>
+                        </div>
+                      </button>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </section>
+
+      <section class="flex w-full justify-between px-28 pt-9 z-20">
+        <div class="pt-3 sm:pt-0 z-40">
+          <img class="h-6 cursor-pointer" src="/images/Zairzalogo.webp" />
+        </div>
+        <div class="pt-3 sm:pt-0 mr-24 z-40">
+          <a
+            id="sign-in-btn"
+            rel="”noreferrer”"
+            target="_blank"
+            href="https://www.google.com"
+            >Sign In</a
+          >
+        </div>
+      </section>
+      <section
+        class="flex justify-between pl-28 hero-section bg-white h-screen"
+      >
+        <div class="content">
+          <h1 class="mt-48 flex-2 hero-head">
+            Curious Minds striving to learn
+          </h1>
+          <p class="mt-4 leading-6 hero-text">
+            We develop skills in multiple domains related to tech and design.
+            Skills that will help you gain recognition in the industry and help
+            you grow.
+          </p>
+          <button
+            class="
+              bg-blue-600
+              px-8
+              py-3.5
+              mt-4
+              text-white
+              rounded-full
+              cursor-pointer
+            "
+          >
+            <div class="flex items-center">
+              <span>Join Us</span
+              ><img
+                class="ml-2 w-5"
+                src="/images/new-landing/arrow-right.png"
+                alt=""
+              />
+            </div>
+          </button>
+        </div>
+        <img
+          class="flex-1 mt-8 max-w-4xl"
+          src="/images/new-landing/newhero.png"
+          alt=""
+        />
+      </section>
+      <section
+        class="projects-section flex items-center h-screen px-12"
+        style="background-color: #ffeee1"
+      >
+        <img
+          class="flex-1 w-1/2 p-16"
+          src="/images/new-landing/newsecondsection.png"
+          alt=""
+        />
+        <div class="content w-1/2 h-full -mr-8">
+          <h1 class="mt-56 flex-2 hero-head w-3/4">
+            Choose the world you wanna dive in
+          </h1>
+          <p class="mt-4 leading-6 hero-text" style="width: 72%">
+            We develop skills in multiple domains related to tech and design.
+            Skills that will help you gain recognition in the industry and help
+            you grow.
+          </p>
+          <button
+            class="
+              bg-orange-500
+              second-section-btn
+              px-8
+              py-3.5
+              mt-4
+              text-white
+              rounded-full
+              cursor-pointer
+            "
+          >
+            <div class="flex items-center">
+              <span>Have a look</span
+              ><img
+                class="ml-2 w-5"
+                src="/images/new-landing/arrow-right.png"
+                alt=""
+              />
+            </div>
+          </button>
+        </div>
+      </section>
+      <section
+        class="bot-section flex items-center overflow-x-hidden h-screen"
+        style="background-color: #fff"
+      >
+        <div
+          class="content ml-28 px-2 w-1/2 h-full flex flex-col justify-center"
+        >
+          <h1 class="hero-head w-3/4">
+            On a tech adventure to turn ideas into Reality
+          </h1>
+          <p class="mt-4 leading-6 hero-text" style="width: 70%">
+            We develop skills in multiple domains related to tech and design.
+            Skills that will help you gain recognition in the industry and help
+            you grow.
+          </p>
+          <button
+            class="
+              bg-blue-600
+              second-section-btn
+              px-8
+              py-3.5
+              mt-4
+              w-max
+              text-white
+              rounded-full
+              cursor-pointer
+            "
+          >
+            <div class="flex items-center">
+              <span>Have a look</span
+              ><img
+                class="ml-2 w-5"
+                src="/images/new-landing/arrow-right.png"
+                alt=""
+              />
+            </div>
+          </button>
+        </div>
+        <img class="flex-2" src="/images/new-landing/newbot.png" alt="" />
+      </section>
+      <section
+        class="sessions-section flex items-center h-screen px-28"
+        style="background-color: #00255c"
+      >
+        <img
+          class="flex-1 w-1/2 p-16 vector"
+          src="/images/new-landing/Vector.png"
+          alt=""
+        />
+        <img
+          class="flex-1 w-2/3"
+          src="/images/new-landing/projector.png"
+          alt=""
+        />
+        <div class="content ml-4 w-1/2 h-full z-50">
+          <h1 class="mt-64 flex-2 hero-head text-white">
+            Insightful resources and sessions that will help you grow
+          </h1>
+          <p class="mt-4 leading-6 hero-text">
+            Blogs , Articles , Books etc, curated by core members of zairza.
+          </p>
+          <button
+            class="
+              bg-orange-500
+              sessions-section-btn
+              px-8
+              py-3.5
+              mt-4
+              text-white
+              rounded-full
+              cursor-pointer
+              z-30
+            "
+            onclick="console.log('new done')"
+          >
+            <div class="flex items-center">
+              <span>Get More</span
+              ><img
+                class="ml-2 w-5"
+                src="/images/new-landing/arrow-right.png"
+                alt=""
+              />
+            </div>
+          </button>
+        </div>
+      </section>
+      <section
+        class="
+          mail-section
+          bg-white
+          flex flex-col
+          justify-center
+          items-center
+          w-full
+        "
+      >
+        <h1 class="hero-head text-center">Wanna Join Us ?</h1>
+        <p class="leading-6 hero-text text-center mr-32">
+          Give us you email ID . We will reach out to you.
+        </p>
+        <input
+          type="email"
+          placeholder="Email here"
+          class="mt-12 border border-solid border-black rounded-md px-4 py-2"
+        />
+        <p class="mt-2 leading-6 hero-text text-center mr-32">
+          Already a member?
+          <span class="text-blue-500"
+            ><a
+              href=""
+              class="no-underline visited:text-blue-500 active:text-blue-500"
+              >Log In</a
+            ></span
+          >
+          to learn and grow.
+        </p>
+        <button
+          class="
+            bg-blue-600
+            second-section-btn
+            px-8
+            py-3.5
+            mt-16
+            mr-96
+            ml-10
+            text-white
+            rounded-full
+            cursor-pointer
+          "
+        >
+          <div class="flex items-center">
+            <span>Let's Go</span>
+          </div>
+        </button>
+      </section>
+      <section
+        class="flex items-center overflow-x-hidden h-screen"
+        style="background-color: #e7f1ff"
+      >
+        <div class="content ml-28 px-2 w-1/2 h-full">
+          <h1 class="mt-56 hero-head w-3/4 mt-60">
+            Wanna know more about the team
+          </h1>
+          <p class="mt-4 leading-6 hero-text">
+            We develop skills in multiple domains related to tech and design.
+            Skills that will help you gain recognition in the industry and help
+            you grow.
+          </p>
+          <button
+            class="
+              bg-blue-600
+              second-section-btn
+              px-8
+              py-3.5
+              mt-4
+              text-white
+              rounded-full
+              cursor-pointer
+            "
+          >
+            <div class="flex items-center">
+              <span>Visit team</span
+              ><img
+                class="ml-2 w-5"
+                src="/images/new-landing/arrow-right.png"
+                alt=""
+              />
+            </div>
+          </button>
+        </div>
+        <img class="flex-2 ml-24" src="/images/new-landing/newbot.png" alt="" />
+      </section>
+    </main>
+    <footer class="pt-36 px-28">
+      <h1 class="text-6xl font-bold w-2/5 leading-tight">
+        Something on your mind
+      </h1>
+      <p class="text-lg mt-4 font-normal" style="color: #bcd7ff">
+        We will help you with your idea and turn it into reality
+      </p>
+      <div class="details flex items-center justify-between w-full mt-24">
+        <div class="address">
+          <p class="text-base">
+            OUTR (CET Campus), Kalinga Nagar, Ghatikia, Bhubaneswar, Odisha.
+          </p>
+          <p class="mt-2"><a href="tel:+91 7205883336">+91 7205883336</a></p>
+        </div>
+        <div class="socials flex items-center">
+          <a
+            rel="”noreferrer”"
+            target="_blank"
+            href="mailto:cet.sac.zairza@gmail.com"
+            ><img
+              src="/images/new-landing/mail.svg"
+              alt=""
+              class="ml-4 bx-tada-hover"
+          /></a>
+          <a
+            rel="”noreferrer”"
+            target="_blank"
+            href="https://github.com/zairza-cetb"
+            ><img
+              src="/images/new-landing/github.svg"
+              alt=""
+              class="ml-4 bx-tada-hover"
+          /></a>
+          <a
+            rel="”noreferrer”"
+            target="_blank"
+            href="https://www.instagram.com/zairza.cetb"
+            ><img
+              src="/images/new-landing/instagram.svg"
+              alt=""
+              class="ml-4 bx-tada-hover"
+          /></a>
+          <a
+            rel="”noreferrer”"
+            target="_blank"
+            href="https://twitter.com/zairza_cetb"
+            ><img
+              src="/images/new-landing/tweet.svg"
+              alt=""
+              class="ml-4 bx-tada-hover"
+          /></a>
+        </div>
+      </div>
+    </footer>
+    <script src="/js/script.js"></script>
+  </body>
+</html>

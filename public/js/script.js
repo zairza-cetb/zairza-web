@@ -1,11 +1,18 @@
 function toggleMenu() {
   let menu = document.getElementById("mob-menu");
+  let mainDoc = document.getElementById("main");
+  let sigInBtn = document.getElementById("sign-in-btn");
+
   if (menu.classList.contains("hidden")) {
     menu.classList.remove("hidden");
     menu.classList.add("block");
+    mainDoc.style.overflow = "hidden";
+    sigInBtn.style.display = "none";
   } else {
     menu.classList.remove("block");
     menu.classList.add("hidden");
+    mainDoc.style.overflow = "scroll";
+    sigInBtn.style.display = "block";
   }
 }
 function sendEmail() {
