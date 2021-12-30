@@ -69,6 +69,8 @@
     <title>Zairza</title>
   </head>
   <body id="main">
+    <%- include('../partials/newsletter_pop.ejs') %> <%-
+    include('../partials/firebase.ejs') %>
     <main class="relative">
       <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
         <div class="w-1/2 h-screen layer"></div>
@@ -90,8 +92,13 @@
           <li class="py-4"><a href="">Blogs</a></li>
           <li class="py-4"><a href="">About Us</a></li>
           <li class="py-4"><a href="">Members</a></li>
-          <li class="py-4"><a href="">Log In</a></li>
-          <li class="py-4"><a href="">Sign Up</a></li>
+          <% if(loggedIn){ %>
+          <li class="py-4"><a href="/me">Dashboard</a></li>
+          <li class="py-4"><a href="" onclick="logout()">Sign Out</a></li>
+          <% } else { %>
+          <li class="py-4"><a href="/auth#signin">Log In</a></li>
+          <li class="py-4"><a href="/auth#signup">Sign Up</a></li>
+          <% } %>
           <li class="flex mt-5">
             <a
               rel="”noreferrer”"
@@ -221,15 +228,11 @@
         <div class="pt-3 sm:pt-0 z-40">
           <img class="h-6 cursor-pointer" src="/images/Zairzalogo.webp" />
         </div>
+        <% if(!loggedIn){ %>
         <div class="pt-3 sm:pt-0 mr-24 z-40">
-          <a
-            id="sign-in-btn"
-            rel="”noreferrer”"
-            target="_blank"
-            href="https://www.google.com"
-            >Sign In</a
-          >
+          <a id="sign-in-btn" href="/auth#signin">Sign In</a>
         </div>
+        <% } %>
       </section>
       <section
         class="flex justify-between pl-28 hero-section bg-white h-screen"
@@ -254,14 +257,16 @@
               cursor-pointer
             "
           >
-            <div class="flex items-center">
-              <span>Join Us</span
-              ><img
-                class="ml-2 w-5"
-                src="/images/new-landing/arrow-right.png"
-                alt=""
-              />
-            </div>
+            <a href="/auth#signin">
+              <div class="flex items-center">
+                <span>Join Us</span
+                ><img
+                  class="ml-2 w-5"
+                  src="/images/new-landing/arrow-right.png"
+                  alt=""
+                />
+              </div>
+            </a>
           </button>
         </div>
         <img
@@ -300,14 +305,16 @@
               cursor-pointer
             "
           >
-            <div class="flex items-center">
-              <span>Have a look</span
-              ><img
-                class="ml-2 w-5"
-                src="/images/new-landing/arrow-right.png"
-                alt=""
-              />
-            </div>
+            <a href="/auth#signin">
+              <div class="flex items-center">
+                <span>Have a look</span
+                ><img
+                  class="ml-2 w-5"
+                  src="/images/new-landing/arrow-right.png"
+                  alt=""
+                />
+              </div>
+            </a>
           </button>
         </div>
       </section>
@@ -539,5 +546,6 @@
       </div>
     </footer>
     <script src="/js/script.js"></script>
+    <script src="/js/dashboard.js"></script>
   </body>
 </html>
