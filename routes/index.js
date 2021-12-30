@@ -3,6 +3,51 @@ const router = express.Router();
 const admin = require("../firebase/firebaseService");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 
+const team = [
+  {
+    position: "Coordinator",
+    name: "Gunjan Giri",
+    linkedin: "https://www.linkedin.com/in/gunjan-giri/",
+    mail: "gunjangiri8410@gmail.com",
+    image: "/images/new-landing/team.png",
+  },
+  {
+    position: "Convenor",
+    name: "Prateek Mohanty",
+    linkedin: "https://www.linkedin.com/in/prateek-mohanty/",
+    mail: "itsprateekmohanty@gmail.com",
+    image: "/images/new-landing/team.png",
+  },
+  {
+    position: "Design Lead",
+    name: "Debanshu Samal",
+    linkedin: "https://www.linkedin.com/in/debanshu-samal/",
+    mail: "debanshusamal1999@gmail.com",
+    image: "/images/new-landing/team.png",
+  },
+  {
+    position: "Design Lead",
+    name: "Stephen Rejinold",
+    linkedin: "https://www.linkedin.com/in/stephenrejinold/",
+    mail: "ejinoldstephen@gmail.com",
+    image: "/images/new-landing/team.png",
+  },
+  {
+    position: "Coordinator",
+    name: "Gunjan Giri",
+    linkedin: "https://www.linkedin.com/in/gunjan-giri/",
+    mail: "gunjangiri8410@gmail.com",
+    image: "/images/new-landing/team.png",
+  },
+  {
+    position: "Convenor",
+    name: "Prateek Mohanty",
+    linkedin: "https://www.linkedin.com/in/prateek-mohanty/",
+    mail: "itsprateekmohanty@gmail.com",
+    image: "/images/new-landing/team.png",
+  },
+];
+
 /* GET home page. */
 router.get("/", function (req, res, next) {
   if (req.cookies["zToken"] != null) {
@@ -27,6 +72,21 @@ router.get("/", function (req, res, next) {
   // } else {
   //   res.render("pages/index", { loggedIn: false });
   // }
+});
+router.get("/team", function (req, res, next) {
+  if (req.cookies["zToken"] != null) {
+    admin
+      .auth()
+      .verifyIdToken(req.cookies["zToken"])
+      .then((decodedToken) => {
+        res.render("pages/team", { data: { loggedIn: true, team: team } });
+      })
+      .catch((err) => {
+        res.render("pages/team", { data: { loggedIn: false, team: team } });
+      });
+  } else {
+    res.render("pages/team", { data: { loggedIn: false, team: team } });
+  }
 });
 
 /* GET auth page. */

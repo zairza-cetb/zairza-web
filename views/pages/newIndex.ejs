@@ -26,10 +26,10 @@
     />
 
     <link rel="icon" type="image/png" href="/images/Visual.webp" />
-    <link
+    <!-- <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
-    />
+    /> -->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
@@ -82,8 +82,7 @@
     <title>Zairza</title>
   </head>
   <body id="main">
-    <%- include('../partials/newsletter_pop.ejs') %> <%-
-    include('../partials/firebase.ejs') %>
+    <%- include('../partials/newsletter_pop.ejs') %>
     <main class="relative">
       <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
         <div class="w-1/2 h-screen layer"></div>
@@ -506,14 +505,16 @@
               cursor-pointer
             "
           >
-            <div class="flex items-center">
-              <span>Visit team</span
-              ><img
-                class="ml-2 w-5"
-                src="/images/new-landing/arrow-right.png"
-                alt=""
-              />
-            </div>
+            <a href="/team">
+              <div class="flex items-center">
+                <span>Visit team</span
+                ><img
+                  class="ml-2 w-5"
+                  src="/images/new-landing/arrow-right.png"
+                  alt=""
+                />
+              </div>
+            </a>
           </button>
           </div>
         </div>
