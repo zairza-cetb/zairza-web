@@ -5,12 +5,12 @@ function deleteModal() {
 
 // Signout
 function logout() {
+  console.log("function called");
   firebase
     .auth()
     .signOut()
     .then(() => {
       // Sign-out successful.
-
       // console.log($.cookie("zToken", null, { path: "/" }), "check");
       window.location.href = "/";
     })

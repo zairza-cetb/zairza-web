@@ -73,6 +73,23 @@ router.get("/", function (req, res, next) {
   //   res.render("pages/index", { loggedIn: false });
   // }
 });
+router.get("/about", function (req, res, next) {
+  if (req.cookies["zToken"] != null) {
+    admin
+      .auth()
+      .verifyIdToken(req.cookies["zToken"])
+      .then((decodedToken) => {
+        res.render("pages/about", { loggedIn: true });
+      })
+      .catch((err) => {
+        res.render("pages/about", { loggedIn: false });
+      });
+  } else {
+    res.render("pages/about", { loggedIn: false });
+  }
+});
+
+/*Get teams page */
 router.get("/team", function (req, res, next) {
   if (req.cookies["zToken"] != null) {
     admin

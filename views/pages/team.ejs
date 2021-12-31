@@ -22,9 +22,12 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
       rel="stylesheet"
     />
+
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body id="main">
+    <%- include('../partials/firebase.ejs') %>
+
     <main class="relative">
       <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
         <div class="w-1/2 h-screen layer"></div>
@@ -41,14 +44,14 @@
             w-1/2
           "
         >
-          <li class="py-4"><a href="">Home</a></li>
-          <li class="py-4"><a href="">Projects</a></li>
+          <li class="py-4"><a href="/">Home</a></li>
+          <li class="py-4"><a href="/projects">Projects</a></li>
           <li class="py-4"><a href="">Blogs</a></li>
           <li class="py-4"><a href="">About Us</a></li>
           <li class="py-4"><a href="">Members</a></li>
           <% if(data.loggedIn){ %>
           <li class="py-4"><a href="/me">Dashboard</a></li>
-          <li class="py-4"><a href="" onclick="logout()">Sign Out</a></li>
+          <li class="py-4"><a href="#" onclick="logout()">Sign Out</a></li>
           <% } else { %>
           <li class="py-4"><a href="/auth#signin">Log In</a></li>
           <li class="py-4"><a href="/auth#signup">Sign Up</a></li>
@@ -178,9 +181,11 @@
       </section>
       <section class="flex w-full justify-between px-28 pt-9 z-20">
         <div class="pt-3 sm:pt-0 z-40">
-          <img class="h-6 cursor-pointer" src="/images/Zairzalogo.webp" />
+          <a href="/"
+            ><img class="h-6 cursor-pointer" src="/images/Zairzalogo.webp"
+          /></a>
         </div>
-        <% if(!data.loggedIn){ %>
+        <%console.log(data.loggedIn)%> <% if(!data.loggedIn){ %>
         <div class="pt-3 sm:pt-0 mr-24 z-40">
           <a id="sign-in-btn" href="/auth#signin">Sign In</a>
         </div>
@@ -255,6 +260,12 @@
       </section>
     </main>
   </body>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
   <script src="/js/script.js"></script>
   <script src="/js/dashboard.js"></script>
 </html>

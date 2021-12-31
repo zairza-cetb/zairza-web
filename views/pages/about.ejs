@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FF7610" />
+    <link rel="icon" type="image/png" href="/images/Visual.webp" />
+    <title>Team | Zairza</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body id="main">
+    <%- include('../partials/firebase.ejs') %>
+
+    <main class="relative mb-24">
+      <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
+        <div class="w-1/2 h-screen layer"></div>
+        <ul
+          class="
+            list-none
+            p-12
+            text-white
+            pt-32
+            pl-24
+            text-2xl
+            bg-blue-500
+            h-screen
+            w-1/2
+          "
+        >
+          <li class="py-4"><a href="/">Home</a></li>
+          <li class="py-4"><a href="/projects">Projects</a></li>
+          <li class="py-4">
+            <a href="https://blog.zairza.in/" rel="”noreferrer”" target="_blank"
+              >Blogs</a
+            >
+          </li>
+          <li class="py-4"><a href="/about">About Us</a></li>
+          <li class="py-4"><a href="/team">Members</a></li>
+          <% if(loggedIn){ %>
+          <li class="py-4"><a href="/me">Dashboard</a></li>
+          <li class="py-4"><a href="" onclick="logout()">Sign Out</a></li>
+          <% } else { %>
+          <li class="py-4"><a href="/auth#signin">Log In</a></li>
+          <li class="py-4"><a href="/auth#signup">Sign Up</a></li>
+          <% } %>
+          <li class="flex mt-5">
+            <a
+              rel="”noreferrer”"
+              target="_blank"
+              href="mailto:cet.sac.zairza@gmail.com"
+              class="pr-4 bx-tada-hover"
+              ><img src="/images/new-landing/mail.png" alt=""
+            /></a>
+            <a
+              rel="”noreferrer”"
+              target="_blank"
+              href="https://github.com/zairza-cetb"
+              class="pr-4 bx-tada-hover"
+              ><img src="/images/new-landing/git.png" alt=""
+            /></a>
+            <a
+              rel="”noreferrer”"
+              target="_blank"
+              href="https://www.instagram.com/zairza.cetb"
+              class="pr-4 bx-tada-hover"
+              ><img src="/images/new-landing/insta.png" alt=""
+            /></a>
+            <a
+              rel="”noreferrer”"
+              target="_blank"
+              href="https://twitter.com/zairza_cetb"
+              class="pr-4 bx-tada-hover"
+              ><img src="/images/new-landing/twitter.png" alt=""
+            /></a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <header class="navbar lg:flex lg:justify-between lg:items-center z-40">
+          <div
+            class="flex justify-between items-center px-4 py-3 sm:p-0 w-full"
+          >
+            <div class="flex items-center justify-end w-full">
+              <div
+                class="menu-container ml-20 flex items-center justify-center"
+              >
+                <div class="flex rounded-full flex-col justify-center">
+                  <div class="relative rounded-full sm:max-w-xl mx-auto">
+                    <nav x-data="{ open: false }">
+                      <button
+                        class="
+                          w-10
+                          h-10
+                          relative
+                          focus:outline-none
+                          bg-white
+                          rounded-full
+                          menu-button
+                        "
+                        onclick="this.classList.toggle('opened'); toggleMenu()"
+                        @click="open = !open"
+                      >
+                        <div
+                          class="
+                            block
+                            w-5
+                            absolute
+                            left-1/2
+                            top-1/2
+                            transform
+                            -translate-x-1/2 -translate-y-1/2
+                          "
+                        >
+                          <span
+                            aria-hidden="true"
+                            class="
+                              block
+                              absolute
+                              h-0.5
+                              w-5
+                              bg-current
+                              transform
+                              transition
+                              duration-500
+                              ease-in-out
+                            "
+                            :class="{'rotate-45': open,' -translate-y-1.5': !open }"
+                          ></span>
+                          <span
+                            aria-hidden="true"
+                            class="
+                              block
+                              absolute
+                              h-0.5
+                              w-5
+                              bg-current
+                              transform
+                              transition
+                              duration-500
+                              ease-in-out
+                            "
+                            :class="{'opacity-0': open } "
+                          ></span>
+                          <span
+                            aria-hidden="true"
+                            class="
+                              block
+                              absolute
+                              h-0.5
+                              w-5
+                              bg-current
+                              transform
+                              transition
+                              duration-500
+                              ease-in-out
+                            "
+                            :class="{'-rotate-45': open, ' translate-y-1.5': !open}"
+                          ></span>
+                        </div>
+                      </button>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </section>
+      <section class="flex w-full justify-between px-28 pt-9 z-20">
+        <div class="pt-3 sm:pt-0 z-40">
+          <a href="/"
+            ><img class="h-6 cursor-pointer" src="/images/Zairzalogo.webp"
+          /></a>
+        </div>
+        <% if(!loggedIn){ %>
+        <div class="pt-3 sm:pt-0 mr-24 z-40">
+          <a id="sign-in-btn" href="/auth#signin">Sign In</a>
+        </div>
+        <% } %>
+      </section>
+      <section class="px-28 mt-32">
+        <h1 class="flex-1 font-bold text-5xl leading-normal">
+          Team full of enthusiasm <br />
+          and creativity
+        </h1>
+      </section>
+      <section class="my-24">
+        <img src="/images/new-landing/about.jpg" alt="" />
+      </section>
+      <section class="mx-28">
+        <p class="mt-8 text-base leading-loose text-justify">
+          A society, a club, a family, Zairza is the premiere technical club of
+          the college, pushing the boundaries of innovation in the field of
+          Robotics, Software, and Design. We firmly believe in our motto
+          “Wonder, Think, Create” and strive forward to make it a reality. The
+          club was started in 2005 and was formally inducted as a central club
+          of the college in 2007. Since its inception, the club members have
+          worked tirelessly and also achieved numerous laurels in a variety of
+          fields.
+        </p>
+        <p class="mt-8 text-base leading-loose text-justify">
+          The aim we hold is to provide students the right direction to walk in
+          their career with their utmost ability gained through the regular
+          sessions that are held for the students. With your right skills, we
+          provide internship offers that give a real-time experience at an
+          industry level and help you know your true potential. What’s more
+          interesting is the location of where we are i.e. the center of
+          attraction of the college which is the SAC area that allows students
+          to access their needs easily.
+        </p>
+        <p class="mt-8 text-base leading-loose text-justify">
+          Now that you know what we do, let us jump into the various projects
+          and achievements we have done till now in the projects section and
+          discover about the amazing leads who have helped us reach where we are
+          today.
+        </p>
+      </section>
+    </main>
+  </body>
+  <script src="/js/script.js"></script>
+  <script src="/js/dashboard.js"></script>
+</html>
