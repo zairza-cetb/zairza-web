@@ -147,11 +147,13 @@
         </ul>
       </nav>
       <section>
-        <header class="navbar lg:flex lg:justify-between lg:items-center z-40">
+        <header
+          class="navbar lg:flex lg:justify-between lg:items-center z-40 lg:px-8"
+        >
           <div
             class="flex justify-between items-center px-4 py-3 sm:p-0 w-full"
           >
-            <div class="flex items-center justify-end w-full">
+            <div class="flex items-center justify-end w-full lg:mt-0 mt-8">
               <div
                 class="menu-container ml-20 flex items-center justify-center"
               >
@@ -256,7 +258,7 @@
           <img class="h-6 cursor-pointer" src="/images/Zairzalogo.webp" />
         </div>
         <% if(!loggedIn){ %>
-        <div class="pt-3 sm:pt-0 mr-24 z-40 md:text-sm">
+        <div class="pt-3 sm:pt-0 mr-24 z-40 md:hidden">
           <a id="sign-in-btn" href="/auth#signin">Sign In</a>
         </div>
         <% } %>
@@ -290,8 +292,8 @@
           >
             Curious minds striving to learn
           </h1>
-          <h3 class="text-sm lg:text-lg mt-3 lg:text-left text-center">
-            <span style="color: #ff7610"> Wonder. </span
+          <h3 class="text-lg mt-4 lg:text-center text-left">
+            <span style="color: #ff7610">Wonder. </span
             ><span style="color: #1a1a1a">Think. </span
             ><span style="color: #1071ff">Create.</span>
           </h3>
@@ -674,7 +676,7 @@
         </div>
       </section>
     </main>
-    <footer class="pt-36 px-28 md:px-12 md:py-32">
+    <footer class="pt-36 px-28 md:px-12 md:py-32 max-w-full overflow-hidden">
       <h1
         class="
           text-6xl

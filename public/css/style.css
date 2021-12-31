@@ -148,7 +148,7 @@ body {
   margin-top: 2rem;
   margin-bottom: 10rem;
   outline: none;
-  cursor: pointer;sssssssssssssssssss
+  cursor: pointer;
   background: none;
   transition: 0.5s;
   border: 2px solid #1471ff;
@@ -875,17 +875,15 @@ body {
   width: 30%;
 }
 
-
 @media (max-width: 767px) {
   .mail-section {
     height: auto;
   }
-  
+
   .mail-section input {
     width: 90%;
   }
 }
-
 
 #mob-menu {
 }
@@ -907,4 +905,9 @@ footer {
 
 .layer {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+#main {
+  width: 100vw;
+  overflow-x: hidden !important;
 }
