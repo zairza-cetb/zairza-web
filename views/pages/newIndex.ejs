@@ -66,6 +66,19 @@
     <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+        extend: {},
+        screens: {
+            xl: { max: "1279px" },
+            lg: { max: "1023px" },
+            md: { max: "767px" },
+            sm: { max: "639px" },
+        }
+      },
+      }
+    </script>
     <title>Zairza</title>
   </head>
   <body id="main">
@@ -235,13 +248,13 @@
         <% } %>
       </section>
       <section
-        class="flex justify-between pl-28 hero-section bg-white h-screen items-center"
+        class="flex justify-between pl-28 lg:pl-16 hero-section bg-white h-screen items-center"
       >
         <div class="content basis-5/12">
-          <h1 class="flex-2 text-6xl font-bold leading-snug">
+          <h1 class="flex-2 text-6xl lg:text-5xl font-bold leading-snug">
             Curious minds striving to learn
           </h1>
-          <p class="mt-4 leading-6 hero-text">
+          <p class="mt-4 leading-6 hero-text lg:w-9/12 lg:text-sm">
             We develop skills in multiple domains related to tech and design.
             Skills that will help you gain recognition in the industry and help
             you grow.
@@ -250,7 +263,9 @@
             class="
               bg-blue-600
               px-8
+              lg:px-4
               py-3.5
+              lg:py-2.5
               mt-4
               text-white
               rounded-full
@@ -259,7 +274,7 @@
           >
             <a href="/auth#signin">
               <div class="flex items-center">
-                <span>Join Us</span
+                <span class="text-sm">Join Us</span
                 ><img
                   class="ml-2 w-5"
                   src="/images/new-landing/arrow-right.png"
@@ -278,10 +293,10 @@
         </div>
       </section>
       <section
-        class="projects-section flex px-12 items-center justify-end py-56"
+        class="flex px-12 lg:px-6 items-center justify-end py-56"
         style="background-color: #ffeee1"
       >
-        <div class="p-16 basis-1/2">
+        <div class="p-16 lg:p-8 basis-1/2">
           <img
           class="w-full h-full"
           src="/images/new-landing/newsecondsection.png"
@@ -289,7 +304,7 @@
           />
         </div>
         <div class="basis-1/2">
-          <h1 class="text-6xl font-bold leading-tight">
+          <h1 class="text-6xl lg:text-5xl font-bold leading-tight">
             Choose the world you wanna dive in
           </h1>
           <p class="leading-6 hero-text mt-4">
@@ -302,7 +317,9 @@
               bg-orange-500
               second-section-btn
               px-8
+              lg:px-4
               py-3.5
+              lg:px-2.5
               mt-10
               text-white
               rounded-full
@@ -311,7 +328,7 @@
           >
             <a href="/auth#signin">
               <div class="flex items-center">
-                <span>Have a look</span
+                <span class="text-sm">Have a look</span
                 ><img
                   class="ml-2 w-5"
                   src="/images/new-landing/arrow-right.png"
@@ -323,7 +340,7 @@
         </div>
       </section>
       <section
-        class="bot-section flex items-center overflow-x-hidden h-screen bg-white px-24 py-56 justify-end items-center"
+        class="bot-section flex items-center overflow-x-hidden h-screen bg-white px-24 lg:px-16 py-56 justify-end items-center"
       >
         <div
           class="content flex flex-col basis-2/3"
@@ -463,8 +480,8 @@
         style="background-color: #e7f1ff"
       >
         <div class="content basis-2/3">
-          <div class="ml-24 my-24">
-          <h1 class="text-6xl font-bold leading-tight">
+          <div class="ml-24 my-24 lg:ml-16 lg:my-16">
+          <h1 class="text-6xl font-bold lg:text-5xl leading-tight">
             Wanna know more about the team
           </h1>
           <p class="mt-4 leading-6 hero-text">
@@ -501,15 +518,15 @@
       </section>
     </main>
     <footer class="pt-36 px-28">
-      <h1 class="text-6xl font-bold w-2/5 leading-tight">
+      <h1 class="text-6xl font-bold lg:text-5xl w-2/5 leading-tight">
         Something on your mind
       </h1>
-      <p class="text-lg mt-4 font-normal" style="color: #bcd7ff">
+      <p class="text-lg lg:text-sm mt-4 font-normal" style="color: #bcd7ff">
         We will help you with your idea and turn it into reality
       </p>
       <div class="details flex items-center justify-between w-full mt-24">
         <div class="address">
-          <p class="text-base">
+          <p class="text-base lg:text-sm lg:w-5/6">
             OUTR (CET Campus), Kalinga Nagar, Ghatikia, Bhubaneswar, Odisha.
           </p>
           <p class="mt-2"><a href="tel:+91 7205883336">+91 7205883336</a></p>
