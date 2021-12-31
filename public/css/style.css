@@ -5,6 +5,8 @@ body {
   font-family: "Montserrat", sans-serif;
   scroll-behavior: smooth;
   scrollbar-width: none;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -905,9 +907,4 @@ footer {
 
 .layer {
   background-color: rgba(0, 0, 0, 0.3);
-}
-
-#main {
-  width: 100vw;
-  overflow-x: hidden !important;
 }
