@@ -381,24 +381,21 @@
         </div>
       </section>
       <section
-        class="sessions-section flex items-center h-screen px-28"
+        class="flex items-center px-28 lg:px-16 py-56 justify-end"
         style="background-color: #00255c"
       >
+      <div class="basis-1/2">
         <img
-          class="flex-1 w-1/2 p-16 vector"
-          src="/images/new-landing/Vector.png"
-          alt=""
+        class="w-full h-full"
+        src="/images/new-landing/projector.png"
+        alt=""
         />
-        <img
-          class="flex-1 w-2/3"
-          src="/images/new-landing/projector.png"
-          alt=""
-        />
-        <div class="content ml-4 w-1/2 h-full z-50">
-          <h1 class="mt-64 flex-2 hero-head text-white">
+      </div>
+        <div class="basis-1/2 content ml-4 w-1/2 h-full z-50">
+          <h1 class="text-6xl font-bold lg:text-5xl leading-tight text-white">
             Insightful resources and sessions that will help you grow
           </h1>
-          <p class="mt-4 leading-6 hero-text">
+          <p class="mt-4 leading-6 text-sm text-slate-400 w-9/12">
             Blogs , Articles , Books etc, curated by core members of zairza.
           </p>
           <button
@@ -406,17 +403,18 @@
               bg-orange-500
               sessions-section-btn
               px-8
+              lg:px-4
               py-3.5
+              lg:py-2.5
               mt-4
               text-white
               rounded-full
               cursor-pointer
-              z-30
             "
             onclick="console.log('new done')"
           >
             <div class="flex items-center">
-              <span>Get More</span
+              <span class="text-sm">Get More</span
               ><img
                 class="ml-2 w-5"
                 src="/images/new-landing/arrow-right.png"
