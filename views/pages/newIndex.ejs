@@ -73,7 +73,7 @@
           screens: {
             xl: { max: "1279px" },
             lg: { max: "1023px" },
-            md: { max: "767px" },
+            md: { max: "768px" },
             sm: { max: "639px" },
           },
         },
@@ -81,13 +81,13 @@
     </script>
     <title>Zairza</title>
   </head>
-  <body>
+  <body id="body">
     <%- include('../partials/newsletter_pop.ejs') %> <%-
     include('../partials/firebase.ejs') %>
 
     <main class="relative">
       <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
-        <div class="w-1/2 h-screen layer"></div>
+        <div class="w-1/2 h-screen layer block md:hidden"></div>
         <ul
           class="
             list-none
@@ -99,17 +99,21 @@
             bg-blue-500
             h-screen
             w-1/2
-            md:w-2/3 md:px-12
+            md:w-full md:px-12
           "
         >
-          <li class="py-4"><a href="">Home</a></li>
-          <li class="py-4"><a href="">Projects</a></li>
-          <li class="py-4"><a href="">Blogs</a></li>
-          <li class="py-4"><a href="">About Us</a></li>
-          <li class="py-4"><a href="">Members</a></li>
+          <li class="py-4"><a href="/">Home</a></li>
+          <% if(loggedIn){ %>
+          <li class="py-4"><a href="/projects">Projects</a></li>
+          <% } %>
+          <li class="py-4">
+            <a rel="”noreferrer”" href="https://blog.zairza.in/">Blogs</a>
+          </li>
+          <li class="py-4"><a href="/about">About Us</a></li>
+          <li class="py-4"><a href="/team">Members</a></li>
           <% if(loggedIn){ %>
           <li class="py-4"><a href="/me">Dashboard</a></li>
-          <li class="py-4"><a href="" onclick="logout()">Sign Out</a></li>
+          <li class="py-4"><a href="#" onclick="logout()">Sign Out</a></li>
           <% } else { %>
           <li class="py-4"><a href="/auth#signin">Log In</a></li>
           <li class="py-4"><a href="/auth#signup">Sign Up</a></li>
@@ -117,28 +121,24 @@
           <li class="flex mt-5">
             <a
               rel="”noreferrer”"
-              target="_blank"
               href="mailto:cet.sac.zairza@gmail.com"
               class="pr-4 bx-tada-hover"
               ><img src="/images/new-landing/mail.png" alt=""
             /></a>
             <a
               rel="”noreferrer”"
-              target="_blank"
               href="https://github.com/zairza-cetb"
               class="pr-4 bx-tada-hover"
               ><img src="/images/new-landing/git.png" alt=""
             /></a>
             <a
               rel="”noreferrer”"
-              target="_blank"
               href="https://www.instagram.com/zairza.cetb"
               class="pr-4 bx-tada-hover"
               ><img src="/images/new-landing/insta.png" alt=""
             /></a>
             <a
               rel="”noreferrer”"
-              target="_blank"
               href="https://twitter.com/zairza_cetb"
               class="pr-4 bx-tada-hover"
               ><img src="/images/new-landing/twitter.png" alt=""
@@ -148,12 +148,12 @@
       </nav>
       <section>
         <header
-          class="navbar lg:flex lg:justify-between lg:items-center z-40 lg:px-8"
+          class="navbar lg:flex lg:justify-between lg:items-center z-40 md:px-8"
         >
           <div
             class="flex justify-between items-center px-4 py-3 sm:p-0 w-full"
           >
-            <div class="flex items-center justify-end w-full lg:mt-0 mt-8">
+            <div class="flex items-center justify-end w-full md:mt-0 mt-8">
               <div
                 class="menu-container ml-20 flex items-center justify-center"
               >
@@ -254,8 +254,12 @@
           z-20
         "
       >
-        <div class="pt-3 sm:pt-0 z-40">
-          <img class="h-6 cursor-pointer" src="/images/Zairzalogo.webp" />
+        <div class="pt-3 sm:pt-0 z-30">
+          <img
+            class="h-6 cursor-pointer"
+            src="/images/Zairzalogo.webp"
+            id="nav-logo"
+          />
         </div>
         <% if(!loggedIn){ %>
         <div class="pt-3 sm:pt-0 mr-24 z-40 md:hidden">
@@ -306,11 +310,11 @@
             class="
               bg-blue-600
               px-8
-              lg:px-4
+              md:px-8 md:py-4
               py-3.5
               lg:py-2.5
               mt-4
-              md:mt-10
+              md:mt-10 md:mb-16
               text-white
               rounded-full
               cursor-pointer
@@ -370,6 +374,7 @@
               bg-orange-500
               second-section-btn
               px-8
+              md:px-8 md:py-4
               lg:px-4
               py-3.5
               lg:px-2.5
@@ -398,10 +403,10 @@
           flex flex-row
           md:flex-col-reverse
           bg-white
-          px-24
+          px-28
           md:px-12
           lg:px-16
-          py-56
+          py-40
           md:py-32
           justify-end
           items-center
@@ -421,6 +426,7 @@
           <h1
             class="
               w-3/4
+              md:w-full
               text-6xl
               lg:text-5xl
               md:text-4xl
@@ -430,7 +436,7 @@
           >
             On a tech adventure to turn ideas into Reality
           </h1>
-          <p class="mt-4 leading-6 text-sm text-slate-400 w-9/12">
+          <p class="mt-4 leading-6 text-sm text-slate-400 w-9/12 md:w-full">
             We develop skills in multiple domains related to tech and design.
             Skills that will help you gain recognition in the industry and help
             you grow.
@@ -439,6 +445,7 @@
             class="
               bg-blue-600
               second-section-btn
+              md:px-8 md:py-4
               px-8
               py-3.5
               mt-10
@@ -448,7 +455,7 @@
               cursor-pointer
             "
           >
-            <a href="/projects">
+            <a href="/auth#signin">
               <div class="flex items-center">
                 <span>Have a look</span
                 ><img
@@ -466,12 +473,11 @@
       </section>
       <section
         class="
+          relative
           flex flex-row
           md:flex-col
           items-center
-          px-28
-          lg:px-16
-          md:px-12
+          md:pl-8 md:px-0
           py-56
           md:py-32
           justify-end
@@ -482,11 +488,17 @@
           class="
             basis-1/2
             md:flex md:flex-col md:justify-center md:items-center
+            object-cover
           "
         >
           <img
-            class="w-full h-full"
-            src="/images/new-landing/projector.png"
+            class="w-full h-full md:block hidden"
+            src="/images/new-landing/mobprojector.png"
+            alt=""
+          />
+          <img
+            class="absolute top-16 left-0 w-full h-2/3 md:hidden block"
+            src="/images/new-landing/newprojector.png"
             alt=""
           />
         </div>
@@ -499,9 +511,9 @@
             w-1/2
             md:w-full
             h-full
-            z-50
+            z-20
             text-left
-            md:text-center
+            md:text-center md:pr-8 md:mt-4
           "
         >
           <h1
@@ -512,6 +524,8 @@
               md:text-4xl
               leading-tight
               text-white
+              md:w-full
+              w-4/5
             "
           >
             Insightful resources and sessions that will help you grow
@@ -541,6 +555,7 @@
               text-white
               rounded-full
               cursor-pointer
+              md:mt-6 md:px-8 md:py-4
             "
           >
             <a href="https://blog.zairza.in/">
@@ -574,7 +589,13 @@
         <input
           type="email"
           placeholder="Email here"
-          class="mt-12 border border-solid border-black px-4 py-3"
+          class="
+            mt-12
+            border border-solid border-black
+            px-4
+            py-3
+            input-field-mail
+          "
           style="border-radius: 8px; border-color: #98a2b3"
         />
         <p
@@ -610,6 +631,7 @@
             text-white
             rounded-full
             cursor-pointer
+            md:px-8 md:py-4
           "
         >
           <div class="flex items-center">
@@ -618,7 +640,7 @@
         </button>
       </section>
       <section
-        class="flex flex-row md:flex-col"
+        class="flex flex-row md:flex-col h-screen items-center"
         style="background-color: #e7f1ff"
       >
         <div class="content basis-2/3">
@@ -652,6 +674,7 @@
                 text-white
                 rounded-full
                 cursor-pointer
+                md:px-8 md:py-4
               "
             >
               <a href="/team">
@@ -667,7 +690,7 @@
             </button>
           </div>
         </div>
-        <div class="self-end w-full -mr-20 md:m-0">
+        <div class="self-end w-full -mr-20 md:m-0 img-container">
           <img
             class="w-full h-full"
             src="/images/new-landing/teamgroup.png"
@@ -710,7 +733,7 @@
           <p class="text-base lg:text-sm md:text-xs lg:w-5/6">
             OUTR (CET Campus), Kalinga Nagar, Ghatikia, Bhubaneswar, Odisha.
           </p>
-          <p class="mt-2"><a href="tel:+91 7205883336">+91 7205883336</a></p>
+          <p class="mt-2"><a href="tel:+91 7205400596">+91 7205400596</a></p>
         </div>
         <div class="socials flex items-center md:mt-12 md:-ml-4">
           <a

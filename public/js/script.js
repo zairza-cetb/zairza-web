@@ -1,18 +1,28 @@
 function toggleMenu() {
   let menu = document.getElementById("mob-menu");
-  let mainDoc = document.getElementById("main");
+  let mainDoc = document.getElementById("body");
+  console.log(mainDoc);
   let sigInBtn = document.getElementById("sign-in-btn");
+  // let logo = document.getElementById("nav-logo");
 
   if (menu.classList.contains("hidden")) {
     menu.classList.remove("hidden");
     menu.classList.add("block");
-    mainDoc.style.overflow = "hidden";
+    mainDoc.classList.remove("overflow-scroll");
+    mainDoc.classList.add("overflow-hidden");
     sigInBtn.style.display = "none";
+    // if (window.innerWidth < "768px") {
+    //   logo.style.display = "none";
+    // }
   } else {
     menu.classList.remove("block");
     menu.classList.add("hidden");
-    mainDoc.style.overflow = "scroll";
+    mainDoc.classList.remove("overflow-hidden");
+    mainDoc.classList.add("overflow-scroll");
     sigInBtn.style.display = "block";
+    // if (window.innerWidth < "768px") {
+    //   logo.style.display = "block";
+    // }
   }
 }
 function sendEmail() {

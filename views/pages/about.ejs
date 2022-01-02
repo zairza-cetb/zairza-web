@@ -22,14 +22,31 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Lora:ital,wght@1,400;1,500;1,600;1,700&family=Varela&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+          screens: {
+            xl: { max: "1279px" },
+            lg: { max: "1023px" },
+            md: { max: "768px" },
+            sm: { max: "639px" },
+          },
+        },
+      };
+    </script>
   </head>
   <body id="main">
     <%- include('../partials/firebase.ejs') %>
 
     <main class="relative mb-24">
       <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
-        <div class="w-1/2 h-screen layer"></div>
+        <div class="w-1/2 h-screen layer block md:hidden"></div>
         <ul
           class="
             list-none
@@ -41,20 +58,21 @@
             bg-blue-500
             h-screen
             w-1/2
+            md:w-full md:px-12
           "
         >
           <li class="py-4"><a href="/">Home</a></li>
+          <% if(loggedIn){ %>
           <li class="py-4"><a href="/projects">Projects</a></li>
+          <% } %>
           <li class="py-4">
-            <a href="https://blog.zairza.in/" rel="”noreferrer”" target="_blank"
-              >Blogs</a
-            >
+            <a rel="”noreferrer”" href="https://blog.zairza.in/">Blogs</a>
           </li>
           <li class="py-4"><a href="/about">About Us</a></li>
           <li class="py-4"><a href="/team">Members</a></li>
           <% if(loggedIn){ %>
           <li class="py-4"><a href="/me">Dashboard</a></li>
-          <li class="py-4"><a href="" onclick="logout()">Sign Out</a></li>
+          <li class="py-4"><a href="#" onclick="logout()">Sign Out</a></li>
           <% } else { %>
           <li class="py-4"><a href="/auth#signin">Log In</a></li>
           <li class="py-4"><a href="/auth#signup">Sign Up</a></li>
@@ -62,28 +80,24 @@
           <li class="flex mt-5">
             <a
               rel="”noreferrer”"
-              target="_blank"
               href="mailto:cet.sac.zairza@gmail.com"
               class="pr-4 bx-tada-hover"
               ><img src="/images/new-landing/mail.png" alt=""
             /></a>
             <a
               rel="”noreferrer”"
-              target="_blank"
               href="https://github.com/zairza-cetb"
               class="pr-4 bx-tada-hover"
               ><img src="/images/new-landing/git.png" alt=""
             /></a>
             <a
               rel="”noreferrer”"
-              target="_blank"
               href="https://www.instagram.com/zairza.cetb"
               class="pr-4 bx-tada-hover"
               ><img src="/images/new-landing/insta.png" alt=""
             /></a>
             <a
               rel="”noreferrer”"
-              target="_blank"
               href="https://twitter.com/zairza_cetb"
               class="pr-4 bx-tada-hover"
               ><img src="/images/new-landing/twitter.png" alt=""
@@ -92,11 +106,13 @@
         </ul>
       </nav>
       <section>
-        <header class="navbar lg:flex lg:justify-between lg:items-center z-40">
+        <header
+          class="navbar lg:flex lg:justify-between lg:items-center z-40 md:px-8"
+        >
           <div
             class="flex justify-between items-center px-4 py-3 sm:p-0 w-full"
           >
-            <div class="flex items-center justify-end w-full">
+            <div class="flex items-center justify-end w-full md:mt-0 mt-8">
               <div
                 class="menu-container ml-20 flex items-center justify-center"
               >
@@ -116,6 +132,7 @@
                         onclick="this.classList.toggle('opened'); toggleMenu()"
                         @click="open = !open"
                       >
+                        <!-- <span class="sr-only">Open main menu</span> -->
                         <div
                           class="
                             block
@@ -182,29 +199,115 @@
           </div>
         </header>
       </section>
-      <section class="flex w-full justify-between px-28 pt-9 z-20">
-        <div class="pt-3 sm:pt-0 z-40">
-          <a href="/"
-            ><img class="h-6 cursor-pointer" src="/images/Zairzalogo.webp"
-          /></a>
+
+      <section
+        class="
+          flex
+          w-full
+          justify-between
+          px-28
+          md:px-12
+          sm:px-6
+          pt-9
+          md:pb-12
+          z-20
+        "
+      >
+        <div class="pt-3 sm:pt-0 z-30">
+          <img
+            class="h-6 cursor-pointer"
+            src="/images/Zairzalogo.webp"
+            id="nav-logo"
+          />
         </div>
         <% if(!loggedIn){ %>
-        <div class="pt-3 sm:pt-0 mr-24 z-40">
+        <div class="pt-3 sm:pt-0 mr-24 z-40 md:hidden">
           <a id="sign-in-btn" href="/auth#signin">Sign In</a>
         </div>
         <% } %>
       </section>
-      <section class="px-28 mt-32">
-        <h1 class="flex-1 font-bold text-5xl leading-normal">
+      <section class="my-16 w-max h-max relative">
+        <h1
+          class="
+            absolute
+            bottom-4
+            left-12
+            text-white
+            font-bold
+            text-2xl
+            leading-tight
+            tracking-wider
+            img-label
+          "
+          style="font-family: 'Bebas Neue', cursive"
+        >
           Team full of enthusiasm <br />
           and creativity
         </h1>
+        <!-- <img
+          src="/images/new-landing/aboutus.png"
+          alt=""
+          class="object-cover md:h-56"
+        /> -->
+        <img
+          src="/images/new-landing/aboutmd.png"
+          alt=""
+          class="object-cover width:100vw h-80 sm:hidden md:block hidden"
+        />
+        <img
+          src="/images/new-landing/aboutus.png"
+          alt=""
+          class="object-cover width:100% h-56 hidden sm:block"
+        />
+        <img
+          src="/images/new-landing/aboutus.png"
+          alt=""
+          class="object-cover width:100vw h-80 hidden md:hidden lg:block"
+        />
+        <!-- <img
+          src="/images/new-landing/aboutxl.png"
+          alt=""
+          class="
+            object-cover
+            width:100vw
+            h-66
+            sm:hidden
+            md:hidden
+            lg:hidden
+            xl:block
+          "
+          style="height: 50vh; min-width: 100vw; background-size: cover"
+        /> -->
+        <img
+          src="/images/new-landing/aboutxl.png"
+          alt=""
+          class="
+            object-cover
+            width:100vw
+            h-66
+            sm:hidden
+            md:hidden
+            lg:hidden
+            xl:block
+          "
+          style="height: 50vh; min-width: 100vw; background-size: cover"
+        />
+        <!-- <img
+          src="/images/new-landing/aboutxxl.png"
+          alt=""
+          class="
+            object-cover
+            width:100vw
+            h-96
+            sm:hidden
+            md:hidden
+            lg:hidden
+            xl:block
+          "
+        /> -->
       </section>
-      <section class="my-24">
-        <img src="/images/new-landing/about.jpg" alt="" />
-      </section>
-      <section class="mx-28">
-        <p class="mt-8 text-base leading-loose text-justify">
+      <section class="mx-28 md:mx-12">
+        <p class="mt-8 text-base leading-relaxed text-justify">
           A society, a club, a family, Zairza is the premiere technical club of
           the college, pushing the boundaries of innovation in the field of
           Robotics, Software, and Design. We firmly believe in our motto
@@ -214,7 +317,7 @@
           worked tirelessly and also achieved numerous laurels in a variety of
           fields.
         </p>
-        <p class="mt-8 text-base leading-loose text-justify">
+        <p class="mt-8 text-base leading-relaxed text-justify">
           The aim we hold is to provide students the right direction to walk in
           their career with their utmost ability gained through the regular
           sessions that are held for the students. With your right skills, we
@@ -224,7 +327,7 @@
           attraction of the college which is the SAC area that allows students
           to access their needs easily.
         </p>
-        <p class="mt-8 text-base leading-loose text-justify">
+        <p class="mt-8 text-base leading-relaxed text-justify">
           Now that you know what we do, let us jump into the various projects
           and achievements we have done till now in the projects section and
           discover about the amazing leads who have helped us reach where we are
