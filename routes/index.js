@@ -269,4 +269,8 @@ router.get("/tmp", function (req, res, next) {
   res.render("pages/dashboard/template");
 });
 
+router.get("/blogs", function (req, res) {
+  res.render("pages/blogs");
+});
+
 module.exports = router;
