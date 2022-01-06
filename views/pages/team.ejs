@@ -24,13 +24,26 @@
     />
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+          screens: {
+            xl: { max: "1279px" },
+            lg: { max: "1023px" },
+            md: { max: "768px" },
+            sm: { max: "639px" },
+          },
+        },
+      };
+    </script>
   </head>
   <body id="main">
     <%- include('../partials/firebase.ejs') %>
 
     <main class="relative mb-24">
       <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
-        <div class="w-1/2 h-screen layer md:block hidden"></div>
+        <div class="w-1/2 h-screen layer block md:hidden"></div>
         <ul
           class="
             list-none
@@ -42,8 +55,7 @@
             bg-blue-500
             h-screen
             w-1/2
-            md:w-full
-            side-menu
+            md:w-full md:px-12
           "
         >
           <li class="py-4"><a href="/">Home</a></li>
@@ -92,20 +104,12 @@
       </nav>
       <section>
         <header
-          class="
-            navbar
-            lg:flex lg:justify-between lg:items-center
-            z-40
-            md:px-8
-            px-6
-          "
+          class="navbar lg:flex lg:justify-between lg:items-center z-40 md:px-8"
         >
           <div
             class="flex justify-between items-center px-4 py-3 sm:p-0 w-full"
           >
-            <div
-              class="flex items-center justify-end w-full md:mt-8 lg:mt-0 mt-8"
-            >
+            <div class="flex items-center justify-end w-full md:mt-0 mt-8">
               <div
                 class="menu-container ml-20 flex items-center justify-center"
               >
@@ -198,10 +202,9 @@
           flex
           w-full
           justify-between
-          lg:px-28
+          px-28
           md:px-12
           sm:px-6
-          px-8
           pt-9
           md:pb-12
           z-20
@@ -215,7 +218,7 @@
           />
         </div>
         <% if(!data.loggedIn){ %>
-        <div class="pt-3 sm:pt-0 mr-24 z-40 sign-in-btn">
+        <div class="pt-3 sm:pt-0 mr-24 z-40 md:hidden">
           <a id="sign-in-btn" href="/auth#signin">Sign In</a>
         </div>
         <% } %>
@@ -235,7 +238,7 @@
           md:flex-col md:px-20
         "
       >
-        <h1 class="flex-1 font-bold text-5xl leading-normal sm:w-full w-full">
+        <h1 class="flex-1 font-bold text-5xl leading-normal w-full">
           Lets Meet our <br />
           Team
         </h1>
