@@ -5,12 +5,12 @@ function deleteModal() {
 
 // Signout
 function logout() {
+  console.log("function called");
   firebase
     .auth()
     .signOut()
     .then(() => {
       // Sign-out successful.
-
       // console.log($.cookie("zToken", null, { path: "/" }), "check");
       window.location.href = "/";
     })
@@ -49,7 +49,6 @@ function deleteAccount() {
 
 // Add active to required nav link
 link = window.location.pathname;
-console.log(link);
 $(".nav-item").each(function () {
   if ($(this).attr("href").indexOf(link) !== -1) {
     $(this).addClass("active-nav-link");
@@ -62,6 +61,6 @@ $(document).ready(function () {
     arrows: false,
     infobar: false,
     toolbar: false,
-    clickContent: false
+    clickContent: false,
   });
 });

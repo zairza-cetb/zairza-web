@@ -12,7 +12,6 @@ function toggleFieldVisibility(ele) {
 }
 
 function ThirdPartyAuthenticate(provider_name, state, element) {
-
   var provider, providerId;
   if (provider_name == "Google") {
     provider = new firebase.auth.GoogleAuthProvider();
@@ -90,7 +89,10 @@ function callback(res) {
   if (res === "success") {
     showToast(200, "Profile updated successfully 🙌");
   } else if (res == "restricted") {
-    showToast(200, "Your registration number is not registered at Zairza. Please contact us to register you at Zairza")
+    showToast(
+      200,
+      "Your registration number is not registered at Zairza. Please contact us to register you at Zairza"
+    );
   } else {
     showToast(res.status, res.message);
   }
@@ -107,7 +109,8 @@ function callback(res) {
 
 // Email validate through regex
 function validateEmail(email) {
-  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
 
@@ -182,7 +185,7 @@ function updateProfile() {
   })
     .done(function (data) {
       if (data.message) {
-        validate("restricted")
+        validate("restricted");
       } else {
         validate("success");
       }
@@ -198,7 +201,7 @@ function logout() {
     .signOut()
     .then(() => {
       // Sign-out successful.
-
+      console.log("sign out");
       window.location.href = "/";
     })
     .catch((error) => {
@@ -348,8 +351,12 @@ $(document).ready(function () {
       if (select.children("div").has("a")) {
         select.children("div").children("a:first").remove();
         select
-            .find("option:contains(" + select.children("div").children("a:first").text() + ")")
-            .prop("selected", false);
+          .find(
+            "option:contains(" +
+              select.children("div").children("a:first").text() +
+              ")"
+          )
+          .prop("selected", false);
       }
       var a = $("<a />")
         .addClass("notShown")
@@ -426,16 +433,12 @@ $(document).ready(function () {
     }, 400);
   });
 
-  $(document).on(
-    "click",
-    ".selectMultipleBranch > div ",
-    function (e) {
-      if ($(".selectMultipleWing").hasClass("open")) {
-        $(".selectMultipleWing").toggleClass("open");
-      }
-      $(".selectMultipleBranch").toggleClass("open");
+  $(document).on("click", ".selectMultipleBranch > div ", function (e) {
+    if ($(".selectMultipleWing").hasClass("open")) {
+      $(".selectMultipleWing").toggleClass("open");
     }
-  );
+    $(".selectMultipleBranch").toggleClass("open");
+  });
 
   // Select your wing
 
@@ -546,15 +549,10 @@ $(document).ready(function () {
     }, 400);
   });
 
-  $(document).on(
-    "click",
-    ".selectMultipleWing > div ",
-    function (e) {
-      if ($(".selectMultipleBranch").hasClass("open")) {
-        $(".selectMultipleBranch").toggleClass("open");
-      }
-      $(".selectMultipleWing").toggleClass("open");
+  $(document).on("click", ".selectMultipleWing > div ", function (e) {
+    if ($(".selectMultipleBranch").hasClass("open")) {
+      $(".selectMultipleBranch").toggleClass("open");
     }
-  );
+    $(".selectMultipleWing").toggleClass("open");
+  });
 });
-
