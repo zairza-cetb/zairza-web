@@ -208,6 +208,24 @@ router.get("/about", function (req, res, next) {
   }
 });
 
+router.get("/domain", function (req, res, next) {
+  if (req.cookies["zToken"] != null) {
+    admin
+      .auth()
+      .verifyIdToken(req.cookies["zToken"])
+      .then((decodedToken) => {
+        res.render("pages/domain", { loggedIn: true });
+      })
+      .catch((err) => {
+        res.render("pages/domain", { loggedIn: false });
+      });
+  } else {
+    res.render("pages/domain", { loggedIn: false });
+  }
+});
+
+
+
 /*Get teams page */
 router.get("/team", function (req, res, next) {
   if (req.cookies["zToken"] != null) {
