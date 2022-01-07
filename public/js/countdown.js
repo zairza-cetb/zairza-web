@@ -33,7 +33,10 @@ function tick() {
       secs = "0" + secs;
     }
 
-    let time = `${days} : ${hours} : ${mins} : ${secs}`;
-    document.querySelector(".timer").innerText = time;
+    // let time = `${days} : ${hours} : ${mins} : ${secs}`;
+    document.querySelector(".hours").innerText = hours;
+    document.querySelector(".minutes").innerText = mins;
+    document.querySelector(".seconds").innerText = secs;
+
   }
 }
