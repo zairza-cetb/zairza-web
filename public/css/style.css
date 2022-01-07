@@ -1043,3 +1043,10 @@ footer {
   grid-column-gap: 1.5rem;
   grid-row-gap: 2.5rem;
 }
+
+.blogs-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22.5rem, 1fr));
+  grid-column-gap: 3rem;
+  grid-row-gap: 4rem;
+}
