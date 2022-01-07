@@ -17,12 +17,12 @@
     />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link rel="stylesheet" href="/css/style.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap"
       rel="stylesheet"
     />
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -236,12 +236,12 @@
           md:mx-16
         "
       >
-      <div class="basis-1/2 mb-8">
+      <div class="basis-1/2 mb-8" data-aos="fade-up">
         <h1 class="font-bold text-5xl leading-normal text-left">
           Lets Meet our Team
         </h1>
         </div>
-        <div class="basis-1/2">
+        <div class="basis-1/2" data-aos="fade-up">
         <p
           class="
             font-normal
@@ -261,12 +261,12 @@
         </p>
         </div>
       </section>
-      <section class="teams-section my-32 mx-32 md:mx-16">
+      <section class="teams-section my-32 mx-32 md:mx-16" >
         <%data.team.forEach(function(item){ %>
         <div
           class="flex"
         >
-          <div class="relative w-11/12 mx-auto rounded-lg info-card">
+          <div class="relative w-11/12 mx-auto rounded-lg info-card" data-aos="fade-up">
             <img
               src="<%=item.image %>"
               alt="team"
@@ -313,6 +313,11 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   ></script>
+  <script>
+      AOS.init({
+        duration: 250
+      });
+  </script>
   <script src="/js/script.js"></script>
   <script src="/js/dashboard.js"></script>
 </html>
