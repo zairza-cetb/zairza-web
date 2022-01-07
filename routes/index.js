@@ -182,6 +182,7 @@ router.get("/", function (req, res, next) {
   } else {
     res.render("pages/newIndex", { loggedIn: false });
   }
+ 
   //     .then((decodedToken) => {
   //       res.render("pages/index", { loggedIn: true });
   //     })
@@ -191,6 +192,21 @@ router.get("/", function (req, res, next) {
   // } else {
   //   res.render("pages/index", { loggedIn: false });
   // }
+});
+router.get("/countdown", function (req, res, next) {
+  if (req.cookies["zToken"] != null) {
+    admin
+      .auth()
+      .verifyIdToken(req.cookies["zToken"])
+      .then((decodedToken) => {
+        res.render("pages/countdown", { loggedIn: true });
+      })
+      .catch((err) => {
+        res.render("pages/countdown", { loggedIn: false });
+      });
+  } else {
+    res.render("pages/countdown", { loggedIn: false });
+  }
 });
 router.get("/about", function (req, res, next) {
   if (req.cookies["zToken"] != null) {

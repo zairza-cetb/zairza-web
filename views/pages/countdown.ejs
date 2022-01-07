@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zairza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+          screens: {
+            xl: { max: "1279px" },
+            lg: { max: "1023px" },
+            md: { max: "768px" },
+            sm: { max: "639px" },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body>
+    <div class="bg-black min-h-screen min-w-screen flex items-center">
+      <div class="w-full h-full flex flex-col items-center justify-center">
+        <h1 class="text-4xl md:text-2xl text-white font-bold ">COMING SOON</h1>
+        <div class="timer text-xl text-white ">00 : 00 : 00 : 00</div>
+      </div>
+    </div>
+  </body>
+  <script src="/js/countdown.js"></script>
+</html>
