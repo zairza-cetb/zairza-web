@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zairza</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Khula&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+          screens: {
+            xl: { max: "1279px" },
+            lg: { max: "1023px" },
+            md: { max: "768px" },
+            sm: { max: "639px" },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body>
+    <div class="min-h-screen min-w-screen flex justify-center items-center bg-center overflow-hidden" style="background-image: url('/images/countdownbg.webp')">
+      <div class="flex flex-col items-center justify-center md:w-11/12 bg-white p-8 md:pd-6 sm:pd-4 rounded-lg shadow-xl">
+        <div class="block">
+          <img src="/images/logozairza.webp" alt="logo"/>
+        </div>
+        <div class="flex items-center justify-between" style="font-family: 'Khula', sans-serif">
+          <div class="flex flex-col md:px-4 md:py-6 px-6 py-8">
+            <div class="hours bg-blue-100 text-blue-700 py-5 px-8 rounded-lg text-center text-2xl md:text-lg text-md">
+              00
+            </div>
+            <div class="text-blue-700 capitalize text-xl md:text-lg font-bold  mt-2 text-center ">
+              Hours
+            </div>
+          </div>
+          <div class="flex flex-col md:px-4 md:py-6 px-6 py-8">
+            <div class="minutes bg-blue-100 text-blue-700 p-5 rounded-lg text-center text-2xl md:text-lg text-md">
+              00
+            </div>
+            <div class="text-blue-700 capitalize text-xl md:text-lg font-bold  mt-2 text-center ">
+              Minutes
+            </div>
+          </div>
+          <div class="flex flex-col md:px-4 md:py-6 px-6 py-8">
+            <div class="seconds bg-blue-100 text-blue-700 p-5 rounded-lg text-center text-2xl md:text-lg text-md">
+              00
+            </div>
+            <div class="text-blue-700 capitalize text-xl md:text-lg font-bold  mt-2 text-center ">
+              Seconds
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="/js/countdown.js"></script>
+</html>

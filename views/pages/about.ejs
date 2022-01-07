@@ -48,18 +48,7 @@
       <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
         <div class="w-1/2 h-screen layer block md:hidden"></div>
         <ul
-          class="
-            list-none
-            p-12
-            text-white
-            pt-32
-            pl-24
-            text-2xl
-            bg-blue-500
-            h-screen
-            w-1/2
-            md:w-full md:px-12
-          "
+          class="list-none p-12 text-white pt-32 pl-24 text-2xl bg-blue-500 h-screen w-1/2 md:w-full md:px-12"
         >
           <li class="py-4"><a href="/">Home</a></li>
           <% if(loggedIn){ %>
@@ -120,73 +109,27 @@
                   <div class="relative rounded-full sm:max-w-xl mx-auto">
                     <nav x-data="{ open: false }">
                       <button
-                        class="
-                          w-10
-                          h-10
-                          relative
-                          focus:outline-none
-                          bg-white
-                          rounded-full
-                          menu-button
-                        "
+                        class="w-10 h-10 relative focus:outline-none bg-white rounded-full menu-button"
                         onclick="this.classList.toggle('opened'); toggleMenu()"
                         @click="open = !open"
                       >
                         <!-- <span class="sr-only">Open main menu</span> -->
                         <div
-                          class="
-                            block
-                            w-5
-                            absolute
-                            left-1/2
-                            top-1/2
-                            transform
-                            -translate-x-1/2 -translate-y-1/2
-                          "
+                          class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
                         >
                           <span
                             aria-hidden="true"
-                            class="
-                              block
-                              absolute
-                              h-0.5
-                              w-5
-                              bg-current
-                              transform
-                              transition
-                              duration-500
-                              ease-in-out
-                            "
+                            class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
                             :class="{'rotate-45': open,' -translate-y-1.5': !open }"
                           ></span>
                           <span
                             aria-hidden="true"
-                            class="
-                              block
-                              absolute
-                              h-0.5
-                              w-5
-                              bg-current
-                              transform
-                              transition
-                              duration-500
-                              ease-in-out
-                            "
+                            class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
                             :class="{'opacity-0': open } "
                           ></span>
                           <span
                             aria-hidden="true"
-                            class="
-                              block
-                              absolute
-                              h-0.5
-                              w-5
-                              bg-current
-                              transform
-                              transition
-                              duration-500
-                              ease-in-out
-                            "
+                            class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
                             :class="{'-rotate-45': open, ' translate-y-1.5': !open}"
                           ></span>
                         </div>
@@ -201,17 +144,7 @@
       </section>
 
       <section
-        class="
-          flex
-          w-full
-          justify-between
-          px-28
-          md:px-12
-          sm:px-6
-          pt-9
-          md:pb-12
-          z-20
-        "
+        class="flex w-full justify-between px-28 md:px-12 sm:px-6 pt-9 md:pb-12 z-20"
       >
         <div class="pt-3 sm:pt-0 z-30">
           <img
@@ -226,41 +159,37 @@
         </div>
         <% } %>
       </section>
+      <section class="px-28 mt-32">
+        <h1 class="flex-1 font-bold text-5xl leading-normal">
+          Team full of enthusiasm <br />
+          and creativity
+        </h1>
+      </section>
       <section class="my-16 w-max h-max relative">
-        <h1
-          class="
-            absolute
-            bottom-4
-            left-12
-            text-white
-            font-bold
-            text-2xl
-            leading-tight
-            tracking-wider
-            img-label
-          "
+        <!-- <h1
+          class="absolute bottom-4 left-12 text-white font-bold text-2xl leading-tight tracking-wider img-label"
           style="font-family: 'Bebas Neue', cursive"
         >
           Team full of enthusiasm <br />
           and creativity
-        </h1>
+        </h1> -->
         <!-- <img
           src="/images/new-landing/aboutus.png"
           alt=""
           class="object-cover md:h-56"
         /> -->
         <img
-          src="/images/new-landing/aboutmd.png"
+          src="/images/new-landing/Group 7507 (1).webp"
           alt=""
           class="object-cover width:100vw h-80 sm:hidden md:block hidden"
         />
         <img
-          src="/images/new-landing/aboutus.png"
+          src="/images/new-landing/Group 7507 (1).webp"
           alt=""
           class="object-cover width:100% h-56 hidden sm:block"
         />
         <img
-          src="/images/new-landing/aboutus.png"
+          src="/images/new-landing/Group 7507 (1).webp"
           alt=""
           class="object-cover width:100vw h-80 hidden md:hidden lg:block"
         />
@@ -279,17 +208,9 @@
           style="height: 50vh; min-width: 100vw; background-size: cover"
         /> -->
         <img
-          src="/images/new-landing/aboutxl.png"
+          src="/images/new-landing/Group 7507 (1).webp"
           alt=""
-          class="
-            object-cover
-            width:100vw
-            h-66
-            sm:hidden
-            md:hidden
-            lg:hidden
-            xl:block
-          "
+          class="object-cover width:100vw h-66 sm:hidden md:hidden lg:hidden xl:block"
           style="height: 50vh; min-width: 100vw; background-size: cover"
         />
         <!-- <img
