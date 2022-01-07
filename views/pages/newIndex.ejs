@@ -100,18 +100,7 @@
       <nav id="mob-menu" class="fixed flex hidden z-40 w-full">
         <div class="w-1/2 h-screen layer block md:hidden"></div>
         <ul
-          class="
-            list-none
-            p-12
-            text-white
-            pt-32
-            pl-24
-            text-2xl
-            bg-blue-500
-            h-screen
-            w-1/2
-            md:w-full md:px-12
-          "
+          class="list-none p-12 text-white pt-32 pl-24 text-2xl bg-blue-500 h-screen w-1/2 md:w-full md:px-12"
         >
           <li class="py-4"><a href="/">Home</a></li>
           <% if(loggedIn){ %>
@@ -172,73 +161,27 @@
                   <div class="relative rounded-full sm:max-w-xl mx-auto">
                     <nav x-data="{ open: false }">
                       <button
-                        class="
-                          w-10
-                          h-10
-                          relative
-                          focus:outline-none
-                          bg-white
-                          rounded-full
-                          menu-button
-                        "
+                        class="w-10 h-10 relative focus:outline-none bg-white rounded-full menu-button"
                         onclick="this.classList.toggle('opened'); toggleMenu()"
                         @click="open = !open"
                       >
                         <!-- <span class="sr-only">Open main menu</span> -->
                         <div
-                          class="
-                            block
-                            w-5
-                            absolute
-                            left-1/2
-                            top-1/2
-                            transform
-                            -translate-x-1/2 -translate-y-1/2
-                          "
+                          class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
                         >
                           <span
                             aria-hidden="true"
-                            class="
-                              block
-                              absolute
-                              h-0.5
-                              w-5
-                              bg-current
-                              transform
-                              transition
-                              duration-500
-                              ease-in-out
-                            "
+                            class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
                             :class="{'rotate-45': open,' -translate-y-1.5': !open }"
                           ></span>
                           <span
                             aria-hidden="true"
-                            class="
-                              block
-                              absolute
-                              h-0.5
-                              w-5
-                              bg-current
-                              transform
-                              transition
-                              duration-500
-                              ease-in-out
-                            "
+                            class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
                             :class="{'opacity-0': open } "
                           ></span>
                           <span
                             aria-hidden="true"
-                            class="
-                              block
-                              absolute
-                              h-0.5
-                              w-5
-                              bg-current
-                              transform
-                              transition
-                              duration-500
-                              ease-in-out
-                            "
+                            class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
                             :class="{'-rotate-45': open, ' translate-y-1.5': !open}"
                           ></span>
                         </div>
@@ -253,17 +196,7 @@
       </section>
 
       <section
-        class="
-          flex
-          w-full
-          justify-between
-          px-28
-          md:px-12
-          sm:px-6
-          pt-9
-          md:pb-12
-          z-20
-        "
+        class="flex w-full justify-between px-28 md:px-12 sm:px-6 pt-9 md:pb-12 z-20"
       >
         <div class="pt-3 sm:pt-0 z-30">
           <img
@@ -279,31 +212,11 @@
         <% } %>
       </section>
       <section
-        class="
-          flex flex-row
-          justify-between
-          pl-28
-          lg:pl-16
-          md:px-8 md:pt-12 md:flex-col-reverse
-          hero-section
-          bg-white
-          h-screen
-          items-center
-          md:items-center
-          text-left
-          md:text-center
-        "
+        class="flex flex-row justify-between pl-28 lg:pl-16 md:px-8 md:pt-12 md:flex-col-reverse hero-section bg-white h-screen items-center md:items-center text-left md:text-center"
       >
         <div class="content basis-5/12 md:basis-1/2">
           <h1
-            class="
-              flex-2
-              text-6xl
-              lg:text-5xl
-              md:text-4xl
-              font-bold
-              leading-snug
-            "
+            class="flex-2 text-6xl lg:text-5xl md:text-4xl font-bold leading-snug"
           >
             Curious minds striving to learn
           </h1>
@@ -318,18 +231,7 @@
             you grow.
           </p>
           <button
-            class="
-              bg-blue-600
-              px-8
-              md:px-8 md:py-4
-              py-3.5
-              lg:py-2.5
-              mt-4
-              md:mt-10 md:mb-16
-              text-white
-              rounded-full
-              cursor-pointer
-            "
+            class="bg-blue-600 px-8 md:px-8 md:py-4 py-3.5 lg:py-2.5 mt-4 md:mt-10 md:mb-16 text-white rounded-full cursor-pointer hover:shadow-2xl transition-all ease-linear hover:bg-orange-500"
           >
             <a href="/auth#signin">
               <div class="flex items-center">
@@ -346,28 +248,19 @@
         <div class="basis-7/12 md:basis-1/2 md:self-center">
           <img
             class="w-full h-full md:h-auto"
-            src="/images/new-landing/newhero.png"
+            src="/images/new-landing/10.webp"
             alt="home-zairza-interior"
           />
         </div>
       </section>
       <section
-        class="
-          flex flex-row
-          md:flex-col
-          px-12
-          lg:px-6
-          items-center
-          justify-end
-          py-56
-          md:py-32
-        "
+        class="flex flex-row md:flex-col px-12 lg:px-6 items-center justify-end py-56 md:py-32"
         style="background-color: #ffeee1"
       >
         <div class="p-16 lg:p-8 basis-1/2">
           <img
             class="w-full h-full"
-            src="/images/new-landing/newsecondsection.png"
+            src="/images/new-landing/logo.webp"
             alt=""
           />
         </div>
@@ -381,19 +274,7 @@
             you grow.
           </p>
           <button
-            class="
-              bg-orange-500
-              second-section-btn
-              px-8
-              md:px-8 md:py-4
-              lg:px-4
-              py-3.5
-              lg:px-2.5
-              mt-10
-              text-white
-              rounded-full
-              cursor-pointer
-            "
+            class="bg-orange-500 second-section-btn px-8 md:px-8 md:py-4 lg:px-4 py-3.5 lg:px-2.5 mt-10 text-white rounded-full cursor-pointer hover:shadow-2xl transition-all ease-linear hover:bg-blue-600"
           >
             <a href="/auth#signin">
               <div class="flex items-center">
@@ -409,41 +290,13 @@
         </div>
       </section>
       <section
-        class="
-          bot-section
-          flex flex-row
-          md:flex-col-reverse
-          bg-white
-          px-28
-          md:px-12
-          lg:px-16
-          py-40
-          md:py-32
-          justify-end
-          items-center
-        "
+        class="bot-section flex flex-row md:flex-col-reverse bg-white px-28 md:px-12 lg:px-16 py-40 md:py-32 justify-end items-center"
       >
         <div
-          class="
-            content
-            flex flex-col
-            basis-2/3
-            text-left
-            md:text-center
-            items-start
-            md:items-center
-          "
+          class="content flex flex-col basis-2/3 text-left md:text-center items-start md:items-center"
         >
           <h1
-            class="
-              w-3/4
-              md:w-full
-              text-6xl
-              lg:text-5xl
-              md:text-4xl
-              font-bold
-              leading-tight
-            "
+            class="w-3/4 md:w-full text-6xl lg:text-5xl md:text-4xl font-bold leading-tight"
           >
             On a tech adventure to turn ideas into Reality
           </h1>
@@ -453,20 +306,10 @@
             you grow.
           </p>
           <button
-            class="
-              bg-blue-600
-              second-section-btn
-              md:px-8 md:py-4
-              px-8
-              py-3.5
-              mt-10
-              w-max
-              text-white
-              rounded-full
-              cursor-pointer
-            "
+            class="bg-blue-600 second-section-btn md:px-8 md:py-4 px-8 py-3.5 mt-10 w-max text-white rounded-full cursor-pointer hover:shadow-2xl transition-all ease-linear hover:bg-orange-500"
           >
-            <a href="/auth#signin">
+            <%if(!loggedIn){%><a href="/auth#signin"
+              ><%}else{%><a href="/projects"><%}%>
               <div class="flex items-center">
                 <span>Have a look</span
                 ><img
@@ -479,28 +322,15 @@
           </button>
         </div>
         <div class="basis-1/3">
-          <img class="" src="/images/new-landing/newbot.png" alt="" />
+          <img class="" src="/images/new-landing/30.webp" alt="" />
         </div>
       </section>
       <section
-        class="
-          relative
-          flex flex-row
-          md:flex-col
-          items-center
-          md:pl-8 md:px-0
-          py-56
-          md:py-32
-          justify-end
-        "
+        class="relative flex flex-row md:flex-col items-center md:pl-8 md:px-0 py-56 md:py-32 justify-end"
         style="background-color: #00255c"
       >
         <div
-          class="
-            basis-1/2
-            md:flex md:flex-col md:justify-center md:items-center
-            object-cover
-          "
+          class="basis-1/2 md:flex md:flex-col md:justify-center md:items-center object-cover"
         >
           <img
             class="w-full h-full md:block hidden"
@@ -508,66 +338,26 @@
             alt=""
           />
           <img
-            class="absolute top-16 left-0 w-full h-2/3 md:hidden block"
-            src="/images/new-landing/newprojector.png"
+            class="absolute top-2 left-16 w-full h-4/5 md:hidden block"
+            src="/images/new-landing/projector.webp"
             alt=""
           />
         </div>
         <div
-          class="
-            basis-1/2
-            content
-            ml-4
-            md:m-0
-            w-1/2
-            md:w-full
-            h-full
-            z-20
-            text-left
-            md:text-center md:pr-8 md:mt-4
-          "
+          class="basis-1/2 content ml-4 md:m-0 w-1/2 md:w-full h-full z-20 text-left md:text-center md:pr-8 md:mt-4"
         >
           <h1
-            class="
-              text-6xl
-              font-bold
-              lg:text-5xl
-              md:text-4xl
-              leading-tight
-              text-white
-              md:w-full
-              w-4/5
-            "
+            class="text-6xl font-bold lg:text-5xl md:text-4xl leading-tight text-white md:w-full w-4/5"
           >
             Insightful resources and sessions that will help you grow
           </h1>
           <p
-            class="
-              mt-4
-              leading-6
-              text-sm
-              md:text-xs
-              text-slate-400
-              w-9/12
-              md:w-full
-            "
+            class="mt-4 leading-6 text-sm md:text-xs text-slate-400 w-9/12 md:w-full"
           >
             Blogs , Articles , Books etc, curated by core members of zairza.
           </p>
           <button
-            class="
-              bg-orange-500
-              sessions-section-btn
-              px-8
-              lg:px-4
-              py-3.5
-              lg:py-2.5
-              mt-4
-              text-white
-              rounded-full
-              cursor-pointer
-              md:mt-6 md:px-8 md:py-4
-            "
+            class="bg-orange-500 sessions-section-btn px-8 lg:px-4 py-3 lg:py-2.5 mt-4 text-white rounded-full cursor-pointer md:mt-6 md:px-8 md:py-3 hover:shadow-2xl transition-all ease-linear hover:bg-blue-600"
           >
             <a href="https://blog.zairza.in/">
               <div class="flex items-center">
@@ -582,7 +372,7 @@
           </button>
         </div>
       </section>
-      <section
+      <!-- <section
         class="
           mail-section
           bg-white
@@ -814,14 +604,7 @@
       >
         <div class="content basis-2/3">
           <div
-            class="
-              ml-24
-              my-24
-              lg:ml-16 lg:my-16
-              md:mx-8
-              text-left
-              md:text-center
-            "
+            class="ml-24 my-24 lg:ml-16 lg:my-16 md:mx-8 text-left md:text-center"
           >
             <h1
               class="text-6xl font-bold lg:text-5xl md:text-4xl leading-tight"
@@ -834,17 +617,7 @@
               help you grow.
             </p>
             <button
-              class="
-                bg-blue-600
-                second-section-btn
-                px-8
-                py-3.5
-                mt-10
-                text-white
-                rounded-full
-                cursor-pointer
-                md:px-8 md:py-4
-              "
+              class="bg-blue-600 second-section-btn px-8 py-3.5 mt-10 text-white rounded-full cursor-pointer md:px-8 md:py-4 hover:shadow-2xl transition-all ease-linear hover:bg-orange-500"
             >
               <a href="/team">
                 <div class="flex items-center">
@@ -862,23 +635,200 @@
         <div class="self-end w-full -mr-20 md:m-0 img-container">
           <img
             class="w-full h-full"
-            src="/images/new-landing/teamgroup.png"
+            src="/images/new-landing/team.webp"
             alt=""
           />
+        </div>
+      </section>
+      <section
+        class="flex flex-row md:flex-col h-screen items-center"
+        style="background-color: #fff"
+      >
+        <div
+          class="bg-white max-w-3xl mx-auto border border-gray-200"
+          x-data="{selected:0}"
+        >
+          <ul class="shadow-box">
+            <li class="relative border-b border-gray-200">
+              <button
+                type="button"
+                class="w-full px-8 py-6 text-left"
+                @click="selected !== 1 ? selected = 1 : selected = null"
+              >
+                <div class="flex items-center justify-between">
+                  <span> Why Zairza? </span>
+
+                  <span class="ico-plus"></span>
+                  <img
+                    class=""
+                    src="/images/new-landing/down-arrow.png"
+                    alt=""
+                  />
+                </div>
+              </button>
+
+              <div
+                class="relative overflow-hidden transition-all max-h-0 duration-700"
+                style=""
+                x-ref="container1"
+                x-bind:style="selected == 1 ? 'max-height: ' + $refs.container1.scrollHeight + 'px' : ''"
+              >
+                <div class="p-6 m-2">
+                  <p>
+                    For people persuing careers in computers and/or robotics,
+                    writing code, developing software, and creating exceptional
+                    things. That's what we do here. We do things and we help
+                    people who are really interested in them.
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="relative border-b border-gray-200">
+              <button
+                type="button"
+                class="w-full px-8 py-6 text-left"
+                @click="selected !== 2 ? selected = 2 : selected = null"
+              >
+                <div class="flex items-center justify-between">
+                  <span> How can I join? </span>
+                  <span class="ico-plus"></span>
+                  <img
+                    class=""
+                    src="/images/new-landing/down-arrow.png"
+                    alt=""
+                  />
+                </div>
+              </button>
+
+              <div
+                class="relative overflow-hidden transition-all max-h-0 duration-700"
+                style=""
+                x-ref="container2"
+                x-bind:style="selected == 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''"
+              >
+                <div class="p-6 m-2">
+                  <p>
+                    Zairza conducts formal events for recruitment into the club.
+                    The pre-requisite includes a passion for technology and an
+                    inquisitive mind. Please contact the club administration for
+                    the exact procedures.
+                  </p>
+                </div>
+              </div>
+            </li>
+
+            <li class="relative border-b border-gray-200">
+              <button
+                type="button"
+                class="w-full px-8 py-6 text-left"
+                @click="selected !== 3 ? selected = 3 : selected = null"
+              >
+                <div class="flex items-center justify-between">
+                  <span> What is the scope of zairza? </span>
+                  <span class="ico-plus"></span>
+                  <img
+                    class=""
+                    src="/images/new-landing/down-arrow.png"
+                    alt=""
+                  />
+                </div>
+              </button>
+
+              <div
+                class="relative overflow-hidden transition-all max-h-0 duration-700"
+                style=""
+                x-ref="container3"
+                x-bind:style="selected == 3 ? 'max-height: ' +  '550px' : ''"
+              >
+                <div class="p-6 m-2">
+                  <p>
+                    The talent pool of the club is widely ranged. We have
+                    members working on Web Development, Android Development,
+                    Embedded Systems, IoT, Robotics, Machine Learning, Computer
+                    Vision and Artificial Intelligence. Our Alumni are placed in
+                    many prestigious organizations around the globe.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="relative border-b border-gray-200">
+              <button
+                type="button"
+                class="w-full px-8 py-6 text-left"
+                @click="selected !== 4 ? selected = 4 : selected = null"
+              >
+                <div class="flex items-center justify-between">
+                  <span> I have a tech project. How can Zairza help me? </span>
+                  <span class="ico-plus"></span>
+                  <img
+                    class=""
+                    src="/images/new-landing/down-arrow.png"
+                    alt=""
+                  />
+                </div>
+              </button>
+
+              <div
+                class="relative overflow-hidden transition-all max-h-0 duration-700"
+                style=""
+                x-ref="container4"
+                x-bind:style="selected == 4 ? 'max-height: ' + '550px' : ''"
+              >
+                <div class="p-6 m-2">
+                  <p>
+                    Zairza can provide you with space and an environment to work
+                    on your project. We have a stable fast internet connection
+                    and all the tools, components and other required resources
+                    for your project. Given the proper report, we can also fund
+                    your project. Apart from this, we have senior experienced
+                    mentors who will be more than happy to guide you throughout
+                    your project.
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="relative border-b border-gray-200">
+              <button
+                type="button"
+                class="w-full px-8 py-6 text-left"
+                @click="selected !== 5 ? selected = 5 : selected = null"
+              >
+                <div class="flex items-center justify-between">
+                  <span> What are the club timings? </span>
+                  <span class="ico-plus"></span>
+                  <img
+                    class=""
+                    src="/images/new-landing/down-arrow.png"
+                    alt=""
+                  />
+                </div>
+              </button>
+
+              <div
+                class="relative overflow-hidden transition-all max-h-0 duration-700"
+                style=""
+                x-ref="container3"
+                x-bind:style="selected == 5 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''"
+              >
+                <div class="p-6 m-2">
+                  <p>
+                    Zairza is open 24 hours per day. Just co-ordinate with the
+                    members for the key.
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img class="h-2/3 w-3/4" src="/images/new-landing/FAQ.png" alt="" />
         </div>
       </section>
     </main>
     <footer class="pt-36 px-28 md:px-12 md:py-32 max-w-full overflow-hidden">
       <h1
-        class="
-          text-6xl
-          font-bold
-          lg:text-5xl
-          md:text-3xl
-          w-2/5
-          md:w-auto
-          leading-tight
-        "
+        class="text-6xl font-bold lg:text-5xl md:text-3xl w-2/5 md:w-auto leading-tight"
       >
         Something on your mind
       </h1>
@@ -886,17 +836,7 @@
         We will help you with your idea and turn it into reality
       </p>
       <div
-        class="
-          details
-          flex flex-row
-          md:flex-col
-          items-center
-          justify-between
-          w-full
-          mt-24
-          md:mt-28 md:justify-start md:items-start
-          xl:w-5/6
-        "
+        class="details flex flex-row md:flex-col items-center justify-between w-full mt-24 md:mt-28 md:justify-start md:items-start xl:w-5/6"
       >
         <div class="address">
           <p class="text-base lg:text-sm md:text-xs lg:w-5/6">
