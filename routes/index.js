@@ -167,6 +167,81 @@ const team = [
   },
 ];
 
+const article = [
+  {
+    title: "Overfitting and Underfitting of a ML Model",
+    des: "have you ever given a thought behind the poor performance of your ML model?",
+    img: "/images/blogs/5.webp",
+    link:"https://blog.zairza.in/overfitting-and-underfitting-of-a-machine-learning-model-2e797622c3b5"
+  },
+  {
+    title: "Frequently Asked Interviw Questions in React-Redux",
+    des: "If you guys are about to face a react-redux interview, this article is for you.",
+    img: "/images/blogs/6.webp",
+    link:"https://blog.zairza.in/frequently-asked-interview-questions-in-react-redux-bc774733b449"
+  },
+  {
+    title: "Sentiment Analysis of Restaurant Reviews",
+    des: "Hello everyone! I hope you all are doing good. In this blog ...",
+    img: "/images/blogs/3.webp",
+    link:"https://blog.zairza.in/sentiment-analysis-of-restaurant-reviews-dab25c69fa8"
+  },
+   {
+    title: 'What is "BITCOIN" And Its Mining Process',
+    des: "Before going through this article you must know about the basics of blockchain",
+    img: "/images/blogs/10.webp",
+    link:"https://blog.zairza.in/https-medium-com-pruthwirajnayak-what-is-bitcoin-and-how-its-mining-process-works-8cf5aa51d87f"
+
+  },
+  
+  {
+    title: "Convolutional Neural Network (CNN)",
+    des: "Ever wondered, how Facebook can recognise the faces. What it uses for that, Let's reveal it.",
+    img: "/images/blogs/1.webp",
+    link:"https://blog.zairza.in/covolutional-neural-networks-7e2397c49536"
+  },
+  {
+    title: "Artificial Neural Networks (ANN)",
+    des:  "Are you excited about ANN? Are you excited about exploring a bit about the human brain?",
+    img: "/images/blogs/2.webp",
+    link:"https://blog.zairza.in/artificial-neural-networks-51ed8ca49217"
+  },
+  {
+    title: "OAuth Using MEVN Stack",
+    des: "If you use nodejs and you need to implement Oauth or just looking forward to learning something new in server side...",
+    img: "/images/blogs/7.webp",
+    link:"https://blog.zairza.in/oauth-using-mevn-stack-4b4a383dae08"
+
+  },
+  {
+    title: "A Guide To Dual Booting",
+    des: "Today, dual booting has become a go-to procedure that a lot of developers opt for, be it due to having complete access over ...",
+    img: "/images/blogs/8.webp",
+    link:"https://blog.zairza.in/a-guide-to-dual-booting-d9dffe042ee6"
+
+  },
+  {
+    title: "Home automation: Making Our Lives Easier",
+    des: "The Home Automation is a wireless home automation system that is supposed",
+    img: "/images/blogs/9.webp",
+    link:"https://blog.zairza.in/home-automation-making-our-lives-easier-a782ee067ea8"
+
+  },
+ {
+    title: "How ReactJS Works Behind The Scene",
+    des: "Hello guys! Learning react is simple. Here, in this article ...",
+    img: "/images/blogs/4.webp",
+    link:"https://blog.zairza.in/how-reactjs-works-behind-the-scene-e25689f4b2c5"
+  },
+  {
+    title: "Modern Radios: Miles Of Range And Years Of ...",
+    des: "Age old definition of radios relates to 'radios drain battery'.",
+    img: "/images/blogs/11.webp",
+    link:"https://blog.zairza.in/modern-radios-miles-of-range-and-years-of-battery-life-6ca1a690c4d9"
+
+  },
+];
+
 /* GET home page. */
 router.get("/", function (req, res, next) {
   if (req.cookies["zToken"] != null) {
@@ -182,7 +257,7 @@ router.get("/", function (req, res, next) {
   } else {
     res.render("pages/newIndex", { loggedIn: false });
   }
- 
+
   //     .then((decodedToken) => {
   //       res.render("pages/index", { loggedIn: true });
   //     })
@@ -240,8 +315,6 @@ router.get("/domain", function (req, res, next) {
   }
 });
 
-
-
 /*Get teams page */
 router.get("/team", function (req, res, next) {
   if (req.cookies["zToken"] != null) {
@@ -256,6 +329,21 @@ router.get("/team", function (req, res, next) {
       });
   } else {
     res.render("pages/team", { data: { loggedIn: false, team: team } });
+  }
+});
+router.get("/blogs", function (req, res, next) {
+  if (req.cookies["zToken"] != null) {
+    admin
+      .auth()
+      .verifyIdToken(req.cookies["zToken"])
+      .then((decodedToken) => {
+        res.render("pages/blogs", { data: { loggedIn: true, blog: article } });
+      })
+      .catch((err) => {
+        res.render("pages/blogs", { data: { loggedIn: false, blog: article } });
+      });
+  } else {
+    res.render("pages/blogs", { data: { loggedIn: false, blog: article } });
   }
 });
 
@@ -303,8 +391,8 @@ router.get("/tmp", function (req, res, next) {
   res.render("pages/dashboard/template");
 });
 
-router.get("/blogs", function (req, res) {
-  res.render("pages/blogs");
-});
+// router.get("/blogs", function (req, res) {
+//   res.render("pages/blogs");
+// });
 
 module.exports = router;
