@@ -22,16 +22,37 @@
   </head>
 
   <body>
-    <div class="bg-black min-h-screen min-w-screen flex items-center">
-      <div class="w-full h-full flex flex-col items-center justify-center">
-
-
-        
-        <h1 class="text-4xl md:text-2xl text-white font-bold ">COMING SOON</h1>
-        <div class="timer text-xl text-white ">00 : 00 : 00 : 00</div>
-
-
-        
+    <div class="min-h-screen min-w-screen flex justify-center items-center bg-center overflow-hidden" style="background-image: url('/images/countdownbg.webp')">
+      <div class="flex flex-col items-center justify-center md:w-11/12 bg-white p-8 md:pd-6 sm:pd-4 rounded-lg shadow-xl">
+        <div class="block">
+          <img src="/images/logozairza.webp" alt="logo"/>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex flex-col md:px-4 md:py-6 px-6 py-8">
+            <div class="hours bg-blue-100 text-blue-700 py-5 px-8 rounded-lg text-center text-2xl md:text-lg text-md">
+              00
+            </div>
+            <div class="text-blue-700 capitalize text-xl md:text-lg font-bold  mt-2 text-center ">
+              Hours
+            </div>
+          </div>
+          <div class="flex flex-col md:px-4 md:py-6 px-6 py-8">
+            <div class="minutes bg-blue-100 text-blue-700 p-5 rounded-lg text-center text-2xl md:text-lg text-md">
+              00
+            </div>
+            <div class="text-blue-700 capitalize text-xl md:text-lg font-bold  mt-2 text-center ">
+              Minutes
+            </div>
+          </div>
+          <div class="flex flex-col md:px-4 md:py-6 px-6 py-8">
+            <div class="seconds bg-blue-100 text-blue-700 p-5 rounded-lg text-center text-2xl md:text-lg text-md">
+              00
+            </div>
+            <div class="text-blue-700 capitalize text-xl md:text-lg font-bold  mt-2 text-center ">
+              Seconds
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
