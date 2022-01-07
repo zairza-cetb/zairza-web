@@ -4,8 +4,16 @@ const AdminBroExpress = require("@admin-bro/express");
 const AdminBroMongoose = require("@admin-bro/mongoose");
 const express = require("express");
 const User = require("../models/Users");
+const Newsletter = require("../models/Newsletter");
 const ValidRegNos = require("../models/ValidRegNos");
 const ChangeLog = require("../models/ChangeLog");
+const Events = require("../models/Events");
+
+// Skills ++
+const Domains = require("../models/skills/Domains");
+const DomainRegistrations = require("../models/skills/DomainRegistrations");
+
+
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
 const admin = require("../firebase/firebaseService");
 
@@ -40,15 +48,17 @@ module.exports = (app, mongoose_connection) => {
       {
         resource: User,
         options: {
-          listProperties: ["firebaseUid", "name", "email", "registrationNo"],
+          listProperties: ["name", "email", "registrationNo", "createdAt"],
           actions: {
             delete: { isVisible: false },
+            new: { isVisible: false },
             bulkDelete: { isVisible: false },
             deleteUser: {
               actionType: "record",
               guard: "confirmDelete",
               icon: "Delete",
               component: false,
+              after:createLog,
               variant: "danger",
               handler: async (request, response, data) => {
                 const {
@@ -87,10 +97,18 @@ module.exports = (app, mongoose_connection) => {
                   }
                   throw error;
                 }
+
+                let resourceId = null;
+                if (resource._decorated) {
+                  resourceId = resource._decorated.id();
+                } else {
+                  resourceId = resource.id();
+                }
+
                 return {
                   record: record.toJSON(currentAdmin),
                   redirectUrl: h.resourceUrl({
-                    resourceId: resource._decorated?.id() || resource.id(),
+                    resourceId: resourceId,
                   }),
                   notice: {
                     message: successMsg,
@@ -112,6 +130,29 @@ module.exports = (app, mongoose_connection) => {
           },
         },
       },
+      {
+        resource: Newsletter,
+        options: {
+          listProperties: ["scheduleDate", "sent", "notSent"],
+          editProperties: ["scheduleDate"],
+          actions: {
+            edit: { isVisible: false },
+            bulkDelete: { isVisible: false },
+          },
+        }
+      },
+      { resource: Events,
+        options: { 
+          editProperties: ["name", "startTime", "endTime"],
+          actions: {
+            new: {isVisible: false},
+            bulkDelete: { isVisible: false },
+          }
+        }
+      },
+      //SKill++
+      Domains,
+      DomainRegistrations
     ],
     rootPath: "/admin",
     branding: {

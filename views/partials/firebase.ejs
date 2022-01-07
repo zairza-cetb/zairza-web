@@ -33,9 +33,9 @@
   firebase.auth().onAuthStateChanged(async function(user){
     if(user){
       const token = await user.getIdToken(true);
-      $.cookie("zToken", token);
+      $.cookie("zToken", token, {path: "/"});
     }else{
-      $.cookie("zToken",null);
+      $.cookie("zToken",null, {path: "/"});
     }
-})
+  })
 </script>

@@ -12,6 +12,9 @@ const adminRoutes = require("./routes/adminRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const adminPanel = require("./routes/adminPanel");
 
+// Skill ++ routes
+const skillRoutes = require("./routes/skills/routes.js");
+
 const app = express();
 
 const connection = mongoose
@@ -36,10 +39,14 @@ app.use("/", indexRouter);
 app.use("/", dashboardRoutes);
 app.use("/api/user", userRouter);
 app.use("/protected", adminRoutes);
+
+// SKill ++
+app.use("/skills", skillRoutes);
+
 adminPanel(app, connection);
 
 app.get("*", function (req, res) {
-  res.render("pages/404");
+  res.status(404).render("pages/404");
 });
 
 app.use(errorHandler);

@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#FF7610" />
     <link rel="icon" type="image/png" href="/images/Visual.webp" />
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'>
     <title>My Profile | Zairza</title>
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
@@ -16,6 +19,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/auth.css" />
+    <link rel="stylesheet" href="/css/profile.css">
   </head>
   <body>
     <section>
@@ -24,14 +28,36 @@
       <% if(user.role != 'restricted') {%>
         <%- include('../partials/discordPop.ejs') %>
       <% } %>
-      <div class="container rounded-lg" style="height:900px">
+      <div class="container rounded-lg" style="height:1100px">
         <div class="user signinBx">
           <div class="formBx">
             <div class="form w-full" id="profile_form">
               <div class="mt-12 flex flex-col items-center">
-                <h1 class="text-2xl xl:text-3xl font-bold">My Profile</h1>
+                <h1 class="text-2xl xl:text-3xl font-bold">My Zairza Profile</h1>
                 <div class="w-full flex-1 mt-8">
                   <div class="mx-auto max-w-md">
+                      <div class="avatar-container">
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg"
+                                  <% if(user.profileImage) {%>
+                                    value="<%= user.profileImage %>"
+                                  <% } %>
+                                />
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <div id="imagePreview"
+                                <% if(user.profileImage) {%>
+                                  style="background-image: url(<%= user.profileImage %>);"
+                                <% } else { %>
+                                style="background-image: url(/images/dummyUser.png);"
+                                <% } %>
+                                >
+                                </div>
+                            </div>
+                        </div>
+                      </div>
                     <div class="relative">
                       <input
                         id="name"
@@ -137,7 +163,7 @@
 
                     <select multiple data-placeholder="Select your wing(s)" id="wing" class="w-full my-2 appearance-none w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:bg-white">
                       <option value="Software" <%= (user.wing.includes('Software')) ? 'selected' : ''%>>Software</option>
-                      <option value="Hardware" <%= (user.wing.includes('Hardware')) ? 'selected' : ''%> >Hardware</option>
+                      <option value="Robotics" <%= (user.wing.includes('Robotics')) ? 'selected' : ''%> >Robotics</option>
                       <option value="Design" <%= (user.wing.includes('Design')) ? 'selected' : ''%> >Design</option>
                   </select>
                   
@@ -178,7 +204,7 @@
                         </output>
                       </div>
                     </form>
-                    <form id="newsletter" class="connect flex flex-row" data-state="<%= (user.newsletterSubscription)?'on':'off' %>" data-provider="newsletter">
+                    <!-- <form id="newsletter" class="connect flex flex-row" data-state="<%= (user.newsletterSubscription)?'on':'off' %>" data-provider="newsletter">
                       <div class="toggle-wrapper flex items-center w-full justify-center">
                         <input id="newsletter_toggle" <%= (user.newsletterSubscription)?'checked':'' %> class="toggle_input absolute invisible" name="toggle" type="checkbox" onclick="subscribe_newsletter($(this).closest('form'),$(this).prop('checked'))">
                         <label for="newsletter_toggle" class="fancy-toggle relative">
@@ -195,7 +221,7 @@
                           <div class="status-text text-custom-blue flex items-center justify-around" data-for="on">Unsubscribe <i class='bx bx-news bx-md ml-2'></i></div>
                         </output>
                       </div>
-                    </form>
+                    </form> -->
 
                     <button
                       id="update-btn"
@@ -210,7 +236,7 @@
                       <span class="ml-3">Update Profile</span>
                     </button>
                     <a
-                      href="/me"
+                      href="/home"
                       class="tracking-wide font-semibold text-gray-100 hover:text-white w-full py-4 rounded-lg transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                     >
                       <div class="flex justify-around mt-4 w-36" style="color: #1471ff;">
@@ -224,7 +250,7 @@
             </div>
           </div>
           <div class="imgBx">
-            <img src="/images/auth/profile.png" alt="" />
+            <img src="/images/auth/profile.png" alt=""/>
           </div>
         </div>
       </div>

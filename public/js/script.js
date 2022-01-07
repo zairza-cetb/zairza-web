@@ -111,19 +111,58 @@ $(document).ready(function () {
   $("#mob-menu li").each((index, element) => {
     $(element).click(() => fullpage_api.moveTo(navSectionMap[index]));
   });
+  // Show event poster
+  const openModalButtons = document.querySelectorAll("[data-modal-target]");
+  const closeModalButtons = document.querySelectorAll("[data-close-button]");
+  const overlay = document.getElementById("overlay");
 
-  // Newsletter cookie
-  //   let visited = $.cookie("visited");
-  //   if (visited != "yes") {
-  //     $("#newsletter_pop").toggleClass("hidden");
-  //     $("main").toggleClass("opacity-10");
-  //   }
-  //   $.cookie("visited", "yes", {
-  //     expires: 1, // the number of days cookie  will be effective
+  // openModalButtons.forEach((button) => {
+  //   button.addEventListener("click", () => {
+  //     const modal = document.querySelector(button.dataset.modalTarget);
+  //     openModal(modal);
   //   });
+  // });
+  if (sessionStorage.clickcount === undefined) {
+    window.addEventListener("load", () => {
+      openModalButtons.forEach((button) => {
+        const modal = document.querySelector(button.dataset.modalTarget);
+        openModal(modal);
+        sessionStorage.clickcount++;
+      });
+    });
+  }
 
-  //   $("#newsletter-close-icon").on("click", function () {
-  //     $("#newsletter_pop").toggleClass("hidden");
-  //     $("main").toggleClass("opacity-10");
-  //   });
+  closeModalButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const modal = document.querySelector(
+        openModalButtons[0].dataset.modalTarget
+      );
+      closeModal(modal);
+    });
+  });
+
+  function openModal(modal) {
+    if (modal == null) return;
+    modal.classList.add("active");
+    overlay.classList.add("active");
+  }
+  function closeModal(modal) {
+    if (modal == null) return;
+    modal.classList.remove("active");
+    overlay.classList.remove("active");
+  }
+});
+// Check user logged in or not
+firebase.auth().onAuthStateChanged((user) => {
+  let userRoute;
+  if (user) {
+    // User is signed in
+    userRoute = `<a href="/home" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Dashboard</li></a>`;
+    // ...
+  } else {
+    // User is signed out
+    userRoute = `<a href="/auth#signin" id="user"><li class="block hover:text-white px-2 py-1 lg:my-0 my-1 lg:ml-2 font-normal bg-blue rounded" id="authRoute">Login</li></a>`;
+  }
+  $("#mob-menu").append(userRoute);
+
 });

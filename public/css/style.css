@@ -40,6 +40,7 @@ body {
 .bg-blue:hover {
   background-color: #1071ff;
   cursor: pointer;
+  transition: 0.5s;
 }
 
 .bg-focus {

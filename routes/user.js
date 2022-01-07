@@ -2,11 +2,15 @@ const express = require("express");
 const router = express.Router();
 const admin = require("../firebase/firebaseService");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
+const { uploadProfileImage } = require("../utils/multer.js");
 
 const editableFields = new Set([
   "name",
   "email",
   "registrationNo",
+  "profileImage",
+  "phoneNo",
+  "skills",
   "wing",
   "branch",
 ]);
@@ -15,7 +19,7 @@ router.get("/me", checkIfAuthenticated, function (req, res, next) {
   res.json(req.user);
 });
 
-router.put("/edit", checkIfAuthenticated, function (req, res, next) {
+router.put("/edit", checkIfAuthenticated, uploadProfileImage.single("profileImage"), function (req, res, next) {
   if (!req.user.registrationNo && !req.body.registrationNo) {
     return res
       .status(403)
@@ -30,6 +34,18 @@ router.put("/edit", checkIfAuthenticated, function (req, res, next) {
       return res
         .status(401)
         .json({ status: "fail", message: "Accessing unknown fields" });
+    }
+
+    if (req.file){
+      if(process.env.NODE_ENV === "production"){
+        req.body.profileImage = req.file.location;
+      }else{
+        req.body.profileImage = req.protocol + "://" + req.get('host') + "/" + req.file.path.substring(7);
+      }
+    }
+
+    if(req.body.registrationNo === req.user.registrationNo){
+      delete req.body.registrationNo;
     }
 
     User.findByIdAndUpdate(
@@ -53,6 +69,7 @@ router.put("/edit", checkIfAuthenticated, function (req, res, next) {
               req.body.registrationNo
             )) === true
           ) {
+            user.newsletterSubscription = true;
             user.role = "user";
             user.save();
           } else if (
@@ -60,6 +77,7 @@ router.put("/edit", checkIfAuthenticated, function (req, res, next) {
               req.body.registrationNo
             )) === false
           ) {
+            user.newsletterSubscription = false;
             user.role = "restricted";
             user.save();
           }
@@ -125,6 +143,26 @@ router.post("/newsletter", isRoleUser, function (req, res, next) {
       }
       if (!user) {
         return res.status(404).json({
+          status: "fail",
+          message: "No user found",
+        });
+      }
+      return res.json({ status: "success" });
+    }
+  );
+});
+
+router.post("/unsubscribe_newsletter", function(req, res, next) {
+  User.findByIdAndUpdate(
+    req.body.userId,
+    { newsletterSubscription: false },
+    function (err, user) {
+      if (err) {
+        return next(err);
+      }
+      if (!user) {
+        return res.status(404).json({
+          status: "fail",
           message: "No user found",
         });
       }

@@ -1,4 +1,5 @@
 const sendErrorDev = (err, res) => {
+  console.error(err);
   res.status(err.statusCode).json({
     status: err.status,
     error: err,
@@ -77,8 +78,8 @@ const showAccessDeniedPage = (err, req, res) => {
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
-
-  if (!req.url.startsWith("/api/")) {
+  console.log(err);
+  if (!req.url.includes("/api/")) {
     if (err.codePrefix == "auth") {
       return redirectAuthPage(err, req, res);
     } else if (err.statusCode === 403) {
@@ -95,6 +96,6 @@ module.exports = (err, req, res, next) => {
     if (error.code === 11000) error = handleDuplicateFieldsDB(error);
     if (error.name === "ValidationError")
       error = handleValidationErrorDB(error);
-    sendErrorProd(error, res);
+    sendErrorProd(err, res);
   }
 };

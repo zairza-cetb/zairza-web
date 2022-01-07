@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const admin = require("../firebase/firebaseService");
 const checkIfAuthenticated = require("../firebase/firebaseCheckAuth");
+const Events = require("../models/Events");
 
 const team = [
   {
@@ -344,7 +345,6 @@ router.get("/auth", function (req, res, next) {
   if (req.user) {
     return res.redirect("/");
   }
-  res.render("pages/auth");
 });
 
 /* GET events page. */

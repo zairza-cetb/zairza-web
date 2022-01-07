@@ -32,7 +32,7 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             setState("off", element);
             showToast(200, `${provider_name} account disconnected 😞`);
             const token = await user.getIdToken(true);
-            $.cookie("zToken", token);
+            $.cookie("zToken", token, { path: "/" });
           })
           .catch((error) => {
             // An error happened
@@ -60,7 +60,7 @@ function ThirdPartyAuthenticate(provider_name, state, element) {
             setState("on", element);
             showToast(200, `${provider_name} account connected 😎`);
             const token = await user.getIdToken(true);
-            $.cookie("zToken", token);
+            $.cookie("zToken", token, { path: "/" });
             // ...
           })
           .catch((error) => {
@@ -137,7 +137,7 @@ function updateProfile() {
   $email = $("#profile_form input[type='email']").val();
   $registration_no = $("#profile_form #regno").val();
   $branch = $("#profile_form #branch").val()[0];
-  $wing = $("#profile_form #wing").val();
+  $wings = $("#profile_form #wing").val();
   $name = $("#profile_form #name").val();
   $newsletter_subscription = $("#profile_form #newsletter_toggle").prop(
     "checked"
@@ -161,27 +161,43 @@ function updateProfile() {
     showToast(401, "Please select your branch");
     return;
   }
-  if ($wing.length == 0) {
+  if ($wings.length == 0) {
     showToast(401, "Please select your zairza wing");
     return;
   }
+  const profileImage = document.getElementById("imageUpload").files[0];
 
   $("#update-icon").hide();
   $("#update-btn span").text("");
   $("#update-btn").addClass("onclic", 50);
 
-  let data = {
-    email: $email,
-    registrationNo: $registration_no,
-    branch: $branch,
-    wing: $wing,
-    name: $name,
-  };
+  // let data = {
+  //   email: $email,
+  //   registrationNo: $registration_no,
+  //   branch: $branch,
+  //   wing: $wing,
+  //   name: $name,
+  // };
+  const data = new FormData();
+  data.append('email', $email);
+  data.append('registrationNo', $registration_no);
+  data.append('branch', $branch);
+  // data.append('wing', $wing);
+  $wings.forEach((wing) => { data.append("wing[]", wing) });
+  data.append('name', $name);
+  if (profileImage) {
+    data.append('profileImage', profileImage);
+    if (profileImage.size > 1000000) {
+      showToast(400, "File size limit is 1MB 😑");
+      return;
+    }
+  }
   $.ajax({
     type: "PUT",
     url: "/api/user/edit",
     data: data,
-    dataType: "json",
+    processData: false,
+    contentType: false,
   })
     .done(function (data) {
       if (data.message) {
@@ -271,33 +287,33 @@ $(document).ready(function () {
 });
 
 // Subscribe to newsletter
-function subscribe_newsletter(ele, state) {
-  $newsletter_subscription = state;
-  let data = {
-    newsletterSubscription: $newsletter_subscription,
-  };
-  setState("pending", ele);
-  $.ajax({
-    type: "POST",
-    url: "/api/user/newsletter",
-    data: JSON.stringify(data),
-    contentType: "application/json",
-    dataType: "json",
-  })
-    .done(function (data) {
-      if (state) {
-        setState("on", ele);
-        showToast(200, "Newsletter subscribed 👍");
-      } else {
-        setState("off", ele);
-        showToast(200, "Newsletter unsubscribed 🥺");
-      }
-    })
-    .fail(function (err) {
-      setState("off", ele);
-      showToast(err.status, err.responseJSON.message);
-    });
-}
+// function subscribe_newsletter(ele, state) {
+//   $newsletter_subscription = state;
+//   let data = {
+//     newsletterSubscription: $newsletter_subscription,
+//   };
+//   setState("pending", ele);
+//   $.ajax({
+//     type: "POST",
+//     url: "/api/user/newsletter",
+//     data: JSON.stringify(data),
+//     contentType: "application/json",
+//     dataType: "json",
+//   })
+//     .done(function (data) {
+//       if (state) {
+//         setState("on", ele);
+//         showToast(200, "Newsletter subscribed 👍");
+//       } else {
+//         setState("off", ele);
+//         showToast(200, "Newsletter unsubscribed 🥺");
+//       }
+//     })
+//     .fail(function (err) {
+//       setState("off", ele);
+//       showToast(err.status, err.responseJSON.message);
+//     });
+// }
 
 // Submit forms on click of 'ENTER' key
 $("input").keypress(function (e) {
@@ -353,8 +369,8 @@ $(document).ready(function () {
         select
           .find(
             "option:contains(" +
-              select.children("div").children("a:first").text() +
-              ")"
+            select.children("div").children("a:first").text() +
+            ")"
           )
           .prop("selected", false);
       }
