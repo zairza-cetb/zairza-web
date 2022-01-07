@@ -220,7 +220,7 @@
             you grow.
           </p>
           <button
-            class="bg-blue-600 px-8 md:px-8 md:py-4 py-3.5 lg:py-2.5 mt-4 md:mt-10 md:mb-16 text-white rounded-full cursor-pointer"
+            class="bg-blue-600 px-8 md:px-8 md:py-4 py-3.5 lg:py-2.5 mt-4 md:mt-10 md:mb-16 text-white rounded-full cursor-pointer hover:shadow-2xl transition-all ease-linear hover:bg-orange-500"
           >
             <a href="/auth#signin">
               <div class="flex items-center">
@@ -237,7 +237,7 @@
         <div class="basis-7/12 md:basis-1/2 md:self-center">
           <img
             class="w-full h-full md:h-auto"
-            src="/images/new-landing/newhero.png"
+            src="/images/new-landing/10.webp"
             alt="home-zairza-interior"
           />
         </div>
@@ -249,7 +249,7 @@
         <div class="p-16 lg:p-8 basis-1/2">
           <img
             class="w-full h-full"
-            src="/images/new-landing/newsecondsection.png"
+            src="/images/new-landing/logo.webp"
             alt=""
           />
         </div>
@@ -263,7 +263,7 @@
             you grow.
           </p>
           <button
-            class="bg-orange-500 second-section-btn px-8 md:px-8 md:py-4 lg:px-4 py-3.5 lg:px-2.5 mt-10 text-white rounded-full cursor-pointer"
+            class="bg-orange-500 second-section-btn px-8 md:px-8 md:py-4 lg:px-4 py-3.5 lg:px-2.5 mt-10 text-white rounded-full cursor-pointer hover:shadow-2xl transition-all ease-linear hover:bg-blue-600"
           >
             <a href="/auth#signin">
               <div class="flex items-center">
@@ -295,9 +295,10 @@
             you grow.
           </p>
           <button
-            class="bg-blue-600 second-section-btn md:px-8 md:py-4 px-8 py-3.5 mt-10 w-max text-white rounded-full cursor-pointer"
+            class="bg-blue-600 second-section-btn md:px-8 md:py-4 px-8 py-3.5 mt-10 w-max text-white rounded-full cursor-pointer hover:shadow-2xl transition-all ease-linear hover:bg-orange-500"
           >
-            <a href="/auth#signin">
+            <%if(!loggedIn){%><a href="/auth#signin"
+              ><%}else{%><a href="/projects"><%}%>
               <div class="flex items-center">
                 <span>Have a look</span
                 ><img
@@ -310,7 +311,7 @@
           </button>
         </div>
         <div class="basis-1/3">
-          <img class="" src="/images/new-landing/newbot.png" alt="" />
+          <img class="" src="/images/new-landing/30.webp" alt="" />
         </div>
       </section>
       <section
@@ -326,8 +327,8 @@
             alt=""
           />
           <img
-            class="absolute top-16 left-0 w-full h-2/3 md:hidden block"
-            src="/images/new-landing/newprojector.png"
+            class="absolute top-2 left-16 w-full h-4/5 md:hidden block"
+            src="/images/new-landing/projector.webp"
             alt=""
           />
         </div>
@@ -345,7 +346,7 @@
             Blogs , Articles , Books etc, curated by core members of zairza.
           </p>
           <button
-            class="bg-orange-500 sessions-section-btn px-8 lg:px-4 py-3.5 lg:py-2.5 mt-4 text-white rounded-full cursor-pointer md:mt-6 md:px-8 md:py-4"
+            class="bg-orange-500 sessions-section-btn px-8 lg:px-4 py-3 lg:py-2.5 mt-4 text-white rounded-full cursor-pointer md:mt-6 md:px-8 md:py-3 hover:shadow-2xl transition-all ease-linear hover:bg-blue-600"
           >
             <a href="https://blog.zairza.in/">
               <div class="flex items-center">
@@ -447,7 +448,7 @@
               help you grow.
             </p>
             <button
-              class="bg-blue-600 second-section-btn px-8 py-3.5 mt-10 text-white rounded-full cursor-pointer md:px-8 md:py-4"
+              class="bg-blue-600 second-section-btn px-8 py-3.5 mt-10 text-white rounded-full cursor-pointer md:px-8 md:py-4 hover:shadow-2xl transition-all ease-linear hover:bg-orange-500"
             >
               <a href="/team">
                 <div class="flex items-center">
@@ -465,7 +466,7 @@
         <div class="self-end w-full -mr-20 md:m-0 img-container">
           <img
             class="w-full h-full"
-            src="/images/new-landing/teamgroup.png"
+            src="/images/new-landing/team.webp"
             alt=""
           />
         </div>
@@ -476,7 +477,7 @@
       >
         <div
           class="bg-white max-w-3xl mx-auto border border-gray-200"
-          x-data="{selected:1}"
+          x-data="{selected:0}"
         >
           <ul class="shadow-box">
             <li class="relative border-b border-gray-200">
