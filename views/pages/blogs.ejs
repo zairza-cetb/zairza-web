@@ -30,6 +30,7 @@
     />
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/style.css" />
     <script>
       tailwind.config = {
         theme: {
@@ -229,9 +230,9 @@
         </div>
         <% } %>
       </section>
-            <section class="my-16 w-max h-max relative">
+            <section class="mb-16 w-max h-max relative">
         <h1
-          class="absolute w-full inset-y-1/2 left-28 text-white font-bold text-3xl leading-tight tracking-wider img-label"
+          class="absolute w-full inset-y-1/2 left-28 text-white font-bold text-4xl leading-tight tracking-wider img-label text-left"
         >
           Insightful <br> blogs for you
         </h1>
@@ -288,22 +289,21 @@
       <!-- Blog cards -->
       <div
         id="main"
-        class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-1 justify-evenly"
+        class="blogs-section"
       >
         <%data.blog.map((item)=>{%>
-        <div class="w-full px-4 py-4 cursor-pointer">
+        <div class="cursor-pointer">
           <div
             class="bg-white drop-shadow flex-col rounded-lg"
-            style="min-height: 70vh"
           >
-            <div class="w-full h-64">
+            <div class="h-64">
               <img src=<%=item.img%> alt="blog-1" class="w-full object-cover rounded-lg h-64" />
             </div>
-            <div class="w-full font-bold text-2xl pt-4 pb-2 px-4">
+            <div class="font-bold text-2xl pt-4 pb-2 px-4">
               <a href="#"><%=item.title%></a>
             </div>
-            <div class="w-full px-4 py-2 pb-8 bottom-0"><%=item.des%></div>
-            <a  rel="”noreferrer”" target="_blank" href=<%=item.link%>> <button class="min-w-full mb-4">Read More</button></a>
+            <div class="px-4 py-2 pb-8 bottom-0"><%=item.des%></div>
+            <a rel="”noreferrer”" target="_blank" href=<%=item.link%>> <button class="min-w-full mb-4">Read More</button></a>
           </div>
         </div>
         <%})%>
