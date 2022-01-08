@@ -247,22 +247,24 @@ const article = [
 router.get("/", function (req, res, next) {
   let launchDate = new Date("Jan 08, 2022 21:00:00").getTime();
   let now = new Date().getTime();
+  let someArticles = article.slice(0,5)
+
   if (launchDate - now <= 0) {
     if (req.cookies["zToken"] != null) {
       admin
         .auth()
         .verifyIdToken(req.cookies["zToken"])
         .then((decodedToken) => {
-          res.render("pages/newIndex", { loggedIn: true });
+          res.render("pages/newIndex", { data: { loggedIn: true , articles: someArticles}});
         })
         .catch((err) => {
-          res.render("pages/newIndex", { loggedIn: false });
+          res.render("pages/newIndex", { data: { loggedIn: false, articles: someArticles }});
         });
     } else {
-      res.render("pages/newIndex", { loggedIn: false });
+      res.render("pages/newIndex",{ data: { loggedIn: false, articles: someArticles }});
     }
   } else {
-    res.render("pages/countdown", { loggedIn: true });
+    res.render("pages/countdown", { data: { loggedIn: true , articles: someArticles}});
   }
 
   //     .then((decodedToken) => {
@@ -345,6 +347,8 @@ router.get("/auth", function (req, res, next) {
   if (req.user) {
     return res.redirect("/");
   }
+  res.render("pages/auth");
+
 });
 
 /* GET events page. */

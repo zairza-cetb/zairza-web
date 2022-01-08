@@ -8,3 +8,4 @@ firebase_service_account.json
 views/pages/dashboard/template.ejs
 emails/
 yarn.lock
+package-lock.json

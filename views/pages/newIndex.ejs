@@ -98,7 +98,7 @@
           class="list-none p-12 text-white pt-32 pl-24 text-2xl bg-blue-500 h-screen w-1/2 md:w-full md:px-12"
         >
           <li class="py-4"><a href="/">Home</a></li>
-          <% if(loggedIn){ %>
+          <% if(data.loggedIn){ %>
           <li class="py-4"><a href="/projects">Projects</a></li>
           <% } %>
           <li class="py-4">
@@ -106,7 +106,7 @@
           </li>
           <li class="py-4"><a href="/about">About Us</a></li>
           <li class="py-4"><a href="/team">Members</a></li>
-          <% if(loggedIn){ %>
+          <% if(data.loggedIn){ %>
           <li class="py-4"><a href="/me">Dashboard</a></li>
           <li class="py-4"><a href="#" onclick="logout()">Sign Out</a></li>
           <% } else { %>
@@ -200,7 +200,7 @@
             id="nav-logo"
           />
         </div>
-        <% if(!loggedIn){ %>
+        <% if(!data.loggedIn){ %>
         <div class="pt-3 sm:pt-0 mr-24 z-40 md:hidden">
           <a id="sign-in-btn" href="/auth#signin">Sign In</a>
         </div>
@@ -305,7 +305,7 @@
           <button
             class="bg-blue-600 second-section-btn md:px-8 md:py-4 px-8 py-3.5 mt-10 w-max text-white rounded-full cursor-pointer hover:shadow-2xl transition-all ease-linear hover:bg-orange-500"
           >
-            <%if(!loggedIn){%><a href="/auth#signin"
+            <%if(!data.loggedIn){%><a href="/auth#signin"
               ><%}else{%><a href="/projects"><%}%>
               <div class="flex items-center">
                 <span>Have a look</span
@@ -441,7 +441,8 @@
         </button>
       </section>
 
-      <!-- Blogs section -->
+      <!- Blogs section -->
+
       <section
         class="
           mail-section
@@ -458,105 +459,28 @@
         <div class="w-full swiper mySwiper px-10 my-16">
           <div class="swiper-wrapper">
             <!-- 1 -->
-            <div class="w-full px-4 py-4 swiper-slide">
-              <div class="bg-white w-full drop-shadow flex-col rounded-lg">
-                <img
-                  src="/images/blogs/4.webp"
-                  alt="blog-1"
-                  class="object-cover rounded-lg"
-                />
-                <div class="w-full font-bold text-2xl pt-4 pb-2 px-4">
-                  <a href="#"
-                    >Proin leo felis, euismod non porta eget, varius sit amet</a
-                  >
-                </div>
-                <div class="w-full px-4 py-2 pb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  placerat a magna non varius. Proin leo felis, euismod non
-                  porta eget, varius sit amet
-                </div>
-              </div>
-            </div>
-            <!-- 2 -->
-            <div class="w-full px-4 py-4 swiper-slide">
-              <div class="bg-white w-full drop-shadow flex-col rounded-lg">
-                <img
-                  src="/images/blogs/4.webp"
-                  alt="blog-1"
-                  class="object-cover rounded-lg"
-                />
-                <div class="w-full font-bold text-2xl pt-4 pb-2 px-4">
-                  <a href="#"
-                    >Proin leo felis, euismod non porta eget, varius sit amet</a
-                  >
-                </div>
-                <div class="w-full px-4 py-2 pb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  placerat a magna non varius. Proin leo felis, euismod non
-                  porta eget, varius sit amet
+            <% data.articles.map((item)=>{%>
+              
+              <div class="w-full px-4 py-4 swiper-slide">
+                <div class="bg-white w-full drop-shadow flex-col rounded-lg">
+                  <img
+                    src="<%=item.img%>"
+                    alt="blog-1"
+                    class="object-cover rounded-lg"
+                    style="height: 25vh"
+                  />
+                  <div class="w-full font-bold text-2xl pt-4 pb-2 px-4">
+                    <a href="<%=item.link%>" target="_blank"
+                      ><%=item.title%></a
+                    >
+                  </div>
+                  <div class="w-full px-4 py-2 pb-8">
+                    <%=item.des%>
+                  </div>
                 </div>
               </div>
-            </div>
-            <!-- 3 -->
-            <div class="w-full px-4 py-4 swiper-slide">
-              <div class="bg-white w-full drop-shadow flex-col rounded-lg">
-                <img
-                  src="/images/blogs/4.webp"
-                  alt="blog-1"
-                  class="object-cover rounded-lg"
-                />
-                <div class="w-full font-bold text-2xl pt-4 pb-2 px-4">
-                  <a href="#"
-                    >Proin leo felis, euismod non porta eget, varius sit amet</a
-                  >
-                </div>
-                <div class="w-full px-4 py-2 pb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  placerat a magna non varius. Proin leo felis, euismod non
-                  porta eget, varius sit amet
-                </div>
-              </div>
-            </div>
-            <!-- 4 -->
-            <div class="w-full px-4 py-4 swiper-slide">
-              <div class="bg-white w-full drop-shadow flex-col rounded-lg">
-                <img
-                  src="/images/blogs/4.webp"
-                  alt="blog-1"
-                  class="object-cover rounded-lg"
-                />
-                <div class="w-full font-bold text-2xl pt-4 pb-2 px-4">
-                  <a href="#"
-                    >Proin leo felis, euismod non porta eget, varius sit amet</a
-                  >
-                </div>
-                <div class="w-full px-4 py-2 pb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  placerat a magna non varius. Proin leo felis, euismod non
-                  porta eget, varius sit amet
-                </div>
-              </div>
-            </div>
-            <!-- 5 -->
-            <div class="w-full px-4 py-4 swiper-slide">
-              <div class="bg-white w-full drop-shadow flex-col rounded-lg">
-                <img
-                  src="/images/blogs/4.webp"
-                  alt="blog-1"
-                  class="object-cover rounded-lg"
-                />
-                <div class="w-full font-bold text-2xl pt-4 pb-2 px-4">
-                  <a href="#"
-                    >Proin leo felis, euismod non porta eget, varius sit amet</a
-                  >
-                </div>
-                <div class="w-full px-4 py-2 pb-8">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                  placerat a magna non varius. Proin leo felis, euismod non
-                  porta eget, varius sit amet
-                </div>
-              </div>
-            </div>
+
+            <% }); %>  
             <!-- Show More -->
             <div class="w-full h-full px-4 py-4 swiper-slide">
               <div
@@ -572,7 +496,7 @@
                   rounded-lg
                 "
               >
-                <a href="https://blog.zairza.in" class="w-full">
+                <a href="/blogs"  class="w-full">
                   <h1
                     class="
                       text-center
