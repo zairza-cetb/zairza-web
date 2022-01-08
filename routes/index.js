@@ -45,7 +45,7 @@ const team = [
     name: "Biswajit patra ",
     linkedin: "https://www.linkedin.com/in/biswajitpatra-/",
     mail: "patrabiswajit133@gmail.com",
-    image: "/images/new-landing/team/Biswajeet.webp",
+    image: "/images/new-landing/team/Biswajit.webp",
   },
   {
     position: "Core Member",
@@ -91,13 +91,6 @@ const team = [
   },
   {
     position: "Core Member",
-    name: "Satyam Mishra",
-    linkedin: "https://www.linkedin.com/in/satyam-mishra-906a401b4/",
-    mail: "sam.mishra20@gmail.com",
-    image: "/images/new-landing/team/Satyam.webp",
-  },
-  {
-    position: "Core Member",
     name: "Subhankit Prusty",
     linkedin: "https://www.linkedin.com/in/subhankit-prusti-1543ba1b0/",
     mail: "subhankitprusti2000@gmail.com",
@@ -105,10 +98,31 @@ const team = [
   },
   {
     position: "Core Member",
+    name: "Soumik Kundu",
+    linkedin: "https://www.linkedin.com/in/soumik-kundu-9509831a7/",
+    mail: "soumikkundu25@gmail.com",
+    image: "/images/new-landing/team/Kundu.webp",
+  },
+  {
+    position: "Core Member",
+    name: "Satyam Mishra",
+    linkedin: "https://www.linkedin.com/in/satyam-mishra-906a401b4/",
+    mail: "sam.mishra20@gmail.com",
+    image: "/images/new-landing/team/Satyam.webp",
+  },
+  {
+    position: "Core Member",
     name: "Suvam Pattnaik",
     linkedin: "https://www.linkedin.com/in/suvam-pattnaik-70b9a3216/",
     mail: "#",
     image: "/images/new-landing/team/Suvam.webp",
+  },
+  {
+    position: "Core Member",
+    name: "Biswajeet Ray",
+    linkedin: "https://www.linkedin.com/in/biswajeet-ray-ba0964170/",
+    mail: "#",
+    image: "/images/new-landing/team/Biswajeet.webp",
   },
   {
     position: "Core Member",
@@ -123,13 +137,6 @@ const team = [
     linkedin: "https://www.linkedin.com/in/rahulraj-senapati-662b77155/",
     mail: "#",
     image: "/images/new-landing/team/Rahul.webp",
-  },
-  {
-    position: "Core Member",
-    name: "Biswajeet Ray",
-    linkedin: "https://www.linkedin.com/in/biswajeet-ray-ba0964170/",
-    mail: "#",
-    image: "/images/new-landing/team/Biswajit.webp",
   },
   {
     position: "Core Member",
@@ -249,7 +256,7 @@ router.get("/", function (req, res, next) {
   let now = new Date().getTime();
   let someArticles = article.slice(0, 5)
 
-  if (launchDate - now <= 0) {
+  if (launchDate - now >= 0) {
     if (req.cookies["zToken"] != null) {
       admin
         .auth()
