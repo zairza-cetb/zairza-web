@@ -245,7 +245,7 @@ const article = [
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  let launchDate = new Date("Jan 08, 2022 20:00:00").getTime();
+  let launchDate = new Date("Jan 08, 2022 21:00:00").getTime();
   let now = new Date().getTime();
   if (launchDate - now <= 0) {
     if (req.cookies["zToken"] != null) {

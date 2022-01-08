@@ -1,7 +1,7 @@
 setInterval(tick, 1000);
 
 function tick() {
-    let launchDate = new Date("Jan 08, 2022 20:00:00").getTime();
+    let launchDate = new Date("Jan 08, 2022 21:00:00").getTime();
 
     let now = new Date().getTime();
 
