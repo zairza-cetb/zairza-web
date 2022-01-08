@@ -252,11 +252,9 @@ const article = [
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  let launchDate = new Date("Jan 08, 2022 21:00:00").getTime();
-  let now = new Date().getTime();
+
   let someArticles = article.slice(0, 5)
 
-  if (launchDate - now >= 0) {
     if (req.cookies["zToken"] != null) {
       admin
         .auth()
@@ -270,9 +268,6 @@ router.get("/", function (req, res, next) {
     } else {
       res.render("pages/newIndex", { data: { loggedIn: false, articles: someArticles } });
     }
-  } else {
-    res.render("pages/countdown", { data: { loggedIn: true, articles: someArticles } });
-  }
 
   //     .then((decodedToken) => {
   //       res.render("pages/index", { loggedIn: true });
