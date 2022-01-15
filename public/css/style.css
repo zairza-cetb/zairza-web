@@ -934,10 +934,29 @@ footer {
   .img-container {
     position: relative;
     z-index: 10;
-    top: -9.5%;
+    top: -0%;
   }
   .input-field-mail {
     width: 65% !important;
+  }
+}
+
+@media (max-width: 426px) {
+  .img-container {
+    position: relative;
+    bottom: -5%;
+  }
+}
+@media (max-width: 376px) {
+  .img-container {
+    position: relative;
+    bottom: -8.2%;
+  }
+}
+@media (max-width: 321px) {
+  .img-container {
+    position: relative;
+    bottom: -12%;
   }
 }
 

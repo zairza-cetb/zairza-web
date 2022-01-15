@@ -91,6 +91,20 @@ const team = [
   },
   {
     position: "Core Member",
+    name: "Satyajeet Malla",
+    linkedin: "https://www.linkedin.com/in/satyajeet-malla-89a818193/",
+    mail: "satyajeet.malla2@gmail.com",
+    image: "/images/new-landing/team/Malla.webp",
+  },
+  {
+    position: "Core Member",
+    name: "Sourajeet Mohanty",
+    linkedin: "https://www.linkedin.com/in/sourajeet-mohanty-1223a2185/",
+    mail: "sourajeetm717@gmail.com",
+    image: "/images/new-landing/team/Sourajit.webp",
+  },
+  {
+    position: "Core Member",
     name: "Subhankit Prusty",
     linkedin: "https://www.linkedin.com/in/subhankit-prusti-1543ba1b0/",
     mail: "subhankitprusti2000@gmail.com",
@@ -255,19 +269,19 @@ router.get("/", function (req, res, next) {
 
   let someArticles = article.slice(0, 5)
 
-    if (req.cookies["zToken"] != null) {
-      admin
-        .auth()
-        .verifyIdToken(req.cookies["zToken"])
-        .then((decodedToken) => {
-          res.render("pages/newIndex", { data: { loggedIn: true, articles: someArticles } });
-        })
-        .catch((err) => {
-          res.render("pages/newIndex", { data: { loggedIn: false, articles: someArticles } });
-        });
-    } else {
-      res.render("pages/newIndex", { data: { loggedIn: false, articles: someArticles } });
-    }
+  if (req.cookies["zToken"] != null) {
+    admin
+      .auth()
+      .verifyIdToken(req.cookies["zToken"])
+      .then((decodedToken) => {
+        res.render("pages/newIndex", { data: { loggedIn: true, articles: someArticles } });
+      })
+      .catch((err) => {
+        res.render("pages/newIndex", { data: { loggedIn: false, articles: someArticles } });
+      });
+  } else {
+    res.render("pages/newIndex", { data: { loggedIn: false, articles: someArticles } });
+  }
 
   //     .then((decodedToken) => {
   //       res.render("pages/index", { loggedIn: true });
