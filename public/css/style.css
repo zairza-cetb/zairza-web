@@ -1080,3 +1080,10 @@ footer {
   -ms-transform: scale(1.01);
   -o-transform: scale(1.01);
 }
+
+@media (max-width: 500px)
+{
+  .hero-head{
+    margin-top: -6rem;
+  }
+}
