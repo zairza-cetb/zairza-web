@@ -8,7 +8,7 @@ Founded in the year 2005, the club has ever since witnessed a synapse of creativ
 Hosted in [Here](https://zairza.in). 
 ## Installation for Developers 
 
-Zairza API can be setup to run via node's default package manager `Npm`.
+Zairza API can be setup to run via node's default package manager `Npm`npx.
 
 ### Standard Installation
 
