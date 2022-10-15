@@ -1,4 +1,4 @@
-# ZAIRZA WEBSITE 2020
+# ZAIRZA WEBSITE 2022
 
 ![Zairza Github](https://raw.githubusercontent.com/zairza-cetb/zairza-web/main/public/images/Zairzalogo.webp)
 
